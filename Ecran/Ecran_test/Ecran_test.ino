@@ -1,14 +1,29 @@
+/**
+ *    \file Ecran_test.ino
+ *    \brief Code d'affichage de l'écran
+ *    \author Arthur Duytschaever & Nicolas Sobczak
+ *    \date octobre 2016
+*/
+
+
+/* ======================================================================================================
+ *      Include
+ * ======================================================================================================
+ */
 #include "logoCrysteo.h"
 #include "Ecran.h"
 #include "U8glib.h"
 
+
+/* ======================================================================================================
+ *      Define
+ * ======================================================================================================
+ */
 #define MENU_ITEMS 4
-#define Menu1 "Strategie"
-#define Menu2 "Test"
-#define Menu3 "Debug"
-#define Menu4 "Back"
-
-
+#define _MENU1_ "Strategie"
+#define _MENU2_ "Test"
+#define _MENU3_ "Debug"
+#define _MENU4_ "Back"
 
 #define KEY_NONE 0
 #define KEY_PREV 1
@@ -16,11 +31,20 @@
 #define KEY_SELECT 3
 #define KEY_BACK 4
 
-U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 18, MOSI = rw = 16, CS = di = 17
+
+/* ======================================================================================================
+ *      Initialisation
+ * ======================================================================================================
+ */
+//Declaration de l'objet UG8 + pin du SPI
+U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14
+
+//Declaration de l'encodeur = le bouton
 const int entry = 2; 
 const int encoderMoin = 52;
 const int encoderPlus = 50;
 
+//Declaration de trucs inconnus
 uint8_t uiKeyCodeFirst = KEY_NONE;
 uint8_t uiKeyCodeSecond = KEY_NONE;
 uint8_t uiKeyCode = KEY_NONE;
@@ -29,15 +53,23 @@ uint8_t last_key_code = KEY_NONE;
 int menu_current = 0;
 uint8_t i, h;
 u8g_uint_t w, d;
-int selectMenu =10;
+int selectMenu = 10;
+
+//Definition du nom des menus
+const char *menu_strings[MENU_ITEMS] = {_MENU1_, _MENU2_, _MENU3_, _MENU4_};
 
 
-const char *menu_strings[MENU_ITEMS] = {Menu1, Menu2, Menu3, Menu4};
 
+/* ======================================================================================================
+ *      Fonctions
+ * ======================================================================================================
+ */
  
-  // rebuild the picture after some delay
-  //delay(100);
-
+/**____________________________________________________
+ *   \fn void ecranDacceuil(void)
+ *   \param void
+ *   Fonction qui affiche le logo au debut
+ */
 void ecranDacceuil(void) {
   u8g.firstPage();
    do {
@@ -45,6 +77,12 @@ void ecranDacceuil(void) {
   } while(u8g.nextPage());
 }
 
+
+/**____________________________________________________
+ *   \fn void drawMenu(void)
+ *   \param void
+ *   Afficher le menu après le logo + bande de selection
+ */
 void drawMenu(void) {
   uint8_t i, h;
   u8g_uint_t w, d;
@@ -67,6 +105,12 @@ void drawMenu(void) {
   }
 }
 
+
+/**____________________________________________________
+ *   \fn void updateMenu(void)
+ *   \param void
+ *   Fonction qui selectionne le menu sur lequel le curseur est place
+ */
 void updateMenu(void) {
   if ( uiKeyCode != KEY_NONE && last_key_code == uiKeyCode ) {
     return;
@@ -96,6 +140,12 @@ void updateMenu(void) {
   }
 }
 
+
+/**____________________________________________________
+ *   \fn void uiStep(void)
+ *   \param void
+ *   Fonction qui initialise la configuration des pins
+ */
 void uiStep(void) {
   uiKeyCodeSecond = uiKeyCodeFirst;
   if ( digitalRead(encoderMoin) == LOW )
@@ -120,8 +170,11 @@ void uiStep(void) {
 //Test de l'objet
 Ecran monEcran;
 
-//_______________________________
-
+/**____________________________________________________
+ *   \fn void Menu(void)
+ *   \param void
+ *   Fonction qui affiche qqch
+ */
 void Menu(void){
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
@@ -142,6 +195,12 @@ void Menu(void){
   }
 }
 
+
+/**____________________________________________________
+ *   \fn void Menu10(void)
+ *   \param void
+ *   Fonction qui affiche qqch mais un autre qqch
+ */
 void Menu10(void){
   u8g.drawBox(0,0,128,64);
   u8g.setPrintPos(0,0); 
@@ -163,6 +222,12 @@ void Menu10(void){
   }
 }
 
+
+/**____________________________________________________
+ *   \fn void SelectMenu(int selectMenu)
+ *   \param int selectMenu
+ *   Fonction qui affiche le menu correspondant à la selection du curseur
+ */
 void SelectMenu(int selectMenu){// fonction beug.....
   //Serial.println(selectMenu);
   //u8g.firstPage();
@@ -189,6 +254,10 @@ void SelectMenu(int selectMenu){// fonction beug.....
     }while(u8g.nextPage());
   }
 }
+
+
+//____________________________________________________
+//____________________________________________________
 void setup(void) {
   //Attachinterrupt()
     Serial.begin(9600);
@@ -207,6 +276,7 @@ void setup(void) {
                                    // setup key detection and debounce algorithm
   menu_redraw_required = 1;
 }
+
 
 void loop(void) {
   
