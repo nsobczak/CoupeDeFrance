@@ -1,0 +1,5 @@
+<map id="moteur.h" name="moteur.h">
+<area shape="rect" id="node2" href="$asservissement_8h.html" title="entête classe asservissement du grand robot " alt="" coords="5,80,131,107"/>
+<area shape="rect" id="node3" href="$asservissement_8cpp.html" title="Classe Asservissement. Code asservissement du grand Robot, permet d&#39;asservir en angle et en position ..." alt="" coords="48,155,187,181"/>
+<area shape="rect" id="node4" href="$moteur_8cpp.html" title="Code contrôle des moteurs du grand Robot. Ce programme permet d&#39;initialiser et d&#39;envoyer 4 PWM (2 PWM..." alt="" coords="206,80,293,107"/>
+</map>
