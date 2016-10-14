@@ -58,6 +58,8 @@ int selectMenu = 10;
 //Definition du nom des menus
 const char *menu_strings[MENU_ITEMS] = {_MENU1_, _MENU2_, _MENU3_, _MENU4_};
 
+//Declaratio de l'objet
+Ecran monEcran;
 
 
 /* ======================================================================================================
@@ -72,7 +74,7 @@ const char *menu_strings[MENU_ITEMS] = {_MENU1_, _MENU2_, _MENU3_, _MENU4_};
  */
 void ecranDacceuil(void) {
   u8g.firstPage();
-   do {
+  do {
     u8g.drawBitmapP(0, 0, 16, 64, logoCrysteo);
   } while(u8g.nextPage());
 }
@@ -165,10 +167,6 @@ void uiStep(void) {
 }
 
 
-//_______________________________
-//Test de l'objet
-Ecran monEcran;
-
 /**____________________________________________________
  *   \fn void Menu(void)
  *   \param void
@@ -217,8 +215,7 @@ void Menu10(void){
   //affichage a l'ecran
   for (int i = 0; i < 5; ++i){
       u8g.setPrintPos(0, 0 + 11 * i);
-      u8g.print(monEcran.getNom(i));
-      u8g.print(": ");
+      u8g.print(monEcran.getNom(i) + ": ");
       u8g.print(monEcran.getValue(i));
   }
 }
@@ -234,25 +231,25 @@ void SelectMenu(int selectMenu){// fonction beug.....
   //u8g.firstPage();
   switch(selectMenu){
     case 0 :    
-        /*u8g.firstPage();// potentiellement source de beug*/
-      do{
-        Menu10();
-    }while(u8g.nextPage());
+        u8g.firstPage();// potentiellement source de beug*/
+        do{
+          Menu10();
+        }while(u8g.nextPage());
     case 1 : 
         u8g.firstPage();
-    do{
-      Menu();
-    }while(u8g.nextPage());
+        do{
+          Menu();
+        }while(u8g.nextPage());
     case 2 :
         u8g.firstPage();
-    do{
-      Menu();
-    }while(u8g.nextPage());
+        do{
+          Menu();
+        }while(u8g.nextPage());
     case 3 :
         u8g.firstPage();
-    do{
-      ecranDacceuil();
-    }while(u8g.nextPage());
+        do{
+          ecranDacceuil();
+        }while(u8g.nextPage());
   }
 }
 
@@ -261,12 +258,12 @@ void SelectMenu(int selectMenu){// fonction beug.....
 //____________________________________________________
 void setup(void) {
   //Attachinterrupt()
-    Serial.begin(9600);
-    pinMode(entry,INPUT_PULLUP);
-    pinMode(encoderMoin,INPUT_PULLUP);
-    pinMode(encoderPlus,INPUT_PULLUP);
-    //digitalWrite(entry,HIGH);
-      u8g.setColorIndex(1); // Affichage en mode N&B
+  Serial.begin(9600);
+  pinMode(entry,INPUT_PULLUP);
+  pinMode(encoderMoin,INPUT_PULLUP);
+  pinMode(encoderPlus,INPUT_PULLUP);
+  //digitalWrite(entry,HIGH);
+  u8g.setColorIndex(1); // Affichage en mode N&B
    
   //u8g.firstPage(); // Sélectionne la 1er page mémoire de l'écran
   ecranDacceuil();
@@ -284,14 +281,14 @@ void loop(void) {
   uiStep();                                     // check for key press 
   if (  menu_redraw_required != 0 ) {
     u8g.firstPage();
-    do  {
-      drawMenu();
-    } while( u8g.nextPage() );
+    do  
+    {
+       drawMenu();
+    }while( u8g.nextPage() );
     menu_redraw_required = 0;
   }
    
-   SelectMenu(selectMenu);
-
+  SelectMenu(selectMenu);
 
   selectMenu = 100;
   updateMenu();     
