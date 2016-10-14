@@ -68,7 +68,7 @@ const char *menu_strings[MENU_ITEMS] = {_MENU1_, _MENU2_, _MENU3_, _MENU4_};
 /**____________________________________________________
  *   \fn void ecranDacceuil(void)
  *   \param void
- *   Fonction qui affiche le logo au debut
+ *   Fonction qui affiche le logo crysteo au démarrage de l'écran
  */
 void ecranDacceuil(void) {
   u8g.firstPage();
@@ -90,7 +90,6 @@ void drawMenu(void) {
   u8g.setFont(u8g_font_ncenB10);
   u8g.setFontRefHeightText();
   u8g.setFontPosTop();
-
   
   h = u8g.getFontAscent()-u8g.getFontDescent();
   w = u8g.getWidth();
@@ -175,7 +174,8 @@ Ecran monEcran;
  *   \param void
  *   Fonction qui affiche qqch
  */
-void Menu(void){
+void Menu(void)
+{
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
   monEcran.setNom("string", 0);
@@ -183,14 +183,15 @@ void Menu(void){
   monEcran.setNom("string", 2);
   monEcran.setNom("string", 3);
   monEcran.setNom("string", 4);
-  for (int i = 0; i < 5; ++i){
+  for (int i = 0; i < 5; ++i)
+  {
     monEcran.setValue(3.2*i, i);
   }
   //affichage a l'ecran
-  for (int i = 0; i < 5; ++i){
+  for (int i = 0; i < 5; ++i)
+  {
       u8g.setPrintPos(0, 0 + 11 * i);
-      u8g.print(monEcran.getNom(i));
-      u8g.print(": ");
+      u8g.print(monEcran.getNom(i) + ": ");
       u8g.print(monEcran.getValue(i));
   }
 }

@@ -16,5 +16,6 @@ class Ecran{
     
     void setValue(float value, int indice);
     void setNom(String nom, int indice);
+    
 };
 
