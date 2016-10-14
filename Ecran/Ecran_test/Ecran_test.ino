@@ -1,5 +1,4 @@
-#include <Robotics.h>
-
+#include "logoCrysteo.h"
 #include "Ecran.h"
 #include "U8glib.h"
 
@@ -42,7 +41,7 @@ const char *menu_strings[MENU_ITEMS] = {Menu1, Menu2, Menu3, Menu4};
 void ecranDacceuil(void) {
   u8g.firstPage();
    do {
-    u8g.drawBitmapP(0, 0, 16, 64, Robotics);
+    u8g.drawBitmapP(0, 0, 16, 64, logoCrysteo);
   } while(u8g.nextPage());
 }
 
