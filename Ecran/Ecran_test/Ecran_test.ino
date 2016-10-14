@@ -41,7 +41,7 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 
 //Declaration de l'encodeur = le bouton
 const int entry = 2; 
-const int encoderMoin = 52;
+const int encoderMoins = 52;
 const int encoderPlus = 50;
 
 //Declaration de trucs inconnus
@@ -75,7 +75,7 @@ Ecran monEcran;
 void ecranDacceuil(void) {
   u8g.firstPage();
   do {
-    u8g.drawBitmapP(0, 0, 16, 64, logoCrysteo);
+      u8g.drawBitmapP(0, 0, 16, 64, logoCrysteo);
   } while(u8g.nextPage());
 }
 
@@ -149,7 +149,7 @@ void updateMenu(void) {
  */
 void uiStep(void) {
   uiKeyCodeSecond = uiKeyCodeFirst;
-  if ( digitalRead(encoderMoin) == LOW )
+  if ( digitalRead(encoderMoins) == LOW )
     uiKeyCodeFirst = KEY_PREV;
   else if ( digitalRead(encoderPlus) == LOW )
     uiKeyCodeFirst = KEY_NEXT;
@@ -204,10 +204,10 @@ void Menu10(void){
   u8g.drawBox(0,0,128,64);
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
-  monEcran.setNom("s", 0);
-  monEcran.setNom("s", 1);
-  monEcran.setNom("s", 2);
-  monEcran.setNom("s", 3);
+  monEcran.setNom("coucou", 0);
+  monEcran.setNom("mon", 1);
+  monEcran.setNom("petit", 2);
+  monEcran.setNom("pigeon", 3);
   monEcran.setNom("s", 4);
   for (int i = 0; i < 5; ++i){
     monEcran.setValue(3.2*i, i);
@@ -243,7 +243,7 @@ void SelectMenu(int selectMenu){// fonction beug.....
     case 2 :
         u8g.firstPage();
         do{
-          Menu();
+          Menu10();
         }while(u8g.nextPage());
     case 3 :
         u8g.firstPage();
@@ -259,9 +259,9 @@ void SelectMenu(int selectMenu){// fonction beug.....
 void setup(void) {
   //Attachinterrupt()
   Serial.begin(9600);
-  pinMode(entry,INPUT_PULLUP);
-  pinMode(encoderMoin,INPUT_PULLUP);
-  pinMode(encoderPlus,INPUT_PULLUP);
+  pinMode(entry, INPUT_PULLUP);
+  pinMode(encoderMoins, INPUT_PULLUP);
+  pinMode(encoderPlus, INPUT_PULLUP);
   //digitalWrite(entry,HIGH);
   u8g.setColorIndex(1); // Affichage en mode N&B
    
@@ -270,8 +270,8 @@ void setup(void) {
   delay(2000);
   uiStep();
   // flip screen, if required
-   //u8g.setRot180();
-                                   // setup key detection and debounce algorithm
+  // u8g.setRot180();
+  // setup key detection and debounce algorithm
   menu_redraw_required = 1;
 }
 
@@ -284,7 +284,7 @@ void loop(void) {
     do  
     {
        drawMenu();
-    }while( u8g.nextPage() );
+    } while( u8g.nextPage() );
     menu_redraw_required = 0;
   }
    
