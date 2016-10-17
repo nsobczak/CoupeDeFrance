@@ -24,6 +24,8 @@
  *      Define
  * ======================================================================================================
  */
+#define inputPontH2MoteurDroit 11 //commande pont en h avec 2 signal 1 constant et l'autre PWM
+#define inputPontH2MoteurGauche 12 //commande pont en h avec 2 signal 1 constant et l'autre PWM
 #define PWM_FREQ 20000 // in Hertz (SET YOUR FREQUENCY)
 
 uint16_t TIM_ARR = (uint16_t)(24000000 / PWM_FREQ) - 1; // Don't change! Calc's period.
@@ -41,7 +43,8 @@ Moteur::Moteur(){
 
 //active le timer2 et 0 pour la PWM, active la PWM selon le moteur
 void Moteur::initPWM(){
-
+   pinMode(inputPontH2MoteurDroit,OUTPUT);
+   pinMode(inputPontH2MoteurGauche,OUTPUT);
    pinMode(PMW_MOTEUR_A0 ,OUTPUT);
    pinMode(PMW_MOTEUR_A1 ,OUTPUT);
 
@@ -52,24 +55,26 @@ void Moteur::initPWM(){
 
 
 //permet de freiner les moteurs
-void Moteur::brake(int choix_moteur){
+void Moteur::brake(int choix_moteur){// potentiellement inutile pour frein mettre les motor a 0
 
               if(choix_moteur == 1){
-                m_vitesse_moteur=-100;
+                /*m_vitesse_moteur=-100;
                 m_vitesse_moteur=convertir_pourcentage_en_octet ();
                 m_PWM_G[0]= m_vitesse_moteur;
-                m_PWM_G[1]=255- m_vitesse_moteur;
+                m_PWM_G[1]=255- m_vitesse_moteur;*/
                 analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
-                analogWrite(PMW_MOTEUR_A1,255-m_vitesse_moteur);
+                digitalWrite(inputPontH2MoteurGauche,LOW);
+                //analogWrite(PMW_MOTEUR_A1,255-m_vitesse_moteur);
                 }
 
                if(choix_moteur == 2){
-                 m_vitesse_moteur=-100;
+                 /*m_vitesse_moteur=-100;
                  m_vitesse_moteur=convertir_pourcentage_en_octet ();
                  m_PWM_D[0]= m_vitesse_moteur;
-                 m_PWM_D[1]=255- m_vitesse_moteur;
+                 m_PWM_D[1]=255- m_vitesse_moteur;*/
                  analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
-                 analogWrite(PMW_MOTEUR_B1,255-m_vitesse_moteur);
+                 digitalWrite(inputPontH2MoteurDroit,LOW);
+                 //analogWrite(PMW_MOTEUR_B1,255-m_vitesse_moteur);
                 }
 
 }
@@ -78,32 +83,49 @@ void Moteur::brake(int choix_moteur){
 //gérer le moteur pour qu'il roule vers sa destination
 void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit){
         //moteur gauche
-        if(vitesseGauche != 0){
+        //if(vitesseGauche != 0){
             m_vitesse_moteur=  vitesseGauche;
             m_vitesse_moteur=convertir_pourcentage_en_octet ();
             //m_PWM_G[0]=m_PWM_G[1]=m_vitesse_moteur;
-            analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
-            analogWrite(PMW_MOTEUR_A1,m_vitesse_moteur);
-
-        }
-        else{
+              if(m_vitesse_moteur>127){
+                analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
+                digitalWrite(inputPontH2MoteurGauche,LOW);
+              }
+              else if(m_vitesse_moteur<127){
+                analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
+                digitalWrite(inputPontH2MoteurGauche,HIGH);
+              }
+            //analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
+            //analogWrite(PMW_MOTEUR_A1,m_vitesse_moteur);
+              else if(m_vitesse_moteur == 127){
+                brake(1);
+              }
+        //}
+        /*else{
             brake(1);
-         }
+         }*/
 
         //moteur droit
         if(vitesseDroit != 0){
             m_vitesse_moteur= vitesseDroit;
             m_vitesse_moteur=convertir_pourcentage_en_octet ();
             //m_PWM_D[0]=m_PWM_D[1]=m_vitesse_moteur;
-            analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
-            analogWrite(PMW_MOTEUR_B1,m_vitesse_moteur);
+              //if(m_vitesse_moteur>=127){
+                analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
+                digitalWrite(inputPontH2MoteurDroit,LOW);
+              }
+              else if(m_vitesse_moteur<127){
+                analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
+                digitalWrite(inputPontH2MoteurDroit,HIGH);
+              }
+            //analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
+            //analogWrite(PMW_MOTEUR_B1,m_vitesse_moteur);
             //digitalWrite(PMW_MOTEUR_B1,!digitalRead(keep_B));
-
-        }
-        else{
-            brake(2);
-        }
-
+              else if(m_vitesse_moteur == 127){
+                brake(2);
+              }
+        //}
+     
           //envoieData();
 
 
