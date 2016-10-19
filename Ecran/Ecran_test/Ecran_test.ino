@@ -1,5 +1,5 @@
 /**
- *    \file Ecran_test.ino
+ *    \file Ecran_test.cpp
  *    \brief Code d'affichage de l'écran
  *    \author Arthur Duytschaever & Nicolas Sobczak
  *    \date octobre 2016
@@ -372,6 +372,28 @@ void selectStratMenu(int selecteurMenu){
         break;
     }
   }
+}
+
+
+/**____________________________________________________
+ *   \fn void stratMenuLoop(void)
+ *   \param void
+ *   Fonction boucle pour le menu strategie
+ */
+void stratMenuLoop(void) {
+  
+  uiStep();                                     // check for key press 
+  if (  menu_redraw_required != 0 ) {
+    u8g.firstPage();
+    do{
+       drawMenuStrategie;
+    } while( u8g.nextPage() );
+    menu_redraw_required = 0;
+  }
+  selectMainMenu(selecteurMenu);
+
+  selecteurMenu= -1;
+  updateMenu();     
 }
 
 

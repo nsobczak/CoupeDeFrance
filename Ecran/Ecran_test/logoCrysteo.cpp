@@ -1,1 +1,13 @@
-#include "logoCrysteo.h"
+/**
+ *    \file logoCrysteo.cpp
+ *    \brief logoCrysteo
+ *    \author Arthur Duytschaever
+ *    \date octobre 2016
+*/
+
+
+/* ======================================================================================================
+ *      Include
+ * ======================================================================================================
+ */
+ #include "logoCrysteo.h"
