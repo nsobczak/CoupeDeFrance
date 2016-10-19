@@ -53,13 +53,15 @@ uint8_t last_key_code = KEY_NONE;
 int menu_current = 0;
 uint8_t i, h;
 u8g_uint_t w, d;
-int selectMenu = 10;
+int selecteurMenu = 10;
 
 //Definition du nom des menus
 const char *menu_strings[MENU_ITEMS] = {_MENU1_, _MENU2_, _MENU3_, _MENU4_};
 
-//Declaratio de l'objet
-Ecran monEcran;
+//Declaration des objets ecran
+Ecran ecranStrategie;
+Ecran ecranTest;
+Ecran ecranDebug;
 
 
 /* ======================================================================================================
@@ -68,42 +70,12 @@ Ecran monEcran;
  */
  
 /**____________________________________________________
- *   \fn void ecranDacceuil(void)
+ *   \fn void drawEcranDacceuil(void)
  *   \param void
  *   Fonction qui affiche le logo crysteo au démarrage de l'écran
  */
-void ecranDacceuil(void) {
-  u8g.firstPage();
-  do {
-      u8g.drawBitmapP(0, 0, 16, 64, logoCrysteo);
-  } while(u8g.nextPage());
-}
-
-
-/**____________________________________________________
- *   \fn void drawMenu(void)
- *   \param void
- *   Afficher le menu après le logo + bande de selection
- */
-void drawMenu(void) {
-  uint8_t i, h;
-  u8g_uint_t w, d;
-   
-  u8g.setFont(u8g_font_ncenB10);
-  u8g.setFontRefHeightText();
-  u8g.setFontPosTop();
-  
-  h = u8g.getFontAscent()-u8g.getFontDescent();
-  w = u8g.getWidth();
-  for( i = 0; i < MENU_ITEMS; i++ ) {
-    d = (w-u8g.getStrWidth(menu_strings[i]))/2;
-    u8g.setDefaultForegroundColor();
-    if ( i == menu_current ) {
-      u8g.drawBox(0, i*h+1, w, h);
-      u8g.setDefaultBackgroundColor();
-    }
-    u8g.drawStr(d, i*h, menu_strings[i]);
-  }
+void drawEcranDacceuil(void) {
+  u8g.drawBitmapP(0, 0, 16, 64, logoCrysteo);
 }
 
 
@@ -111,6 +83,8 @@ void drawMenu(void) {
  *   \fn void updateMenu(void)
  *   \param void
  *   Fonction qui selectionne le menu sur lequel le curseur est place
+ *   The position of the cursor bar is stored in the global variable menu_current.
+ *   External buttons, a touchpanel or other sensors might modify the cursor bar position:
  */
 void updateMenu(void) {
   if ( uiKeyCode != KEY_NONE && last_key_code == uiKeyCode ) {
@@ -132,9 +106,9 @@ void updateMenu(void) {
       menu_redraw_required = 1;
       break;
     case KEY_SELECT:
-      for(int indice=0;indice<=MENU_ITEMS;indice++){
+      for(int indice=0; indice <= MENU_ITEMS; indice++){
         if(menu_current==indice){
-          selectMenu = indice;
+          selecteurMenu = indice;
         }
       }
       break;  
@@ -168,88 +142,154 @@ void uiStep(void) {
 
 
 /**____________________________________________________
- *   \fn void Menu(void)
+ *   \fn void drawMainMenu(void)
  *   \param void
- *   Fonction qui affiche qqch
+ *   Afficher le menu après le logo + bande de selection
  */
-void Menu(void)
+void drawMainMenu(void) {
+  uint8_t i, h;
+  u8g_uint_t w, d;
+   
+  u8g.setFont(u8g_font_ncenB10);
+  u8g.setFontRefHeightText();
+  u8g.setFontPosTop();
+  
+  h = u8g.getFontAscent()-u8g.getFontDescent();
+  w = u8g.getWidth();
+  for( i = 0; i < MENU_ITEMS; i++ ) {
+    d = (w - u8g.getStrWidth(menu_strings[i]) ) / 2;
+    u8g.setDefaultForegroundColor();
+    if ( i == menu_current ) {
+      u8g.drawBox(0, i*h+1, w, h);
+      u8g.setDefaultBackgroundColor();
+    }
+    u8g.drawStr(d, i*h, menu_strings[i]);
+  }
+}
+
+
+/**____________________________________________________
+ *   \fn void drawMenuStrategie(void)
+ *   \param void
+ *   Fonction qui affiche le menu de strategie
+ */
+void drawMenuStrategie(void)
 {
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
-  monEcran.setNom("string", 0);
-  monEcran.setNom("string", 1);
-  monEcran.setNom("string", 2);
-  monEcran.setNom("string", 3);
-  monEcran.setNom("string", 4);
-  for (int i = 0; i < 5; ++i)
-  {
-    monEcran.setValue(3.2*i, i);
-  }
+  ecranStrategie.setNom("Ecran de strat", 0);
+  ecranStrategie.setNom("Valeur test", 1);
+  ecranStrategie.setValue(3.14, 1);
+  
   //affichage a l'ecran
-  for (int i = 0; i < 5; ++i)
-  {
-      u8g.setPrintPos(0, 0 + 11 * i);
-      u8g.print(monEcran.getNom(i) + ": ");
-      u8g.print(monEcran.getValue(i));
-  }
+  u8g.print(ecranStrategie.getNom(0));
+  u8g.setPrintPos(0, 12); 
+  u8g.print(ecranStrategie.getNom(1) + ": ");
+  u8g.print(ecranStrategie.getValue(1));
 }
 
 
 /**____________________________________________________
- *   \fn void Menu10(void)
+ *   \fn void drawMenuTest(void)
  *   \param void
- *   Fonction qui affiche qqch mais un autre qqch
+ *   Fonction qui affiche l'ecran de test
  */
-void Menu10(void){
-  u8g.drawBox(0,0,128,64);
+void drawMenuTest(void)
+{
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
-  monEcran.setNom("coucou", 0);
-  monEcran.setNom("mon", 1);
-  monEcran.setNom("petit", 2);
-  monEcran.setNom("pigeon", 3);
-  monEcran.setNom("s", 4);
-  for (int i = 0; i < 5; ++i){
-    monEcran.setValue(3.2*i, i);
+  ecranTest.setNom("string", 0);
+  ecranTest.setNom("string", 1);
+  ecranTest.setNom("string", 2);
+  ecranTest.setNom("string", 3);
+  ecranTest.setNom("string", 4);
+  for (int i = 0; i < 5; ++i)
+  {
+    ecranTest.setValue(3.2*i, i);
   }
   //affichage a l'ecran
-  for (int i = 0; i < 5; ++i){
+  for (int i = 0; i < 5; ++i)
+  {
       u8g.setPrintPos(0, 0 + 11 * i);
-      u8g.print(monEcran.getNom(i) + ": ");
-      u8g.print(monEcran.getValue(i));
+      u8g.print(ecranTest.getNom(i) + ": ");
+      u8g.print(ecranTest.getValue(i));
   }
 }
 
 
 /**____________________________________________________
- *   \fn void SelectMenu(int selectMenu)
- *   \param int selectMenu
+ *   \fn void drawMenuDebug(void)
+ *   \param void
+ *   Fonction qui affiche l'ecran de debug
+ */
+void drawMenuDebug(void)
+{
+  u8g.setPrintPos(0,0); 
+  //initialisation de l'objet
+  ecranDebug.setNom("Debug", 0);
+  ecranDebug.setNom("coucou", 1);
+  ecranDebug.setNom("mon", 2);
+  ecranDebug.setNom("petit", 3);
+  ecranDebug.setNom("pigeon", 4);
+  for (int i = 0; i < 5; ++i){
+    ecranDebug.setValue(3.2*i, i);
+  }
+  //affichage a l'ecran
+  for (int i = 0; i < 5; ++i)
+  {
+      u8g.setPrintPos(0, 0 + 11 * i);
+      u8g.print(ecranDebug.getNom(i));
+      if (i != 0)
+      {
+        u8g.print(": ");
+        u8g.print(ecranDebug.getValue(i));
+      }
+  }
+}
+
+
+/**____________________________________________________
+ *   \fn void selectMainMenu(int selecteurMenu)
+ *   \param int selectMainMenu
  *   Fonction qui affiche le menu correspondant à la selection du curseur
  */
-void SelectMenu(int selectMenu){// fonction beug.....
-  //Serial.println(selectMenu);
-  //u8g.firstPage();
-  switch(selectMenu){
-    case 0 :    
-        u8g.firstPage();// potentiellement source de beug*/
+void selectMainMenu(int selecteurMenu){// fonction beug.....
+  Serial.println(selecteurMenu);
+  u8g.firstPage();
+  switch(selecteurMenu)
+  {
+    case 0 :   
+    { 
+        u8g.firstPage();        // potentiellement source de beug
         do{
-          Menu10();
+          drawMenuStrategie();
         }while(u8g.nextPage());
+        break;
+    }
     case 1 : 
+    {
         u8g.firstPage();
         do{
-          Menu();
+          drawMenuTest();
         }while(u8g.nextPage());
+        break;
+    }
     case 2 :
+    {
         u8g.firstPage();
         do{
-          Menu10();
+          drawMenuDebug();
         }while(u8g.nextPage());
+        break;
+    }
     case 3 :
+    {
         u8g.firstPage();
         do{
-          ecranDacceuil();
+          drawEcranDacceuil();
         }while(u8g.nextPage());
+        break;
+    }
   }
 }
 
@@ -266,8 +306,12 @@ void setup(void) {
   u8g.setColorIndex(1); // Affichage en mode N&B
    
   //u8g.firstPage(); // Sélectionne la 1er page mémoire de l'écran
-  ecranDacceuil();
-  delay(2000);
+  u8g.firstPage();
+  do {
+      drawEcranDacceuil();
+  } while(u8g.nextPage());  // while loop keep running until nextPage() returns '1'
+  delay(1000);
+  
   uiStep();
   // flip screen, if required
   // u8g.setRot180();
@@ -281,16 +325,14 @@ void loop(void) {
   uiStep();                                     // check for key press 
   if (  menu_redraw_required != 0 ) {
     u8g.firstPage();
-    do  
-    {
-       drawMenu();
+    do{
+       drawMainMenu();
     } while( u8g.nextPage() );
     menu_redraw_required = 0;
   }
-   
-  SelectMenu(selectMenu);
+  selectMainMenu(selecteurMenu);
 
-  selectMenu = 100;
+  selecteurMenu= -1;
   updateMenu();     
 }
 
