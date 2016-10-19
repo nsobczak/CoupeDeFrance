@@ -19,11 +19,17 @@
  *      Define
  * ======================================================================================================
  */
-#define MENU_ITEMS 4
-#define _MENU1_ "Strategie"
-#define _MENU2_ "Test"
-#define _MENU3_ "Debug"
-#define _MENU4_ "Back"
+#define _MENU_MAIN_ 4
+#define _MENUM1_ "Strategie"
+#define _MENUM2_ "Test"
+#define _MENUM3_ "Debug"
+#define _MENUM4_ "Back"
+
+#define _MENU_STRAT_ 4
+#define _MENUS1_ "Strategie1"
+#define _MENUS2_ "Strategie2"
+#define _MENUS3_ "Strategie3"
+#define _MENUS4_ "Strategie4"
 
 #define KEY_NONE 0
 #define KEY_PREV 1
@@ -56,7 +62,9 @@ u8g_uint_t w, d;
 int selecteurMenu = 10;
 
 //Definition du nom des menus
-const char *menu_strings[MENU_ITEMS] = {_MENU1_, _MENU2_, _MENU3_, _MENU4_};
+const char *menuM_strings[_MENU_MAIN_] = {_MENUM1_, _MENUM2_, _MENUM3_, _MENUM4_};
+const char *menuS_strings[_MENU_STRAT_] = {_MENUS1_, _MENUS2_, _MENUS3_, _MENUS4_};
+
 
 //Declaration des objets ecran
 Ecran ecranStrategie;
@@ -95,18 +103,18 @@ void updateMenu(void) {
   switch ( uiKeyCode ) {
     case KEY_NEXT:
       menu_current++;
-      if ( menu_current >= MENU_ITEMS )
+      if ( menu_current >= _MENU_MAIN_ )
         menu_current = 0;
       menu_redraw_required = 1;
       break;
     case KEY_PREV:
       if ( menu_current == 0 )
-        menu_current = MENU_ITEMS;
+        menu_current = _MENU_MAIN_;
       menu_current--;
       menu_redraw_required = 1;
       break;
     case KEY_SELECT:
-      for(int indice=0; indice <= MENU_ITEMS; indice++){
+      for(int indice=0; indice <= _MENU_MAIN_; indice++){
         if(menu_current==indice){
           selecteurMenu = indice;
         }
@@ -156,14 +164,14 @@ void drawMainMenu(void) {
   
   h = u8g.getFontAscent()-u8g.getFontDescent();
   w = u8g.getWidth();
-  for( i = 0; i < MENU_ITEMS; i++ ) {
-    d = (w - u8g.getStrWidth(menu_strings[i]) ) / 2;
+  for( i = 0; i < _MENU_MAIN_; i++ ) {
+    d = (w - u8g.getStrWidth(menuM_strings[i]) ) / 2;
     u8g.setDefaultForegroundColor();
     if ( i == menu_current ) {
       u8g.drawBox(0, i*h+1, w, h);
       u8g.setDefaultBackgroundColor();
     }
-    u8g.drawStr(d, i*h, menu_strings[i]);
+    u8g.drawStr(d, i*h, menuM_strings[i]);
   }
 }
 
@@ -173,7 +181,34 @@ void drawMainMenu(void) {
  *   \param void
  *   Fonction qui affiche le menu de strategie
  */
-void drawMenuStrategie(void)
+void drawMenuStrategie(void) {
+  uint8_t i, h;
+  u8g_uint_t w, d;
+   
+  u8g.setFont(u8g_font_ncenB10);
+  u8g.setFontRefHeightText();
+  u8g.setFontPosTop();
+  
+  h = u8g.getFontAscent()-u8g.getFontDescent();
+  w = u8g.getWidth();
+  for( i = 0; i < _MENU_MAIN_; i++ ) {
+    d = (w - u8g.getStrWidth(menuS_strings[i]) ) / 2;
+    u8g.setDefaultForegroundColor();
+    if ( i == menu_current ) {
+      u8g.drawBox(0, i*h+1, w, h);
+      u8g.setDefaultBackgroundColor();
+    }
+    u8g.drawStr(d, i*h, menuS_strings[i]);
+  }
+}
+
+
+/**____________________________________________________
+ *   \fn void drawMenuStrategie(void)
+ *   \param void
+ *   Fonction qui affiche l'ecran de la strategie 1
+ */
+void drawMenuStrategie1(void)
 {
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
@@ -250,17 +285,17 @@ void drawMenuDebug(void)
 
 /**____________________________________________________
  *   \fn void selectMainMenu(int selecteurMenu)
- *   \param int selectMainMenu
+ *   \param int selecteurMenu
  *   Fonction qui affiche le menu correspondant à la selection du curseur
  */
-void selectMainMenu(int selecteurMenu){// fonction beug.....
+void selectMainMenu(int selecteurMenu){
   Serial.println(selecteurMenu);
   u8g.firstPage();
   switch(selecteurMenu)
   {
     case 0 :   
     { 
-        u8g.firstPage();        // potentiellement source de beug
+        u8g.firstPage();        
         do{
           drawMenuStrategie();
         }while(u8g.nextPage());
@@ -279,6 +314,52 @@ void selectMainMenu(int selecteurMenu){// fonction beug.....
         u8g.firstPage();
         do{
           drawMenuDebug();
+        }while(u8g.nextPage());
+        break;
+    }
+    case 3 :
+    {
+        u8g.firstPage();
+        do{
+          drawEcranDacceuil();
+        }while(u8g.nextPage());
+        break;
+    }
+  }
+}
+
+
+/**____________________________________________________
+ *   \fn void selectStratMenu(int selecteurMenu)
+ *   \param int selecteurMenu
+ *   Fonction qui affiche le menu correspondant à la selection du curseur
+ */
+void selectStratMenu(int selecteurMenu){ 
+  Serial.println(selecteurMenu);
+  u8g.firstPage();
+  switch(selecteurMenu)
+  {
+    case 0 :   
+    { 
+        u8g.firstPage();        
+        do{
+          drawMenuStrategie1();
+        }while(u8g.nextPage());
+        break;
+    }
+    case 1 : 
+    {
+        u8g.firstPage();
+        do{
+          drawMenuStrategie1();
+        }while(u8g.nextPage());
+        break;
+    }
+    case 2 :
+    {
+        u8g.firstPage();
+        do{
+          drawMenuStrategie1();
         }while(u8g.nextPage());
         break;
     }
