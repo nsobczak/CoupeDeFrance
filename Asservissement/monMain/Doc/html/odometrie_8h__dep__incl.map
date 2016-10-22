@@ -1,9 +1,0 @@
-<map id="odometrie.h" name="odometrie.h">
-<area shape="rect" id="node2" href="$asservissement_8h.html" title="entête classe asservissement du grand robot " alt="" coords="184,155,309,181"/>
-<area shape="rect" id="node3" href="$asservissement_8cpp.html" title="Classe Asservissement. Code asservissement du grand Robot, permet d&#39;asservir en angle et en position ..." alt="" coords="126,229,265,256"/>
-<area shape="rect" id="node4" href="$moteur_8h.html" title="Classe moteur du grand robot. " alt="" coords="116,80,190,107"/>
-<area shape="rect" id="node5" href="$moteur_8cpp.html" title="Code contrôle des moteurs du grand Robot. Ce programme permet d&#39;initialiser et d&#39;envoyer 4 PWM (2 PWM..." alt="" coords="22,155,108,181"/>
-<area shape="rect" id="node6" href="$_p_i_d_8h.html" title="Class PID Proportionnel Intégrateur Dérivateur du grand robot. " alt="" coords="277,80,333,107"/>
-<area shape="rect" id="node7" href="$_p_i_d_8cpp.html" title="Code Proportionnel Intégrateur Dérivateur (PID) du grand Robot. Permet de corriger la consigne de sor..." alt="" coords="384,155,455,181"/>
-<area shape="rect" id="node8" href="$odometrie_8cpp.html" title="Code odometrie du grand robot. Permet de connaitre la prosition du robot sur l&#39;axe x..." alt="" coords="408,80,512,107"/>
-</map>

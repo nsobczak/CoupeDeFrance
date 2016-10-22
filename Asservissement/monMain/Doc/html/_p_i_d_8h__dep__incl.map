@@ -1,5 +1,0 @@
-<map id="PID.h" name="PID.h">
-<area shape="rect" id="node2" href="$asservissement_8h.html" title="entête classe asservissement du grand robot " alt="" coords="5,80,131,107"/>
-<area shape="rect" id="node3" href="$asservissement_8cpp.html" title="Classe Asservissement. Code asservissement du grand Robot, permet d&#39;asservir en angle et en position ..." alt="" coords="48,155,187,181"/>
-<area shape="rect" id="node4" href="$_p_i_d_8cpp.html" title="Code Proportionnel Intégrateur Dérivateur (PID) du grand Robot. Permet de corriger la consigne de sor..." alt="" coords="206,80,277,107"/>
-</map>
