@@ -1,5 +1,5 @@
 /**
- *    \file structure.cpp
+ *    \file structures.cpp
  *    \brief definition des structures
  *
  *Par: Nicolas SOBCZAK

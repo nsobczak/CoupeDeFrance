@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tick',['Tick',['../struct_tick.html',1,'']]]
+  ['vitesse',['Vitesse',['../struct_vitesse.html',1,'']]]
 ];

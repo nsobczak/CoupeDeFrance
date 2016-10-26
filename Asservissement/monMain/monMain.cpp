@@ -1,5 +1,5 @@
 /**
- *    \file main.ino
+ *    \file monMain.cpp
  *    \brief appel des fonctions
  *
  *Par: Nicolas SOBCZAK
