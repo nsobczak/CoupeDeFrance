@@ -34,21 +34,21 @@ uint8_t uiKeyExitPin = 0;
 M2_EXTERN_ALIGN(top_el_expandable_menu);
 
 /*=== radio button selection  ===*/
-uint8_t rb_select_color = 0;
+uint8_t rb_select_strat = 0;
 
 M2_LABEL(el_rb_label1, NULL, "strategie 1");
-M2_RADIO(el_rb_radio1, "v0", &rb_select_color);
+M2_RADIO(el_rb_radio1, "v0", &rb_select_strat);
 
 M2_LABEL(el_rb_label2, NULL, "strategie 2");
-M2_RADIO(el_rb_radio2, "v1", &rb_select_color);
+M2_RADIO(el_rb_radio2, "v1", &rb_select_strat);
 
 M2_LABEL(el_rb_label3, NULL, "strategie 3");
-M2_RADIO(el_rb_radio3, "v2", &rb_select_color);
+M2_RADIO(el_rb_radio3, "v2", &rb_select_strat);
 
 M2_LABEL(el_rb_label4, NULL, "strategie 4");
-M2_RADIO(el_rb_radio4, "v3", &rb_select_color);
+M2_RADIO(el_rb_radio4, "v3", &rb_select_strat);
 
-M2_ROOT(el_rb_goto_top, NULL, " top menu ", &top_el_expandable_menu);
+M2_ROOT(el_rb_goto_top, NULL, " back ", &top_el_expandable_menu);
 
 M2_LIST(list_rb) = { 
     &el_rb_label1, &el_rb_radio1, 
@@ -62,7 +62,7 @@ M2_ALIGN(el_top_rb, "-1|1W64H64", &el_rb_grid);
 
 /*=== combo examples  ===*/
 
-uint8_t select_color = 0;
+uint8_t select_coord = 0;
 uint8_t select_priority = 0;
 
 void fn_ok(m2_el_fnarg_p fnarg) {
@@ -77,11 +77,13 @@ void fn_cancel(m2_el_fnarg_p fnarg) {
 
 const char *fn_idx_to_color(uint8_t idx)
 {
-  if ( idx == 0 )
-    return "red";
-  else if (idx == 1 )
-    return "green";
-  return "blue";
+  switch(idx)
+  {
+    case 0: return "a";
+    case 1: return "b";
+    case 2: return "c";
+  }
+  return "";
 }
 
 const char *fn_idx_to_priority(uint8_t idx)
@@ -98,8 +100,8 @@ const char *fn_idx_to_priority(uint8_t idx)
 }
 
 
-M2_LABEL(el_label1, NULL, "Color:");
-M2_COMBO(el_combo1, NULL, &select_color, 3, fn_idx_to_color);
+M2_LABEL(el_label1, NULL, "Init:");
+M2_COMBO(el_combo1, NULL, &select_coord, 2, fn_idx_to_color);
 
 M2_LABEL(el_label2, NULL, "Priority: ");
 M2_COMBO(el_combo2, "v1", &select_priority, 5, fn_idx_to_priority);
@@ -146,7 +148,7 @@ M2_ALIGN(el_top_num_menu, "-1|1W64H64", &el_num_menu_grid);
 /*=== multi selection ===*/
 
 #define MULTI_SELECT_CNT 3
-const char *multi_select_strings[MULTI_SELECT_CNT] = { "red", "green", "blue" };
+const char *multi_select_strings[MULTI_SELECT_CNT] = { "value01", "value02", "value03" };
 uint8_t multi_select_status[MULTI_SELECT_CNT] = { 0, 0, 0};
 
 uint8_t el_muse_first = 0;
@@ -258,7 +260,9 @@ m2_menu_entry m2_2lmenu_data[] =
   { ". Strategie", &el_rb_grid },
   { ". Initialisation", &el_top_combo },
   { "Tests", NULL },
-  { ". Multi Select", &top_el_muse },
+  { ". Test01", &top_el_muse },
+  { ". Test02", &top_el_muse },
+  { ". Test03", &top_el_muse },
   { ". File Select", &el_top_fs },
   { "Debug ", &el_top_num_menu },
   { "Logo", &top_el_expandable_menu },
