@@ -36,14 +36,17 @@ M2_EXTERN_ALIGN(top_el_expandable_menu);
 /*=== radio button selection  ===*/
 uint8_t rb_select_color = 0;
 
-M2_LABEL(el_rb_label1, NULL, "red");
+M2_LABEL(el_rb_label1, NULL, "strategie 1");
 M2_RADIO(el_rb_radio1, "v0", &rb_select_color);
 
-M2_LABEL(el_rb_label2, NULL, "green");
+M2_LABEL(el_rb_label2, NULL, "strategie 2");
 M2_RADIO(el_rb_radio2, "v1", &rb_select_color);
 
-M2_LABEL(el_rb_label3, NULL, "blue");
+M2_LABEL(el_rb_label3, NULL, "strategie 3");
 M2_RADIO(el_rb_radio3, "v2", &rb_select_color);
+
+M2_LABEL(el_rb_label4, NULL, "strategie 4");
+M2_RADIO(el_rb_radio4, "v3", &rb_select_color);
 
 M2_ROOT(el_rb_goto_top, NULL, " top menu ", &top_el_expandable_menu);
 
@@ -51,6 +54,7 @@ M2_LIST(list_rb) = {
     &el_rb_label1, &el_rb_radio1, 
     &el_rb_label2, &el_rb_radio2,  
     &el_rb_label3, &el_rb_radio3, 
+    &el_rb_label4, &el_rb_radio4, 
     &el_rb_goto_top
 };
 M2_GRIDLIST(el_rb_grid, "c2",list_rb);
@@ -250,18 +254,14 @@ M2_ALIGN(el_top_fs, "-1|1W64H64", &el_fs_hlist);
 // Right entry: Reference to the target dialog box (In this example all menus call the toplevel element again
 m2_menu_entry m2_2lmenu_data[] = 
 {
-  { "Selection", NULL },
-  { ". Radio", &el_rb_grid },
-  { ". Combo", &el_top_combo },
-  { "Numbers ", &el_top_num_menu },
-  { "Complex", NULL },
+  { "Epreuve", NULL },
+  { ". Strategie", &el_rb_grid },
+  { ". Initialisation", &el_top_combo },
+  { "Tests", NULL },
   { ". Multi Select", &top_el_muse },
   { ". File Select", &el_top_fs },
-  { "Menu 4", &top_el_expandable_menu },
-  { "Menu 5", NULL },
-  { ". Sub 5-1", &top_el_expandable_menu },
-  { ". Sub 5-2", &top_el_expandable_menu },
-  { ". Sub 5-3", &top_el_expandable_menu },
+  { "Debug ", &el_top_num_menu },
+  { "Logo", &top_el_expandable_menu },
   { NULL, NULL },
 };
 
@@ -319,9 +319,6 @@ void setup(void) {
   
   /* mass storage init: simulation environment */
   mas_Init(mas_device_sim, 0);
-  
-  Serial.begin(9600); 
-
 }
 
 void loop() {
