@@ -16,7 +16,7 @@
  */
 #include <Wire.h>
 #include "Arduino.h"
-#include "i2cCommunication"
+#include "i2cCommunication.h"
 
 
 /* ======================================================================================================
