@@ -148,5 +148,70 @@ void i2csend(uint8_t order, int adresse)
 
 
 //_____________________________________________________________________________________________
+// Conversion
+/**
+ * \fn fonction qui convertit un entier en 2 bytes - low ici
+ * \param 1 tableau de bytes
+ */
+byte getLowByte(int n)
+{
+  byte result;
+  
+  result = n%256;
+  result = byte(result);
+  
+  return result;
+}
+
+/**
+ * \fn fonction qui convertit un entier en 2 bytes - high ici
+ * \param 1 tableau de byte
+ */
+byte getHighByte(int n)
+{
+  byte result;
+  
+  result = n/256;
+  result = byte(result);
+  
+  return result;
+}
+
+/**
+ * \fn fonction qui affiche les 2 bytes d'un nombre entier convertit en binaire
+ * \param 1 tableau de byte
+ * \param 1 entier : nombre à convertir
+ */
+void intTo2Bytes(byte bytesTab[], int n)
+{    
+  Serial.println("high byte.low byte : ");
+  
+  bytesTab[0] = getHighByte(n);
+  bytesTab[1] = getLowByte(n);
+  Serial.print(bytesTab[0], HEX);
+  Serial.print(".");
+  Serial.println(bytesTab[1], HEX);
+}
+
+
+/**
+ * \fn fonction qui affiche un entier ayant ete convertit en 2 bytes binaire
+ * \param 1 tableau de byte
+ * \param 1 entier : nombre à convertir
+ */
+int recoverIntFrom2Bytes(byte bytesTab[])
+{    
+  int result;
+  
+  result = bytesTab[0]*256;
+  result += bytesTab[1];
+  Serial.print("Recover : ");
+  Serial.println(result);
+  
+  return result;
+}
+
+
+//_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
 

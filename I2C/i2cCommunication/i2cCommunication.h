@@ -75,6 +75,21 @@ void receiveEvent(int);
 void i2creceive(int);
 
 
+// _____________________________________________________________________________
+// # Conversion:
+
+// Fonction qui convertit un entier en 2 bytes - low ici
+byte getLowByte(int);
+
+// Fonction qui convertit un entier en 2 bytes - high ici
+byte getHighByte(int n);
+
+// Fonction qui affiche les 2 bytes d'un nombre entier convertit en binaire
+void intTo2Bytes(byte[], int);
+
+// Fonction qui affiche un entier ayant ete convertit en 2 bytes binaire
+int recoverIntFrom2Bytes(byte[]);
+
 
 // =============================================================================
 // =============================================================================
