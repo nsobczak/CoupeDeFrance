@@ -73,19 +73,19 @@ void ledControl(int pin, int order)
  */
 void orderNumber(uint8_t order)
 {
-  Serial.println("ReceivedOrder: ");
-  Serial.print(order);   // Afficher la valeur numérique
+  Serial.print("ReceivedOrder: ");
+  Serial.println(order);   // Afficher la valeur numérique
   switch (order)
   {
     case 0:
     {
-      int pin = 13;
+      int pin = 12;
       ledControl(pin, order);              // Allume ou éteint la led
       break;
     }
     case 1:
     {
-      int pin = 13;
+      int pin = 12;
       ledControl(pin, order);              // Allume ou éteint la led
       break;
     }
@@ -120,7 +120,7 @@ void receiveEvent(int howMany)
 
 
 /**
- * \fn void i2creceive(int adresse) - fonction de lecture de données reçue via l'i2c
+ * \fn void i2creceive(int adresse) - fonction de lecture de données reçues via l'i2c
  * \param int adresse sur laquelle recevoir les donnees
  */
 void i2creceive(int adresse)
@@ -141,8 +141,12 @@ void i2csend(uint8_t order, int adresse)
 {
   Wire.begin(); 					// joindre le bus i2c (adresse est optionnelle pour un maître)
   Wire.beginTransmission(adresse);  // Commencer transmission vers l'esclave  #4
-  //Wire.write("order: ");       		// Envoi de 5 octets (5 bytes)
+  //Wire.write("order: ");        	// Envoi de 5 octets (5 bytes)
   Wire.write(order);             	// envoi d'un byte/octet (valeur numérique)  
+  Serial.print("Envoi via i2c de : ");
+  Serial.print(order);
+  Serial.print(" a l'adresse : ");
+  Serial.println(adresse);
   Wire.endTransmission();    		// fin transmission
 }
 
