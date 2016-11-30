@@ -26,10 +26,10 @@
  */
 #define TEMPS 115
 // les 4 ci-dessous sont à redéfinir dans erreur.cpp
-#define encoder0PinA_L 1
-#define encoder0PinB_L 2
-#define encoder0PinA_R 3
-#define encoder0PinB_R 4
+#define encoder0PinA_L 21
+#define encoder0PinB_L 22
+#define encoder0PinA_R 30
+#define encoder0PinB_R 31
 
 
 /* ======================================================================================================
@@ -92,7 +92,7 @@ int DoAngle;
 //_______________________________________________________________________________________________________
 void setup()
 {
-
+    Serial.begin(250000);
     crysteo.initPWM();
     //interruption pour encodeurs
     attachInterrupt(encoder0PinA_L, doEncoderA_L, CHANGE);

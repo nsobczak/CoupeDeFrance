@@ -24,8 +24,8 @@
  *      Define
  * ======================================================================================================
  */
-#define inputPontH2MoteurDroit 11 //commande pont en h avec 2 signal 1 constant et l'autre PWM
-#define inputPontH2MoteurGauche 12 //commande pont en h avec 2 signal 1 constant et l'autre PWM
+#define inputPontH2MoteurDroit 51 //commande pont en h avec 2 signal 1 constant et l'autre PWM a changer avec le shiel 
+#define inputPontH2MoteurGauche 53//commande pont en h avec 2 signal 1 constant et l'autre PWM
 #define PWM_FREQ 20000 // in Hertz (SET YOUR FREQUENCY)
 
 uint16_t TIM_ARR = (uint16_t)(24000000 / PWM_FREQ) - 1; // Don't change! Calc's period.
