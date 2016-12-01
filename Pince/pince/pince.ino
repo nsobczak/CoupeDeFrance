@@ -1,3 +1,14 @@
+/* |=====================|
+ * | Gestion de la pince |
+ * |=====================|
+ */
+/**
+ *    \file pince.cpp
+ *    \brief Gestion de la pince
+ *    \author Olivier JOMBART
+ *    \date Novemmbre 2016
+*/
+
 #include <Servo.h>
 
 Servo myservo;        // create servo object to control a servo
