@@ -28,7 +28,8 @@ void byteReceived(byte octet)
 void receiveEvent2(int howMany)
 {
   byte x = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
-  orderNumber(x);			  // lecture de l'ordre à executer
+  //orderNumber(x);			  // lecture de l'ordre à executer
+  byteReceived(x);
 }
 
 
@@ -71,6 +72,8 @@ void loop()
 
   //Reçoit octets
   i2creceive3Bytes(_RECEIVEADRESS_, 3);
+
+  //recoverIntFrom2Bytes(bytesTab);
 
   delay(500);
 }

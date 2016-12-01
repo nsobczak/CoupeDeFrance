@@ -61,8 +61,6 @@ void loop()
     sendVariable(var, order);
   }
   
-  //recoverIntFrom2Bytes(bytesTab);
-  
   delay(500);
 }
 
