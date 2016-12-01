@@ -23,15 +23,15 @@
 typedef struct{
 	double x;              //position en x
 	double y;              //position en y
-        double thetha;         //angle
-        double distance;
+  double thetha;         //angle
+  double distance;
 }Position;
 
 
 //Tick
 typedef struct{
 	long int ND;            //nombre de tick droit
-        long int NG;            //nombre de tick gauche
+  long int NG;            //nombre de tick gauche
 
 }Tick;
 
@@ -39,7 +39,7 @@ typedef struct{
 //Vitesse
 typedef struct{
 	double motorG;
-        double motorD;
+  double motorD;
 }Vitesse;
 
 

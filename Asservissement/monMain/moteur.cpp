@@ -65,7 +65,7 @@ void Moteur::brake(int choix_moteur){// potentiellement inutile pour frein mettr
                 m_PWM_G[1]=255- m_vitesse_moteur;*/
                 analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
                 digitalWrite(IN1MoteurA0,LOW);
-				digitalWrite(IN2MoteurA0,LOW);
+				        digitalWrite(IN2MoteurA0,LOW);
                 //analogWrite(PMW_MOTEUR_A1,255-m_vitesse_moteur);
                 }
 
@@ -76,7 +76,7 @@ void Moteur::brake(int choix_moteur){// potentiellement inutile pour frein mettr
                  m_PWM_D[1]=255- m_vitesse_moteur;*/
                  analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
                  digitalWrite(IN1MoteurB0,LOW);
-				 digitalWrite(IN2MoteurB0,LOW);
+				         digitalWrite(IN2MoteurB0,LOW);
                  //analogWrite(PMW_MOTEUR_B1,255-m_vitesse_moteur);
                 }
 
@@ -93,12 +93,12 @@ void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit){
               if(m_vitesse_moteur>127){
                 analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
                 digitalWrite(IN1MoteurB0,HIGH);// voire si le sens OK
-				digitalWrite(IN2MoteurB0,LOW);// voire si le sens OK
+				        digitalWrite(IN2MoteurB0,LOW);// voire si le sens OK
               }
               else if(m_vitesse_moteur<127){
                 analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
                 digitalWrite(IN1MoteurB0,LOW);// voire si le sens OK
-				digitalWrite(IN2MoteurB0,HIGH);// voire si le sens OK
+				        digitalWrite(IN2MoteurB0,HIGH);// voire si le sens OK
               }
             //analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
             //analogWrite(PMW_MOTEUR_A1,m_vitesse_moteur);
@@ -118,12 +118,12 @@ void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit){
               if(m_vitesse_moteur>127){
                 analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
                 digitalWrite(IN1MoteurA0,HIGH);// voire si le sens OK
-				digitalWrite(IN2MoteurA0,LOW);// voire si le sens OK
+				        digitalWrite(IN2MoteurA0,LOW);// voire si le sens OK
               }
               else if(m_vitesse_moteur<127){
                 analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
                 digitalWrite(IN1MoteurB0,LOW);// voire si le sens OK
-				digitalWrite(IN2MoteurB0,HIGH);// voire si le sens OK
+				        digitalWrite(IN2MoteurB0,HIGH);// voire si le sens OK
               }
             //analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
             //analogWrite(PMW_MOTEUR_B1,m_vitesse_moteur);

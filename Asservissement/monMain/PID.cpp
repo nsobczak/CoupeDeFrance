@@ -26,6 +26,13 @@
  *      Class PID
  * ======================================================================================================
  */
+
+ /**
+ * \fn PID  
+ * \brief constructeur qui initialise le PID
+ * \param double kP, double kI, double kD coeff du PID utilise pour calculer le PWM
+ * \param double periode ???
+ */
 PID::PID(double kP,double kI,double kD, double periode)
 {
 
@@ -48,7 +55,12 @@ PID::PID()
 {
 }
 
-
+ /**
+ * \fn PID  
+ * \brief fonction qui reset le PID
+ * \param double error reset le PID avec la derreniere error
+ */
+ 
 void PID::resetPID (double error)
 {
 
@@ -58,6 +70,12 @@ void PID::resetPID (double error)
 
 }
 
+ /**
+ * \fn PID  
+ * \brief fonction qui calcule le PID 
+ * \param double error utiliser pour avoir l'erreur l'actuel 
+ * \return retourne la valeur de PID calculée
+ */
 
 double PID::computePID(double error)
 {

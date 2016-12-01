@@ -35,19 +35,19 @@ class Odometrie{
     	void calculer_pas();
     	void calculer_variation_distance();
     	void calculer_variation_angle();
-        void calculer_ImpulionParmm();
-        void calculer_ImpulsionParrad();
+      void calculer_ImpulionParmm();
+      void calculer_ImpulsionParrad();
     	void calculer_distanceParcourueRoue(Tick codeuse);
     	void retournerValeur(Position *roueCodeuse,Tick codeuse);
     	void calculer_angle(Position *destination, Position robot);
-        double calculer_distance(Position destination, Position robot);
+      double calculer_distance(Position destination, Position robot);
 
 	private:
 
-    	double m_perimetre_roue;
-    	double m_nombre_ticktour; //nombres de tick par tour
-    	double m_impulsionParmm;
-        double m_impulsionParrad;
+    	 double m_perimetre_roue;
+    	 double m_nombre_ticktour; //nombres de tick par tour
+    	 double m_impulsionParmm;
+       double m_impulsionParrad;
 
         //double m_variation_distance;
         double m_variation_distance;
@@ -64,12 +64,12 @@ class Odometrie{
         double m_distance;
         double m_distance_roue_codeuse;
 
-	    double m_DistanceRoueGauche;
-	    double m_DistanceRoueDroit;
+	      double m_DistanceRoueGauche;
+	      double m_DistanceRoueDroit;
 
         double K;
-	double CORFUGE;
-	double M; //masse du robot
+	      double CORFUGE;
+	      double M; //masse du robot
 
 };
 

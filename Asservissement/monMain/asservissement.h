@@ -76,7 +76,7 @@ class Asservissement{
 
           int m_maxSpeed;
           int m_minSpeed;
-  	  double m_consigne;
+  	      double m_consigne;
           double m_periode;
 
           int m_commandeType;   //1 consigne en angle _ 2 consigne en position _ 3 cconsigne en Curve

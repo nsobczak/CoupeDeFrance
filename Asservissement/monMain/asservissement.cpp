@@ -38,6 +38,13 @@
  *      Class asservissement
  * ======================================================================================================
  */
+
+  /**
+ * \fn Asservissement   
+ * \brief constructeur qui initialise et met des valeurs par defauts
+ * \param ???
+ * \param ??? 
+ */
 Asservissement::Asservissement(double periode, Moteur grobot):m_periode(periode), m_moteur(grobot)
 {
 
@@ -67,7 +74,12 @@ Asservissement::Asservissement(double periode, Moteur grobot):m_periode(periode)
     L_done = 1;
     theta_done = 1;
 }
-
+/*
+ * \fn Asservissement   
+ * \brief constructeur qui initialise et met des valeurs par defauts
+ * \param ???
+ * \param ??? 
+ */
 
 double Asservissement::boundError(double e)
 {
@@ -89,6 +101,12 @@ double Asservissement::boundError(double e)
 
 
 //contrôle la distance
+/*
+ * \fn contDistance    
+ * \brief calcule la commande de distance ?? 
+ * \param ???
+ * \param ??? 
+ */
 double Asservissement::contDistance(Position destination, Position robot)
 {
 
@@ -108,6 +126,13 @@ double Asservissement::contDistance(Position destination, Position robot)
 
 
 //contrôle l'angle
+/*
+ * \fn contAngle     
+ * \brief calcule la commande d'angle ?? 
+ * \param ???
+ * \param ??? 
+ * \return _PID_ ??
+ */
 double Asservissement::contAngle(Position destination, Position robot)
 {
 
@@ -125,6 +150,12 @@ double Asservissement::contAngle(Position destination, Position robot)
 
 
 //Procedure qui réinitialise l'angle ordonné
+/*
+ * \fn newOrderAngle    
+ * \brief calcule la commande de distance 
+ * \param ???
+ * \param ??? 
+ */
 void Asservissement::newOrderAngle(Position destination, double theta_order)
 {
     /*set parameters for new order*/
@@ -133,6 +164,13 @@ void Asservissement::newOrderAngle(Position destination, double theta_order)
     theta_done = 0; //=false the robot not reaches angle
 }
 
+/*
+ * \fn checkEnslavementType     
+ * \brief ??? 
+ * \param ???
+ * \param ??? 
+ * \return _PID_ ??
+ */
 
 void Asservissement::checkEnslavementType(double error_L, double error_T, int *asserv_L, int *asserv_T)
 {
@@ -179,6 +217,13 @@ void Asservissement::checkEnslavementType(double error_L, double error_T, int *a
 
 
 //creer une valleur PWM pour atteindre l'angle et la distance
+/*
+ * \fn addPWM     
+ * \brief cree une commande PWM ?? 
+ * \param ???
+ * \param ??? 
+ * \return _PID_ ??
+ */
 void Asservissement::addPWM( double pwmControl_L, double pwmControl_T, int sens)
 {
 

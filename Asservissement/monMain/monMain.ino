@@ -120,12 +120,12 @@ void loop()
 {
     destination.x=0;
     destination.y=0;
-    destination.thetha=0.0;                              //"destination.distance" utile car utile dans odométrie (pour les calculs)
-    roueCodeuse.x=0;
-    roueCodeuse.y=0;
-    roueCodeuse.thetha=0;
-    robot.appliquerOrdre(destination, roueCodeuse, 3);   //attention pas tout pigé
-    roue.retournerValeur(&roueCodeuse, codeuse);         //attention pas tout pigé non plus
+    destination.thetha=0.0;                               //"destination.distance" utile car utile dans odométrie (pour les calculs)
+    roueCodeuse.x=0;                                      //
+    roueCodeuse.y=0;                                      // Itinialisation de la roue codeuse (a verifier par test)
+    roueCodeuse.thetha=0;                                 // 
+    robot.appliquerOrdre(destination, roueCodeuse, 3);    //attention pas tout pigé
+    roue.retournerValeur(&roueCodeuse, codeuse);          //attention pas tout pigé non plus
     errorLT();
 
 
