@@ -28,7 +28,8 @@
 // LED : ordre 0 ou 1
 
 /**
- * \fn void ledOff(int pin) - fonction qui eteint une LED
+ * \fn void ledOff(int pin) 
+ * \brief fonction qui eteint une LED
  * \param int pin de la LED
  */
 void ledOff(int pin)
@@ -39,7 +40,8 @@ void ledOff(int pin)
 
 
 /**
- * \fn void ledOn(int pin) - fonction qui allume une LED
+ * \fn void ledOn(int pin)
+ * \brief fonction qui allume une LED
  * \param int pin de la LED
  */
 void ledOn(int pin)
@@ -50,7 +52,8 @@ void ledOn(int pin)
 
 
 /**
- * \fn void ledControl(int pin, int order) - fonction qui eteint une LED
+ * \fn void ledControl(int pin, int order) 
+ * \brief fonction qui eteint une LED
  * \param int pin de la LED, int order =1 pour allumer ou =0 pour eteindre
  */
 void ledControl(int pin, int order)
@@ -68,7 +71,8 @@ void ledControl(int pin, int order)
 
 //_____________________________________________________________________________________________
 /**
- * \fn void orderNumber(uint8_t order) - fonction qui execute l'ordre dont le numéro est entrée en parametre
+ * \fn void orderNumber(uint8_t order)
+ * \brief fonction qui execute l'ordre dont le numéro est entrée en parametre
  * \param uint8_t order = numero de l'ordre a executer
  */
 void orderNumber(uint8_t order)
@@ -104,7 +108,8 @@ void orderNumber(uint8_t order)
 // Reception
 
 /**
- * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
+ * \fn void receiveEvent(int howMany)
+ * \brief fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
  */
 void receiveEvent(int howMany)
@@ -120,7 +125,8 @@ void receiveEvent(int howMany)
 
 
 /**
- * \fn void i2creceive(int adresse) - fonction de lecture de données reçues via l'i2c
+ * \fn void i2creceive(int adresse) 
+ * \brief fonction de lecture de données reçues via l'i2c
  * \param int adresse sur laquelle recevoir les donnees
  */
 void i2creceive(int adresse)
@@ -134,7 +140,8 @@ void i2creceive(int adresse)
 //_____________________________________________________________________________________________
 // Envoi
 /**
- * \fn void i2csend(uint8_t order, int adresse) - fonction d'envoi de données via l'i2c
+ * \fn void i2csend(uint8_t order, int adresse) 
+ * \brief fonction d'envoi de données via l'i2c
  * \param uint8_t order numero de l'ordre a envoyer, int adresse sur laquelle envoyer les donnees
  */
 void i2csend(uint8_t order, int adresse)
@@ -154,7 +161,8 @@ void i2csend(uint8_t order, int adresse)
 //_____________________________________________________________________________________________
 // Conversion
 /**
- * \fn fonction qui convertit un entier en 2 bytes - low ici
+ * \fn byte getLowByte(int n)
+ * \brief fonction qui convertit un entier en 2 bytes - low ici
  * \param 1 tableau de bytes
  */
 byte getLowByte(int n)
@@ -168,7 +176,8 @@ byte getLowByte(int n)
 }
 
 /**
- * \fn fonction qui convertit un entier en 2 bytes - high ici
+ * \fn byte getHighByte(int n)
+ * \brief fonction qui convertit un entier en 2 bytes - high ici
  * \param 1 tableau de byte
  */
 byte getHighByte(int n)
@@ -182,7 +191,8 @@ byte getHighByte(int n)
 }
 
 /**
- * \fn fonction qui affiche les 2 bytes d'un nombre entier convertit en binaire
+ * \fn void intTo2Bytes(byte bytesTab[], int n)
+ * \brief fonction qui affiche les 2 bytes d'un nombre entier convertit en binaire
  * \param 1 tableau de byte
  * \param 1 entier : nombre à convertir
  */
@@ -199,7 +209,8 @@ void intTo2Bytes(byte bytesTab[], int n)
 
 
 /**
- * \fn fonction qui affiche un entier ayant ete convertit en 2 bytes binaire
+ * \fn int recoverIntFrom2Bytes(byte bytesTab[])
+ * \brief fonction qui affiche un entier ayant ete convertit en 2 bytes binaire
  * \param 1 tableau de byte
  * \param 1 entier : nombre à convertir
  */
