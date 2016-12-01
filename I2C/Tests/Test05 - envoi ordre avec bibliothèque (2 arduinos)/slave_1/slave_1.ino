@@ -8,15 +8,9 @@
 //_____________________________________________________________________________________________
 
 /**
- * \fn void affiche()
- */
-void affiche()
-{
-  Serial.println("affiche!");
-}
-
-/**
- * \fn void affiche()
+ * \fn void byteReceived(byte octet)
+ * \brief fonction qui affiche l'octet reçu
+ * \param byte octet
  */
 void byteReceived(byte octet)
 {
@@ -33,16 +27,8 @@ void byteReceived(byte octet)
  */
 void receiveEvent2(int howMany)
 {
-  while(2 < Wire.available()) // Lire tous les octets sauf le dernier => utile si on a écrit qqch devant le numéro de l'ordre mais il vaut mieux ne pas le faire pour éviter les pb
-  {
-    char c = Wire.read();     // lecture de l'octet/byte comme caractère
-    Serial.print(c);          // afficher le caractère
-  }
   byte x = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
   orderNumber(x);			  // lecture de l'ordre à executer
-  //byte y = Wire.read(); 
-  //orderNumber(y);
-  //byteReceived(x);
 }
 
 
@@ -53,10 +39,24 @@ void receiveEvent2(int howMany)
 void i2creceive2(int adresse)
 {
   Wire.begin(adresse);          // Joindre le Bus I2C avec adresse
-  Serial.println("===receive2_avant_onReceive===");
   Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
-  Serial.println("===receive2_apres_onReceive===");
 }
+
+
+/**
+ * \fn void i2creceive3Bytes(int adresse, int nbOctets)
+ * \brief fonction qui reçoit des octets
+ * \param int adresse - adresse sur laquelle recevoir les donnees
+ * \param int nbOctets - nombre d'octets à recevoir
+ */
+void i2creceive3Bytes(int adresse, int nbOctets){
+  
+  for (int i = 0; i < nbOctets; ++i){
+    i2creceive2(adresse);
+  }
+  
+}
+
 
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
@@ -70,9 +70,7 @@ void loop()
   Serial.println("\nAttente des octets "); 
 
   //Reçoit octets
-  i2creceive2(_RECEIVEADRESS_);
-  i2creceive2(_RECEIVEADRESS_);
-  i2creceive2(_RECEIVEADRESS_);
+  i2creceive3Bytes(_RECEIVEADRESS_, 3);
 
   delay(500);
 }
