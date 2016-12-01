@@ -40,8 +40,8 @@ void receiveEvent2(int howMany)
   }
   byte x = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
   orderNumber(x);			  // lecture de l'ordre à executer
-  byte y = Wire.read(); 
-  orderNumber(y);
+  //byte y = Wire.read(); 
+  //orderNumber(y);
   //byteReceived(x);
 }
 
@@ -69,6 +69,9 @@ void loop()
 {
   Serial.println("\nAttente des octets "); 
 
+  //Reçoit octets
+  i2creceive2(_RECEIVEADRESS_);
+  i2creceive2(_RECEIVEADRESS_);
   i2creceive2(_RECEIVEADRESS_);
 
   delay(500);
