@@ -60,9 +60,11 @@ void orderNumber(uint8_t);
 // _____________________________________________________________________________
 // # Envoi:
 
-//Fonction d'envoi de données via l'i2c
+//Fonction d'envoi d'1 octet via l'i2c
 void i2csend(uint8_t, int);
 
+//Fonction d'envoi de 3 octets via l'i2c
+void i2csend3bytes(uint8_t, uint8_t, uint8_t, int);
 
 // _____________________________________________________________________________
 // # Réception:

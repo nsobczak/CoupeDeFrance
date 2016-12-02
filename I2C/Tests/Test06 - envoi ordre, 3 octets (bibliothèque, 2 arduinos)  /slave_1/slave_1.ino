@@ -17,6 +17,7 @@ void byteReceived(byte octet)
   Serial.print("ReceivedByte: ");
   Serial.println(octet);   // Afficher la valeur numérique
 }
+
   
 //_____________________________________________________________________________________________
 // Reception
@@ -27,9 +28,17 @@ void byteReceived(byte octet)
  */
 void receiveEvent2(int howMany)
 {
-  byte x = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
+  Serial.print("howMany = ");
+  Serial.println(howMany);
+  byte var = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
   //orderNumber(x);			  // lecture de l'ordre à executer
-  byteReceived(x);
+  byte highByte = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
+  byte lowByte = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
+  /*
+  byteReceived(var);
+  byteReceived(highByte);
+  byteReceived(lowByte);
+  */
 }
 
 
@@ -39,7 +48,7 @@ void receiveEvent2(int howMany)
  */
 void i2creceive2(int adresse)
 {
-  Wire.begin(adresse);          // Joindre le Bus I2C avec adresse
+  Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
   Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
 }
 
@@ -50,8 +59,8 @@ void i2creceive2(int adresse)
  * \param int adresse - adresse sur laquelle recevoir les donnees
  * \param int nbOctets - nombre d'octets à recevoir
  */
-void i2creceive3Bytes(int adresse, int nbOctets){
-  
+void i2creceive3Bytes(int adresse, int nbOctets)
+{
   for (int i = 0; i < nbOctets; ++i){
     i2creceive2(adresse);
   }
@@ -71,7 +80,7 @@ void loop()
   Serial.println("\nAttente des octets "); 
 
   //Reçoit octets
-  i2creceive3Bytes(_RECEIVEADRESS_, 3);
+  i2creceive2(_RECEIVEADRESS_);
 
   //recoverIntFrom2Bytes(bytesTab);
 

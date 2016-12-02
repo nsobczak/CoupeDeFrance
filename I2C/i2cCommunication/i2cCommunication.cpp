@@ -54,7 +54,8 @@ void ledOn(int pin)
 /**
  * \fn void ledControl(int pin, int order) 
  * \brief fonction qui eteint une LED
- * \param int pin de la LED, int order =1 pour allumer ou =0 pour eteindre
+ * \param int pin de la LED, 
+ * \param int order =1 pour allumer ou =0 pour eteindre
  */
 void ledControl(int pin, int order)
 {
@@ -141,8 +142,9 @@ void i2creceive(int adresse)
 // Envoi
 /**
  * \fn void i2csend(uint8_t order, int adresse) 
- * \brief fonction d'envoi de données via l'i2c
- * \param uint8_t order numero de l'ordre a envoyer, int adresse sur laquelle envoyer les donnees
+ * \brief fonction d'envoi d'1 octet via l'i2c
+ * \param uint8_t order numero de l'ordre a envoyer, 
+ * \param int adresse sur laquelle envoyer les donnees
  */
 void i2csend(uint8_t order, int adresse)
 {
@@ -152,6 +154,31 @@ void i2csend(uint8_t order, int adresse)
   Wire.write(order);             	// envoi d'un byte/octet (valeur numérique)  
   Serial.print("Envoi via i2c de : ");
   Serial.print(order);
+  Serial.print(" a l'adresse : ");
+  Serial.println(adresse);
+  Wire.endTransmission();    		// fin transmission
+}
+
+
+/**
+ * \fn void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
+ * \brief fonction d'envoi de 3 octets via l'i2c
+ * \param 3 uint8_t byte1, 2 et 3: octets a envoyer, 
+ * \param int adresse sur laquelle envoyer les donnees
+ */
+void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
+{
+  Wire.begin(); 					// joindre le bus i2c (adresse est optionnelle pour un maître)
+  Wire.beginTransmission(adresse);  // Commencer transmission vers l'esclave  #4
+  Wire.write(byte1);             	// envoi d'un byte/octet (valeur numérique)  
+  Wire.write(byte2);
+  Wire.write(byte3);
+  Serial.print("Envoi via i2c de : ");
+  Serial.print(byte1);
+  Serial.print(" et ");
+  Serial.print(byte2);
+  Serial.print(" et ");
+  Serial.print(byte3);
   Serial.print(" a l'adresse : ");
   Serial.println(adresse);
   Wire.endTransmission();    		// fin transmission
