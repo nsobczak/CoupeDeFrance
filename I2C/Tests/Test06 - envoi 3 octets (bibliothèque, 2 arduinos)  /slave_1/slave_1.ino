@@ -7,17 +7,6 @@
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
 
-/**
- * \fn void byteReceived(byte octet)
- * \brief fonction qui affiche l'octet reçu
- * \param byte octet
- */
-void byteReceived(byte octet)
-{
-  Serial.print("ReceivedByte: ");
-  Serial.println(octet);   // Afficher la valeur numérique
-}
-
   
 //_____________________________________________________________________________________________
 // Reception
@@ -26,21 +15,19 @@ void byteReceived(byte octet)
  * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
  */
-void receiveEvent2(int howMany)
+void receiveEvent3Bytes(int howMany)
 {
-  Serial.print("howMany = ");
-  Serial.println(howMany);
+  //Serial.print("howMany = ");
+  //Serial.println(howMany);
   byte var = Wire.read();             // lecture de l'octet/byte ignoré comme un entier
-  //orderNumber(x);			  // lecture de l'ordre à executer
   byte highByte = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
   byte lowByte = Wire.read();         // lecture de l'octet/byte ignoré comme un entier
   
+  byte bytesTab[2] = {highByte, lowByte};
   int value = recoverIntFrom2Bytes(bytesTab);
-  /*
-  byteReceived(var);
-  byteReceived(highByte);
-  byteReceived(lowByte);
-  */
+  //byteReceived(value);
+  orderNumber(value);			  // lecture de l'ordre à executer
+
 }
 
 
@@ -51,7 +38,7 @@ void receiveEvent2(int howMany)
 void i2creceive2(int adresse)
 {
   Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
-  Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
+  Wire.onReceive(receiveEvent3Bytes); // enregistrer l'événement (lorsqu'une demande arrive)
 }
 
 

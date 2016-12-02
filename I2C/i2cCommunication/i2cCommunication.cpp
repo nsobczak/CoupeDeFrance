@@ -105,6 +105,18 @@ void orderNumber(uint8_t order)
 }
 
 
+/**
+ * \fn void byteReceived(byte octet)
+ * \brief fonction qui affiche l'octet reçu
+ * \param byte octet
+ */
+void byteReceived(byte octet)
+{
+  Serial.print("ReceivedByte: ");
+  Serial.println(octet);   // Afficher la valeur numérique
+}
+
+
 //_____________________________________________________________________________________________
 // Reception
 
@@ -175,11 +187,11 @@ void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
   Wire.write(byte3);
   Serial.print("Envoi via i2c de : ");
   Serial.print(byte1);
-  Serial.print(" et ");
+  Serial.print(", ");
   Serial.print(byte2);
   Serial.print(" et ");
   Serial.print(byte3);
-  Serial.print(" a l'adresse : ");
+  Serial.print(" a l'adresse ");
   Serial.println(adresse);
   Wire.endTransmission();    		// fin transmission
 }
@@ -247,8 +259,6 @@ int recoverIntFrom2Bytes(byte bytesTab[])
   
   result = bytesTab[0]*256;
   result += bytesTab[1];
-  Serial.print("Recover : ");
-  Serial.println(result);
   
   return result;
 }

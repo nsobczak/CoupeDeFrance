@@ -50,6 +50,9 @@ void ledControl(int, int);
 //Execute l'ordre dont le numéro est entrée en parametre
 void orderNumber(uint8_t);
 
+//fonction qui affiche l'octet reçu
+void byteReceived(byte);
+
 
 
 /* =============================================================================
