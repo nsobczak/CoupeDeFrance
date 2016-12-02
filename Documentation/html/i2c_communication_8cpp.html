@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,11 +30,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="arduino.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.3</span>
+   &#160;<span id="projectnumber">1.4</span>
    </div>
+   <div id="projectbrief">Coupe de France de robotique</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,6 +76,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('i2c_communication_8cpp.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,11 +105,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_0492bf3f11d1d3b6bad554bc08778e95.html">I2C</a></li><li class="navelem"><a class="el" href="dir_fc31a60e9cc731ea13fe1f1fc94c56ec.html">i2cCommunication</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -97,36 +117,135 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Wire.h&gt;</code><br />
 <code>#include &quot;Arduino.h&quot;</code><br />
-<code>#include &quot;i2cCommunication&quot;</code><br />
+<code>#include &quot;<a class="el" href="i2c_communication_8h_source.html">i2cCommunication.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for i2cCommunication.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="i2c_communication_8cpp__incl.png" border="0" usemap="#_i2_c_2i2c_communication_2i2c_communication_8cpp" alt=""/></div>
+<map name="_i2_c_2i2c_communication_2i2c_communication_8cpp" id="_i2_c_2i2c_communication_2i2c_communication_8cpp">
+<area shape="rect" id="node4" href="i2c_communication_8h.html" title="Bibliothèque de communication i2c. " alt="" coords="66,95,207,121"/>
+</map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abf80dc6dcb93027ac462ce660949a166"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#abf80dc6dcb93027ac462ce660949a166">ledOff</a> (int pin)</td></tr>
+<tr class="memdesc:abf80dc6dcb93027ac462ce660949a166"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui eteint une LED  <a href="#abf80dc6dcb93027ac462ce660949a166">More...</a><br /></td></tr>
 <tr class="separator:abf80dc6dcb93027ac462ce660949a166"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68a9dab5600d3afd6ff34abd5ef8c932"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a68a9dab5600d3afd6ff34abd5ef8c932">ledOn</a> (int pin)</td></tr>
+<tr class="memdesc:a68a9dab5600d3afd6ff34abd5ef8c932"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui allume une LED  <a href="#a68a9dab5600d3afd6ff34abd5ef8c932">More...</a><br /></td></tr>
 <tr class="separator:a68a9dab5600d3afd6ff34abd5ef8c932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac855480cf53a0e5b15508607b77be94d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#ac855480cf53a0e5b15508607b77be94d">ledControl</a> (int pin, int order)</td></tr>
+<tr class="memdesc:ac855480cf53a0e5b15508607b77be94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui eteint une LED  <a href="#ac855480cf53a0e5b15508607b77be94d">More...</a><br /></td></tr>
 <tr class="separator:ac855480cf53a0e5b15508607b77be94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8146639e060d6c423e63301c0b54b20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#aa8146639e060d6c423e63301c0b54b20">orderNumber</a> (uint8_t order)</td></tr>
+<tr class="memdesc:aa8146639e060d6c423e63301c0b54b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui execute l'ordre dont le numéro est entrée en parametre  <a href="#aa8146639e060d6c423e63301c0b54b20">More...</a><br /></td></tr>
 <tr class="separator:aa8146639e060d6c423e63301c0b54b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a52aa0319b0d3bea95eff4528baee98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a52aa0319b0d3bea95eff4528baee98"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int howMany)</td></tr>
+<tr class="memitem:a052503f71620d5920a2644d54036a5df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a052503f71620d5920a2644d54036a5df">byteReceived</a> (byte octet)</td></tr>
+<tr class="memdesc:a052503f71620d5920a2644d54036a5df"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui affiche l'octet reçu  <a href="#a052503f71620d5920a2644d54036a5df">More...</a><br /></td></tr>
+<tr class="separator:a052503f71620d5920a2644d54036a5df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a52aa0319b0d3bea95eff4528baee98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a9a52aa0319b0d3bea95eff4528baee98">receiveEvent</a> (int howMany)</td></tr>
+<tr class="memdesc:a9a52aa0319b0d3bea95eff4528baee98"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction <a class="el" href="mon_main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a>  <a href="#a9a52aa0319b0d3bea95eff4528baee98">More...</a><br /></td></tr>
 <tr class="separator:a9a52aa0319b0d3bea95eff4528baee98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabbaaa8669f14b1a8d7e09bcb0932b94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#aabbaaa8669f14b1a8d7e09bcb0932b94">i2creceive</a> (int adresse)</td></tr>
+<tr class="memdesc:aabbaaa8669f14b1a8d7e09bcb0932b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction de lecture de données reçues via l'i2c  <a href="#aabbaaa8669f14b1a8d7e09bcb0932b94">More...</a><br /></td></tr>
 <tr class="separator:aabbaaa8669f14b1a8d7e09bcb0932b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11dfea4af3407db6ee1f10085963d0f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a11dfea4af3407db6ee1f10085963d0f3">i2csend</a> (uint8_t order, int adresse)</td></tr>
+<tr class="memdesc:a11dfea4af3407db6ee1f10085963d0f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction d'envoi d'1 octet via l'i2c  <a href="#a11dfea4af3407db6ee1f10085963d0f3">More...</a><br /></td></tr>
 <tr class="separator:a11dfea4af3407db6ee1f10085963d0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63cd8300cf2a924f35f1e4fe0ba04763"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a63cd8300cf2a924f35f1e4fe0ba04763">i2csend3bytes</a> (uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)</td></tr>
+<tr class="memdesc:a63cd8300cf2a924f35f1e4fe0ba04763"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction d'envoi de 3 octets via l'i2c  <a href="#a63cd8300cf2a924f35f1e4fe0ba04763">More...</a><br /></td></tr>
+<tr class="separator:a63cd8300cf2a924f35f1e4fe0ba04763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a02a6401893ebf75a28714afc8d4c4"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a35a02a6401893ebf75a28714afc8d4c4">getLowByte</a> (int n)</td></tr>
+<tr class="memdesc:a35a02a6401893ebf75a28714afc8d4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui convertit un entier en 2 bytes - low ici  <a href="#a35a02a6401893ebf75a28714afc8d4c4">More...</a><br /></td></tr>
+<tr class="separator:a35a02a6401893ebf75a28714afc8d4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46bd5c94164200611c26d02695759bf0"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a46bd5c94164200611c26d02695759bf0">getHighByte</a> (int n)</td></tr>
+<tr class="memdesc:a46bd5c94164200611c26d02695759bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui convertit un entier en 2 bytes - high ici  <a href="#a46bd5c94164200611c26d02695759bf0">More...</a><br /></td></tr>
+<tr class="separator:a46bd5c94164200611c26d02695759bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63e11d378cc4ae67f51bd73b5c3ecd32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#a63e11d378cc4ae67f51bd73b5c3ecd32">intTo2Bytes</a> (byte bytesTab[], int n)</td></tr>
+<tr class="memdesc:a63e11d378cc4ae67f51bd73b5c3ecd32"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui affiche les 2 bytes d'un nombre entier convertit en binaire  <a href="#a63e11d378cc4ae67f51bd73b5c3ecd32">More...</a><br /></td></tr>
+<tr class="separator:a63e11d378cc4ae67f51bd73b5c3ecd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76d6fef661949eed84df8906fcc778d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8cpp.html#af76d6fef661949eed84df8906fcc778d">recoverIntFrom2Bytes</a> (byte bytesTab[])</td></tr>
+<tr class="memdesc:af76d6fef661949eed84df8906fcc778d"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui affiche un entier ayant ete convertit en 2 bytes binaire  <a href="#af76d6fef661949eed84df8906fcc778d">More...</a><br /></td></tr>
+<tr class="separator:af76d6fef661949eed84df8906fcc778d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Bibliothèque de communication i2c. </p>
 <dl class="section author"><dt>Author</dt><dd>Nicolas SOBCZAK </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Octobre 2016 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a052503f71620d5920a2644d54036a5df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void byteReceived </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>octet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui affiche l'octet reçu </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">byte</td><td>octet </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a46bd5c94164200611c26d02695759bf0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte getHighByte </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui convertit un entier en 2 bytes - high ici </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">1</td><td>tableau de byte </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a35a02a6401893ebf75a28714afc8d4c4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte getLowByte </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui convertit un entier en 2 bytes - low ici </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">1</td><td>tableau de bytes </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="aabbaaa8669f14b1a8d7e09bcb0932b94"></a>
 <div class="memitem">
 <div class="memproto">
@@ -140,6 +259,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction de lecture de données reçues via l'i2c </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">int</td><td>adresse sur laquelle recevoir les donnees </td></tr>
@@ -172,9 +293,94 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction d'envoi d'1 octet via l'i2c </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uint8_t</td><td>order numero de l'ordre a envoyer, int adresse sur laquelle envoyer les donnees </td></tr>
+    <tr><td class="paramname">uint8_t</td><td>order numero de l'ordre a envoyer, </td></tr>
+    <tr><td class="paramname">int</td><td>adresse sur laquelle envoyer les donnees </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a63cd8300cf2a924f35f1e4fe0ba04763"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2csend3bytes </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>byte1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>byte2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>byte3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>adresse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction d'envoi de 3 octets via l'i2c </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">3</td><td>uint8_t byte1, 2 et 3: octets a envoyer, </td></tr>
+    <tr><td class="paramname">int</td><td>adresse sur laquelle envoyer les donnees </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a63e11d378cc4ae67f51bd73b5c3ecd32"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void intTo2Bytes </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>bytesTab</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui affiche les 2 bytes d'un nombre entier convertit en binaire </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">1</td><td>tableau de byte </td></tr>
+    <tr><td class="paramname">1</td><td>entier : nombre à convertir </td></tr>
   </table>
   </dd>
 </dl>
@@ -204,9 +410,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction qui eteint une LED </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">int</td><td>pin de la LED, int order =1 pour allumer ou =0 pour eteindre </td></tr>
+    <tr><td class="paramname">int</td><td>pin de la LED, </td></tr>
+    <tr><td class="paramname">int</td><td>order =1 pour allumer ou =0 pour eteindre </td></tr>
   </table>
   </dd>
 </dl>
@@ -226,6 +435,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction qui eteint une LED </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">int</td><td>pin de la LED </td></tr>
@@ -248,6 +459,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction qui allume une LED </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">int</td><td>pin de la LED </td></tr>
@@ -270,6 +483,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction qui execute l'ordre dont le numéro est entrée en parametre </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">uint8_t</td><td>order = numero de l'ordre a executer </td></tr>
@@ -279,12 +494,65 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveEvent</b> (int
 
 </div>
 </div>
+<a class="anchor" id="a9a52aa0319b0d3bea95eff4528baee98"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void receiveEvent </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>howMany</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction <a class="el" href="mon_main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>howMany </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af76d6fef661949eed84df8906fcc778d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int recoverIntFrom2Bytes </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>bytesTab</em>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui affiche un entier ayant ete convertit en 2 bytes binaire </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">1</td><td>tableau de byte </td></tr>
+    <tr><td class="paramname">1</td><td>entier : nombre à convertir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0492bf3f11d1d3b6bad554bc08778e95.html">I2C</a></li><li class="navelem"><a class="el" href="dir_fc31a60e9cc731ea13fe1f1fc94c56ec.html">i2cCommunication</a></li><li class="navelem"><a class="el" href="i2c_communication_8cpp.html">i2cCommunication.cpp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

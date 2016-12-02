@@ -1,4 +1,4 @@
-#Coupe de France de robotique
+# README
 
 Code du grand robot
 

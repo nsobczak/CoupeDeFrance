@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wifi_5fcredentials_5freader_2ecpp',['wifi_credentials_reader.cpp',['../wifi__credentials__reader_8cpp.html',1,'']]]
+  ['structures_2ecpp',['structures.cpp',['../structures_8cpp.html',1,'']]],
+  ['structures_2eh',['structures.h',['../structures_8h.html',1,'']]]
 ];

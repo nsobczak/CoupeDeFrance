@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,11 +30,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="arduino.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.3</span>
+   &#160;<span id="projectnumber">1.4</span>
    </div>
+   <div id="projectbrief">Coupe de France de robotique</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -67,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_ecran.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,7 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -90,14 +114,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Ecran Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_ecran_8h_source.html">Ecran.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a15869bafa18dfc89f64876cd4f7ddb90"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran.html#a15869bafa18dfc89f64876cd4f7ddb90">Ecran</a> ()</td></tr>
 <tr class="separator:a15869bafa18dfc89f64876cd4f7ddb90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d23de3b32773861bfb1f9035e817e2f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran.html#a1d23de3b32773861bfb1f9035e817e2f">getValue</a> (int i)</td></tr>
+<tr class="memitem:a1d23de3b32773861bfb1f9035e817e2f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran.html#a1d23de3b32773861bfb1f9035e817e2f">getValue</a> (int <a class="el" href="_ecran__test_8cpp.html#af27e3188294c2df66d975b74a09c001d">i</a>)</td></tr>
 <tr class="separator:a1d23de3b32773861bfb1f9035e817e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4beea973d2e65cbce0077d9e9747dc3c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran.html#a4beea973d2e65cbce0077d9e9747dc3c">getNom</a> (int i)</td></tr>
+<tr class="memitem:a4beea973d2e65cbce0077d9e9747dc3c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran.html#a4beea973d2e65cbce0077d9e9747dc3c">getNom</a> (int <a class="el" href="_ecran__test_8cpp.html#af27e3188294c2df66d975b74a09c001d">i</a>)</td></tr>
 <tr class="separator:a4beea973d2e65cbce0077d9e9747dc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98ffca43eaaa30045dd2b2944a15ee78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran.html#a98ffca43eaaa30045dd2b2944a15ee78">setValue</a> (float value, int indice)</td></tr>
 <tr class="separator:a98ffca43eaaa30045dd2b2944a15ee78"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -240,11 +266,15 @@ Public Member Functions</h2></td></tr>
 <li>Ecran/Ecran_test/<a class="el" href="_ecran_8cpp.html">Ecran.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_ecran.html">Ecran</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>

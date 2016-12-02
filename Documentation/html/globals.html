@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,11 +30,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="arduino.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.3</span>
+   &#160;<span id="projectnumber">1.4</span>
    </div>
+   <div id="projectbrief">Coupe de France de robotique</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,9 +81,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="globals.html"><span>All</span></a></li>
       <li><a href="globals_func.html"><span>Functions</span></a></li>
       <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index__"><span>_</span></a></li>
+      <li><a href="#index_b"><span>b</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
+      <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_f"><span>f</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_k"><span>k</span></a></li>
+      <li><a href="#index_l"><span>l</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
+      <li class="current"><a href="#index_w"><span>w</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('globals.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -89,7 +137,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all documented file members with links to the documentation:</div><ul>
+<div class="textblock">Here is a list of all file members with links to the files they belong to:</div>
+
+<h3><a class="anchor" id="index__"></a>- _ -</h3><ul>
+<li>_MENU_MAIN_
+: <a class="el" href="_ecran__test_8cpp.html#a719fe50dfad6dc99c61d696e1d108f3b">Ecran_test.cpp</a>
+</li>
+<li>_MENU_STRAT_
+: <a class="el" href="_ecran__test_8cpp.html#a7626315375110893d01ebca0494c222a">Ecran_test.cpp</a>
+</li>
+<li>_MENUM1_
+: <a class="el" href="_ecran__test_8cpp.html#a65d988d35ef527759ecbaf2a4bab1582">Ecran_test.cpp</a>
+</li>
+<li>_MENUM2_
+: <a class="el" href="_ecran__test_8cpp.html#a4c1a8c2162e0f13b4c2f7eec73b077f3">Ecran_test.cpp</a>
+</li>
+<li>_MENUM3_
+: <a class="el" href="_ecran__test_8cpp.html#a3338732261d30fa9b28ce43dc01d47d9">Ecran_test.cpp</a>
+</li>
+<li>_MENUM4_
+: <a class="el" href="_ecran__test_8cpp.html#a5c59f41e84fe663116efe06384283897">Ecran_test.cpp</a>
+</li>
+<li>_MENUS1_
+: <a class="el" href="_ecran__test_8cpp.html#a9f2390db06ad5127c5e7c7c3c587cf7f">Ecran_test.cpp</a>
+</li>
+<li>_MENUS2_
+: <a class="el" href="_ecran__test_8cpp.html#adf6799f03b920c7dad28b3172d0068e5">Ecran_test.cpp</a>
+</li>
+<li>_MENUS3_
+: <a class="el" href="_ecran__test_8cpp.html#aeae7a447e69a554b16c8d5ec99f3d58f">Ecran_test.cpp</a>
+</li>
+<li>_MENUS4_
+: <a class="el" href="_ecran__test_8cpp.html#adc80a8032aef51865b83d003a75fb097">Ecran_test.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
+<li>beta
+: <a class="el" href="mon_main_8cpp.html#a9424343761f8c4f4c1afe8f5b6bf471b">monMain.cpp</a>
+</li>
+<li>byteReceived()
+: <a class="el" href="i2c_communication_8h.html#ac31db9974f1b5e83c5870d3d3f28343c">i2cCommunication.h</a>
+, <a class="el" href="i2c_communication_8cpp.html#a052503f71620d5920a2644d54036a5df">i2cCommunication.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>codeuse
+: <a class="el" href="mon_main_8cpp.html#a8f98065fd6bcc83a4240976034f13e3b">monMain.cpp</a>
+</li>
+<li>crysteo
+: <a class="el" href="mon_main_8cpp.html#a22b34436753ad0df707e9e89ca572157">monMain.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>d
+: <a class="el" href="_ecran__test_8cpp.html#a8b0e19290d6f362183175052bffe70e5">Ecran_test.cpp</a>
+</li>
+<li>depassement
+: <a class="el" href="mon_main_8cpp.html#a26c902bc2c40f7d096add152f4450d59">monMain.cpp</a>
+</li>
+<li>destination
+: <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">monMain.cpp</a>
+</li>
+<li>Doangle
+: <a class="el" href="mon_main_8cpp.html#a8163c8111e00339500d72c7c6c1fa663">monMain.cpp</a>
+</li>
+<li>DoAngle
+: <a class="el" href="mon_main_8cpp.html#ab281bfb4abd786b4e3aba8af40efd5f7">monMain.cpp</a>
+</li>
 <li>doEncoderA_L()
 : <a class="el" href="mon_main_8cpp.html#a2584eb935b656c6ce6edc3b579d3014d">monMain.cpp</a>
 </li>
@@ -101,6 +221,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>doEncoderB_R()
 : <a class="el" href="mon_main_8cpp.html#a8bda46e80de7bb3dfd4f0b1593f60987">monMain.cpp</a>
+</li>
+<li>draw()
+: <a class="el" href="_bot_menu_8cpp.html#ad2e97e7b54d0bf35e406b91fbdd2f256">BotMenu.cpp</a>
 </li>
 <li>drawEcranDacceuil()
 : <a class="el" href="_ecran__test_8cpp.html#a0d0f1bc64d53fddd91e08fabe0473166">Ecran_test.cpp</a>
@@ -114,11 +237,129 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>drawMenuStrategie()
 : <a class="el" href="_ecran__test_8cpp.html#adff404e6d6e488d3f154697ea4b76cd1">Ecran_test.cpp</a>
 </li>
+<li>drawMenuStrategie1()
+: <a class="el" href="_ecran__test_8cpp.html#a5f050ce28ab11b5010ec574ebad67336">Ecran_test.cpp</a>
+</li>
 <li>drawMenuTest()
 : <a class="el" href="_ecran__test_8cpp.html#aadb17f9b6e999954b691347677512aa3">Ecran_test.cpp</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>ecranDebug
+: <a class="el" href="_ecran__test_8cpp.html#ad29e3e4ec1c1b91952dd8a264b3f6984">Ecran_test.cpp</a>
+</li>
+<li>ecranStrategie
+: <a class="el" href="_ecran__test_8cpp.html#a399bd05f6eee68bcf92d5b43d01d58b2">Ecran_test.cpp</a>
+</li>
+<li>ecranTest
+: <a class="el" href="_ecran__test_8cpp.html#ac2f8b408601799463e0e8e6bba5065c1">Ecran_test.cpp</a>
+</li>
+<li>el_muse_cnt
+: <a class="el" href="_bot_menu_8cpp.html#a07b88d5df5744351231abe9309fb7cbb">BotMenu.cpp</a>
+</li>
+<li>el_muse_first
+: <a class="el" href="_bot_menu_8cpp.html#a1480bd892b81cb878cff92b2c58f7f84">BotMenu.cpp</a>
+</li>
+<li>el_muse_strlist_cb()
+: <a class="el" href="_bot_menu_8cpp.html#aef16a7ab93977d04bc1a962d6603da06">BotMenu.cpp</a>
+</li>
+<li>encoder0PinA_L
+: <a class="el" href="mon_main_8cpp.html#a26f2059fc548c26d545b4eb5598fa803">monMain.cpp</a>
+</li>
+<li>encoder0PinA_R
+: <a class="el" href="mon_main_8cpp.html#ac6293b53a53c5254d6c4529f0b17154f">monMain.cpp</a>
+</li>
+<li>encoder0PinB_L
+: <a class="el" href="mon_main_8cpp.html#a18caec9e799348da27682644db37845a">monMain.cpp</a>
+</li>
+<li>encoder0PinB_R
+: <a class="el" href="mon_main_8cpp.html#ae2f5b87ca0d03ad1b97f14abfa2204fd">monMain.cpp</a>
+</li>
+<li>encoder0Pos_L
+: <a class="el" href="mon_main_8cpp.html#a52fba4c18e0f8e715a06a5c0505b3af6">monMain.cpp</a>
+</li>
+<li>encoder0Pos_R
+: <a class="el" href="mon_main_8cpp.html#af80ce94160e93ed3a04932d81cca0892">monMain.cpp</a>
+</li>
+<li>encoderMoins
+: <a class="el" href="_ecran__test_8cpp.html#a6ad215616162d1d1338d66d70e424d49">Ecran_test.cpp</a>
+</li>
+<li>encoderPlus
+: <a class="el" href="_ecran__test_8cpp.html#a88dcd87c4676aca36f2643d5fafd2336">Ecran_test.cpp</a>
+</li>
+<li>entry
+: <a class="el" href="_ecran__test_8cpp.html#aef0a0970a0b1385837722d0443a295b9">Ecran_test.cpp</a>
+</li>
+<li>ERROR_L_ACCEPTED
+: <a class="el" href="asservissement_8h.html#aec7c82e3146dcb6ce0d1570861a1aaed">asservissement.h</a>
+</li>
+<li>ERROR_THETA_ACCEPTED
+: <a class="el" href="asservissement_8h.html#a9c421b2f916d0543806c67699b51ae23">asservissement.h</a>
+</li>
 <li>errorLT()
 : <a class="el" href="mon_main_8cpp.html#a63820377a5e832d8b2532444a50c0e95">monMain.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
+<li>fn_cancel()
+: <a class="el" href="_bot_menu_8cpp.html#a8a3c6fcc095a1d9db5dbdde7f8d3fc4d">BotMenu.cpp</a>
+</li>
+<li>fn_idx_to_color()
+: <a class="el" href="_bot_menu_8cpp.html#a8efda50d6409985342bc143c499f0cee">BotMenu.cpp</a>
+</li>
+<li>fn_idx_to_priority()
+: <a class="el" href="_bot_menu_8cpp.html#a4ec9ca795394ccbd02d19cece9c659f5">BotMenu.cpp</a>
+</li>
+<li>fn_num_zero()
+: <a class="el" href="_bot_menu_8cpp.html#ac7ca3196108dc21ff23f4a4216cf5dac">BotMenu.cpp</a>
+</li>
+<li>fn_ok()
+: <a class="el" href="_bot_menu_8cpp.html#a7e6529d2af7c3733a2a539d33f51d396">BotMenu.cpp</a>
+</li>
+<li>forward
+: <a class="el" href="mon_main_8cpp.html#aa8a182241e9a8f435392df822e890686">monMain.cpp</a>
+</li>
+<li>FS_EXTRA_MENUES
+: <a class="el" href="_bot_menu_8cpp.html#a43524150be17f4503696e20469ef8fae">BotMenu.cpp</a>
+</li>
+<li>fs_m2tk_cnt
+: <a class="el" href="_bot_menu_8cpp.html#ae9a8725e62d13faf5e3a9e656d36fd5b">BotMenu.cpp</a>
+</li>
+<li>fs_m2tk_first
+: <a class="el" href="_bot_menu_8cpp.html#ad1f85492ed282a7cd140a488a6aaf55f">BotMenu.cpp</a>
+</li>
+<li>fs_strlist_getstr()
+: <a class="el" href="_bot_menu_8cpp.html#a55bc51910eb69f831b247234bac93237">BotMenu.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>getHighByte()
+: <a class="el" href="i2c_communication_8cpp.html#a46bd5c94164200611c26d02695759bf0">i2cCommunication.cpp</a>
+, <a class="el" href="i2c_communication_8h.html#a46bd5c94164200611c26d02695759bf0">i2cCommunication.h</a>
+</li>
+<li>getLowByte()
+: <a class="el" href="i2c_communication_8cpp.html#a35a02a6401893ebf75a28714afc8d4c4">i2cCommunication.cpp</a>
+, <a class="el" href="i2c_communication_8h.html#a7835d18dc0842d01422d5593771bfacf">i2cCommunication.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>h
+: <a class="el" href="_ecran__test_8cpp.html#a1f1dfeb2f802fe99f37fe91867b84456">Ecran_test.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>i
+: <a class="el" href="_ecran__test_8cpp.html#af27e3188294c2df66d975b74a09c001d">Ecran_test.cpp</a>
 </li>
 <li>i2creceive()
 : <a class="el" href="i2c_communication_8cpp.html#aabbaaa8669f14b1a8d7e09bcb0932b94">i2cCommunication.cpp</a>
@@ -128,21 +369,230 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="i2c_communication_8cpp.html#a11dfea4af3407db6ee1f10085963d0f3">i2cCommunication.cpp</a>
 , <a class="el" href="i2c_communication_8h.html#aa57c53d43c435c6efe21932b18c13591">i2cCommunication.h</a>
 </li>
+<li>i2csend3bytes()
+: <a class="el" href="i2c_communication_8cpp.html#a63cd8300cf2a924f35f1e4fe0ba04763">i2cCommunication.cpp</a>
+, <a class="el" href="i2c_communication_8h.html#aa072a4dcb87b819a72db58c21754971b">i2cCommunication.h</a>
+</li>
+<li>IN1MoteurA0
+: <a class="el" href="moteur_8cpp.html#ace70ed562f2c182778847556dc2511fc">moteur.cpp</a>
+</li>
+<li>IN1MoteurB0
+: <a class="el" href="moteur_8cpp.html#a2615b6fc3969a74dfabfe75961063778">moteur.cpp</a>
+</li>
+<li>IN2MoteurA0
+: <a class="el" href="moteur_8cpp.html#aa517851a0927b6b6cc4f8dbd48728733">moteur.cpp</a>
+</li>
+<li>IN2MoteurB0
+: <a class="el" href="moteur_8cpp.html#a1509182ea4754011bd3cdc3a402a788e">moteur.cpp</a>
+</li>
+<li>interruptionEncodeurs()
+: <a class="el" href="mon_main_8cpp.html#a753a4eedbf97c3c3127ab154c88cf6e7">monMain.cpp</a>
+</li>
+<li>intTo2Bytes()
+: <a class="el" href="i2c_communication_8cpp.html#a63e11d378cc4ae67f51bd73b5c3ecd32">i2cCommunication.cpp</a>
+, <a class="el" href="i2c_communication_8h.html#a4f8591eec9512b6d369d30dd80545233">i2cCommunication.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_k"></a>- k -</h3><ul>
+<li>KEY_BACK
+: <a class="el" href="_ecran__test_8cpp.html#ad79ba6770b2ab25b890f7819357a125d">Ecran_test.cpp</a>
+</li>
+<li>KEY_NEXT
+: <a class="el" href="_ecran__test_8cpp.html#a2c9efac118f597ee09ee5d6b4ef3120a">Ecran_test.cpp</a>
+</li>
+<li>KEY_NONE
+: <a class="el" href="_ecran__test_8cpp.html#a02531bf28bf1c98caf3da055f22a08bd">Ecran_test.cpp</a>
+</li>
+<li>KEY_PREV
+: <a class="el" href="_ecran__test_8cpp.html#a0279a6e963d40546bf723fbc0a69c1ab">Ecran_test.cpp</a>
+</li>
+<li>KEY_SELECT
+: <a class="el" href="_ecran__test_8cpp.html#aa8d060e03fe1ea2c54b64698c1b6c8b5">Ecran_test.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>last_key_code
+: <a class="el" href="_ecran__test_8cpp.html#a5968805cddb88c598761103a650e9ab1">Ecran_test.cpp</a>
+</li>
 <li>ledControl()
 : <a class="el" href="i2c_communication_8cpp.html#ac855480cf53a0e5b15508607b77be94d">i2cCommunication.cpp</a>
 , <a class="el" href="i2c_communication_8h.html#ae6a3bc2609421898c94e1058b328272b">i2cCommunication.h</a>
 </li>
 <li>ledOff()
-: <a class="el" href="i2c_communication_8h.html#a5827c170dcc5542611602c83465aef76">i2cCommunication.h</a>
-, <a class="el" href="i2c_communication_8cpp.html#abf80dc6dcb93027ac462ce660949a166">i2cCommunication.cpp</a>
+: <a class="el" href="i2c_communication_8cpp.html#abf80dc6dcb93027ac462ce660949a166">i2cCommunication.cpp</a>
+, <a class="el" href="i2c_communication_8h.html#a5827c170dcc5542611602c83465aef76">i2cCommunication.h</a>
 </li>
 <li>ledOn()
 : <a class="el" href="i2c_communication_8h.html#a03a51023a1735b58febde7adcb8edaad">i2cCommunication.h</a>
 , <a class="el" href="i2c_communication_8cpp.html#a68a9dab5600d3afd6ff34abd5ef8c932">i2cCommunication.cpp</a>
 </li>
+<li>loop()
+: <a class="el" href="_ecran__test_8cpp.html#a0b33edabd7f1c4e4a0bf32c67269be2f">Ecran_test.cpp</a>
+, <a class="el" href="mon_main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">monMain.cpp</a>
+, <a class="el" href="_bot_menu_8cpp.html#afe461d27b9c48d5921c00d521181f12f">BotMenu.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>M2_2LMENU()
+: <a class="el" href="_bot_menu_8cpp.html#ab7c33b51b1c9054abb61d6b41afb5a82">BotMenu.cpp</a>
+</li>
+<li>m2_2lmenu_cnt
+: <a class="el" href="_bot_menu_8cpp.html#ab60295d1d8b0661791d63b9cd25a1376">BotMenu.cpp</a>
+</li>
+<li>m2_2lmenu_data
+: <a class="el" href="_bot_menu_8cpp.html#a876bf7b2855095cbd1b600d4e8232ef9">BotMenu.cpp</a>
+</li>
+<li>m2_2lmenu_first
+: <a class="el" href="_bot_menu_8cpp.html#ae8556b92b9bd46784bb0a33867cff0e8">BotMenu.cpp</a>
+</li>
+<li>M2_ALIGN()
+: <a class="el" href="_bot_menu_8cpp.html#a841601b2d46f5d977ec1432d9a6e5ac9">BotMenu.cpp</a>
+</li>
+<li>M2_BUTTON()
+: <a class="el" href="_bot_menu_8cpp.html#aa4cbf3c26b6a7c6336f6fab72455c0e8">BotMenu.cpp</a>
+</li>
+<li>M2_COMBO()
+: <a class="el" href="_bot_menu_8cpp.html#a21177c1577c5cd09e20aca3ad44b22d6">BotMenu.cpp</a>
+</li>
+<li>M2_EXTERN_ALIGN()
+: <a class="el" href="_bot_menu_8cpp.html#af62487259379aca5c16217d4a02ec68a">BotMenu.cpp</a>
+</li>
+<li>M2_GRIDLIST()
+: <a class="el" href="_bot_menu_8cpp.html#a457743ec7408450a5c866f247cd22286">BotMenu.cpp</a>
+</li>
+<li>M2_HLIST()
+: <a class="el" href="_bot_menu_8cpp.html#af9f7c8a691f00ef6e9afb0aa57abcf25">BotMenu.cpp</a>
+</li>
+<li>M2_LABEL()
+: <a class="el" href="_bot_menu_8cpp.html#a1c4effd4d74ecf4150ec6a31d516123b">BotMenu.cpp</a>
+</li>
+<li>M2_LIST()
+: <a class="el" href="_bot_menu_8cpp.html#ab564aaf40e80b104ceca35834190c79e">BotMenu.cpp</a>
+</li>
+<li>M2_RADIO()
+: <a class="el" href="_bot_menu_8cpp.html#a7150e78d610265088a20b1e247765d0d">BotMenu.cpp</a>
+</li>
+<li>M2_ROOT()
+: <a class="el" href="_bot_menu_8cpp.html#ada6d4ee05a83b31b6050eaede6be5374">BotMenu.cpp</a>
+</li>
+<li>M2_SPACE()
+: <a class="el" href="_bot_menu_8cpp.html#a7cb79330c363e61be79e8da0a40dbef7">BotMenu.cpp</a>
+</li>
+<li>M2_STRLIST()
+: <a class="el" href="_bot_menu_8cpp.html#a81f91a581a07e222091c42a5513cb6e6">BotMenu.cpp</a>
+</li>
+<li>M2_U32NUM()
+: <a class="el" href="_bot_menu_8cpp.html#aebe2c2388e6904e4090639d8c5cd95b5">BotMenu.cpp</a>
+</li>
+<li>M2_U8NUM()
+: <a class="el" href="_bot_menu_8cpp.html#a854f41500e9ed28b54658fb117a08018">BotMenu.cpp</a>
+</li>
+<li>M2_VLIST()
+: <a class="el" href="_bot_menu_8cpp.html#a4ae44dc4a1019a63d45317f7d555b4ac">BotMenu.cpp</a>
+</li>
+<li>M2_VSB()
+: <a class="el" href="_bot_menu_8cpp.html#a23efa26ebe1831f294483f4c70bbd4b3">BotMenu.cpp</a>
+</li>
+<li>memory_destination
+: <a class="el" href="mon_main_8cpp.html#a7ef7101cedbed0a38753adf73b8feb3a">monMain.cpp</a>
+</li>
+<li>memory_position
+: <a class="el" href="mon_main_8cpp.html#aca7e2e553ca5464de0ec0ec048e57f71">monMain.cpp</a>
+</li>
+<li>menu_current
+: <a class="el" href="_ecran__test_8cpp.html#a618725886d287a1608612cfba68dce6b">Ecran_test.cpp</a>
+</li>
+<li>menu_redraw_required
+: <a class="el" href="_ecran__test_8cpp.html#a794fcf054efa99a1aa4c41050b99f895">Ecran_test.cpp</a>
+</li>
+<li>menuM_strings
+: <a class="el" href="_ecran__test_8cpp.html#adb950a1d30c8a675281582e4ea549e6a">Ecran_test.cpp</a>
+</li>
+<li>menuS_strings
+: <a class="el" href="_ecran__test_8cpp.html#a71d9e139afd9bc5147ef9135d20c8514">Ecran_test.cpp</a>
+</li>
+<li>MULTI_SELECT_CNT
+: <a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">BotMenu.cpp</a>
+</li>
+<li>multi_select_status
+: <a class="el" href="_bot_menu_8cpp.html#a5aa6a749f4aeb615d010b94f06eccece">BotMenu.cpp</a>
+</li>
+<li>multi_select_strings
+: <a class="el" href="_bot_menu_8cpp.html#af58f7967409a75825ff1be36d694d648">BotMenu.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
 <li>orderNumber()
 : <a class="el" href="i2c_communication_8cpp.html#aa8146639e060d6c423e63301c0b54b20">i2cCommunication.cpp</a>
 , <a class="el" href="i2c_communication_8h.html#a94201be24d7adb6b945db4d1acdea014">i2cCommunication.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>PI
+: <a class="el" href="asservissement_8cpp.html#a598a3330b3c21701223ee0ca14316eca">asservissement.cpp</a>
+, <a class="el" href="odometrie_8cpp.html#a598a3330b3c21701223ee0ca14316eca">odometrie.cpp</a>
+</li>
+<li>PMW_MOTEUR_A0
+: <a class="el" href="moteur_8h.html#a50659f039de0d263938f621e0c8bc625">moteur.h</a>
+</li>
+<li>PMW_MOTEUR_A1
+: <a class="el" href="moteur_8h.html#ac127249233a552dac7435631c046cd8e">moteur.h</a>
+</li>
+<li>PMW_MOTEUR_B0
+: <a class="el" href="moteur_8h.html#a137e3e39f06ac1effdd8d04523d25149">moteur.h</a>
+</li>
+<li>PMW_MOTEUR_B1
+: <a class="el" href="moteur_8h.html#a59480bed1316437507c762cc756036ef">moteur.h</a>
+</li>
+<li>PWM_FREQ
+: <a class="el" href="moteur_8cpp.html#a76fe84d83b8d236bd4f0d20d7e2ed06f">moteur.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>rb_select_strat
+: <a class="el" href="_bot_menu_8cpp.html#a7061e6a209c61c081d2ce187646d2c32">BotMenu.cpp</a>
+</li>
+<li>receiveEvent()
+: <a class="el" href="i2c_communication_8cpp.html#a9a52aa0319b0d3bea95eff4528baee98">i2cCommunication.cpp</a>
+, <a class="el" href="i2c_communication_8h.html#a99f319b005d8969e66a25460524a84ce">i2cCommunication.h</a>
+</li>
+<li>recoverIntFrom2Bytes()
+: <a class="el" href="i2c_communication_8cpp.html#af76d6fef661949eed84df8906fcc778d">i2cCommunication.cpp</a>
+, <a class="el" href="i2c_communication_8h.html#a8b1dbb73197e91c06abd5035d717323d">i2cCommunication.h</a>
+</li>
+<li>robot
+: <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">monMain.cpp</a>
+</li>
+<li>roue
+: <a class="el" href="mon_main_8cpp.html#a63e9b2f84e6956baedf61c72bb979d30">monMain.cpp</a>
+</li>
+<li>roueCodeuse
+: <a class="el" href="mon_main_8cpp.html#a01bbbc37cd4af521f5f5723d3ef38078">monMain.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>select_coord
+: <a class="el" href="_bot_menu_8cpp.html#abbeca923f2d2ec29b4d86d393aff62a5">BotMenu.cpp</a>
+</li>
+<li>select_priority
+: <a class="el" href="_bot_menu_8cpp.html#a9574bb537328bd612e2900042bc9e2c2">BotMenu.cpp</a>
+</li>
+<li>selecteurMenu
+: <a class="el" href="_ecran__test_8cpp.html#af35e4e02b21e4b95daf94cdc97dbdabb">Ecran_test.cpp</a>
 </li>
 <li>selectMainMenu()
 : <a class="el" href="_ecran__test_8cpp.html#ab000b67f8cc67b733a34f7447f3593e0">Ecran_test.cpp</a>
@@ -150,8 +600,70 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>selectStratMenu()
 : <a class="el" href="_ecran__test_8cpp.html#aebed76008b16f8185688eb93549c6fac">Ecran_test.cpp</a>
 </li>
+<li>setup()
+: <a class="el" href="_bot_menu_8cpp.html#a7dfd9b79bc5a37d7df40207afbc5431f">BotMenu.cpp</a>
+, <a class="el" href="_ecran__test_8cpp.html#a7dfd9b79bc5a37d7df40207afbc5431f">Ecran_test.cpp</a>
+, <a class="el" href="mon_main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">monMain.cpp</a>
+</li>
+<li>square()
+: <a class="el" href="mon_main_8cpp.html#a9a1ed5f9745d9264abac48c41918c5de">monMain.cpp</a>
+</li>
 <li>stratMenuLoop()
 : <a class="el" href="_ecran__test_8cpp.html#ae25a03ba511f38495915ea737eb02e1d">Ecran_test.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>targetAngle
+: <a class="el" href="mon_main_8cpp.html#a5ac042e6ef1c1edf738e846427358f10">monMain.cpp</a>
+</li>
+<li>TargetAngle
+: <a class="el" href="mon_main_8cpp.html#a502f02ce0448a79799314b8dc229fa79">monMain.cpp</a>
+</li>
+<li>TEMPS
+: <a class="el" href="mon_main_8cpp.html#ad67b7981a5b5c479cd25328af2db4a3a">monMain.cpp</a>
+</li>
+<li>TIM_ARR
+: <a class="el" href="moteur_8cpp.html#a5cf0310b8878ffe11e869ab580b8b3ab">moteur.cpp</a>
+</li>
+<li>top_el_expandable_menu
+: <a class="el" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">BotMenu.cpp</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>u32num
+: <a class="el" href="_bot_menu_8cpp.html#a58166e72eb00841cbaa472cf7a5061ba">BotMenu.cpp</a>
+</li>
+<li>u8g()
+: <a class="el" href="_bot_menu_8cpp.html#a07c3d55765da80fdd09d989aad03d574">BotMenu.cpp</a>
+, <a class="el" href="_ecran__test_8cpp.html#a07c3d55765da80fdd09d989aad03d574">Ecran_test.cpp</a>
+</li>
+<li>U8G_PROGMEM
+: <a class="el" href="logo_crysteo_8h.html#ac4897e135f51cfa77a85990cdb4545bf">logoCrysteo.h</a>
+</li>
+<li>u8num
+: <a class="el" href="_bot_menu_8cpp.html#ae1a379f64e9164eb29ce491d5097bc30">BotMenu.cpp</a>
+</li>
+<li>uiKeyCode
+: <a class="el" href="_ecran__test_8cpp.html#a767211cb043fe5872ea0c201111178b7">Ecran_test.cpp</a>
+</li>
+<li>uiKeyCodeFirst
+: <a class="el" href="_ecran__test_8cpp.html#a8650618d9681f5ef6363a38e5545d67f">Ecran_test.cpp</a>
+</li>
+<li>uiKeyCodeSecond
+: <a class="el" href="_ecran__test_8cpp.html#a0e9c6c47059de1a2ea5cb4f50bb4e9e5">Ecran_test.cpp</a>
+</li>
+<li>uiKeyDownPin
+: <a class="el" href="_bot_menu_8cpp.html#a6826dd36068b562676f823286b1e6f2a">BotMenu.cpp</a>
+</li>
+<li>uiKeyExitPin
+: <a class="el" href="_bot_menu_8cpp.html#ab24db6c2b2ea68b731b3021eef7da3d9">BotMenu.cpp</a>
+</li>
+<li>uiKeySelectPin
+: <a class="el" href="_bot_menu_8cpp.html#a4e467e1cb382409703a062cfdafeb73b">BotMenu.cpp</a>
 </li>
 <li>uiKeyUpPin
 : <a class="el" href="_bot_menu_8cpp.html#abb2364757d18ac2ee4f9650164df5e20">BotMenu.cpp</a>
@@ -163,12 +675,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="_ecran__test_8cpp.html#a60c682713e85f83f5529d95bbd72826b">Ecran_test.cpp</a>
 </li>
 </ul>
+
+
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
+<li>w
+: <a class="el" href="_ecran__test_8cpp.html#aea376a9f764f4a9cf33e2c9ae174001a">Ecran_test.cpp</a>
+</li>
+</ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
 </body>
 </html>
