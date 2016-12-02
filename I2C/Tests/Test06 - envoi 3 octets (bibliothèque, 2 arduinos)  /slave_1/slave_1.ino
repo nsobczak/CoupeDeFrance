@@ -30,10 +30,12 @@ void receiveEvent2(int howMany)
 {
   Serial.print("howMany = ");
   Serial.println(howMany);
-  byte var = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
+  byte var = Wire.read();             // lecture de l'octet/byte ignoré comme un entier
   //orderNumber(x);			  // lecture de l'ordre à executer
   byte highByte = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
-  byte lowByte = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
+  byte lowByte = Wire.read();         // lecture de l'octet/byte ignoré comme un entier
+  
+  int value = recoverIntFrom2Bytes(bytesTab);
   /*
   byteReceived(var);
   byteReceived(highByte);
