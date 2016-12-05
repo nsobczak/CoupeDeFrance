@@ -4,7 +4,7 @@
  *    \author Nicolas Sobczak
  *    \date octobre 2016
 */
-//____________________________________________________________________________________________________
+
 #include "U8glib.h"
 #include "M2tk.h"
 #include "utility/m2ghu8g.h"
@@ -14,7 +14,6 @@
 U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14
 
 
-//____________________________________________________________________________________________________
 //=================================================
 // Variables for Menu Process
 
@@ -30,13 +29,10 @@ uint8_t uiKeySelectPin = 2;
 uint8_t uiKeyExitPin = 0;
 
 
-//____________________________________________________________________________________________________
 //=================================================
 // Forward declaration of the toplevel element
 M2_EXTERN_ALIGN(top_el_expandable_menu);
 
-
-//____________________________________________________________________________________________________
 /*=== radio button selection  ===*/
 uint8_t rb_select_strat = 0;
 
@@ -64,25 +60,20 @@ M2_LIST(list_rb) = {
 M2_GRIDLIST(el_rb_grid, "c2",list_rb);
 M2_ALIGN(el_top_rb, "-1|1W64H64", &el_rb_grid);
 
-
-//____________________________________________________________________________________________________
 /*=== combo examples  ===*/
 
 uint8_t select_coord = 0;
 uint8_t select_priority = 0;
-
 
 void fn_ok(m2_el_fnarg_p fnarg) {
   /* accept selection */
   m2_SetRoot(&top_el_expandable_menu);
 }
 
-
 void fn_cancel(m2_el_fnarg_p fnarg) {
   /* discard selection */
   m2_SetRoot(&top_el_expandable_menu);
 }
-
 
 const char *fn_idx_to_color(uint8_t idx)
 {
@@ -94,7 +85,6 @@ const char *fn_idx_to_color(uint8_t idx)
   }
   return "";
 }
-
 
 const char *fn_idx_to_priority(uint8_t idx)
 {
@@ -128,48 +118,33 @@ M2_GRIDLIST(el_combo_grid, "c2", list_combo);
 M2_ALIGN(el_top_combo, "-1|1W64H64", &el_combo_grid);
 
 
-//____________________________________________________________________________________________________
 /*=== number entry ===*/
 
-uint32_t num_1 = 0;
-uint32_t num_2 = 0;
+uint8_t u8num = 0;
+uint32_t u32num = 0;
 
 void fn_num_zero(m2_el_fnarg_p fnarg) {
-  num_1 = 0;
-  num_2 = 0;
+  u8num = 0;
+  u32num = 0;
 }
 
-//Fonction de test i2c
-void fn_num_go(m2_el_fnarg_p fnarg) {
-  num_1 = 0;
-  num_2 = 0;
-}
-
-/*
-M2_LABEL(el_num_label1, NULL, "Variable");
+M2_LABEL(el_num_label1, NULL, "U8:");
 M2_U8NUM(el_num_1, NULL, 0, 255, &u8num);
-*/
-M2_LABEL(el_num_label1, NULL, "Variable:");
-M2_U32NUM(el_num_1, "c3", &num_1);
 
-M2_LABEL(el_num_label2, NULL, "Valeur:");
-M2_U32NUM(el_num_2, "c5", &num_2);
+M2_LABEL(el_num_label2, NULL, "U32:");
+M2_U32NUM(el_num_2, "c5", &u32num);
 
 M2_BUTTON(el_num_zero, "f4", " zero ", fn_num_zero);
-M2_BUTTON(el_num_go, "f4", " I2C test ", fn_num_go);
 M2_ROOT(el_num_goto_top, "f4", " back ", &top_el_expandable_menu);
 
 M2_LIST(num_list) = { 
     &el_num_label1, &el_num_1, 
     &el_num_label2, &el_num_2,  
-    &el_num_zero, &el_num_go,
-    &el_num_goto_top
+    &el_num_zero, &el_num_goto_top
 };
 M2_GRIDLIST(el_num_menu_grid, "c2", num_list);
 M2_ALIGN(el_top_num_menu, "-1|1W64H64", &el_num_menu_grid);
 
-
-//____________________________________________________________________________________________________
 /*=== multi selection ===*/
 
 #define MULTI_SELECT_CNT 3
@@ -213,8 +188,6 @@ M2_LIST(muse_list) = {
 M2_VLIST(el_muse_vlist, "c2", muse_list);
 M2_ALIGN(top_el_muse, "-1|1W64H64", &el_muse_vlist);
 
-
-//____________________________________________________________________________________________________
 /*=== File selection dialog ===*/
 
 /* defines the number of additional buttons at the beginning of the STRLIST lines */
@@ -318,9 +291,6 @@ M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
 //M2tk m2(&top_el_expandable_menu, m2_es_arduino_rotary_encoder, m2_eh_4bs, m2_gh_u8g_ffs);
 //M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_arduino_serial);
 
-
-//____________________________________________________________________________________________________
-//____________________________________________________________________________________________________
 //=================================================
 // Draw procedure, Arduino Setup & Loop
 
@@ -328,7 +298,6 @@ M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
 void draw(void) {
   m2.draw();
 }
-
 
 void setup(void) {
   // Connect u8glib with m2tklib
@@ -355,7 +324,6 @@ void setup(void) {
   /* mass storage init: simulation environment */
   mas_Init(mas_device_sim, 0);
 }
-
 
 void loop() {
   // menu management
