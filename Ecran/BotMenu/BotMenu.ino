@@ -1,6 +1,6 @@
 /**
  *    \file BotMenu.cpp
- *    \brief Code d'affichage de l'écran. Définition des menus, sous-menus et de l'affichage des valeurs.
+ *    \brief Code d'affichage de l'écran
  *    \author Nicolas Sobczak
  *    \date octobre 2016
 */
@@ -263,7 +263,7 @@ m2_menu_entry m2_2lmenu_data[] =
   { ". Test01", &top_el_muse },
   { ". Test02", &top_el_muse },
   { ". Test03", &top_el_muse },
-  { ". File Select", &el_top_fs },
+  //{ ". File Select", &el_top_fs },
   { "Debug ", &el_top_num_menu },
   { "Logo", &top_el_expandable_menu },
   { NULL, NULL },

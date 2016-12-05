@@ -29,7 +29,7 @@
 #define _MENUS1_ "Strategie1"
 #define _MENUS2_ "Strategie2"
 #define _MENUS3_ "Strategie3"
-#define _MENUS4_ "Strategie4"
+#define _MENUS4_ "Back"
 
 #define KEY_NONE 0
 #define KEY_PREV 1
@@ -88,13 +88,13 @@ void drawEcranDacceuil(void) {
 
 
 /**____________________________________________________
- *   \fn void updateMenu(void)
+ *   \fn void selectMenu(void)
  *   \param void
  *   Fonction qui selectionne le menu sur lequel le curseur est place
  *   The position of the cursor bar is stored in the global variable menu_current.
  *   External buttons, a touchpanel or other sensors might modify the cursor bar position:
  */
-void updateMenu(void) {
+void selectMenu(void) {
   if ( uiKeyCode != KEY_NONE && last_key_code == uiKeyCode ) {
     return;
   }
@@ -212,7 +212,7 @@ void drawMenuStrategie1(void)
 {
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
-  ecranStrategie.setNom("Ecran de strat", 0);
+  ecranStrategie.setNom("=Strat_1=", 0);
   ecranStrategie.setNom("Valeur test", 1);
   ecranStrategie.setValue(3.14, 1);
   
@@ -233,7 +233,7 @@ void drawMenuTest(void)
 {
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
-  ecranTest.setNom("string", 0);
+  ecranTest.setNom("=TEST=", 0);
   ecranTest.setNom("string", 1);
   ecranTest.setNom("string", 2);
   ecranTest.setNom("string", 3);
@@ -261,12 +261,12 @@ void drawMenuDebug(void)
 {
   u8g.setPrintPos(0,0); 
   //initialisation de l'objet
-  ecranDebug.setNom("Debug", 0);
-  ecranDebug.setNom("coucou", 1);
-  ecranDebug.setNom("mon", 2);
-  ecranDebug.setNom("petit", 3);
-  ecranDebug.setNom("pigeon", 4);
-  for (int i = 0; i < 5; ++i){
+  ecranDebug.setNom("=DEBUG=", 0);
+  ecranDebug.setNom("val1", 1);
+  ecranDebug.setNom("val2", 2);
+  ecranDebug.setNom("val3", 3);
+  ecranDebug.setNom("val4", 4);
+  for (int i = 2; i < 5; ++i){
     ecranDebug.setValue(3.2*i, i);
   }
   //affichage a l'ecran
@@ -290,15 +290,21 @@ void drawMenuDebug(void)
  */
 void selectMainMenu(int selecteurMenu){
   Serial.println(selecteurMenu);
-  u8g.firstPage();
   switch(selecteurMenu)
   {
     case 0 :   
     { 
+        menu_redraw_required = 1;
+        while (true){
+          stratLoop();
+        }
+        /*
         u8g.firstPage();        
         do{
           drawMenuStrategie();
+          //selectStratMenu(selecteurMenu);
         }while(u8g.nextPage());
+        */
         break;
     }
     case 1 : 
@@ -336,13 +342,13 @@ void selectMainMenu(int selecteurMenu){
  */
 void selectStratMenu(int selecteurMenu){ 
   Serial.println(selecteurMenu);
-  u8g.firstPage();
   switch(selecteurMenu)
   {
     case 0 :   
     { 
         u8g.firstPage();        
         do{
+          Serial.println("strat1");
           drawMenuStrategie1();
         }while(u8g.nextPage());
         break;
@@ -375,28 +381,6 @@ void selectStratMenu(int selecteurMenu){
 }
 
 
-/**____________________________________________________
- *   \fn void stratMenuLoop(void)
- *   \param void
- *   Fonction boucle pour le menu strategie
- */
-void stratMenuLoop(void) {
-  
-  uiStep();                                     // check for key press 
-  if (  menu_redraw_required != 0 ) {
-    u8g.firstPage();
-    do{
-       drawMenuStrategie;
-    } while( u8g.nextPage() );
-    menu_redraw_required = 0;
-  }
-  selectMainMenu(selecteurMenu);
-
-  selecteurMenu= -1;
-  updateMenu();     
-}
-
-
 //____________________________________________________
 //____________________________________________________
 void setup(void) {
@@ -406,37 +390,65 @@ void setup(void) {
   pinMode(encoderMoins, INPUT_PULLUP);
   pinMode(encoderPlus, INPUT_PULLUP);
   //digitalWrite(entry,HIGH);
-  u8g.setColorIndex(1); // Affichage en mode N&B
+  u8g.setColorIndex(1);     // Affichage en mode N&B
    
-  //u8g.firstPage(); // Sélectionne la 1er page mémoire de l'écran
-  u8g.firstPage();
+  u8g.firstPage();          // Sélectionne la 1ere page mémoire de l'écran
   do {
       drawEcranDacceuil();
   } while(u8g.nextPage());  // while loop keep running until nextPage() returns '1'
-  delay(1000);
   
   uiStep();
   // flip screen, if required
   // u8g.setRot180();
   // setup key detection and debounce algorithm
-  menu_redraw_required = 1;
+  ecranDebug.setValue(0, 1);
+  
+  menu_redraw_required = 0;
 }
 
 
 void loop(void) {
   
-  uiStep();                                     // check for key press 
+  uiStep();     // check for key press 
+  
   if (  menu_redraw_required != 0 ) {
     u8g.firstPage();
     do{
        drawMainMenu();
     } while( u8g.nextPage() );
+    //u8g.firstPage();
     menu_redraw_required = 0;
   }
   selectMainMenu(selecteurMenu);
+  
+  ecranDebug.setValue(i, 1);
+  Serial.println(i);
+  ++i;
 
   selecteurMenu= -1;
-  updateMenu();     
+  selectMenu();     
+}
+
+
+void stratLoop() {
+  
+  uiStep();     // check for key press 
+  
+  if (  menu_redraw_required != 0 ) {
+    u8g.firstPage();
+    do{
+       drawMenuStrategie();
+    } while( u8g.nextPage() );
+    //u8g.firstPage();
+    menu_redraw_required = 0;
+  }
+  selectStratMenu(selecteurMenu);
+  
+  ecranDebug.setValue(i, 1);
+  Serial.println(i);
+  ++i;
+
+  selectMenu();     
 }
 
 
