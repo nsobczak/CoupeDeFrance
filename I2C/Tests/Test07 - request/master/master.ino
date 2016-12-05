@@ -8,7 +8,9 @@
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
 
-byte data[3];
+byte data[3]; 
+byte value[2];
+int recoveredValue;
 
 
 void setup() 
@@ -35,9 +37,18 @@ void loop()
     }
   }
   
-  Serial.println();                // Print a new line 
-
-//******************** DO STUFF ********************\\ 
+  //******************** DO STUFF ********************\\ 
+  
+  value[0] = data [1];
+  value[1] = data [2];
+  recoveredValue = recoverIntFrom2Bytes(value);
+  Serial.print("\nrecovery : ");  
+  Serial.print(data [0]);
+  Serial.print(" = ");  
+  Serial.println(recoveredValue);
+  
+  
+  Serial.println();  
  
 }
 

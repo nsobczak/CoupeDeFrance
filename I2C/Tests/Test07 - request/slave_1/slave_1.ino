@@ -8,11 +8,8 @@
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
 // variable to store the reading from analog
-int byte1;
-int byte2;
-int byte3;
 byte data[3]; 
-
+byte value[2];
 
 void setup() 
 {
@@ -29,15 +26,13 @@ void loop()
   pot1 = analogRead(A0);
   pot2 = analogRead(A1);
   */
- 
-  byte1 = 1;
-  byte2 = 2;
-  byte3 = 3;
+  
+  intTo2Bytes(value, 3092);
 
 // Write the value of variables to the array
-  data[0] = byte1;
-  data[1] = byte2;
-  data[2] = byte3;
+  data[0] = 'v';
+  data[1] = value[0];
+  data[2] = value[1];
 
 //Print the array to Serial buffer (for debuging)
   Serial.print("tab : ");
