@@ -5,6 +5,7 @@
  *    \date octobre 2016
 */
 //____________________________________________________________________________________________________
+// Ecran
 #include "U8glib.h"
 #include "M2tk.h"
 #include "utility/m2ghu8g.h"
@@ -12,6 +13,15 @@
 
 // setup u8g object
 U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14
+
+// I2C
+#include <Wire.h>
+#include "i2cCommunication.h"
+
+
+//____________________________________________________________________________________________________
+#define _SENDADRESS_01_ 8
+#define _RECEIVEADRESS_01_ 9
 
 
 //____________________________________________________________________________________________________
@@ -133,6 +143,10 @@ M2_ALIGN(el_top_combo, "-1|1W64H64", &el_combo_grid);
 
 uint32_t num_1 = 0;
 uint32_t num_2 = 0;
+byte dataI2C[3]; 
+byte valueI2C[2];
+int recoveredValueI2C;
+String varI2C;
 
 void fn_num_zero(m2_el_fnarg_p fnarg) {
   num_1 = 0;
@@ -141,8 +155,32 @@ void fn_num_zero(m2_el_fnarg_p fnarg) {
 
 //Fonction de test i2c
 void fn_num_go(m2_el_fnarg_p fnarg) {
-  num_1 = 0;
-  num_2 = 0;
+  // request 3 bytes from slave device on adress 9
+  Wire.requestFrom(_RECEIVEADRESS_01_, 3);         
+  
+  while (Wire.available())         //check if data is available 
+  {       
+    Serial.print("tab : ");  
+    Serial.print('\t');
+    for(byte i = 0; i < 3; i++)
+    {
+      dataI2C[i] = Wire.read();       // it assigne the data to the array
+      Serial.print(dataI2C[i]);       // print the array  
+      Serial.print('\t');
+    }
+  }
+  
+  //******************** DO STUFF ********************\\ 
+  
+  valueI2C[0] = dataI2C [1];
+  valueI2C[1] = dataI2C [2];
+  recoveredValueI2C = recoverIntFrom2Bytes(valueI2C);
+  Serial.print("\nrecovery : ");  
+  Serial.print(varI2C);
+  Serial.print(" = ");  
+  Serial.println(recoveredValueI2C);
+  
+  Serial.println(); 
 }
 
 /*
@@ -287,11 +325,11 @@ m2_menu_entry m2_2lmenu_data[] =
   { ". Strategie", &el_rb_grid },
   { ". Initialisation", &el_top_combo },
   { "Tests", NULL },
-  { ". Test I2C", &top_el_muse },
+  { ". Test I2C", &el_top_num_menu },
   { ". Test02", &top_el_muse },
   { ". Test03", &top_el_muse },
   //{ ". File Select", &el_top_fs },
-  { "Debug ", &el_top_num_menu },
+  { "Debug ", &top_el_muse },
   { "Logo", &top_el_expandable_menu },
   { NULL, NULL },
 };
@@ -354,6 +392,11 @@ void setup(void) {
   
   /* mass storage init: simulation environment */
   mas_Init(mas_device_sim, 0);
+  
+  /* I2C */
+  Wire.begin();                    // join i2c bus (address optional for master)
+  
+  Serial.begin(9600);              // starts the serial communication 
 }
 
 

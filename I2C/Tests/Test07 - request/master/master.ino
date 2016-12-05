@@ -24,12 +24,14 @@ String var;
 void setup() 
 {
   Wire.begin();                    // join i2c bus (address optional for master)
-  Serial.begin(9600);              // starts the erial communication 
+  Serial.begin(9600);              // starts the serial communication 
 }
 
 
 void loop() 
 {
+  
+  
   // request 3 bytes from slave device on adress 9
   Wire.requestFrom(_RECEIVEADRESS_, 3);         
   
