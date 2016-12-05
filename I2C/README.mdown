@@ -1,5 +1,0 @@
-#I2C
-
-Protocole de communication entre les différents arduinos.
-
-i2cCommunication.zip est la librairie que nous avons créée.

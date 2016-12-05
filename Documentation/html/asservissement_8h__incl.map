@@ -1,6 +1,0 @@
-<map id="Asservissement/monMain/asservissement.h" name="Asservissement/monMain/asservissement.h">
-<area shape="rect" id="node2" href="$structures_8h.html" title="definition des structures " alt="" coords="69,244,160,271"/>
-<area shape="rect" id="node3" href="$odometrie_8h.html" title="Classe odometrie du grand robot. " alt="" coords="69,169,160,196"/>
-<area shape="rect" id="node4" href="$moteur_8h.html" title="Classe moteur du grand robot. " alt="" coords="137,95,210,121"/>
-<area shape="rect" id="node6" href="$_p_i_d_8h.html" title="Class PID Proportionnel Intégrateur Dérivateur du grand robot. " alt="" coords="5,95,61,121"/>
-</map>
