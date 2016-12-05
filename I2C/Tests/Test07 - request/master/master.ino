@@ -1,3 +1,10 @@
+/**
+ *    \file master.cpp
+ *    \brief Esclave du Test07 I2C
+ *    \author Nicolas Sobczak
+ *    \date decembre 2016
+*/
+
 #include <Wire.h>
 #include "i2cCommunication.h"
 
@@ -11,6 +18,7 @@
 byte data[3]; 
 byte value[2];
 int recoveredValue;
+String var;
 
 
 void setup() 
@@ -39,11 +47,12 @@ void loop()
   
   //******************** DO STUFF ********************\\ 
   
+  var = String(data[0]);
   value[0] = data [1];
   value[1] = data [2];
   recoveredValue = recoverIntFrom2Bytes(value);
   Serial.print("\nrecovery : ");  
-  Serial.print(data [0]);
+  Serial.print(var);
   Serial.print(" = ");  
   Serial.println(recoveredValue);
   

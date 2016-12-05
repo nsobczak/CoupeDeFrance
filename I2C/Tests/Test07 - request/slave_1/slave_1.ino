@@ -1,3 +1,10 @@
+/**
+ *    \file slave_1.cpp
+ *    \brief Esclave du Test07 I2C
+ *    \author Nicolas Sobczak
+ *    \date decembre 2016
+*/
+
 #include <Wire.h>
 #include "i2cCommunication.h"
 
