@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['kd',['kD',['../struct_pid_coeff.html#a26142a9100b6d62fd007712190113939',1,'PidCoeff']]],
-  ['ki',['kI',['../struct_pid_coeff.html#ab0fbc32f5a94c8656d0bf8b22361d175',1,'PidCoeff']]],
-  ['kp',['kP',['../struct_pid_coeff.html#ac197194a5709f444836560eb26c72529',1,'PidCoeff']]]
+  ['nd',['ND',['../struct_tick.html#a788ee9eb9f9b0d6f234cb86f8fa100dd',1,'Tick']]],
+  ['ng',['NG',['../struct_tick.html#a60a0aa37b32f1f280febe76bd67081bf',1,'Tick']]]
 ];

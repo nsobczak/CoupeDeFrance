@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "Asservissement", "class_asservissement.html", "class_asservissement" ],
     [ "Ecran", "class_ecran.html", "class_ecran" ],
+    [ "M2tk", "class_m2tk.html", "class_m2tk" ],
     [ "Moteur", "class_moteur.html", "class_moteur" ],
     [ "Odometrie", "class_odometrie.html", "class_odometrie" ],
     [ "PID", "class_p_i_d.html", "class_p_i_d" ],
