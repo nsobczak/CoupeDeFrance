@@ -56,7 +56,8 @@ uint8_t rb_select_strat = 0;
  * \param 
  */
 void fn_start_robot(m2_el_fnarg_p fnarg) {
-  Serial.println("Start robot !!");
+  Serial.print("Start robot avec la strategie ");
+  Serial.println(rb_select_strat + 1);
 }
 
 M2_LABEL(el_rb_label1, NULL, "strategie 1");
@@ -349,7 +350,7 @@ m2_menu_entry m2_2lmenu_data[] =
   { ". Test03", &top_el_muse },
   //{ ". File Select", &el_top_fs },
   { "Debug ", &top_el_muse },
-  { "Logo", &top_el_expandable_menu },
+  { "Top", &top_el_expandable_menu },
   { NULL, NULL },
 };
 
