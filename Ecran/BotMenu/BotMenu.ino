@@ -50,6 +50,15 @@ M2_EXTERN_ALIGN(top_el_expandable_menu);
 /*=== radio button selection  ===*/
 uint8_t rb_select_strat = 0;
 
+/**
+ * \fn void fn_start_robot(m2_el_fnarg_p fnarg) 
+ * \brief fonction qui lance le robot avec les paramètres sélctionnées par la stratégie
+ * \param 
+ */
+void fn_start_robot(m2_el_fnarg_p fnarg) {
+  Serial.println("Start robot !!");
+}
+
 M2_LABEL(el_rb_label1, NULL, "strategie 1");
 M2_RADIO(el_rb_radio1, "v0", &rb_select_strat);
 
@@ -62,14 +71,15 @@ M2_RADIO(el_rb_radio3, "v2", &rb_select_strat);
 M2_LABEL(el_rb_label4, NULL, "strategie 4");
 M2_RADIO(el_rb_radio4, "v3", &rb_select_strat);
 
-M2_ROOT(el_rb_goto_top, NULL, " back ", &top_el_expandable_menu);
+M2_ROOT(el_rb_goto_top, NULL, " Back ", &top_el_expandable_menu);
+M2_BUTTON(el_start_robot, "f4", "Go", fn_start_robot);
 
 M2_LIST(list_rb) = { 
     &el_rb_label1, &el_rb_radio1, 
     &el_rb_label2, &el_rb_radio2,  
     &el_rb_label3, &el_rb_radio3, 
     &el_rb_label4, &el_rb_radio4, 
-    &el_rb_goto_top
+    &el_rb_goto_top, &el_start_robot
 };
 M2_GRIDLIST(el_rb_grid, "c2",list_rb);
 M2_ALIGN(el_top_rb, "-1|1W64H64", &el_rb_grid);
@@ -148,12 +158,21 @@ byte valueI2C[2];
 int recoveredValueI2C;
 String varI2C;
 
+/**
+ * \fn void fn_num_zero(m2_el_fnarg_p fnarg)
+ * \brief Fonction de remise à zero des valeurs
+ * \param m2_el_fnarg_p fnarg
+ */
 void fn_num_zero(m2_el_fnarg_p fnarg) {
   num_1 = 0;
   num_2 = 0;
 }
 
-//Fonction de test i2c
+/**
+ * \fn void fn_num_go(m2_el_fnarg_p fnarg)
+ * \brief Fonction de test i2c
+ * \param 
+ */
 void fn_num_go(m2_el_fnarg_p fnarg) {
   // request 3 bytes from slave device on adress 9
   Wire.requestFrom(_RECEIVEADRESS_01_, 3);         
@@ -362,12 +381,19 @@ M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
 //=================================================
 // Draw procedure, Arduino Setup & Loop
 
-
+/**
+ * \fn void draw() 
+ * \brief Draw procedure
+ */
 void draw(void) {
   m2.draw();
 }
 
 
+/**
+ * \fn void setup() 
+ * \brief Fonction setup d'arduino
+ */
 void setup(void) {
   // Connect u8glib with m2tklib
   m2_SetU8g(u8g.getU8g(), m2_u8g_box_icon);
@@ -400,6 +426,10 @@ void setup(void) {
 }
 
 
+/**
+ * \fn void loop() 
+ * \brief Fonction loop d'arduino
+ */
 void loop() {
   // menu management
   m2.checkKey();
