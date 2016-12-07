@@ -82,6 +82,7 @@ void byteReceived(byte octet)
   Serial.println(octet);   // Afficher la valeur numérique
 }
 
+
 /**
  * \fn void orderNumber(uint8_t order)
  * \brief fonction qui execute l'ordre dont le numéro est entrée en parametre
@@ -220,7 +221,6 @@ void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
 }
 
 
-
 //_____________________________________________________________________________________________
 // Request
 /**
@@ -255,13 +255,6 @@ byte* i2crequest(int adresse, int nbBytes, int variable, int numberOfVariables)
 }
 
 
-int *multiplierParDeux(int a, int b){
-    int *array= new int[2];
-    array[0] = a*2;
-    array[1] = b*2;
-    return array;
-}
-
 //_____________________________________________________________________________________________
 // Conversion
 /**
@@ -279,6 +272,7 @@ byte getLowByte(int n)
   return result;
 }
 
+
 /**
  * \fn byte getHighByte(int n)
  * \brief fonction qui convertit un entier en 2 bytes - high ici
@@ -293,6 +287,7 @@ byte getHighByte(int n)
   
   return result;
 }
+
 
 /**
  * \fn void intTo2Bytes(byte bytesTab[], int n)
