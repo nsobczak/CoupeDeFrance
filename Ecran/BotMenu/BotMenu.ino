@@ -22,8 +22,8 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 //____________________________________________________________________________________________________
 #define _SENDADRESS_01_ 8
 #define _RECEIVEADRESS_01_ 9
-#define _SENDADRESS_02_ 8
-#define _RECEIVEADRESS_02_ 9
+#define _SENDADRESS_02_ 10
+#define _RECEIVEADRESS_02_ 11
 
 
 
