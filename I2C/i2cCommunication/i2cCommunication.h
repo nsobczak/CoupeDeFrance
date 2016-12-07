@@ -7,7 +7,7 @@
  *    \brief Bibliothèque de communication i2c
  *	  \author Nicolas SOBCZAK
  *    \date Octobre 2016
-*/
+ */
 
 
 /* ======================================================================================================
@@ -47,13 +47,13 @@ void ledControl(int, int);
 // _____________________________________________________________________________
 // # Ordres:
 
-//fonction qui affiche l'octet reçu
+// Fonction qui affiche l'octet reçu
 void byteReceived(byte);
 
-//Execute l'ordre dont le numéro est entrée en parametre
+// Execute l'ordre dont le numéro est entrée en parametre
 void orderNumber(uint8_t);
 
-//Fonction qui change la variable du tableau correspondace envoyée
+// Fonction qui change la variable du tableau correspondace envoyée
 void changeData(byte data[], int correspondance[], int numberOfVariables);
 
 
@@ -65,10 +65,10 @@ void changeData(byte data[], int correspondance[], int numberOfVariables);
 // _____________________________________________________________________________
 // # Envoi:
 
-//Fonction d'envoi d'1 octet via l'i2c
+// Fonction d'envoi d'1 octet via l'i2c
 void i2csend(uint8_t, int);
 
-//Fonction d'envoi de 3 octets via l'i2c avec initialisation
+// Fonction d'envoi de 3 octets via l'i2c avec initialisation
 void i2csend3bytes(uint8_t, uint8_t, uint8_t, int);
 
 
@@ -79,13 +79,14 @@ void i2csend3bytes(uint8_t, uint8_t, uint8_t, int);
 // Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
 void receiveEvent(int);
 
-//Fonction qui demande l'envoi d'une certaine variable à un esclave
+// Fonction qui demande l'envoi d'une certaine variable à un esclave
 void i2creceive(int);
 
 
 // _____________________________________________________________________________
 // # Request
-// fonction d'envoi d'1 octet via l'i2c
+
+// Fonction d'envoi d'1 octet via l'i2c
 byte* i2crequest(int adresse, int nbBytes, int variable, int numberOfVariables);
 
 

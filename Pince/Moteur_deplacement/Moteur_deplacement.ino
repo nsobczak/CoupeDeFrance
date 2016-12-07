@@ -58,6 +58,7 @@
 // Variables globales
 int index;
 int demarrerMoteur;
+int finInitialisation;
 
 
 //____________________________________________________________________________________________________
@@ -154,24 +155,20 @@ void initialisation()
 {
       monter_descente_initialisation(100);
       rail_initialisation(200);
+      finInitialisation = 1;
       delay(1000);
 }
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
-// Envoi I2C
-
-
-//_____________________________________________________________________________________________
 // Reception I2C
-
 /**
  * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
  */
 void receiveEvent2(int howMany)
 {
-  byte x = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
+  byte x = Wire.read();      
   demarrerMoteur = x;
 }
 
@@ -182,8 +179,9 @@ void receiveEvent2(int howMany)
  */
 void i2creceive2(int adresse)
 {
-  Wire.begin(adresse);          // Joindre le Bus I2C avec adresse
+  Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
   Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
+  Wire.endTransmission();    		// fin transmission
 }
 
 
@@ -209,6 +207,7 @@ void setup()
       pinMode(Z_MIN_PIN , INPUT);
       
       demarrerMoteur = 0;
+      finInitialisation = 0;
       
       Serial.begin(9600);
 }
@@ -225,6 +224,8 @@ void loop()
     if (demarrerMoteur == 1)
     {
        initialisation();
+       finInitialisation = 0;
+       i2csend(demarrerMoteur, _SENDADRESS_);
        demarrerMoteur = 0;
     }
 }

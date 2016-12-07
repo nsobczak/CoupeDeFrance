@@ -20,8 +20,10 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 
 
 //____________________________________________________________________________________________________
+//Communication avec la uno
 #define _SENDADRESS_01_ 8
 #define _RECEIVEADRESS_01_ 9
+//Communication avec la pince
 #define _SENDADRESS_02_ 10
 #define _RECEIVEADRESS_02_ 11
 
@@ -201,8 +203,8 @@ void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
  */
 void fn_num_go_pince(m2_el_fnarg_p fnarg) {
   // démarrage de la pince
-  Serial.println("demarage de la pince"); 
-  i2csend(1, _SENDADRESS_02_);    
+  Serial.println("demarrage de la pince"); 
+  i2csend(1, _SENDADRESS_02_);
 }
 
 /*
@@ -359,7 +361,6 @@ m2_menu_entry m2_2lmenu_data[] =
   { "Tests", NULL },
   { ". Test I2C", &el_top_num_menu },
   { ". Test Pince", &el_top_num_menu_2},
-  { ". Test03", &top_el_muse },
   //{ ". File Select", &el_top_fs },
   { "Debug ", &top_el_muse },
   { "Top", &top_el_expandable_menu },
@@ -444,6 +445,14 @@ void setup(void) {
  * \brief Fonction loop d'arduino
  */
 void loop() {
+  //I2C reception d'octets
+  if (Wire.available())
+  {
+    Serial.print("Wire.available : ");
+    Serial.println(Wire.available());
+    i2creceive(_RECEIVEADRESS_02_);
+  }
+  
   // menu management
   m2.checkKey();
   if ( m2.handleKey() != 0 ) {
@@ -453,5 +462,6 @@ void loop() {
       draw();
     } while( u8g.nextPage() );
   }
+  
 }
 

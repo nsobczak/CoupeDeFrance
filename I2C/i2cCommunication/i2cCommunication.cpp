@@ -14,8 +14,6 @@
  *      Include
  * ======================================================================================================
  */
-#include <Wire.h>
-#include "Arduino.h"
 #include "i2cCommunication.h"
 
 
@@ -126,7 +124,7 @@ void changeData(byte data[], int correspondance[], int numberOfVariables)
 { 
   byte value[2];    // tableau pour stocker la variable
   
-  //Changement de l'indice du tableau corerspondance
+  //Changement de l'indice du tableau correspondance
   int variable = data[0] + 1;
   if (variable == numberOfVariables)
   {
@@ -156,7 +154,7 @@ void receiveEvent(int howMany)
     char c = Wire.read();     // lecture de l'octet/byte comme caractère
     Serial.print(c);          // afficher le caractère
   }
-  byte x = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
+  byte x = Wire.read();       // lecture de l'octet/byte ignoré comme un entier
   orderNumber(x);			  // lecture de l'ordre à executer
 }
 
@@ -170,7 +168,7 @@ void i2creceive(int adresse)
 {
   Wire.begin(adresse);          // Joindre le Bus I2C avec adresse
   Wire.onReceive(receiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
-  Serial.begin(9600);           // Démarrer une communication série
+  Wire.endTransmission();    		// fin transmission
 }
 
 
