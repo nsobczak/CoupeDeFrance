@@ -94,7 +94,7 @@ void monter_descente_initialisation(int vitesse){
       remonter_legere();            
 }
 
-//
+
 void initialisation() {
       monter_descente_initialisation(100);
       rail_initialisation(200);
