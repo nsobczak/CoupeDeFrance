@@ -154,10 +154,9 @@ M2_ALIGN(el_top_combo, "-1|1W64H64", &el_combo_grid);
 
 uint32_t num_1 = 0;
 uint32_t num_2 = 0;
-byte dataI2C[3]; 
+byte* dataI2C = new byte[3]; 
 byte valueI2C[2];
 int recoveredValueI2C;
-String varI2C;
 
 /**
  * \fn void fn_num_zero(m2_el_fnarg_p fnarg)
@@ -176,27 +175,13 @@ void fn_num_zero(m2_el_fnarg_p fnarg) {
  */
 void fn_num_go(m2_el_fnarg_p fnarg) {
   // request 3 bytes from slave device on adress 9
-  Wire.requestFrom(_RECEIVEADRESS_01_, 3);         
-  
-  while (Wire.available())         //check if data is available 
-  {       
-    Serial.print("tab : ");  
-    Serial.print('\t');
-    for(byte i = 0; i < 3; i++)
-    {
-      dataI2C[i] = Wire.read();       // it assigne the data to the array
-      Serial.print(dataI2C[i]);       // print the array  
-      Serial.print('\t');
-    }
-  }
-  
-  //******************** DO STUFF ********************\\ 
-  
+  dataI2C = i2crequest(_RECEIVEADRESS_01_, 3, num_1, 6);       
+    
   valueI2C[0] = dataI2C [1];
   valueI2C[1] = dataI2C [2];
   recoveredValueI2C = recoverIntFrom2Bytes(valueI2C);
   Serial.print("\nrecovery : ");  
-  Serial.print(varI2C);
+  Serial.print(num_1);
   Serial.print(" = ");  
   Serial.println(recoveredValueI2C);
   
@@ -210,16 +195,17 @@ M2_U8NUM(el_num_1, NULL, 0, 255, &u8num);
 M2_LABEL(el_num_label1, NULL, "Variable:");
 M2_U32NUM(el_num_1, "c3", &num_1);
 
+/*
 M2_LABEL(el_num_label2, NULL, "Valeur:");
 M2_U32NUM(el_num_2, "c5", &num_2);
-
+*/
 M2_BUTTON(el_num_zero, "f4", " zero ", fn_num_zero);
 M2_BUTTON(el_num_go, "f4", " I2C test ", fn_num_go);
 M2_ROOT(el_num_goto_top, "f4", " back ", &top_el_expandable_menu);
 
 M2_LIST(num_list) = { 
     &el_num_label1, &el_num_1, 
-    &el_num_label2, &el_num_2,  
+    //&el_num_label2, &el_num_2,  
     &el_num_zero, &el_num_go,
     &el_num_goto_top
 };

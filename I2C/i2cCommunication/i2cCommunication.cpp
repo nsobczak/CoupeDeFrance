@@ -72,6 +72,17 @@ void ledControl(int pin, int order)
 
 //_____________________________________________________________________________________________
 /**
+ * \fn void byteReceived(byte octet)
+ * \brief fonction qui affiche l'octet reçu
+ * \param byte octet
+ */
+void byteReceived(byte octet)
+{
+  Serial.print("ReceivedByte: ");
+  Serial.println(octet);   // Afficher la valeur numérique
+}
+
+/**
  * \fn void orderNumber(uint8_t order)
  * \brief fonction qui execute l'ordre dont le numéro est entrée en parametre
  * \param uint8_t order = numero de l'ordre a executer
@@ -106,14 +117,26 @@ void orderNumber(uint8_t order)
 
 
 /**
- * \fn void byteReceived(byte octet)
- * \brief fonction qui affiche l'octet reçu
- * \param byte octet
+ * \fn void changeData(byte data[])
+ * \brief Fonction qui change la variable du tableau correspondace envoyée
+ * \param byte data[]
  */
-void byteReceived(byte octet)
-{
-  Serial.print("ReceivedByte: ");
-  Serial.println(octet);   // Afficher la valeur numérique
+void changeData(byte data[], int correspondance[], int numberOfVariables)
+{ 
+  byte value[2];    // tableau pour stocker la variable
+  
+  //Changement de l'indice du tableau corerspondance
+  int variable = data[0] + 1;
+  if (variable == numberOfVariables)
+  {
+    variable = 0;
+  }
+  intTo2Bytes(value, correspondance[variable]);
+
+  // Write the value of variables to the array
+  data[0] = variable;
+  data[1] = value[0];
+  data[2] = value[1];
 }
 
 
@@ -196,6 +219,48 @@ void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
   Wire.endTransmission();    		// fin transmission
 }
 
+
+
+//_____________________________________________________________________________________________
+// Request
+/**
+ * \fn void i2crequest(int adresse, int nbBytes, int variable)
+ * \brief fonction qui demande l'envoi d'une certaine variable à un esclave
+ * \param uint8_t order numero de l'ordre a envoyer, 
+ * \param int adresse sur laquelle envoyer les donnees
+ * \param int variable à envoyer
+ */
+byte* i2crequest(int adresse, int nbBytes, int variable, int numberOfVariables)
+{
+	byte* dataI2C = new byte[nbBytes];
+
+	do
+	{
+		// request 3 bytes from slave device on adress adresse
+		Wire.requestFrom(adresse, nbBytes);         
+
+		while (Wire.available())         //check if data is available 
+	  	{   
+		    for(byte i = 0; i < nbBytes; i++)
+		    {
+		      dataI2C[i] = Wire.read();       // it assigne the data to the array
+		    }
+	  	}
+
+	  	delay(100);
+
+	} while ((dataI2C[0] != variable) && (dataI2C[0] < numberOfVariables - 1));
+
+	return dataI2C;
+}
+
+
+int *multiplierParDeux(int a, int b){
+    int *array= new int[2];
+    array[0] = a*2;
+    array[1] = b*2;
+    return array;
+}
 
 //_____________________________________________________________________________________________
 // Conversion
