@@ -154,10 +154,11 @@ void monter_descente_initialisation(int vitesse)
 void initialisation() 
 {
       monter_descente_initialisation(100);
-      rail_initialisation(200);
+      //rail_initialisation(200);
       finInitialisation = 1;
       delay(1000);
 }
+
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
@@ -218,7 +219,7 @@ void setup()
  * \brief fonction loop d'arduino
  */
 void loop() 
-{
+{    
     i2creceive2(_RECEIVEADRESS_);
     
     if (demarrerMoteur == 1)
