@@ -22,6 +22,9 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 //____________________________________________________________________________________________________
 #define _SENDADRESS_01_ 8
 #define _RECEIVEADRESS_01_ 9
+#define _SENDADRESS_02_ 8
+#define _RECEIVEADRESS_02_ 9
+
 
 
 //____________________________________________________________________________________________________
@@ -158,6 +161,7 @@ byte* dataI2C = new byte[3];
 byte valueI2C[2];
 int recoveredValueI2C;
 
+
 /**
  * \fn void fn_num_zero(m2_el_fnarg_p fnarg)
  * \brief Fonction de remise à zero des valeurs
@@ -168,12 +172,13 @@ void fn_num_zero(m2_el_fnarg_p fnarg) {
   num_2 = 0;
 }
 
+
 /**
- * \fn void fn_num_go(m2_el_fnarg_p fnarg)
+ * \fn void fn_num_go_i2c(m2_el_fnarg_p fnarg)
  * \brief Fonction de test i2c
  * \param 
  */
-void fn_num_go(m2_el_fnarg_p fnarg) {
+void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
   // request 3 bytes from slave device on adress 9
   dataI2C = i2crequest(_RECEIVEADRESS_01_, 3, num_1, 6);       
     
@@ -188,6 +193,18 @@ void fn_num_go(m2_el_fnarg_p fnarg) {
   Serial.println(); 
 }
 
+
+/**
+ * \fn void fn_num_go_pince(m2_el_fnarg_p fnarg)
+ * \brief Fonction de testde la pince avec l'i2c
+ * \param 
+ */
+void fn_num_go_pince(m2_el_fnarg_p fnarg) {
+  // démarrage de la pince
+  Serial.println("demarage de la pince"); 
+  i2csend(1, _SENDADRESS_02_);    
+}
+
 /*
 M2_LABEL(el_num_label1, NULL, "Variable");
 M2_U8NUM(el_num_1, NULL, 0, 255, &u8num);
@@ -200,17 +217,26 @@ M2_LABEL(el_num_label2, NULL, "Valeur:");
 M2_U32NUM(el_num_2, "c5", &num_2);
 */
 M2_BUTTON(el_num_zero, "f4", " zero ", fn_num_zero);
-M2_BUTTON(el_num_go, "f4", " I2C test ", fn_num_go);
+M2_BUTTON(el_num_go_i2c, "f4", " I2C test ", fn_num_go_i2c);
+M2_BUTTON(el_num_go_pince, "f4", " I2C pince ", fn_num_go_pince);
 M2_ROOT(el_num_goto_top, "f4", " back ", &top_el_expandable_menu);
 
-M2_LIST(num_list) = { 
+M2_LIST(num_list_1) = { 
     &el_num_label1, &el_num_1, 
     //&el_num_label2, &el_num_2,  
-    &el_num_zero, &el_num_go,
+    &el_num_zero, &el_num_go_i2c,
     &el_num_goto_top
 };
-M2_GRIDLIST(el_num_menu_grid, "c2", num_list);
+
+M2_GRIDLIST(el_num_menu_grid, "c2", num_list_1);
 M2_ALIGN(el_top_num_menu, "-1|1W64H64", &el_num_menu_grid);
+
+M2_LIST(num_list_2) = {  
+    &el_num_goto_top, &el_num_go_pince
+};
+
+M2_GRIDLIST(el_num_menu_grid_2, "c2", num_list_2);
+M2_ALIGN(el_top_num_menu_2, "-1|1W64H64", &el_num_menu_grid_2);
 
 
 //____________________________________________________________________________________________________
@@ -332,7 +358,7 @@ m2_menu_entry m2_2lmenu_data[] =
   { ". Initialisation", &el_top_combo },
   { "Tests", NULL },
   { ". Test I2C", &el_top_num_menu },
-  { ". Test02", &top_el_muse },
+  { ". Test Pince", &el_top_num_menu_2},
   { ". Test03", &top_el_muse },
   //{ ". File Select", &el_top_fs },
   { "Debug ", &top_el_muse },

@@ -45,7 +45,7 @@ void setup()
 {
   initialisationCorrespondance(correspondance);
   Serial.begin(9600);           // Begin Serial coomunication 
-  Wire.begin(_SENDADRESS_);                // join i2c bus with address #8
+  Wire.begin(_SENDADRESS_);     // join i2c bus with address #8
   Wire.onRequest(requestEvent); // register event
 }
 
