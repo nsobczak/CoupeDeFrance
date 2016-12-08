@@ -30,6 +30,12 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 
 //____________________________________________________________________________________________________
 //=================================================
+// Variables globales
+int finInitialisationMoteur = 0;
+
+
+//____________________________________________________________________________________________________
+//=================================================
 // Variables for Menu Process
 
 /**
@@ -197,18 +203,24 @@ void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
 
 /**
  * \fn void fn_num_go_pince(m2_el_fnarg_p fnarg)
- * \brief Fonction de testde la pince avec l'i2c
+ * \brief Fonction de test de la pince avec l'i2c
  * \param 
  */
 void fn_num_go_pince(m2_el_fnarg_p fnarg) {
   // démarrage de la pince
   Serial.println("demarrage de la pince"); 
-  //i2csend(1, _SENDADRESS_02_);
   // conversion sur 2 octets de la valeur à envoyer
   byte bytesTab[2];
   intTo2Bytes(bytesTab, 1);
   // envoi
   i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_02_);
+  /* // attente reception fin initialisation
+  while (finInitialisationMoteur == 0)
+  {
+    i2creceive2(_RECEIVEADRESS_02_);
+  }
+  finInitialisationMoteur = 0;
+  */
 }
 
 /*
@@ -397,6 +409,59 @@ M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
+// Reception I2C
+/**
+ * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
+ * \param int howMany
+ */
+void receiveEvent2(int howMany)
+{
+  if (Wire.available() == 3)
+  {
+    //lecture de la variable
+    byte var = Wire.read(); 
+    //lecture des 2 octets suivants
+    byte x = Wire.read();
+    byte y = Wire.read(); 
+    //reconstitution de la valeur
+    byte bytesTab[2] = {x, y};
+    int value = recoverIntFrom2Bytes(bytesTab); 
+    
+    switch ( var )  // cf. les références des variables en haut du fichier
+    {
+       case 1:  
+          Serial.println("variable recue : finInitialisationMoteur");
+          finInitialisationMoteur = value;
+          break; 
+       default:   
+          Serial.println("variable recue inconnue");
+    } 
+    
+  }
+  // else de debug
+  else
+  {
+    Serial.println("Erreur : Pas 3 octets envoyes");
+  }
+}
+
+
+/**
+ * \fn void i2creceive(int adresse) - fonction de lecture de données reçues via l'i2c
+ * \param int adresse sur laquelle recevoir les donnees
+ */
+void i2creceive2(int adresse)
+{
+  //Serial.println("start i2creceive2");
+  Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
+  Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
+  Wire.endTransmission();    	 // fin transmission
+  //Serial.println("end i2creceive2");
+}
+
+
+//____________________________________________________________________________________________________
+//____________________________________________________________________________________________________
 //=================================================
 // Draw procedure, Arduino Setup & Loop
 
@@ -450,13 +515,6 @@ void setup(void) {
  * \brief Fonction loop d'arduino
  */
 void loop() {
-  //I2C reception d'octets
-  if (Wire.available())
-  {
-    Serial.print("Wire.available : ");
-    Serial.println(Wire.available());
-    i2creceive(_RECEIVEADRESS_02_);
-  }
   
   // menu management
   m2.checkKey();

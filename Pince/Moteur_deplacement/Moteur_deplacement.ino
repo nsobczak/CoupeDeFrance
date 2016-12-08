@@ -54,9 +54,6 @@
 #define TEMP_1_PIN          14   // ANALOG NUMBERING
 
 
-//____________________________________________________________________________________________________
-// Variables 
-
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
 //Définition des variables globales
@@ -64,15 +61,14 @@ int index;
 int demarrerMoteur;
 int finInitialisation;
 
-//Tableau de correspondance des variables
-int correspondance[3];
-
-void initialisationCorrespondance(int correspondance[])
-{
-  correspondance[0] = index ;
-  correspondance[1] = demarrerMoteur ;
-  correspondance[2] = finInitialisation ;
-}
+/*Tableau de correspondance des variables
+0 => index
+1 => demarrerMoteur
+2 => finInitialisation
+3 =>
+4 =>
+5 =>
+*/
 
 
 //____________________________________________________________________________________________________
@@ -194,7 +190,7 @@ void receiveEvent2(int howMany)
     byte bytesTab[2] = {x, y};
     int value = recoverIntFrom2Bytes(bytesTab); 
     
-    switch ( var )  
+    switch ( var )  // cf. les références des variables en haut du fichier
     {
        case 0:  
           Serial.println("variable recue : index");
@@ -271,11 +267,18 @@ void loop()
     
     if (demarrerMoteur == 1)
     {
-       initialisation();
-       finInitialisation = 0;
-       i2csend(demarrerMoteur, _SENDADRESS_);
-       demarrerMoteur = 0;
+      initialisation();
+
+      // conversion sur 2 octets de la valeur à envoyer
+      byte bytesTab[2];
+      intTo2Bytes(bytesTab, finInitialisation);     
+      // envoi une fois que l'initialisation est terminée
+      i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_); 
+      
+      //finInitialisation = 0;
+      demarrerMoteur = 0;
     }
+    
 }
 
 
