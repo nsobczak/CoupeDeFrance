@@ -55,10 +55,24 @@
 
 
 //____________________________________________________________________________________________________
-// Variables globales
+// Variables 
+
+//_____________________________________________________________________________________________
+//_____________________________________________________________________________________________
+//Définition des variables globales
 int index;
 int demarrerMoteur;
 int finInitialisation;
+
+//Tableau de correspondance des variables
+int correspondance[3];
+
+void initialisationCorrespondance(int correspondance[])
+{
+  correspondance[0] = index ;
+  correspondance[1] = demarrerMoteur ;
+  correspondance[2] = finInitialisation ;
+}
 
 
 //____________________________________________________________________________________________________
@@ -169,8 +183,41 @@ void initialisation()
  */
 void receiveEvent2(int howMany)
 {
-  byte x = Wire.read();      
-  demarrerMoteur = x;
+  if (Wire.available() == 3)
+  {
+    //lecture de la variable
+    byte var = Wire.read(); 
+    //lecture des 2 octets suivants
+    byte x = Wire.read();
+    byte y = Wire.read(); 
+    //reconstitution de la valeur
+    byte bytesTab[2] = {x, y};
+    int value = recoverIntFrom2Bytes(bytesTab); 
+    
+    switch ( var )  
+    {
+       case 0:  
+          Serial.println("variable recue : index");
+          index = value;
+          break;  
+       case 1:  
+          Serial.println("variable recue : demarrerMoteur");
+          demarrerMoteur = value;
+          break;  
+       case 2:  
+          Serial.println("variable recue : finInitialisation");
+          finInitialisation = value;
+          break;    
+       default:   
+          Serial.println("variable recue inconnue");
+    } 
+    
+  }
+  // else de debug
+  else
+  {
+    Serial.println("Erreur : Pas 3 octets envoyes");
+  }
 }
 
 
@@ -182,7 +229,7 @@ void i2creceive2(int adresse)
 {
   Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
   Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
-  Wire.endTransmission();    		// fin transmission
+  Wire.endTransmission();    	 // fin transmission
 }
 
 

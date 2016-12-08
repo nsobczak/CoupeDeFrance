@@ -28,7 +28,6 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 #define _RECEIVEADRESS_02_ 11
 
 
-
 //____________________________________________________________________________________________________
 //=================================================
 // Variables for Menu Process
@@ -204,7 +203,12 @@ void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
 void fn_num_go_pince(m2_el_fnarg_p fnarg) {
   // démarrage de la pince
   Serial.println("demarrage de la pince"); 
-  i2csend(1, _SENDADRESS_02_);
+  //i2csend(1, _SENDADRESS_02_);
+  // conversion sur 2 octets de la valeur à envoyer
+  byte bytesTab[2];
+  intTo2Bytes(bytesTab, 1);
+  // envoi
+  i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_02_);
 }
 
 /*
@@ -361,6 +365,7 @@ m2_menu_entry m2_2lmenu_data[] =
   { "Tests", NULL },
   { ". Test I2C", &el_top_num_menu },
   { ". Test Pince", &el_top_num_menu_2},
+  { ". Test Moteur", &top_el_muse},
   //{ ". File Select", &el_top_fs },
   { "Debug ", &top_el_muse },
   { "Top", &top_el_expandable_menu },
