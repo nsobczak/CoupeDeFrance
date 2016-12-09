@@ -336,15 +336,25 @@ void fn_debug_update(m2_el_fnarg_p fnarg)
 
 M2_BUTTON(el_debug_update, "f4", "MAJ", fn_debug_update);
 
-M2_LIST(num_list_debug) = { 
+M2_LIST(num_list_debug_01) = { 
     &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
     &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
     &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
     &el_num_goto_top, &el_debug_update
 };
 
-M2_GRIDLIST(el_num_list_debug, "c4", num_list_debug);
-M2_ALIGN(el_top_num_menu_debug, "-1|1W64H64", &el_num_list_debug);
+M2_GRIDLIST(el_num_list_debug_01, "c4", num_list_debug_01);
+M2_ALIGN(el_top_num_menu_debug_01, "-1|1W64H64", &el_num_list_debug_01);
+
+M2_LIST(num_list_debug_02) = { 
+    &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
+    &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
+    &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
+    &el_num_goto_top, &el_debug_update
+};
+
+M2_GRIDLIST(el_num_list_debug_02, "c4", num_list_debug_02);
+M2_ALIGN(el_top_num_menu_debug_02, "-1|1W64H64", &el_num_list_debug_02);
 
 
 //____________________________________________________________________________________________________
@@ -425,8 +435,8 @@ m2_menu_entry m2_2lmenu_data[] =
   { ". Test Moteur", &top_el_muse},
   //{ ". File Select", &el_top_fs },
   { "Debug ", NULL },
-  { ". Debug Moteur", &el_top_num_menu_debug},
-  { ". Debug Autre", &el_top_num_menu_debug},
+  { ". Debug Moteur", &el_top_num_menu_debug_01},
+  { ". Debug Autre", &el_top_num_menu_debug_02},
   { "Top", &top_el_expandable_menu },
   { NULL, NULL },
 };
