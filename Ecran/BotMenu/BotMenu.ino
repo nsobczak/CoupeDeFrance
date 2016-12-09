@@ -160,7 +160,7 @@ M2_ALIGN(el_top_combo, "-1|1W64H64", &el_combo_grid);
 
 
 //____________________________________________________________________________________________________
-/*=== number entry ===*/
+/*=== Ecran de tests : number entry ===*/
 
 uint32_t num_1 = 0;
 uint32_t num_2 = 0;
@@ -183,7 +183,7 @@ void fn_num_zero(m2_el_fnarg_p fnarg) {
 /**
  * \fn void fn_num_go_i2c(m2_el_fnarg_p fnarg)
  * \brief Fonction de test i2c
- * \param 
+ * \param m2_el_fnarg_p fnarg
  */
 void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
   // request 3 bytes from slave device on adress 9
@@ -204,7 +204,7 @@ void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
 /**
  * \fn void fn_num_go_pince(m2_el_fnarg_p fnarg)
  * \brief Fonction de test de la pince avec l'i2c
- * \param 
+ * \param m2_el_fnarg_p fnarg
  */
 void fn_num_go_pince(m2_el_fnarg_p fnarg) {
   // démarrage de la pince
@@ -303,11 +303,9 @@ M2_ALIGN(top_el_muse, "-1|1W64H64", &el_muse_vlist);
 
 
 //____________________________________________________________________________________________________
-/*=== Debug menu ===*/
+/*=== Ecran de debug : liste ===*/
 uint32_t global_value_01 = 245;
-uint32_t global_value_02 = 126;
-//M2_U32NUM(el_u8_cb, "c6", &global_value);
-//M2tk m2(&el_u8_cb, NULL, NULL, m2_gh_u8g_bfs);
+uint32_t global_value_02 = 1;
 
 M2_LABEL(el_num_label_debug_01, NULL, "Var_1:");
 M2_U32NUM(el_num_debug_01, "c3r1", &global_value_01);
@@ -316,11 +314,33 @@ M2_LABEL(el_num_label_debug_02, NULL, "Var_2:");
 M2_U32NUM(el_num_debug_02, "c3r1", &global_value_02);
 
 
+/**
+ * \fn void fn_debug_update(m2_el_fnarg_p fnarg)
+ * \brief Fonction de test d'actualisation des valeurs
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_debug_update(m2_el_fnarg_p fnarg)
+{
+  if (global_value_02 != 10)
+  {
+    while (global_value_02 < 10)
+    {
+      global_value_02 += 1;
+    }
+  }
+  else
+  {
+    global_value_02 = 1;
+  }
+}
+
+M2_BUTTON(el_debug_update, "f4", "MAJ", fn_debug_update);
+
 M2_LIST(num_list_debug) = { 
     &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
     &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
     &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
-    &el_num_label_debug_01, &el_num_debug_01, &el_num_goto_top
+    &el_num_goto_top, &el_debug_update
 };
 
 M2_GRIDLIST(el_num_list_debug, "c4", num_list_debug);
