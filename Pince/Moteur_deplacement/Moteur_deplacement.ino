@@ -60,6 +60,7 @@
 int index;
 int demarrerMoteur;
 int finInitialisation;
+int x;
 
 /*Tableau de correspondance des variables
 0 => index
@@ -75,7 +76,7 @@ int finInitialisation;
 //____________________________________________________________________________________________________
 /**
  * \fn void vitesse_moteur(int vitesse)
- * \brief fonction qui... ??
+ * \brief fonction qui permet de régler le PWM des moteurs sur l'axe des Y
  * \param int vitesse
  */
 void vitesse_moteur(int vitesse) 
@@ -91,7 +92,7 @@ void vitesse_moteur(int vitesse)
 
 /**
  * \fn void vitesse_moteur_rail(int vitesse)
- * \brief fonction qui... ??
+ * \brief fonction qui permet de régler la vitesse du moteur de l'axe X (le rail)
  * \param int vitesse
  */
 void vitesse_moteur_rail(int vitesse) 
@@ -105,7 +106,7 @@ void vitesse_moteur_rail(int vitesse)
 
 /**
  * \fn void remonter_legere() 
- * \brief fonction qui... ??
+ * \brief fonction qui permet de remonter le moteur d'un tour quand il est arrivé au capteur de fin de course
  */
 void remonter_legere() 
 {
@@ -123,7 +124,7 @@ void remonter_legere()
 
 /**
  * \fn void rail_initialisation(int vitesse)
- * \brief fonction qui... ??
+ * \brief fonction qui permet de déplacer le rail
  * \param int vitesse
  */
 void rail_initialisation(int vitesse)
@@ -139,7 +140,7 @@ void rail_initialisation(int vitesse)
 
 /**
  * \fn void monter_descente_initialisation(int vitesse)
- * \brief fonction qui... ??
+ * \brief fonction qui permet d'intialisé le moteur tout en bas avec une légère remontée
  * \param int vitesse
  */
 void monter_descente_initialisation(int vitesse)
@@ -148,7 +149,7 @@ void monter_descente_initialisation(int vitesse)
       digitalWrite(Y_DIR_PIN,HIGH);              //Sens horaire MOTEUR Y (on descend)
       digitalWrite(X_ENABLE_PIN,LOW);            //Activé MOTEUR X
       digitalWrite(Y_ENABLE_PIN,LOW);            //Activé MOTEUR Y
-      while(digitalRead(X_MIN_PIN )!=HIGH)  {
+      while(x!=HIGH)  {
       vitesse_moteur(vitesse);      }
       digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR X
       digitalWrite(Y_ENABLE_PIN,HIGH);           //Désactivé MOTEUR Y
@@ -159,7 +160,7 @@ void monter_descente_initialisation(int vitesse)
 
 /**
  * \fn void initialisation()
- * \brief fonction qui... ??
+ * \brief fonction qui lance l'initialisation
  */
 void initialisation() 
 {
@@ -249,7 +250,7 @@ void setup()
       pinMode(Z_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(Z_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
       pinMode(Z_MIN_PIN , INPUT);
-      
+      x=digitalRead(X_MIN_PIN);
       demarrerMoteur = 0;
       finInitialisation = 0;
       
