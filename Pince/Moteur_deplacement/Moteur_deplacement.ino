@@ -60,7 +60,6 @@
 int index;
 int demarrerMoteur;
 int finInitialisation;
-int x;
 
 /*Tableau de correspondance des variables
 0 => index
@@ -149,8 +148,10 @@ void monter_descente_initialisation(int vitesse)
       digitalWrite(Y_DIR_PIN,HIGH);              //Sens horaire MOTEUR Y (on descend)
       digitalWrite(X_ENABLE_PIN,LOW);            //Activé MOTEUR X
       digitalWrite(Y_ENABLE_PIN,LOW);            //Activé MOTEUR Y
-      while(x!=HIGH)  {
-      vitesse_moteur(vitesse);      }
+      while(digitalRead(X_MIN_PIN)!= HIGH)  
+      {
+        vitesse_moteur(vitesse);      
+      }
       digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR X
       digitalWrite(Y_ENABLE_PIN,HIGH);           //Désactivé MOTEUR Y
       delay(1000);
@@ -250,7 +251,7 @@ void setup()
       pinMode(Z_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(Z_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
       pinMode(Z_MIN_PIN , INPUT);
-      x=digitalRead(X_MIN_PIN);
+      
       demarrerMoteur = 0;
       finInitialisation = 0;
       
