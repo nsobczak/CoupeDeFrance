@@ -21,23 +21,20 @@
 
 
 int pin_capteur = A0;                   // 
-int pin_LED = 13;                       // LED branchée a la pin 13
-int c;
+float c;
 float d;
 
 
 void setup() {
-  pinMode(pin_LED,OUTPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  Serial.println(analogRead(pin_capteur));
+  //Serial.println(analogRead(pin_capteur));
   
-    Serial.println("Present alors stop");
-    digitalWrite(pin_LED, HIGH);       // présence donc la led s'allume
     c=analogRead(pin_capteur);
-    d=exp((c-740)/-198);
+    Serial.println(c);
+    d=exp((c-740)/(-198));
     Serial.println("Distance : ");
     Serial.print(d);
     Serial.print("cm");
@@ -47,5 +44,5 @@ void loop() {
  
   
   
-  delay(50); 
+  delay(500); 
 }
