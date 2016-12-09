@@ -31,10 +31,10 @@
  *      Define
  * ======================================================================================================
  */
-#define PMW_MOTEUR_A0  3 //IN1               //moteur Gauche
-#define PMW_MOTEUR_A1  6 //IN2
-#define PMW_MOTEUR_B0  5               //moteur Droit
-#define PMW_MOTEUR_B1  4
+#define PMW_MOTEUR_A0  5 //IN1               //moteur Gauche
+//#define PMW_MOTEUR_A1  6 //IN2
+#define PMW_MOTEUR_B0  3               //moteur Droit
+//#define PMW_MOTEUR_B1  4
 
 
 /* ======================================================================================================

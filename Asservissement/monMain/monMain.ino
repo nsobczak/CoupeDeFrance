@@ -100,6 +100,7 @@ void setup()
 
     attachInterrupt(encoder0PinA_R, doEncoderA_R, CHANGE);
     attachInterrupt(encoder0PinB_R, doEncoderB_R, CHANGE);
+    Serial.begin(9600);
 
 }
 
