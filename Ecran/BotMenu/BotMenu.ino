@@ -303,6 +303,31 @@ M2_ALIGN(top_el_muse, "-1|1W64H64", &el_muse_vlist);
 
 
 //____________________________________________________________________________________________________
+/*=== Debug menu ===*/
+uint32_t global_value_01 = 245;
+uint32_t global_value_02 = 126;
+//M2_U32NUM(el_u8_cb, "c6", &global_value);
+//M2tk m2(&el_u8_cb, NULL, NULL, m2_gh_u8g_bfs);
+
+M2_LABEL(el_num_label_debug_01, NULL, "Var_1:");
+M2_U32NUM(el_num_debug_01, "c3r1", &global_value_01);
+
+M2_LABEL(el_num_label_debug_02, NULL, "Var_2:");
+M2_U32NUM(el_num_debug_02, "c3r1", &global_value_02);
+
+
+M2_LIST(num_list_debug) = { 
+    &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
+    &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
+    &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02, 
+    &el_num_label_debug_01, &el_num_debug_01, &el_num_goto_top
+};
+
+M2_GRIDLIST(el_num_list_debug, "c4", num_list_debug);
+M2_ALIGN(el_top_num_menu_debug, "-1|1W64H64", &el_num_list_debug);
+
+
+//____________________________________________________________________________________________________
 /*=== File selection dialog ===*/
 
 /* defines the number of additional buttons at the beginning of the STRLIST lines */
@@ -379,7 +404,9 @@ m2_menu_entry m2_2lmenu_data[] =
   { ". Test Pince", &el_top_num_menu_2},
   { ". Test Moteur", &top_el_muse},
   //{ ". File Select", &el_top_fs },
-  { "Debug ", &top_el_muse },
+  { "Debug ", NULL },
+  { ". Debug Moteur", &el_top_num_menu_debug},
+  { ". Debug Autre", &el_top_num_menu_debug},
   { "Top", &top_el_expandable_menu },
   { NULL, NULL },
 };
