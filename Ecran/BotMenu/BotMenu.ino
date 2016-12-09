@@ -19,19 +19,31 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 #include "i2cCommunication.h"
 
 
-//____________________________________________________________________________________________________
+//___________________________________________________________________________________________________
 //Communication avec la uno
 #define _SENDADRESS_01_ 8
 #define _RECEIVEADRESS_01_ 9
 //Communication avec la pince
 #define _SENDADRESS_02_ 10
 #define _RECEIVEADRESS_02_ 11
+//Communication avec la due
+#define _SENDADRESS_03_ 12
+#define _RECEIVEADRESS_03_ 13
 
 
 //____________________________________________________________________________________________________
 //=================================================
 // Variables globales
 int finInitialisationMoteur = 0;
+
+/*Tableau de correspondance des variables
+0 => rb_select_strat
+1 => finInitialisationMoteur
+2 => 
+3 =>
+4 =>
+5 =>
+*/
 
 
 //____________________________________________________________________________________________________
@@ -65,10 +77,37 @@ uint8_t rb_select_strat = 0;
  * \brief fonction qui lance le robot avec les paramètres sélctionnées par la stratégie
  * \param 
  */
-void fn_start_robot(m2_el_fnarg_p fnarg) {
+void fn_start_robot(m2_el_fnarg_p fnarg) 
+{
   Serial.print("Start robot avec la strategie ");
   Serial.println(rb_select_strat + 1);
+  /*
+  switch ( rb_select_strat ) 
+  {
+     case 0:  
+        Serial.println("switch case 0");
+        break; 
+     case 1:  
+        Serial.println("switch case 1");
+        break;
+     case 2:  
+        Serial.println("switch case 2");
+        break;
+     case 3:  
+        Serial.println("switch case 3");
+        break;
+     default:   
+        Serial.println("switch case non prevu");
+  } 
+  */
+  // conversion sur 2 octets de la valeur à envoyer
+  byte bytesTab[2];
+  intTo2Bytes(bytesTab, rb_select_strat);
+  // envoi
+  i2csend3bytes(rb_select_strat, bytesTab[0], bytesTab[1], _SENDADRESS_03_);    // Envoi de rb_select_strat (0 dans le tableau de correspondance)
+  
 }
+
 
 M2_LABEL(el_rb_label1, NULL, "strategie 1");
 M2_RADIO(el_rb_radio1, "v0", &rb_select_strat);
@@ -94,69 +133,6 @@ M2_LIST(list_rb) = {
 };
 M2_GRIDLIST(el_rb_grid, "c2",list_rb);
 M2_ALIGN(el_top_rb, "-1|1W64H64", &el_rb_grid);
-
-
-//____________________________________________________________________________________________________
-/*=== combo examples  ===*/
-
-uint8_t select_coord = 0;
-uint8_t select_priority = 0;
-
-
-void fn_ok(m2_el_fnarg_p fnarg) {
-  /* accept selection */
-  m2_SetRoot(&top_el_expandable_menu);
-}
-
-
-void fn_cancel(m2_el_fnarg_p fnarg) {
-  /* discard selection */
-  m2_SetRoot(&top_el_expandable_menu);
-}
-
-
-const char *fn_idx_to_color(uint8_t idx)
-{
-  switch(idx)
-  {
-    case 0: return "a";
-    case 1: return "b";
-    case 2: return "c";
-  }
-  return "";
-}
-
-
-const char *fn_idx_to_priority(uint8_t idx)
-{
-  switch(idx)
-  {
-    case 0: return "lowest";
-    case 1: return "low";
-    case 2: return "medium";
-    case 3: return "high";
-    case 4: return "highest";
-  }
-  return "";
-}
-
-
-M2_LABEL(el_label1, NULL, "Init:");
-M2_COMBO(el_combo1, NULL, &select_coord, 2, fn_idx_to_color);
-
-M2_LABEL(el_label2, NULL, "Priority: ");
-M2_COMBO(el_combo2, "v1", &select_priority, 5, fn_idx_to_priority);
-
-M2_BUTTON(el_cancel, "f4", "cancel", fn_cancel);
-M2_BUTTON(el_ok, "f4", "ok", fn_ok);
-
-M2_LIST(list_combo) = { 
-    &el_label1, &el_combo1, 
-    &el_label2, &el_combo2,  
-    &el_cancel, &el_ok 
-};
-M2_GRIDLIST(el_combo_grid, "c2", list_combo);
-M2_ALIGN(el_top_combo, "-1|1W64H64", &el_combo_grid);
 
 
 //____________________________________________________________________________________________________
@@ -222,6 +198,7 @@ void fn_num_go_pince(m2_el_fnarg_p fnarg) {
   finInitialisationMoteur = 0;
   */
 }
+
 
 /*
 M2_LABEL(el_num_label1, NULL, "Variable");
@@ -300,6 +277,69 @@ M2_LIST(muse_list) = {
 };
 M2_VLIST(el_muse_vlist, "c2", muse_list);
 M2_ALIGN(top_el_muse, "-1|1W64H64", &el_muse_vlist);
+
+
+//____________________________________________________________________________________________________
+/*=== combo examples  ===*/
+
+uint8_t select_coord = 0;
+uint8_t select_priority = 0;
+
+
+void fn_ok(m2_el_fnarg_p fnarg) {
+  /* accept selection */
+  m2_SetRoot(&top_el_expandable_menu);
+}
+
+
+void fn_cancel(m2_el_fnarg_p fnarg) {
+  /* discard selection */
+  m2_SetRoot(&top_el_expandable_menu);
+}
+
+
+const char *fn_idx_to_color(uint8_t idx)
+{
+  switch(idx)
+  {
+    case 0: return "a";
+    case 1: return "b";
+    case 2: return "c";
+  }
+  return "";
+}
+
+
+const char *fn_idx_to_priority(uint8_t idx)
+{
+  switch(idx)
+  {
+    case 0: return "lowest";
+    case 1: return "low";
+    case 2: return "medium";
+    case 3: return "high";
+    case 4: return "highest";
+  }
+  return "";
+}
+
+
+M2_LABEL(el_label1, NULL, "Init:");
+M2_COMBO(el_combo1, NULL, &select_coord, 2, fn_idx_to_color);
+
+M2_LABEL(el_label2, NULL, "Priority: ");
+M2_COMBO(el_combo2, "v1", &select_priority, 5, fn_idx_to_priority);
+
+M2_BUTTON(el_cancel, "f4", "cancel", fn_cancel);
+M2_BUTTON(el_ok, "f4", "ok", fn_ok);
+
+M2_LIST(list_combo) = { 
+    &el_label1, &el_combo1, 
+    &el_label2, &el_combo2,  
+    &el_cancel, &el_ok 
+};
+M2_GRIDLIST(el_combo_grid, "c2", list_combo);
+M2_ALIGN(el_top_combo, "-1|1W64H64", &el_combo_grid);
 
 
 //____________________________________________________________________________________________________
@@ -422,22 +462,25 @@ M2_HLIST(el_fs_hlist, NULL, list_fs_strlist);
 M2_ALIGN(el_top_fs, "-1|1W64H64", &el_fs_hlist);
 
 
+//____________________________________________________________________________________________________
 // Left entry: Menu name. Submenus must have a '.' at the beginning
 // Right entry: Reference to the target dialog box (In this example all menus call the toplevel element again
 m2_menu_entry m2_2lmenu_data[] = 
 {
   { "Epreuve", NULL },
   { ". Strategie", &el_rb_grid },
-  { ". Initialisation", &el_top_combo },
-  { "Tests", NULL },
+  { ". Initialisation", &top_el_expandable_menu },
+  { "Tests robots", NULL },
   { ". Test I2C", &el_top_num_menu },
   { ". Test Pince", &el_top_num_menu_2},
   { ". Test Moteur", &top_el_muse},
-  //{ ". File Select", &el_top_fs },
+  { "Tests ecran", NULL },
+  { ". Combo", &el_top_combo},
+  { ". File Select", &el_top_fs },
   { "Debug ", NULL },
   { ". Debug Moteur", &el_top_num_menu_debug_01},
   { ". Debug Autre", &el_top_num_menu_debug_02},
-  { "Top", &top_el_expandable_menu },
+  //{ "Top", &top_el_expandable_menu },
   { NULL, NULL },
 };
 
