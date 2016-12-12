@@ -8,8 +8,8 @@
  *     Mars 2014
  *Modification: Nicolas SOBCZAK
  *              Octobre 2016
-*/
-
+ */
+//_______________________________________________________________________________________________________
 #ifndef DEF_PID
 #define DEF_PID
 
@@ -26,6 +26,10 @@
  *      Class PID
  * ======================================================================================================
  */
+/**
+ * \class PID
+ * \brief Classe pour le correcteur Proportionnel Intégrateur Dérivé
+ */
 class PID{
 
 	public:
@@ -34,6 +38,7 @@ class PID{
         PID(double kP,double kI,double kD,double periode);
         void resetPID (double error);
         double computePID(double error);
+        
 
 	private:
 

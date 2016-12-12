@@ -1,6 +1,6 @@
 /**
  *    \file PID.cpp
- *    \brief Code Proportionnel Intégrateur Dérivateur (PID) du grand Robot. Permet de corriger la consigne de sortie en fonction de la consigne d'entrée (éviter les oscilations de position et d'angle)
+ *    \brief Code du correcteur Proportionnel Intégrateur Dérivateur (PID) du grand Robot. Permet de corriger la consigne de sortie en fonction de la consigne d'entrée (éviter les oscilations de position et d'angle)
  *
  *Codé pour "Spark core"  www.spark.io
  *
@@ -10,7 +10,8 @@
  *              Mars 2014
  *Modification: Nicolas SOBCZAK
  *              Octobre 2016
-*/
+ */
+//_______________________________________________________________________________________________________
 
 
 /* ======================================================================================================
@@ -23,11 +24,10 @@
 
 
 /* ======================================================================================================
- *      Class PID
+ *      Fonctions de la classe PID
  * ======================================================================================================
  */
-
- /**
+/**
  * \fn PID  
  * \brief constructeur qui initialise le PID
  * \param double kP, double kI, double kD coeff du PID utilise pour calculer le PWM
@@ -47,36 +47,39 @@ PID::PID(double kP,double kI,double kD, double periode)
     m_diffError = 0;
 
     m_periode = periode;
-
 }
 
 
+/**
+ * \fn PID  
+ * \brief constructeur sans paramètres qui initialise le PID
+ */
 PID::PID()
 {
 }
 
- /**
+
+//_______________________________________________________________________________________________________
+/**
  * \fn PID  
  * \brief fonction qui reset le PID
  * \param double error reset le PID avec la derreniere error
  */
- 
 void PID::resetPID (double error)
 {
-
     m_lastError = error;
     m_sumError = 0;
     m_diffError = 0;
-
 }
 
- /**
+
+//_______________________________________________________________________________________________________
+/**
  * \fn PID  
  * \brief fonction qui calcule le PID 
  * \param double error utiliser pour avoir l'erreur l'actuel 
  * \return retourne la valeur de PID calculée
  */
-
 double PID::computePID(double error)
 {
 
@@ -92,7 +95,7 @@ double PID::computePID(double error)
     m_lastError = error;
 
 
-    //propotionnel
+    //Propotionnel
     P = error * m_kP;
 
     //Intégrateur
@@ -117,5 +120,4 @@ double PID::computePID(double error)
     Serial.println (D);
     */
     return PID;
-
 }

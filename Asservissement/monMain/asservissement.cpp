@@ -11,7 +11,8 @@
  *              Mars 2014
  *Modification: Nicolas SOBCZAK
  *              Octobre 2016
-*/
+ */
+//_______________________________________________________________________________________________________
 
 
 /* ======================================================================================================
@@ -38,16 +39,14 @@
  *      Class asservissement
  * ======================================================================================================
  */
-
-  /**
- * \fn Asservissement   
+/**
+ * \fn Asservissement::Asservissement(double periode, Moteur grobot):m_periode(periode), m_moteur(grobot)  
  * \brief constructeur qui initialise et met des valeurs par defauts
- * \param ???
- * \param ??? 
+ * \param double periode
+ * \param Moteur grobot
  */
 Asservissement::Asservissement(double periode, Moteur grobot):m_periode(periode), m_moteur(grobot)
 {
-
     //init PID -> controle distance
     //PID distance(30.46,76.14,3.05,m_periode);
     //PID distance(0.7*0.6,0.002,140,m_periode);
@@ -74,13 +73,15 @@ Asservissement::Asservissement(double periode, Moteur grobot):m_periode(periode)
     L_done = 1;
     theta_done = 1;
 }
-/*
- * \fn Asservissement   
- * \brief constructeur qui initialise et met des valeurs par defauts
- * \param ???
- * \param ??? 
- */
 
+
+//_______________________________________________________________________________________________________
+/**
+ * \fn double Asservissement::boundError(double e)
+ * \brief constructeur qui initialise et met des valeurs par defauts
+ * \param double e
+ * \return double r
+ */
 double Asservissement::boundError(double e)
 {
     double r = e;
@@ -100,16 +101,16 @@ double Asservissement::boundError(double e)
 }
 
 
-//contrôle la distance
-/*
- * \fn contDistance    
- * \brief calcule la commande de distance ?? 
- * \param ???
- * \param ??? 
+//_______________________________________________________________________________________________________
+/**
+ * \fn double Asservissement::contDistance(Position destination, Position robot)   
+ * \brief Fonction qui contrôle la distance => calcule la commande de distance ?? 
+ * \param Position destination
+ * \param Position robot
+ * \return double _PID_
  */
 double Asservissement::contDistance(Position destination, Position robot)
 {
-
     double _PID_, error;
 
     //error =destination.x - robot.x ;
@@ -121,21 +122,19 @@ double Asservissement::contDistance(Position destination, Position robot)
     _PID_ = m_distance.computePID(error);
 
     return _PID_;
-
 }
 
 
-//contrôle l'angle
-/*
- * \fn contAngle     
- * \brief calcule la commande d'angle ?? 
- * \param ???
- * \param ??? 
- * \return _PID_ ??
+//_______________________________________________________________________________________________________
+/**
+ * \fn double Asservissement::contAngle(Position destination, Position robot)   
+ * \brief fonction qui contrôle l'angle => calcule la commande d'angle ?? 
+ * \param Position destination
+ * \param Position robot
+ * \return double _PID_
  */
 double Asservissement::contAngle(Position destination, Position robot)
 {
-
     double _PID_, error;
 
     //m_robot.calculer_angle(&destination,robot);
@@ -145,16 +144,15 @@ double Asservissement::contAngle(Position destination, Position robot)
     _PID_ = m_angle.computePID(error);
 
     return _PID_;
-
 }
 
 
-//Procedure qui réinitialise l'angle ordonné
-/*
- * \fn newOrderAngle    
- * \brief calcule la commande de distance 
- * \param ???
- * \param ??? 
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::newOrderAngle(Position destination, double theta_order)   
+ * \brief Procedure qui réinitialise l'angle ordonné => calcule la commande de distance ?
+ * \param Position destination
+ * \param double theta_order
  */
 void Asservissement::newOrderAngle(Position destination, double theta_order)
 {
@@ -164,14 +162,16 @@ void Asservissement::newOrderAngle(Position destination, double theta_order)
     theta_done = 0; //=false the robot not reaches angle
 }
 
-/*
- * \fn checkEnslavementType     
- * \brief ??? 
- * \param ???
- * \param ??? 
- * \return _PID_ ??
- */
 
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::checkEnslavementType(double error_L, double error_T, int *asserv_L, int *asserv_T)  
+ * \brief ??? 
+ * \param double error_L
+ * \param double error_T
+ * \param int *asserv_L
+ * \param int *asserv_T
+ */
 void Asservissement::checkEnslavementType(double error_L, double error_T, int *asserv_L, int *asserv_T)
 {
 
@@ -216,17 +216,16 @@ void Asservissement::checkEnslavementType(double error_L, double error_T, int *a
 }
 
 
-//creer une valleur PWM pour atteindre l'angle et la distance
-/*
- * \fn addPWM     
- * \brief cree une commande PWM ?? 
- * \param ???
- * \param ??? 
- * \return _PID_ ??
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::addPWM( double pwmControl_L, double pwmControl_T, int sens)   
+ * \brief creer une valeur PWM pour atteindre l'angle et la distance
+ * \param double pwmControl_L
+ * \param double pwmControl_T
+ * \param int sens
  */
-void Asservissement::addPWM( double pwmControl_L, double pwmControl_T, int sens)
+void Asservissement::addPWM(double pwmControl_L, double pwmControl_T, int sens)
 {
-
     double speedL, speedR;
     double balancing_Theta = 0.5;
     double percent;
@@ -278,14 +277,18 @@ void Asservissement::addPWM( double pwmControl_L, double pwmControl_T, int sens)
 
     m_leftMotorSpeed = speedL;
     m_rightMotorSpeed = speedR;
-
-
-
-
 }
 
 
-void Asservissement::appliquerOrdre(Position destination, Position robot,int sens)
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::appliquerOrdre(Position destination, Position robot,int sens)  
+ * \brief 
+ * \param Position destination
+ * \param Position robot
+ * \param int sens
+ */
+void Asservissement::appliquerOrdre(Position destination, Position robot, int sens)
 {
 
     m_commandeType=sens;
@@ -331,10 +334,15 @@ void Asservissement::appliquerOrdre(Position destination, Position robot,int sen
 }
 
 
-//angle ordre à atteindre
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::atteindreAngle(Position destination, Position robot)  
+ * \brief angle ordre à atteindre
+ * \param Position destination
+ * \param Position robot
+ */
 void Asservissement::atteindreAngle(Position destination, Position robot)
 {
-
     double pwmControl_T = 0;
     // static int delayT = 0;
 
@@ -385,9 +393,15 @@ void Asservissement::atteindreAngle(Position destination, Position robot)
 }
 
 
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::atteindreDistance(Position destination, Position robot) 
+ * \brief 
+ * \param Position destination
+ * \param Position robot
+ */
 void Asservissement::atteindreDistance(Position destination, Position robot)
 {
-
     double pwmControl_L = 0;
     int forward =0;
     double error;
@@ -458,8 +472,6 @@ void Asservissement::atteindreDistance(Position destination, Position robot)
     Serial.print(" , ");
     Serial.print(forward);
 
-
-
     if(forward == 1)
     {
         m_leftMotorSpeed =  pwmControl_L;
@@ -471,15 +483,18 @@ void Asservissement::atteindreDistance(Position destination, Position robot)
         m_rightMotorSpeed = - pwmControl_L;
 
     }
-
-
-
 }
 
 
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::curve(Position destination, Position robot)
+ * \brief 
+ * \param Position destination
+ * \param Position robot
+ */
 void Asservissement::curve(Position destination, Position robot)
 {
-
 //   int asserv_L = 1;
 //   int asserv_T = 1;
     double pwmControl_T = 0;
@@ -569,10 +584,15 @@ void Asservissement::curve(Position destination, Position robot)
 }
 
 
-//Procedure pour que le robot attient sa position en courbe curviligne
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Asservissement::atteindrePosition(Position destination, Position robot)
+ * \brief Procedure pour que le robot atteigne une position en courbe curviligne
+ * \param Position destination
+ * \param Position robot
+ */
 void Asservissement::atteindrePosition(Position destination, Position robot)
 {
-
     int asserv_L = 1;
     int asserv_T = 1;
     static int delayL = 10;
@@ -715,12 +735,18 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
         theta_done = 1; //robot reaches point
     }
 
-
     //Do the sum of 2 PID values, and store them into motors orders
     addPWM(pwmControl_L, pwmControl_T, forward);
 }
 
 
+//_______________________________________________________________________________________________________
+/**
+ * \fn double Asservissement::abs1(double nombre)
+ * \brief 
+ * \param double nombre
+ * \return double nombre
+ */
 double Asservissement::abs1(double nombre)
 {
     if(nombre>0)

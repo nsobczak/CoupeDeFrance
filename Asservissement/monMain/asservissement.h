@@ -9,6 +9,7 @@
  *Modification: Nicolas SOBCZAK
  *              Octobre 2016
 */
+//_______________________________________________________________________________________________________
 
 
 /* ======================================================================================================
@@ -45,8 +46,12 @@
  *      Class
  * ======================================================================================================
  */
-class Asservissement{
-
+/**
+ * \class Asservissement
+ * \brief Classe Asservissement
+ */
+class Asservissement
+{
       public:
 
           Asservissement(double periode, Moteur grobot);

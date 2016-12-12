@@ -8,7 +8,8 @@
  *      Mars 2014
  *Modification: Nicolas SOBCZAK
  *              Octobre 2016
-*/
+ */
+//_______________________________________________________________________________________________________
 
 
 /* ======================================================================================================
@@ -37,8 +38,14 @@ uint16_t TIM_ARR = (uint16_t)(24000000 / PWM_FREQ) - 1; // Don't change! Calc's 
  *      Class Moteur
  * ======================================================================================================
  */
-//initialise le moteur lors de l'appelle
-Moteur::Moteur(){
+/**
+ * \fn Moteur::Moteur()  
+ * \brief constructeur qui initialise le moteur lors de l'appelle
+ * \param double periode
+ * \param Moteur grobot
+ */
+Moteur::Moteur()
+{
   m_vitesse_moteur=0;
 }
 
