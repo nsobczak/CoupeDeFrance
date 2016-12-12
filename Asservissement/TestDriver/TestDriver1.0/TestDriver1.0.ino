@@ -1,32 +1,48 @@
- int pwm1 =3; // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
- const int pwm2 = 6; 
- int IN1 = 50;
- int IN2 = 49;
+  int MotorR =3; // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
+  int MotorL = 6; 
+  int IN1MotorL = 22;
+  int IN2MotorL = 21;
+  int IN1MotorR = 52;
+  int IN2MotorR = 53;
+ 
  
 void setup() {
-  pinMode(pwm1,OUTPUT);
-  pinMode(pwm2,OUTPUT);
-  pinMode(IN1,OUTPUT);
-  pinMode(IN2,OUTPUT);
+  pinMode(MotorR,OUTPUT);
+  pinMode(MotorL,OUTPUT);
+  pinMode(IN1MotorR,OUTPUT);
+  pinMode(IN2MotorR,OUTPUT);
+  pinMode(IN1MotorL,OUTPUT);
+  pinMode(IN2MotorL,OUTPUT);
   //analogWriteResolution(8);// seulement sur Arduino Due pour gere la Resolution du convertisseur DAC 
 }
 
 void loop() {
-  digitalWrite(IN1,LOW);
-  digitalWrite(IN2,LOW);
-  delay(2000);
-  digitalWrite(IN1,LOW);
-  digitalWrite(IN2,HIGH);
-  analogWrite(pwm1,10);
-  analogWrite(pwm2,10);
-  delay(5000);
-  digitalWrite(IN1,LOW);
-  digitalWrite(IN2,LOW);
-  delay(2000);
-  digitalWrite(IN1,HIGH);
-  digitalWrite(IN2,LOW);
-  analogWrite(pwm1,10);
-  analogWrite(pwm2,10);
-  delay(5000);
-
+  /*digitalWrite(IN1MotorR,LOW);
+  digitalWrite(IN2MotorR,LOW);
+  digitalWrite(IN1MotorL,LOW);
+  digitalWrite(IN2MotorL,LOW);
+  analogWrite(MotorR,10);
+  analogWrite(MotorL,10);*/
+  //delay(500);
+  digitalWrite(IN1MotorR,HIGH);
+  digitalWrite(IN2MotorR,LOW);
+  digitalWrite(IN1MotorL,HIGH);
+  digitalWrite(IN2MotorL,LOW);
+  analogWrite(MotorR,10);
+  analogWrite(MotorL,10);
+  /*delay(1000);
+  digitalWrite(IN1MotorR,LOW);
+  digitalWrite(IN2MotorR,LOW);
+  digitalWrite(IN1MotorL,LOW);
+  digitalWrite(IN2MotorL,LOW);
+  analogWrite(MotorR,10);
+  analogWrite(MotorL,10);
+  delay(500);
+  digitalWrite(IN1MotorR,HIGH);
+  digitalWrite(IN2MotorR,LOW);
+  digitalWrite(IN1MotorL,HIGH);
+  digitalWrite(IN2MotorL,LOW);
+  analogWrite(MotorR,10);
+  analogWrite(MotorL,10);
+  delay(1000);*/
 }
