@@ -95,7 +95,7 @@ void Odometrie::calculer_distanceParcourueRoue(Tick codeuse){
 
 
 //permet de connaitre sa position en x, sa position en y et son angle
-void Odometrie::retournerValeur(Position *roueCodeuse,Tick codeuse){
+void Odometrie::retournerValeur(Position *roueCodeuse, Tick codeuse){
 
          long int derive_X,derive_Y;
          double dX,dY;
@@ -124,11 +124,10 @@ void Odometrie::retournerValeur(Position *roueCodeuse,Tick codeuse){
          derive_X =  CORFUGE * m_delta_angle * dY;
          derive_Y = -CORFUGE * m_delta_angle * dX;
 
-	(*roueCodeuse).thetha =   m_variation_angle_moyRad;
-	(*roueCodeuse).x = (*roueCodeuse).x + dX;
-	(*roueCodeuse).y = (*roueCodeuse).y + dY;
-
-
+        //met à jour
+      	(*roueCodeuse).thetha =   m_variation_angle_moyRad;
+      	(*roueCodeuse).x = (*roueCodeuse).x + dX;
+      	(*roueCodeuse).y = (*roueCodeuse).y + dY;
 }
 
 
