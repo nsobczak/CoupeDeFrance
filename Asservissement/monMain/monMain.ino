@@ -5,17 +5,12 @@
  *Par: Nicolas SOBCZAK
  *     Octobre 2016
  */
-
-
+//_______________________________________________________________________________________________________
+//_______________________________________________________________________________________________________
 /* ======================================================================================================
  *      Include
  * ======================================================================================================
  */
-#include "Arduino.h"
-#include "odometrie.h"
-#include "PID.h"
-#include "moteur.h"
-#include "math.h"
 #include "asservissement.h"
 #include "structures.h"          // pour les types
 
@@ -33,19 +28,6 @@
 
 
 /* ======================================================================================================
- *      Function prototypes
- * ======================================================================================================
- */
-//Interruption roue encoder
-void doEncoderA_L();
-void doEncoderA_R();
-void doEncoderB_L();
-void doEncoderB_R();
-//Distance angle
-void errorLT();
-
-
-/* ======================================================================================================
  *      Notes
  * ======================================================================================================
 
@@ -56,23 +38,19 @@ endodeur = roues codeuses pour connaitre la position de la roue (pour asservisse
 */
 
 
-
+//_______________________________________________________________________________________________________
 /* ======================================================================================================
  *      Initialisation variables globales
  * ======================================================================================================
  */
-
-//_______________________________________________________________________________________________________
 volatile long int encoder0Pos_L = 0;
 volatile long int encoder0Pos_R = 0;
 
-//_______________________________________________________________________________________________________
 Position destination;   // variable pour choisir le point d'arrivée
 Odometrie roue;         // class Odometrie utilise pour recuperer les donnees de position actuelle
 Position roueCodeuse;   // class position regroupe les donnees de position variable pour regrouper les donnees de position des roues codeuses
 Position memory_destination;
 
-//_______________________________________________________________________________________________________
 Position memory_position;
 int targetAngle;
 Moteur crysteo;
@@ -80,16 +58,22 @@ Asservissement robot(TEMPS, crysteo);
 Tick codeuse;
 int Doangle;
 
-//_______________________________________________________________________________________________________
 int forward; // 1=forward -1=backward
 double beta, depassement;
 double TargetAngle;
 int DoAngle;
 
 
-
 //_______________________________________________________________________________________________________
 //_______________________________________________________________________________________________________
+/* ======================================================================================================
+ *      Fonctions arduino
+ * ======================================================================================================
+ */
+ /**
+ * \fn void setup()
+ * \brief fonction setup d'arduino
+ */
 void setup()
 {
     Serial.begin(250000);
@@ -100,22 +84,45 @@ void setup()
 
     attachInterrupt(encoder0PinA_R, doEncoderA_R, CHANGE);
     attachInterrupt(encoder0PinB_R, doEncoderB_R, CHANGE);
-    Serial.begin(9600);
-
 }
 
 
+/**
+ * \fn void loop()
+ * \brief fonction loop d'arduino
+ */
 void loop()
 {   
-
-     
-    square(destination, roueCodeuse, robot, roue, codeuse);
+    keepPosition(destination, roueCodeuse, robot, roue, codeuse);
+    //square(destination, roueCodeuse, robot, roue, codeuse);
 }
 
 
 /* ======================================================================================================
  *      Fonctions
  * ======================================================================================================
+ */
+ /**
+ * \fn  void keepPosition(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
+ * \brief fonction qui fait attendre le robotà la même position
+ */
+ void keepPosition(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
+{
+    destination.x=0;
+    destination.y=0;
+    destination.thetha=0.0;                               //"destination.distance" utile car utile dans odométrie (pour les calculs)
+    roueCodeuse.x=0;                                      //
+    roueCodeuse.y=0;                                      // Itinialisation de la roue codeuse (a verifier par test)
+    roueCodeuse.thetha=0;                                 // 
+    robot.appliquerOrdre(destination, roueCodeuse, 3);    // attention pas tout pigé
+    roue.retournerValeur(&roueCodeuse, codeuse);          // met à jour roue codeuse
+    errorLT();  
+}
+
+ 
+ /**
+ * \fn  void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
+ * \brief fonction qui fait faire un carré au robot
  */
  void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
 {
@@ -125,9 +132,9 @@ void loop()
     roueCodeuse.x=0;                                      //
     roueCodeuse.y=0;                                      // Itinialisation de la roue codeuse (a verifier par test)
     roueCodeuse.thetha=0;                                 // 
-    robot.appliquerOrdre(destination, roueCodeuse, 3);    //attention pas tout pigé
-    roue.retournerValeur(&roueCodeuse, codeuse);          //attention pas tout pigé non plus
-    errorLT();
+    robot.appliquerOrdre(destination, roueCodeuse, 3);    // attention pas tout pigé
+    roue.retournerValeur(&roueCodeuse, codeuse);          // met à jour roue codeuse
+    errorLT();                                            // met à jour roue codeuse
 
 
     destination.x = 0;
@@ -163,8 +170,8 @@ void loop()
 
 //_______________________________________________________________________________________________________
 /**
- * \fn void errorLT() - fonction qui calcule l'erreur de position
- * \param nothing
+ * \fn void errorLT() 
+ * \brief fonction qui calcule l'erreur de position et met à jour roue codeuse
  */
 void errorLT() {
 
@@ -214,8 +221,8 @@ void errorLT() {
 
 //_______________________________________________________________________________________________________
 /**
- * \fn void doEncoderA_L() - fonction qui relève le nombre de ticks
- * \param nothing
+ * \fn void doEncoderA_L()
+ * \brief fonction qui relève le nombre de ticks
  */
 void doEncoderA_L() {
 
@@ -245,8 +252,8 @@ void doEncoderA_L() {
 
 
 /**
- * \fn void doEncoderB_L() - fonction qui relève le nombre de ticks
- * \param nothing
+ * \fn void doEncoderB_L()  
+ * \brief fonction qui relève le nombre de ticks
  */
 void doEncoderB_L() {
 
@@ -274,8 +281,8 @@ void doEncoderB_L() {
 
 
 /**
- * \fn void doEncoderA_R() - fonction qui relève le nombre de ticks
- * \param nothing
+ * \fn void doEncoderA_R()  
+ * \brief fonction qui relève le nombre de ticks
  */
 void doEncoderA_R() {
 
@@ -305,8 +312,8 @@ void doEncoderA_R() {
 
 
 /**
- * \fn void doEncoderB_R() - fonction qui relève le nombre de ticks
- * \param nothing
+ * \fn void doEncoderB_R() 
+ * \brief fonction qui relève le nombre de ticks
  */
 void doEncoderB_R() {
 
@@ -334,7 +341,10 @@ void doEncoderB_R() {
 
 
 //_______________________________________________________________________________________________________
-//interruption pour encodeurs
+/**
+ * \fn void doEncoderB_R() 
+ * \brief fonction interruption pour encodeurs
+ */
 void interruptionEncodeurs(){
     attachInterrupt(encoder0PinA_L, doEncoderA_L, CHANGE);
     attachInterrupt(encoder0PinB_L, doEncoderB_L, CHANGE);
@@ -342,7 +352,4 @@ void interruptionEncodeurs(){
     attachInterrupt(encoder0PinA_R, doEncoderA_R, CHANGE);
     attachInterrupt(encoder0PinB_R, doEncoderB_R, CHANGE);
 }
-
-
-
 
