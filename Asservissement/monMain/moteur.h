@@ -8,7 +8,8 @@
  *     Mars 2014
  *Modification: Nicolas SOBCZAK
  *              Octobre 2016
-*/
+ */
+//_______________________________________________________________________________________________________
 
 
 /* ======================================================================================================
@@ -31,7 +32,7 @@
  *      Define
  * ======================================================================================================
  */
-#define PMW_MOTEUR_A0  5 //IN1               //moteur Gauche
+#define PMW_MOTEUR_A0  5 //IN1         //moteur Gauche
 //#define PMW_MOTEUR_A1  6 //IN2
 #define PMW_MOTEUR_B0  3               //moteur Droit
 //#define PMW_MOTEUR_B1  4
@@ -41,8 +42,12 @@
  *      Class
  * ======================================================================================================
  */
-class Moteur{
-
+/**
+ * \class Moteur
+ * \brief Classe Moteur
+ */
+class Moteur
+{
   public:
         Moteur();
         void initPWM();

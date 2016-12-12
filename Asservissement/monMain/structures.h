@@ -4,7 +4,9 @@
  *
  *Par: Nicolas SOBCZAK
  *     Octobre 2016
-*/
+ */
+//_______________________________________________________________________________________________________
+
 
 /* ======================================================================================================
  *      Define
@@ -19,37 +21,49 @@
  *      Structures
  * ======================================================================================================
  */
-//Position
-typedef struct{
-	double x;              //position en x
-	double y;              //position en y
+/**
+ * \struct Position
+ * \brief 
+ */
+typedef struct
+{
+  double x;              //position en x
+  double y;              //position en y
   double thetha;         //angle
   double distance;
 }Position;
 
 
-//Tick
+/**
+ * \struct Tick
+ * \brief 
+ */
 typedef struct{
-	long int ND;            //nombre de tick droit
+  long int ND;            //nombre de tick droit
   long int NG;            //nombre de tick gauche
 
 }Tick;
 
 
-//Vitesse
+/**
+ * \struct Vitesse
+ * \brief 
+ */
 typedef struct{
-	double motorG;
+  double motorG;
   double motorD;
 }Vitesse;
 
 
-//PidCoeff
+/**
+ * \struct PidCoeff
+ * \brief 
+ */
 typedef struct
 {
-	double kP;		//proportionnal coefficient
-	double kI;		//integral coefficient
-	double kD;		//derivation coefficient
-
+  double kP;		//proportionnal coefficient
+  double kI;		//integral coefficient
+  double kD;		//derivation coefficient
 }PidCoeff;
 
 #endif

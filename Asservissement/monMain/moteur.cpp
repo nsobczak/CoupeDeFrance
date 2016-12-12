@@ -41,8 +41,6 @@ uint16_t TIM_ARR = (uint16_t)(24000000 / PWM_FREQ) - 1; // Don't change! Calc's 
 /**
  * \fn Moteur::Moteur()  
  * \brief constructeur qui initialise le moteur lors de l'appelle
- * \param double periode
- * \param Moteur grobot
  */
 Moteur::Moteur()
 {
@@ -50,48 +48,63 @@ Moteur::Moteur()
 }
 
 
-//active le timer2 et 0 pour la PWM, active la PWM selon le moteur
-void Moteur::initPWM(){
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Moteur::initPWM()
+ * \brief active le timer2 et 0 pour la PWM, active la PWM selon le moteur
+ */
+void Moteur::initPWM()
+{
    pinMode(IN1MoteurB0,OUTPUT);
    pinMode(IN2MoteurB0,OUTPUT);
    pinMode(IN1MoteurA0,OUTPUT);
    pinMode(IN2MoteurA0,OUTPUT);
    pinMode(PMW_MOTEUR_A0 ,OUTPUT);
    pinMode(PMW_MOTEUR_B0 ,OUTPUT);
-
 }
 
 
-//permet de freiner les moteurs
-void Moteur::brake(int choix_moteur){// potentiellement inutile pour frein mettre les motor a 0
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Moteur::brake(int choix_moteur)
+ * \brief
+ * \param int choix_moteur
+ */
+void Moteur::brake(int choix_moteur)  // potentiellement inutile pour frein mettre les motor a 0
+{
+  if(choix_moteur == 1){
+    /*m_vitesse_moteur=-100;
+    m_vitesse_moteur=convertir_pourcentage_en_octet ();
+    m_PWM_G[0]= m_vitesse_moteur;
+    m_PWM_G[1]=255- m_vitesse_moteur;*/
+    digitalWrite(IN1MoteurA0,LOW);
+    digitalWrite(IN2MoteurA0,LOW);
+    analogWrite(PMW_MOTEUR_A0,255-m_vitesse_moteur);
+    //analogWrite(PMW_MOTEUR_A1,255-m_vitesse_moteur);
+    }
 
-              if(choix_moteur == 1){
-                /*m_vitesse_moteur=-100;
-                m_vitesse_moteur=convertir_pourcentage_en_octet ();
-                m_PWM_G[0]= m_vitesse_moteur;
-                m_PWM_G[1]=255- m_vitesse_moteur;*/
-                digitalWrite(IN1MoteurA0,LOW);
-                digitalWrite(IN2MoteurA0,LOW);
-                analogWrite(PMW_MOTEUR_A0,255-m_vitesse_moteur);
-                //analogWrite(PMW_MOTEUR_A1,255-m_vitesse_moteur);
-                }
-
-               if(choix_moteur == 2){
-                 /*m_vitesse_moteur=-100;
-                 m_vitesse_moteur=convertir_pourcentage_en_octet ();
-                 m_PWM_D[0]= m_vitesse_moteur;
-                 m_PWM_D[1]=255- m_vitesse_moteur;*/
-                 digitalWrite(IN1MoteurB0,LOW);
-                 digitalWrite(IN2MoteurB0,LOW);
-                 analogWrite(PMW_MOTEUR_B0,255-m_vitesse_moteur);
-                 //analogWrite(PMW_MOTEUR_B1,255-m_vitesse_moteur);
-                }
-
+   if(choix_moteur == 2){
+     /*m_vitesse_moteur=-100;
+     m_vitesse_moteur=convertir_pourcentage_en_octet ();
+     m_PWM_D[0]= m_vitesse_moteur;
+     m_PWM_D[1]=255- m_vitesse_moteur;*/
+     digitalWrite(IN1MoteurB0,LOW);
+     digitalWrite(IN2MoteurB0,LOW);
+     analogWrite(PMW_MOTEUR_B0,255-m_vitesse_moteur);
+     //analogWrite(PMW_MOTEUR_B1,255-m_vitesse_moteur);
+    }
 }
 
 
-//gérer le moteur pour qu'il roule vers sa destination
-void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit){
+//_______________________________________________________________________________________________________
+/**
+ * \fn void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit)
+ * \brief gérer le moteur pour qu'il roule vers sa destination
+ * \param double vitesseGauche
+ * \param double vitesseDroit
+ */
+void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit)
+{
         //moteur gauche
         //if(vitesseGauche != 0){
             m_vitesse_moteur=  vitesseGauche;
@@ -144,14 +157,17 @@ void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit){
         //}
      
           //envoieData();
-
-
 }
 
 
-// permet de convertir la vitesse exprimé en pourcentage (-100 à +100) en octet (de 0 à 255)
-int Moteur::convertir_pourcentage_en_octet (){
-
+//_______________________________________________________________________________________________________
+/**
+ * \fn int Moteur::convertir_pourcentage_en_octet ()
+ * \brief permet de convertir la vitesse exprimé en pourcentage (-100 à +100) en octet (de 0 à 255)
+ * \return int vitesse
+ */
+int Moteur::convertir_pourcentage_en_octet ()
+{
         int vitesse=0;
 	//vitesse moteur positif (0 à 100%)
         if((m_vitesse_moteur > 0) && (m_vitesse_moteur <= 100	)){
