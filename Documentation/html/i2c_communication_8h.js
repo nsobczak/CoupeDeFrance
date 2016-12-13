@@ -1,9 +1,11 @@
 var i2c_communication_8h =
 [
     [ "byteReceived", "i2c_communication_8h.html#ac31db9974f1b5e83c5870d3d3f28343c", null ],
+    [ "changeData", "i2c_communication_8h.html#a917fec01015ba91de2e469869b49358f", null ],
     [ "getHighByte", "i2c_communication_8h.html#a46bd5c94164200611c26d02695759bf0", null ],
     [ "getLowByte", "i2c_communication_8h.html#a7835d18dc0842d01422d5593771bfacf", null ],
     [ "i2creceive", "i2c_communication_8h.html#ac864e500ced6fb98e9b3e10fef9b3d25", null ],
+    [ "i2crequest", "i2c_communication_8h.html#a8583786b76c62294b407eb479369a4ef", null ],
     [ "i2csend", "i2c_communication_8h.html#aa57c53d43c435c6efe21932b18c13591", null ],
     [ "i2csend3bytes", "i2c_communication_8h.html#aa072a4dcb87b819a72db58c21754971b", null ],
     [ "intTo2Bytes", "i2c_communication_8h.html#a4f8591eec9512b6d369d30dd80545233", null ],

@@ -1,3 +1,7 @@
 <map id="I2C/i2cCommunication/i2cCommunication.h" name="I2C/i2cCommunication/i2cCommunication.h">
-<area shape="rect" id="node2" href="$i2c_communication_8cpp.html" title="Bibliothèque de communication i2c. " alt="" coords="5,95,164,136"/>
+<area shape="rect" id="node2" href="$_bot_menu_8cpp.html" title="Code d&#39;affichage de l&#39;écran. " alt="" coords="5,102,199,129"/>
+<area shape="rect" id="node3" href="$slave__1_8cpp.html" title="Esclave du BotMenu I2C. " alt="" coords="223,95,370,136"/>
+<area shape="rect" id="node4" href="$i2c_communication_8cpp.html" title="Bibliothèque de communication i2c. " alt="" coords="395,95,553,136"/>
+<area shape="rect" id="node5" href="$_capteur___i_r__detection__position_8cpp.html" title="Ce programme permet d&#39;informer la carte maitre si il y a présence ou non d&#39;un obstacle, ici d&#39;un cylindre et de déterminer sa position. " alt="" coords="578,95,765,136"/>
+<area shape="rect" id="node6" href="$_moteur__deplacement_8cpp.html" title="Code de déplacement de la pince. " alt="" coords="789,102,994,129"/>
 </map>

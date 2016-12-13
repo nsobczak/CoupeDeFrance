@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.5</span>
+   &#160;<span id="projectnumber">1.6</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -115,38 +115,52 @@ $(document).ready(function(){initNavTree('class_asservissement.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Classe <a class="el" href="class_asservissement.html" title="Classe Asservissement. ">Asservissement</a>.  
+ <a href="class_asservissement.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="asservissement_8h_source.html">asservissement.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a602ab222a93b691ada69cfe11208faf2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a602ab222a93b691ada69cfe11208faf2">Asservissement</a> (double periode, <a class="el" href="class_moteur.html">Moteur</a> grobot)</td></tr>
+<tr class="memdesc:a602ab222a93b691ada69cfe11208faf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructeur qui initialise et met des valeurs par defauts  <a href="#a602ab222a93b691ada69cfe11208faf2">More...</a><br /></td></tr>
 <tr class="separator:a602ab222a93b691ada69cfe11208faf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af459078c269e8872c8f9585774b5aee1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#af459078c269e8872c8f9585774b5aee1">boundError</a> (double e)</td></tr>
+<tr class="memdesc:af459078c269e8872c8f9585774b5aee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructeur qui initialise et met des valeurs par defauts  <a href="#af459078c269e8872c8f9585774b5aee1">More...</a><br /></td></tr>
 <tr class="separator:af459078c269e8872c8f9585774b5aee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46c56c095e7a01174809cf2683782113"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a46c56c095e7a01174809cf2683782113">contDistance</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:a46c56c095e7a01174809cf2683782113"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a46c56c095e7a01174809cf2683782113">contDistance</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
+<tr class="memdesc:a46c56c095e7a01174809cf2683782113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui contrôle la distance =&gt; calcule la commande de distance ??  <a href="#a46c56c095e7a01174809cf2683782113">More...</a><br /></td></tr>
 <tr class="separator:a46c56c095e7a01174809cf2683782113"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94e0a6d4d378d41daa14bce3f07ea422"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a94e0a6d4d378d41daa14bce3f07ea422">contAngle</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:a94e0a6d4d378d41daa14bce3f07ea422"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a94e0a6d4d378d41daa14bce3f07ea422">contAngle</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
+<tr class="memdesc:a94e0a6d4d378d41daa14bce3f07ea422"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui contrôle l'angle =&gt; calcule la commande d'angle ??  <a href="#a94e0a6d4d378d41daa14bce3f07ea422">More...</a><br /></td></tr>
 <tr class="separator:a94e0a6d4d378d41daa14bce3f07ea422"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab025d475e1daec59e2656fa505ce726d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#ab025d475e1daec59e2656fa505ce726d">newOrderAngle</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, double theta_order)</td></tr>
+<tr class="memitem:ab025d475e1daec59e2656fa505ce726d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#ab025d475e1daec59e2656fa505ce726d">newOrderAngle</a> (<a class="el" href="struct_position.html">Position</a> destination, double theta_order)</td></tr>
+<tr class="memdesc:ab025d475e1daec59e2656fa505ce726d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procedure qui réinitialise l'angle ordonné =&gt; calcule la commande de distance ?  <a href="#ab025d475e1daec59e2656fa505ce726d">More...</a><br /></td></tr>
 <tr class="separator:ab025d475e1daec59e2656fa505ce726d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2accd4d87bcaded977d64923388f1a5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a2accd4d87bcaded977d64923388f1a5a">checkEnslavementType</a> (double error_L, double error_T, int *asserv_L, int *asserv_T)</td></tr>
+<tr class="memdesc:a2accd4d87bcaded977d64923388f1a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">???  <a href="#a2accd4d87bcaded977d64923388f1a5a">More...</a><br /></td></tr>
 <tr class="separator:a2accd4d87bcaded977d64923388f1a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad922a1864e6075436f211bd94e019dee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#ad922a1864e6075436f211bd94e019dee">addPWM</a> (double pwmControl_L, double pwmControl_T, int sens)</td></tr>
+<tr class="memdesc:ad922a1864e6075436f211bd94e019dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">creer une valeur PWM pour atteindre l'angle et la distance  <a href="#ad922a1864e6075436f211bd94e019dee">More...</a><br /></td></tr>
 <tr class="separator:ad922a1864e6075436f211bd94e019dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8eeb4d2ea61bdad69173765ef3dc05b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a8eeb4d2ea61bdad69173765ef3dc05b4">appliquerOrdre</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>, int sens)</td></tr>
+<tr class="memitem:a8eeb4d2ea61bdad69173765ef3dc05b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a8eeb4d2ea61bdad69173765ef3dc05b4">appliquerOrdre</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot, int sens)</td></tr>
 <tr class="separator:a8eeb4d2ea61bdad69173765ef3dc05b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31365ebbbf9f9309d9b4556e4e753dff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a31365ebbbf9f9309d9b4556e4e753dff">atteindreAngle</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:a31365ebbbf9f9309d9b4556e4e753dff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a31365ebbbf9f9309d9b4556e4e753dff">atteindreAngle</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
+<tr class="memdesc:a31365ebbbf9f9309d9b4556e4e753dff"><td class="mdescLeft">&#160;</td><td class="mdescRight">angle ordre à atteindre  <a href="#a31365ebbbf9f9309d9b4556e4e753dff">More...</a><br /></td></tr>
 <tr class="separator:a31365ebbbf9f9309d9b4556e4e753dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe6baa10d9ec255aa5268122f0c9b6d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#afe6baa10d9ec255aa5268122f0c9b6d5">atteindreDistance</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:afe6baa10d9ec255aa5268122f0c9b6d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#afe6baa10d9ec255aa5268122f0c9b6d5">atteindreDistance</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
 <tr class="separator:afe6baa10d9ec255aa5268122f0c9b6d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0017ded3b839ece7403a5c63a2f50fe8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a0017ded3b839ece7403a5c63a2f50fe8">curve</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:a0017ded3b839ece7403a5c63a2f50fe8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a0017ded3b839ece7403a5c63a2f50fe8">curve</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
 <tr class="separator:a0017ded3b839ece7403a5c63a2f50fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ddbc9243384337c1f3af07ffc8b85b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a0ddbc9243384337c1f3af07ffc8b85b0">atteindrePosition</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:a0ddbc9243384337c1f3af07ffc8b85b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a0ddbc9243384337c1f3af07ffc8b85b0">atteindrePosition</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
+<tr class="memdesc:a0ddbc9243384337c1f3af07ffc8b85b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procedure pour que le robot atteigne une position en courbe curviligne.  <a href="#a0ddbc9243384337c1f3af07ffc8b85b0">More...</a><br /></td></tr>
 <tr class="separator:a0ddbc9243384337c1f3af07ffc8b85b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f53388f95bfd3450d4da5a1c0a45075"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_asservissement.html#a7f53388f95bfd3450d4da5a1c0a45075">abs1</a> (double nombre)</td></tr>
 <tr class="separator:a7f53388f95bfd3450d4da5a1c0a45075"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Classe <a class="el" href="class_asservissement.html" title="Classe Asservissement. ">Asservissement</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a602ab222a93b691ada69cfe11208faf2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -171,6 +185,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>constructeur qui initialise et met des valeurs par defauts </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">double</td><td>periode </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_moteur.html" title="Classe Moteur. ">Moteur</a></td><td>grobot </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -187,6 +210,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">double</td><td>nombre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double nombre </dd></dl>
 
 </div>
 </div>
@@ -220,6 +250,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>creer une valeur PWM pour atteindre l'angle et la distance </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">double</td><td>pwmControl_L </td></tr>
+    <tr><td class="paramname">double</td><td>pwmControl_T </td></tr>
+    <tr><td class="paramname">int</td><td>sens </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a8eeb4d2ea61bdad69173765ef3dc05b4"></a>
@@ -251,6 +291,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+    <tr><td class="paramname">int</td><td>sens </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -278,6 +326,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>angle ordre à atteindre </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="afe6baa10d9ec255aa5268122f0c9b6d5"></a>
@@ -303,6 +360,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -330,6 +394,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Procedure pour que le robot atteigne une position en courbe curviligne. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="af459078c269e8872c8f9585774b5aee1"></a>
@@ -345,6 +418,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>constructeur qui initialise et met des valeurs par defauts </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">double</td><td>e </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double r </dd></dl>
 
 </div>
 </div>
@@ -384,6 +466,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>??? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">double</td><td>error_L </td></tr>
+    <tr><td class="paramname">double</td><td>error_T </td></tr>
+    <tr><td class="paramname">int</td><td>*asserv_L </td></tr>
+    <tr><td class="paramname">int</td><td>*asserv_T </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a94e0a6d4d378d41daa14bce3f07ea422"></a>
@@ -409,6 +502,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction qui contrôle l'angle =&gt; calcule la commande d'angle ?? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double <em><a class="el" href="class_p_i_d.html" title="Classe pour le correcteur Proportionnel Intégrateur Dérivé ">PID</a></em> </dd></dl>
 
 </div>
 </div>
@@ -436,6 +539,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fonction qui contrôle la distance =&gt; calcule la commande de distance ?? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double <em><a class="el" href="class_p_i_d.html" title="Classe pour le correcteur Proportionnel Intégrateur Dérivé ">PID</a></em> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a0017ded3b839ece7403a5c63a2f50fe8"></a>
@@ -461,6 +574,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -487,6 +607,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Procedure qui réinitialise l'angle ordonné =&gt; calcule la commande de distance ? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname">double</td><td>theta_order </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

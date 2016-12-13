@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.5</span>
+   &#160;<span id="projectnumber">1.6</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -115,22 +115,31 @@ $(document).ready(function(){initNavTree('class_moteur.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Classe <a class="el" href="class_moteur.html" title="Classe Moteur. ">Moteur</a>.  
+ <a href="class_moteur.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="moteur_8h_source.html">moteur.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a90033e47e0caf0b8808d7cd7ba53da2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moteur.html#a90033e47e0caf0b8808d7cd7ba53da2c">Moteur</a> ()</td></tr>
+<tr class="memdesc:a90033e47e0caf0b8808d7cd7ba53da2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructeur qui initialise le moteur lors de l'appelle  <a href="#a90033e47e0caf0b8808d7cd7ba53da2c">More...</a><br /></td></tr>
 <tr class="separator:a90033e47e0caf0b8808d7cd7ba53da2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89e10e5be14072650f37037ffd912fd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moteur.html#a89e10e5be14072650f37037ffd912fd0">initPWM</a> ()</td></tr>
+<tr class="memdesc:a89e10e5be14072650f37037ffd912fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">active le timer2 et 0 pour la PWM, active la PWM selon le moteur  <a href="#a89e10e5be14072650f37037ffd912fd0">More...</a><br /></td></tr>
 <tr class="separator:a89e10e5be14072650f37037ffd912fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a455ceec5ff8d7d51f8a823259762131c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moteur.html#a455ceec5ff8d7d51f8a823259762131c">convertir_pourcentage_en_octet</a> ()</td></tr>
+<tr class="memdesc:a455ceec5ff8d7d51f8a823259762131c"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de convertir la vitesse exprimé en pourcentage (-100 à +100) en octet (de 0 à 255)  <a href="#a455ceec5ff8d7d51f8a823259762131c">More...</a><br /></td></tr>
 <tr class="separator:a455ceec5ff8d7d51f8a823259762131c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94ce68461266cf4cf7fa85ed004454e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moteur.html#a94ce68461266cf4cf7fa85ed004454e0">brake</a> (int choix_moteur)</td></tr>
 <tr class="separator:a94ce68461266cf4cf7fa85ed004454e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa637ddd3e6ad5878e39d251db62b6862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_moteur.html#aa637ddd3e6ad5878e39d251db62b6862">fonctionnement_moteur</a> (double vitesseGauche, double vitesseDroit)</td></tr>
+<tr class="memdesc:aa637ddd3e6ad5878e39d251db62b6862"><td class="mdescLeft">&#160;</td><td class="mdescRight">gérer le moteur pour qu'il roule vers sa destination  <a href="#aa637ddd3e6ad5878e39d251db62b6862">More...</a><br /></td></tr>
 <tr class="separator:aa637ddd3e6ad5878e39d251db62b6862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Classe <a class="el" href="class_moteur.html" title="Classe Moteur. ">Moteur</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a90033e47e0caf0b8808d7cd7ba53da2c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -143,6 +152,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>constructeur qui initialise le moteur lors de l'appelle </p>
 
 </div>
 </div>
@@ -160,6 +171,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>choix_moteur </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -175,6 +192,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>permet de convertir la vitesse exprimé en pourcentage (-100 à +100) en octet (de 0 à 255) </p>
+<dl class="section return"><dt>Returns</dt><dd>int vitesse </dd></dl>
 
 </div>
 </div>
@@ -202,6 +222,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>gérer le moteur pour qu'il roule vers sa destination </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">double</td><td>vitesseGauche </td></tr>
+    <tr><td class="paramname">double</td><td>vitesseDroit </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a89e10e5be14072650f37037ffd912fd0"></a>
@@ -216,6 +245,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>active le timer2 et 0 pour la PWM, active la PWM selon le moteur </p>
 
 </div>
 </div>

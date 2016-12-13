@@ -1,6 +1,5 @@
 <map id="Asservissement/monMain/moteur.h" name="Asservissement/monMain/moteur.h">
-<area shape="rect" id="node2" href="$asservissement_8h.html" title="entête classe asservissement du grand robot " alt="" coords="117,95,291,136"/>
-<area shape="rect" id="node3" href="$asservissement_8cpp.html" title="Classe Asservissement. Code asservissement du grand Robot, permet d&#39;asservir en angle et en position ..." alt="" coords="5,184,179,225"/>
-<area shape="rect" id="node4" href="$mon_main_8cpp.html" title="appel des fonctions " alt="" coords="228,184,401,225"/>
-<area shape="rect" id="node5" href="$moteur_8cpp.html" title="Code contrôle des moteurs du grand Robot. Ce programme permet d&#39;initialiser et d&#39;envoyer 4 PWM (2 PWM..." alt="" coords="365,95,539,136"/>
+<area shape="rect" id="node2" href="$asservissement_8h.html" title="entête classe asservissement du grand robot " alt="" coords="5,95,179,136"/>
+<area shape="rect" id="node3" href="$asservissement_8cpp.html" title="Classe Asservissement. Code asservissement du grand Robot, permet d&#39;asservir en angle et en position ..." alt="" coords="67,184,240,225"/>
+<area shape="rect" id="node4" href="$moteur_8cpp.html" title="Code contrôle des moteurs du grand Robot. Ce programme permet d&#39;initialiser et d&#39;envoyer 4 PWM (2 PWM..." alt="" coords="253,95,427,136"/>
 </map>

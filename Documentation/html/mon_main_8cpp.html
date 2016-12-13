@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.5</span>
+   &#160;<span id="projectnumber">1.6</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -114,26 +114,18 @@ $(document).ready(function(){initNavTree('mon_main_8cpp.html','');});
 <div class="title">monMain.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>appel des fonctions  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;Arduino.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="odometrie_8h_source.html">odometrie.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_p_i_d_8h_source.html">PID.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="moteur_8h_source.html">moteur.h</a>&quot;</code><br />
-<code>#include &quot;math.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="asservissement_8h_source.html">asservissement.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="asservissement_8h_source.html">asservissement.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="structures_8h_source.html">structures.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for monMain.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="mon_main_8cpp__incl.png" border="0" usemap="#_asservissement_2mon_main_2mon_main_8cpp" alt=""/></div>
 <map name="_asservissement_2mon_main_2mon_main_8cpp" id="_asservissement_2mon_main_2mon_main_8cpp">
-<area shape="rect" id="node3" href="odometrie_8h.html" title="Classe odometrie du grand robot. " alt="" coords="130,244,220,271"/>
-<area shape="rect" id="node4" href="structures_8h.html" title="definition des structures " alt="" coords="171,319,262,345"/>
-<area shape="rect" id="node5" href="_p_i_d_8h.html" title="Class PID Proportionnel Intégrateur Dérivateur du grand robot. " alt="" coords="228,169,284,196"/>
-<area shape="rect" id="node6" href="moteur_8h.html" title="Classe moteur du grand robot. " alt="" coords="130,169,204,196"/>
-<area shape="rect" id="node8" href="asservissement_8h.html" title="entête classe asservissement du grand robot " alt="" coords="32,95,158,121"/>
+<area shape="rect" id="node2" href="asservissement_8h.html" title="entête classe asservissement du grand robot " alt="" coords="144,95,269,121"/>
+<area shape="rect" id="node3" href="structures_8h.html" title="definition des structures " alt="" coords="235,319,325,345"/>
+<area shape="rect" id="node4" href="odometrie_8h.html" title="Classe odometrie du grand robot. " alt="" coords="127,244,217,271"/>
+<area shape="rect" id="node5" href="moteur_8h.html" title="Classe moteur du grand robot. " alt="" coords="63,169,137,196"/>
+<area shape="rect" id="node7" href="_p_i_d_8h.html" title="Class PID Proportionnel Intégrateur Dérivateur du grand robot. " alt="" coords="212,169,268,196"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -141,33 +133,44 @@ Include dependency graph for monMain.cpp:</div>
 Macros</h2></td></tr>
 <tr class="memitem:ad67b7981a5b5c479cd25328af2db4a3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ad67b7981a5b5c479cd25328af2db4a3a">TEMPS</a>&#160;&#160;&#160;115</td></tr>
 <tr class="separator:ad67b7981a5b5c479cd25328af2db4a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f2059fc548c26d545b4eb5598fa803"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a26f2059fc548c26d545b4eb5598fa803">encoder0PinA_L</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a26f2059fc548c26d545b4eb5598fa803"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a26f2059fc548c26d545b4eb5598fa803">encoder0PinA_L</a>&#160;&#160;&#160;21</td></tr>
 <tr class="separator:a26f2059fc548c26d545b4eb5598fa803"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18caec9e799348da27682644db37845a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a18caec9e799348da27682644db37845a">encoder0PinB_L</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memitem:a18caec9e799348da27682644db37845a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a18caec9e799348da27682644db37845a">encoder0PinB_L</a>&#160;&#160;&#160;22</td></tr>
 <tr class="separator:a18caec9e799348da27682644db37845a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6293b53a53c5254d6c4529f0b17154f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ac6293b53a53c5254d6c4529f0b17154f">encoder0PinA_R</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memitem:ac6293b53a53c5254d6c4529f0b17154f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ac6293b53a53c5254d6c4529f0b17154f">encoder0PinA_R</a>&#160;&#160;&#160;30</td></tr>
 <tr class="separator:ac6293b53a53c5254d6c4529f0b17154f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2f5b87ca0d03ad1b97f14abfa2204fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ae2f5b87ca0d03ad1b97f14abfa2204fd">encoder0PinB_R</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memitem:ae2f5b87ca0d03ad1b97f14abfa2204fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ae2f5b87ca0d03ad1b97f14abfa2204fd">encoder0PinB_R</a>&#160;&#160;&#160;31</td></tr>
 <tr class="separator:ae2f5b87ca0d03ad1b97f14abfa2204fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2584eb935b656c6ce6edc3b579d3014d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a2584eb935b656c6ce6edc3b579d3014d">doEncoderA_L</a> ()</td></tr>
-<tr class="separator:a2584eb935b656c6ce6edc3b579d3014d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2ab319f8350e25710ebb8d8808f9683"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ab2ab319f8350e25710ebb8d8808f9683">doEncoderA_R</a> ()</td></tr>
-<tr class="separator:ab2ab319f8350e25710ebb8d8808f9683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4326d2b30ee20f6b19dcdbe51a756b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ab4326d2b30ee20f6b19dcdbe51a756b0">doEncoderB_L</a> ()</td></tr>
-<tr class="separator:ab4326d2b30ee20f6b19dcdbe51a756b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bda46e80de7bb3dfd4f0b1593f60987"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a8bda46e80de7bb3dfd4f0b1593f60987">doEncoderB_R</a> ()</td></tr>
-<tr class="separator:a8bda46e80de7bb3dfd4f0b1593f60987"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63820377a5e832d8b2532444a50c0e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a63820377a5e832d8b2532444a50c0e95">errorLT</a> ()</td></tr>
-<tr class="separator:a63820377a5e832d8b2532444a50c0e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction setup d'arduino  <a href="#a4fc01d736fe50cf5b977f755b675f11d">More...</a><br /></td></tr>
 <tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction loop d'arduino  <a href="#afe461d27b9c48d5921c00d521181f12f">More...</a><br /></td></tr>
 <tr class="separator:afe461d27b9c48d5921c00d521181f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6652f91295ce906a8c01c8e54838c647"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a6652f91295ce906a8c01c8e54838c647">keepPosition</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a01bbbc37cd4af521f5f5723d3ef38078">roueCodeuse</a>, <a class="el" href="class_asservissement.html">Asservissement</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>, <a class="el" href="class_odometrie.html">Odometrie</a> <a class="el" href="mon_main_8cpp.html#a63e9b2f84e6956baedf61c72bb979d30">roue</a>, <a class="el" href="struct_tick.html">Tick</a> <a class="el" href="mon_main_8cpp.html#a8f98065fd6bcc83a4240976034f13e3b">codeuse</a>)</td></tr>
+<tr class="memdesc:a6652f91295ce906a8c01c8e54838c647"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui fait attendre le robotà la même position  <a href="#a6652f91295ce906a8c01c8e54838c647">More...</a><br /></td></tr>
+<tr class="separator:a6652f91295ce906a8c01c8e54838c647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a1ed5f9745d9264abac48c41918c5de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a9a1ed5f9745d9264abac48c41918c5de">square</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a01bbbc37cd4af521f5f5723d3ef38078">roueCodeuse</a>, <a class="el" href="class_asservissement.html">Asservissement</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>, <a class="el" href="class_odometrie.html">Odometrie</a> <a class="el" href="mon_main_8cpp.html#a63e9b2f84e6956baedf61c72bb979d30">roue</a>, <a class="el" href="struct_tick.html">Tick</a> <a class="el" href="mon_main_8cpp.html#a8f98065fd6bcc83a4240976034f13e3b">codeuse</a>)</td></tr>
+<tr class="memdesc:a9a1ed5f9745d9264abac48c41918c5de"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui fait faire un carré au robot  <a href="#a9a1ed5f9745d9264abac48c41918c5de">More...</a><br /></td></tr>
 <tr class="separator:a9a1ed5f9745d9264abac48c41918c5de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63820377a5e832d8b2532444a50c0e95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a63820377a5e832d8b2532444a50c0e95">errorLT</a> ()</td></tr>
+<tr class="memdesc:a63820377a5e832d8b2532444a50c0e95"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui calcule l'erreur de position et met à jour roue codeuse  <a href="#a63820377a5e832d8b2532444a50c0e95">More...</a><br /></td></tr>
+<tr class="separator:a63820377a5e832d8b2532444a50c0e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2584eb935b656c6ce6edc3b579d3014d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a2584eb935b656c6ce6edc3b579d3014d">doEncoderA_L</a> ()</td></tr>
+<tr class="memdesc:a2584eb935b656c6ce6edc3b579d3014d"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui relève le nombre de ticks  <a href="#a2584eb935b656c6ce6edc3b579d3014d">More...</a><br /></td></tr>
+<tr class="separator:a2584eb935b656c6ce6edc3b579d3014d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4326d2b30ee20f6b19dcdbe51a756b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ab4326d2b30ee20f6b19dcdbe51a756b0">doEncoderB_L</a> ()</td></tr>
+<tr class="memdesc:ab4326d2b30ee20f6b19dcdbe51a756b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui relève le nombre de ticks  <a href="#ab4326d2b30ee20f6b19dcdbe51a756b0">More...</a><br /></td></tr>
+<tr class="separator:ab4326d2b30ee20f6b19dcdbe51a756b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ab319f8350e25710ebb8d8808f9683"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ab2ab319f8350e25710ebb8d8808f9683">doEncoderA_R</a> ()</td></tr>
+<tr class="memdesc:ab2ab319f8350e25710ebb8d8808f9683"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui relève le nombre de ticks  <a href="#ab2ab319f8350e25710ebb8d8808f9683">More...</a><br /></td></tr>
+<tr class="separator:ab2ab319f8350e25710ebb8d8808f9683"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bda46e80de7bb3dfd4f0b1593f60987"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a8bda46e80de7bb3dfd4f0b1593f60987">doEncoderB_R</a> ()</td></tr>
+<tr class="memdesc:a8bda46e80de7bb3dfd4f0b1593f60987"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui relève le nombre de ticks  <a href="#a8bda46e80de7bb3dfd4f0b1593f60987">More...</a><br /></td></tr>
+<tr class="separator:a8bda46e80de7bb3dfd4f0b1593f60987"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a753a4eedbf97c3c3127ab154c88cf6e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#a753a4eedbf97c3c3127ab154c88cf6e7">interruptionEncodeurs</a> ()</td></tr>
 <tr class="separator:a753a4eedbf97c3c3127ab154c88cf6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -208,16 +211,13 @@ Variables</h2></td></tr>
 <tr class="memitem:ab281bfb4abd786b4e3aba8af40efd5f7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mon_main_8cpp.html#ab281bfb4abd786b4e3aba8af40efd5f7">DoAngle</a></td></tr>
 <tr class="separator:ab281bfb4abd786b4e3aba8af40efd5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>appel des fonctions </p>
-<p>Par: Nicolas SOBCZAK Octobre 2016 </p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a26f2059fc548c26d545b4eb5598fa803"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define encoder0PinA_L&#160;&#160;&#160;1</td>
+          <td class="memname">#define encoder0PinA_L&#160;&#160;&#160;21</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -229,7 +229,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define encoder0PinA_R&#160;&#160;&#160;3</td>
+          <td class="memname">#define encoder0PinA_R&#160;&#160;&#160;30</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -241,7 +241,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define encoder0PinB_L&#160;&#160;&#160;2</td>
+          <td class="memname">#define encoder0PinB_L&#160;&#160;&#160;22</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -253,7 +253,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define encoder0PinB_R&#160;&#160;&#160;4</td>
+          <td class="memname">#define encoder0PinB_R&#160;&#160;&#160;31</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -285,12 +285,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nothing</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>fonction qui relève le nombre de ticks </p>
 
 </div>
 </div>
@@ -306,12 +302,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nothing</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>fonction qui relève le nombre de ticks </p>
 
 </div>
 </div>
@@ -327,12 +319,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nothing</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>fonction qui relève le nombre de ticks </p>
 
 </div>
 </div>
@@ -348,12 +336,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nothing</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>fonction qui relève le nombre de ticks </p>
+<p>fonction interruption pour encodeurs </p>
 
 </div>
 </div>
@@ -369,12 +354,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nothing</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>fonction qui calcule l'erreur de position et met à jour roue codeuse </p>
 
 </div>
 </div>
@@ -393,6 +374,52 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6652f91295ce906a8c01c8e54838c647"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void keepPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_position.html">Position</a>&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_position.html">Position</a>&#160;</td>
+          <td class="paramname"><em>roueCodeuse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_asservissement.html">Asservissement</a>&#160;</td>
+          <td class="paramname"><em>robot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_odometrie.html">Odometrie</a>&#160;</td>
+          <td class="paramname"><em>roue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_tick.html">Tick</a>&#160;</td>
+          <td class="paramname"><em>codeuse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui fait attendre le robotà la même position </p>
+
+</div>
+</div>
 <a class="anchor" id="afe461d27b9c48d5921c00d521181f12f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -400,11 +427,15 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void loop </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction loop d'arduino </p>
+<p>Fonction loop d'arduino. </p>
 
 </div>
 </div>
@@ -415,11 +446,15 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void setup </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction setup d'arduino </p>
+<p>Fonction setup d'arduino. </p>
 
 </div>
 </div>
@@ -464,6 +499,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>fonction qui fait faire un carré au robot </p>
 
 </div>
 </div>

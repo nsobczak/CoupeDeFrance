@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.4</span>
+   &#160;<span id="projectnumber">1.6</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -115,20 +115,38 @@ $(document).ready(function(){initNavTree('_bot_menu_8cpp.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Code d'affichage de l'écran. Définition des menus, sous-menus et de l'affichage des valeurs.  
+<p>Code d'affichage de l'écran.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;U8glib.h&quot;</code><br />
-<code>#include &quot;M2tk.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_m2tk_8h_source.html">M2tk.h</a>&quot;</code><br />
 <code>#include &quot;utility/m2ghu8g.h&quot;</code><br />
 <code>#include &quot;utility/mas.h&quot;</code><br />
+<code>#include &lt;Wire.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="i2c_communication_8h_source.html">i2cCommunication.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for BotMenu.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="_bot_menu_8cpp__incl.png" border="0" usemap="#_ecran_2_bot_menu_2_bot_menu_8cpp" alt=""/></div>
+<map name="_ecran_2_bot_menu_2_bot_menu_8cpp" id="_ecran_2_bot_menu_2_bot_menu_8cpp">
+<area shape="rect" id="node3" href="_m2tk_8h.html" title="M2tk.h" alt="" coords="100,80,163,107"/>
+<area shape="rect" id="node8" href="i2c_communication_8h.html" title="Bibliothèque de communication i2c. " alt="" coords="501,80,642,107"/>
+</map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:af5cd66db4f799ff4f8d9c9cc5c8a8879"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#af5cd66db4f799ff4f8d9c9cc5c8a8879">_SENDADRESS_01_</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:af5cd66db4f799ff4f8d9c9cc5c8a8879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f6c63aa3c36d633383ac36e3239725"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ac2f6c63aa3c36d633383ac36e3239725">_RECEIVEADRESS_01_</a>&#160;&#160;&#160;9</td></tr>
+<tr class="separator:ac2f6c63aa3c36d633383ac36e3239725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94dd4d2aa9af21f698124de3905e2e46"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a94dd4d2aa9af21f698124de3905e2e46">_SENDADRESS_02_</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a94dd4d2aa9af21f698124de3905e2e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46ca1d0f95a8bc1de689e513d21a1564"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a46ca1d0f95a8bc1de689e513d21a1564">_RECEIVEADRESS_02_</a>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:a46ca1d0f95a8bc1de689e513d21a1564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64f7f1fb93f02776c1f8891c899183f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#af64f7f1fb93f02776c1f8891c899183f">_SENDADRESS_03_</a>&#160;&#160;&#160;12</td></tr>
+<tr class="separator:af64f7f1fb93f02776c1f8891c899183f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c365f09716e8f8907513dc2e0607464"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a4c365f09716e8f8907513dc2e0607464">_RECEIVEADRESS_03_</a>&#160;&#160;&#160;13</td></tr>
+<tr class="separator:a4c365f09716e8f8907513dc2e0607464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a8ae01755757f685a7bf2046e7ad0fa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>&#160;&#160;&#160;3</td></tr>
 <tr class="separator:a8a8ae01755757f685a7bf2046e7ad0fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43524150be17f4503696e20469ef8fae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a43524150be17f4503696e20469ef8fae">FS_EXTRA_MENUES</a>&#160;&#160;&#160;1</td></tr>
@@ -138,8 +156,11 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a07c3d55765da80fdd09d989aad03d574"><td class="memItemLeft" align="right" valign="top">U8GLIB_ST7920_128X64_1X&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a07c3d55765da80fdd09d989aad03d574">u8g</a> (13, 51, 14)</td></tr>
 <tr class="separator:a07c3d55765da80fdd09d989aad03d574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af62487259379aca5c16217d4a02ec68a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#af62487259379aca5c16217d4a02ec68a">M2_EXTERN_ALIGN</a> (<a class="el" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>)</td></tr>
+<tr class="memitem:af62487259379aca5c16217d4a02ec68a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#af62487259379aca5c16217d4a02ec68a">M2_EXTERN_ALIGN</a> (<a class="el" href="_bot_menu_initial_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>)</td></tr>
 <tr class="separator:af62487259379aca5c16217d4a02ec68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a939737f6bc2673dfd55e03aca8a3c663"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a939737f6bc2673dfd55e03aca8a3c663">fn_start_robot</a> (m2_el_fnarg_p fnarg)</td></tr>
+<tr class="memdesc:a939737f6bc2673dfd55e03aca8a3c663"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui lance le robot avec les paramètres sélctionnées par la stratégie  <a href="#a939737f6bc2673dfd55e03aca8a3c663">More...</a><br /></td></tr>
+<tr class="separator:a939737f6bc2673dfd55e03aca8a3c663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c4effd4d74ecf4150ec6a31d516123b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a1c4effd4d74ecf4150ec6a31d516123b">M2_LABEL</a> (el_rb_label1, NULL,&quot;strategie 1&quot;)</td></tr>
 <tr class="separator:a1c4effd4d74ecf4150ec6a31d516123b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7150e78d610265088a20b1e247765d0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7150e78d610265088a20b1e247765d0d">M2_RADIO</a> (el_rb_radio1,&quot;v0&quot;,&amp;rb_select_strat)</td></tr>
@@ -156,14 +177,61 @@ Functions</h2></td></tr>
 <tr class="separator:afcea0f0e37923f529c97883dcdc65f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa775db7c4a76aea89f67d2001949e146"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aa775db7c4a76aea89f67d2001949e146">M2_RADIO</a> (el_rb_radio4,&quot;v3&quot;,&amp;rb_select_strat)</td></tr>
 <tr class="separator:aa775db7c4a76aea89f67d2001949e146"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada6d4ee05a83b31b6050eaede6be5374"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ada6d4ee05a83b31b6050eaede6be5374">M2_ROOT</a> (el_rb_goto_top, NULL,&quot; back &quot;,&amp;top_el_expandable_menu)</td></tr>
-<tr class="separator:ada6d4ee05a83b31b6050eaede6be5374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28663243e629060ba31e28a1745c4d7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a28663243e629060ba31e28a1745c4d7d">M2_ROOT</a> (el_rb_goto_top, NULL,&quot; Back &quot;,&amp;top_el_expandable_menu)</td></tr>
+<tr class="separator:a28663243e629060ba31e28a1745c4d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacc81ec529c7dd1782bdd3be1067a019"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aacc81ec529c7dd1782bdd3be1067a019">M2_BUTTON</a> (el_start_robot,&quot;f4&quot;,&quot;Go&quot;, fn_start_robot)</td></tr>
+<tr class="separator:aacc81ec529c7dd1782bdd3be1067a019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47b2da578d9dc1fadf44bf22ca4c5c77"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a47b2da578d9dc1fadf44bf22ca4c5c77">M2_LIST</a> (list_rb)</td></tr>
 <tr class="separator:a47b2da578d9dc1fadf44bf22ca4c5c77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a457743ec7408450a5c866f247cd22286"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a457743ec7408450a5c866f247cd22286">M2_GRIDLIST</a> (el_rb_grid,&quot;c2&quot;, list_rb)</td></tr>
 <tr class="separator:a457743ec7408450a5c866f247cd22286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb54762bc9eda52c61ecdc5793ec1907"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#adb54762bc9eda52c61ecdc5793ec1907">M2_ALIGN</a> (el_top_rb,&quot;-1|1W64H64&quot;,&amp;el_rb_grid)</td></tr>
 <tr class="separator:adb54762bc9eda52c61ecdc5793ec1907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7ca3196108dc21ff23f4a4216cf5dac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ac7ca3196108dc21ff23f4a4216cf5dac">fn_num_zero</a> (m2_el_fnarg_p fnarg)</td></tr>
+<tr class="memdesc:ac7ca3196108dc21ff23f4a4216cf5dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de remise à zero des valeurs.  <a href="#ac7ca3196108dc21ff23f4a4216cf5dac">More...</a><br /></td></tr>
+<tr class="separator:ac7ca3196108dc21ff23f4a4216cf5dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81c764a9c718ebb9a3ff1ba0c71d912e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a81c764a9c718ebb9a3ff1ba0c71d912e">fn_num_go_i2c</a> (m2_el_fnarg_p fnarg)</td></tr>
+<tr class="memdesc:a81c764a9c718ebb9a3ff1ba0c71d912e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de test i2c.  <a href="#a81c764a9c718ebb9a3ff1ba0c71d912e">More...</a><br /></td></tr>
+<tr class="separator:a81c764a9c718ebb9a3ff1ba0c71d912e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55911d39f16e4d5d0ed9b071491fe432"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a55911d39f16e4d5d0ed9b071491fe432">fn_num_go_pince</a> (m2_el_fnarg_p fnarg)</td></tr>
+<tr class="memdesc:a55911d39f16e4d5d0ed9b071491fe432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de test de la pince avec l'i2c.  <a href="#a55911d39f16e4d5d0ed9b071491fe432">More...</a><br /></td></tr>
+<tr class="separator:a55911d39f16e4d5d0ed9b071491fe432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3daa09d8e9eec18f3495a1dc333da207"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a3daa09d8e9eec18f3495a1dc333da207">M2_LABEL</a> (el_num_label1, NULL,&quot;Variable:&quot;)</td></tr>
+<tr class="separator:a3daa09d8e9eec18f3495a1dc333da207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f3f5ed52abcd4738e1c50b0a231769b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a3f3f5ed52abcd4738e1c50b0a231769b">M2_U32NUM</a> (el_num_1,&quot;c3&quot;,&amp;num_1)</td></tr>
+<tr class="separator:a3f3f5ed52abcd4738e1c50b0a231769b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ade51a634ad11d7be87073f56ac0efe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7ade51a634ad11d7be87073f56ac0efe">M2_BUTTON</a> (el_num_zero,&quot;f4&quot;,&quot; zero &quot;, fn_num_zero)</td></tr>
+<tr class="separator:a7ade51a634ad11d7be87073f56ac0efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fab2e3cdca2afa69ce2d0cac53131e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a0fab2e3cdca2afa69ce2d0cac53131e3">M2_BUTTON</a> (el_num_go_i2c,&quot;f4&quot;,&quot; I2C test &quot;, fn_num_go_i2c)</td></tr>
+<tr class="separator:a0fab2e3cdca2afa69ce2d0cac53131e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80770c1e7ce22f0e4a7ab977f8fd6a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ac80770c1e7ce22f0e4a7ab977f8fd6a7">M2_BUTTON</a> (el_num_go_pince,&quot;f4&quot;,&quot; I2C pince &quot;, fn_num_go_pince)</td></tr>
+<tr class="separator:ac80770c1e7ce22f0e4a7ab977f8fd6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b7b6e72f9f4230dd3f0f6b340feee75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7b7b6e72f9f4230dd3f0f6b340feee75">M2_ROOT</a> (el_num_goto_top,&quot;f4&quot;,&quot; back &quot;,&amp;top_el_expandable_menu)</td></tr>
+<tr class="separator:a7b7b6e72f9f4230dd3f0f6b340feee75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6751994684394efb1b010843b57c7100"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a6751994684394efb1b010843b57c7100">M2_LIST</a> (num_list_1)</td></tr>
+<tr class="separator:a6751994684394efb1b010843b57c7100"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ec908ee01cd1c9fccaae5de088cda5b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a5ec908ee01cd1c9fccaae5de088cda5b">M2_GRIDLIST</a> (el_num_menu_grid,&quot;c2&quot;, num_list_1)</td></tr>
+<tr class="separator:a5ec908ee01cd1c9fccaae5de088cda5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841601b2d46f5d977ec1432d9a6e5ac9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a841601b2d46f5d977ec1432d9a6e5ac9">M2_ALIGN</a> (el_top_num_menu,&quot;-1|1W64H64&quot;,&amp;el_num_menu_grid)</td></tr>
+<tr class="separator:a841601b2d46f5d977ec1432d9a6e5ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2b92e87a623b39a50adbc46ab57d457"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ad2b92e87a623b39a50adbc46ab57d457">M2_LIST</a> (num_list_2)</td></tr>
+<tr class="separator:ad2b92e87a623b39a50adbc46ab57d457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc592d5641aebdece63b6b1f850d97f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a5bc592d5641aebdece63b6b1f850d97f">M2_GRIDLIST</a> (el_num_menu_grid_2,&quot;c2&quot;, num_list_2)</td></tr>
+<tr class="separator:a5bc592d5641aebdece63b6b1f850d97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423d7853e7d5dd9441803835ab783e8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a423d7853e7d5dd9441803835ab783e8d">M2_ALIGN</a> (el_top_num_menu_2,&quot;-1|1W64H64&quot;,&amp;el_num_menu_grid_2)</td></tr>
+<tr class="separator:a423d7853e7d5dd9441803835ab783e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef16a7ab93977d04bc1a962d6603da06"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aef16a7ab93977d04bc1a962d6603da06">el_muse_strlist_cb</a> (uint8_t idx, uint8_t msg)</td></tr>
+<tr class="separator:aef16a7ab93977d04bc1a962d6603da06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81f91a581a07e222091c42a5513cb6e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a81f91a581a07e222091c42a5513cb6e6">M2_STRLIST</a> (el_muse_strlist,&quot;l3F0E10W46&quot;,&amp;el_muse_first,&amp;<a class="el" href="_bot_menu_initial_8cpp.html#a07b88d5df5744351231abe9309fb7cbb">el_muse_cnt</a>, <a class="el" href="_bot_menu_initial_8cpp.html#aef16a7ab93977d04bc1a962d6603da06">el_muse_strlist_cb</a>)</td></tr>
+<tr class="separator:a81f91a581a07e222091c42a5513cb6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a7274e7842ddc8d12cb0f86ebe9b17b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a8a7274e7842ddc8d12cb0f86ebe9b17b">M2_ROOT</a> (el_muse_goto_top,&quot;f4&quot;,&quot;Goto Top Menu&quot;,&amp;top_el_expandable_menu)</td></tr>
+<tr class="separator:a8a7274e7842ddc8d12cb0f86ebe9b17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09b63aa7d1b8f123001a2a7da1e20b88"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a09b63aa7d1b8f123001a2a7da1e20b88">M2_LIST</a> (muse_list)</td></tr>
+<tr class="separator:a09b63aa7d1b8f123001a2a7da1e20b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ae44dc4a1019a63d45317f7d555b4ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a4ae44dc4a1019a63d45317f7d555b4ac">M2_VLIST</a> (el_muse_vlist,&quot;c2&quot;, muse_list)</td></tr>
+<tr class="separator:a4ae44dc4a1019a63d45317f7d555b4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7304214e0fe657f4ea25ed16f92d1063"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7304214e0fe657f4ea25ed16f92d1063">M2_ALIGN</a> (top_el_muse,&quot;-1|1W64H64&quot;,&amp;el_muse_vlist)</td></tr>
+<tr class="separator:a7304214e0fe657f4ea25ed16f92d1063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e6529d2af7c3733a2a539d33f51d396"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7e6529d2af7c3733a2a539d33f51d396">fn_ok</a> (m2_el_fnarg_p fnarg)</td></tr>
 <tr class="separator:a7e6529d2af7c3733a2a539d33f51d396"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a3c6fcc095a1d9db5dbdde7f8d3fc4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a8a3c6fcc095a1d9db5dbdde7f8d3fc4d">fn_cancel</a> (m2_el_fnarg_p fnarg)</td></tr>
@@ -174,11 +242,11 @@ Functions</h2></td></tr>
 <tr class="separator:a4ec9ca795394ccbd02d19cece9c659f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a048e6476c5c71bc6b80e8c8a6dc60548"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a048e6476c5c71bc6b80e8c8a6dc60548">M2_LABEL</a> (el_label1, NULL,&quot;Init:&quot;)</td></tr>
 <tr class="separator:a048e6476c5c71bc6b80e8c8a6dc60548"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21177c1577c5cd09e20aca3ad44b22d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a21177c1577c5cd09e20aca3ad44b22d6">M2_COMBO</a> (el_combo1, NULL,&amp;<a class="el" href="_bot_menu_8cpp.html#abbeca923f2d2ec29b4d86d393aff62a5">select_coord</a>, 2, <a class="el" href="_bot_menu_8cpp.html#a8efda50d6409985342bc143c499f0cee">fn_idx_to_color</a>)</td></tr>
+<tr class="memitem:a21177c1577c5cd09e20aca3ad44b22d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a21177c1577c5cd09e20aca3ad44b22d6">M2_COMBO</a> (el_combo1, NULL,&amp;<a class="el" href="_bot_menu_initial_8cpp.html#abbeca923f2d2ec29b4d86d393aff62a5">select_coord</a>, 2, <a class="el" href="_bot_menu_initial_8cpp.html#a8efda50d6409985342bc143c499f0cee">fn_idx_to_color</a>)</td></tr>
 <tr class="separator:a21177c1577c5cd09e20aca3ad44b22d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a719fcc808c018e31d5b05b739489ee91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a719fcc808c018e31d5b05b739489ee91">M2_LABEL</a> (el_label2, NULL,&quot;Priority: &quot;)</td></tr>
 <tr class="separator:a719fcc808c018e31d5b05b739489ee91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5430df459861545d5d558961430e336"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ad5430df459861545d5d558961430e336">M2_COMBO</a> (el_combo2,&quot;v1&quot;,&amp;select_priority, 5, <a class="el" href="_bot_menu_8cpp.html#a4ec9ca795394ccbd02d19cece9c659f5">fn_idx_to_priority</a>)</td></tr>
+<tr class="memitem:ad5430df459861545d5d558961430e336"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ad5430df459861545d5d558961430e336">M2_COMBO</a> (el_combo2,&quot;v1&quot;,&amp;select_priority, 5, <a class="el" href="_bot_menu_initial_8cpp.html#a4ec9ca795394ccbd02d19cece9c659f5">fn_idx_to_priority</a>)</td></tr>
 <tr class="separator:ad5430df459861545d5d558961430e336"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4cbf3c26b6a7c6336f6fab72455c0e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aa4cbf3c26b6a7c6336f6fab72455c0e8">M2_BUTTON</a> (el_cancel,&quot;f4&quot;,&quot;cancel&quot;, fn_cancel)</td></tr>
 <tr class="separator:aa4cbf3c26b6a7c6336f6fab72455c0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,45 +258,38 @@ Functions</h2></td></tr>
 <tr class="separator:ae359a4daa22631b7832c9966ba607d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2c9ee4286f64407a9200a3d2158bb39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aa2c9ee4286f64407a9200a3d2158bb39">M2_ALIGN</a> (el_top_combo,&quot;-1|1W64H64&quot;,&amp;el_combo_grid)</td></tr>
 <tr class="separator:aa2c9ee4286f64407a9200a3d2158bb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7ca3196108dc21ff23f4a4216cf5dac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ac7ca3196108dc21ff23f4a4216cf5dac">fn_num_zero</a> (m2_el_fnarg_p fnarg)</td></tr>
-<tr class="separator:ac7ca3196108dc21ff23f4a4216cf5dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fe8da54d2d835c526eab6691aa0a1be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7fe8da54d2d835c526eab6691aa0a1be">M2_LABEL</a> (el_num_label1, NULL,&quot;U8:&quot;)</td></tr>
-<tr class="separator:a7fe8da54d2d835c526eab6691aa0a1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a854f41500e9ed28b54658fb117a08018"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a854f41500e9ed28b54658fb117a08018">M2_U8NUM</a> (el_num_1, NULL, 0, 255,&amp;<a class="el" href="_bot_menu_8cpp.html#ae1a379f64e9164eb29ce491d5097bc30">u8num</a>)</td></tr>
-<tr class="separator:a854f41500e9ed28b54658fb117a08018"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab148e4d5de8e32b6565e5f2407400c59"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ab148e4d5de8e32b6565e5f2407400c59">M2_LABEL</a> (el_num_label2, NULL,&quot;U32:&quot;)</td></tr>
-<tr class="separator:ab148e4d5de8e32b6565e5f2407400c59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebe2c2388e6904e4090639d8c5cd95b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aebe2c2388e6904e4090639d8c5cd95b5">M2_U32NUM</a> (el_num_2,&quot;c5&quot;,&amp;u32num)</td></tr>
-<tr class="separator:aebe2c2388e6904e4090639d8c5cd95b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ade51a634ad11d7be87073f56ac0efe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7ade51a634ad11d7be87073f56ac0efe">M2_BUTTON</a> (el_num_zero,&quot;f4&quot;,&quot; zero &quot;, fn_num_zero)</td></tr>
-<tr class="separator:a7ade51a634ad11d7be87073f56ac0efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b7b6e72f9f4230dd3f0f6b340feee75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7b7b6e72f9f4230dd3f0f6b340feee75">M2_ROOT</a> (el_num_goto_top,&quot;f4&quot;,&quot; back &quot;,&amp;top_el_expandable_menu)</td></tr>
-<tr class="separator:a7b7b6e72f9f4230dd3f0f6b340feee75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab564aaf40e80b104ceca35834190c79e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ab564aaf40e80b104ceca35834190c79e">M2_LIST</a> (num_list)</td></tr>
-<tr class="separator:ab564aaf40e80b104ceca35834190c79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4470c9dc2d9540d27acb1e456ea013f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a4470c9dc2d9540d27acb1e456ea013f7">M2_GRIDLIST</a> (el_num_menu_grid,&quot;c2&quot;, num_list)</td></tr>
-<tr class="separator:a4470c9dc2d9540d27acb1e456ea013f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a841601b2d46f5d977ec1432d9a6e5ac9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a841601b2d46f5d977ec1432d9a6e5ac9">M2_ALIGN</a> (el_top_num_menu,&quot;-1|1W64H64&quot;,&amp;el_num_menu_grid)</td></tr>
-<tr class="separator:a841601b2d46f5d977ec1432d9a6e5ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef16a7ab93977d04bc1a962d6603da06"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aef16a7ab93977d04bc1a962d6603da06">el_muse_strlist_cb</a> (uint8_t idx, uint8_t msg)</td></tr>
-<tr class="separator:aef16a7ab93977d04bc1a962d6603da06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81f91a581a07e222091c42a5513cb6e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a81f91a581a07e222091c42a5513cb6e6">M2_STRLIST</a> (el_muse_strlist,&quot;l3F0E10W46&quot;,&amp;el_muse_first,&amp;<a class="el" href="_bot_menu_8cpp.html#a07b88d5df5744351231abe9309fb7cbb">el_muse_cnt</a>, <a class="el" href="_bot_menu_8cpp.html#aef16a7ab93977d04bc1a962d6603da06">el_muse_strlist_cb</a>)</td></tr>
-<tr class="separator:a81f91a581a07e222091c42a5513cb6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a7274e7842ddc8d12cb0f86ebe9b17b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a8a7274e7842ddc8d12cb0f86ebe9b17b">M2_ROOT</a> (el_muse_goto_top,&quot;f4&quot;,&quot;Goto Top Menu&quot;,&amp;top_el_expandable_menu)</td></tr>
-<tr class="separator:a8a7274e7842ddc8d12cb0f86ebe9b17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09b63aa7d1b8f123001a2a7da1e20b88"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a09b63aa7d1b8f123001a2a7da1e20b88">M2_LIST</a> (muse_list)</td></tr>
-<tr class="separator:a09b63aa7d1b8f123001a2a7da1e20b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ae44dc4a1019a63d45317f7d555b4ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a4ae44dc4a1019a63d45317f7d555b4ac">M2_VLIST</a> (el_muse_vlist,&quot;c2&quot;, muse_list)</td></tr>
-<tr class="separator:a4ae44dc4a1019a63d45317f7d555b4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7304214e0fe657f4ea25ed16f92d1063"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7304214e0fe657f4ea25ed16f92d1063">M2_ALIGN</a> (top_el_muse,&quot;-1|1W64H64&quot;,&amp;el_muse_vlist)</td></tr>
-<tr class="separator:a7304214e0fe657f4ea25ed16f92d1063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dca451e2a7acedf6c6782d9d2f877cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a0dca451e2a7acedf6c6782d9d2f877cc">M2_LABEL</a> (el_num_label_debug_01, NULL,&quot;Var_1:&quot;)</td></tr>
+<tr class="separator:a0dca451e2a7acedf6c6782d9d2f877cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b798d3b9e361cc4f615aace1369456d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7b798d3b9e361cc4f615aace1369456d">M2_U32NUM</a> (el_num_debug_01,&quot;c3r1&quot;,&amp;global_value_01)</td></tr>
+<tr class="separator:a7b798d3b9e361cc4f615aace1369456d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579ab225376e8fa9cd680ba216aaaaff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a579ab225376e8fa9cd680ba216aaaaff">M2_LABEL</a> (el_num_label_debug_02, NULL,&quot;Var_2:&quot;)</td></tr>
+<tr class="separator:a579ab225376e8fa9cd680ba216aaaaff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a801fda39a4c8854efc60ecee448b2646"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a801fda39a4c8854efc60ecee448b2646">M2_U32NUM</a> (el_num_debug_02,&quot;c3r1&quot;,&amp;global_value_02)</td></tr>
+<tr class="separator:a801fda39a4c8854efc60ecee448b2646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ddccba908d992cde51adc3f3db84292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a6ddccba908d992cde51adc3f3db84292">fn_debug_update</a> (m2_el_fnarg_p fnarg)</td></tr>
+<tr class="memdesc:a6ddccba908d992cde51adc3f3db84292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction de test d'actualisation des valeurs.  <a href="#a6ddccba908d992cde51adc3f3db84292">More...</a><br /></td></tr>
+<tr class="separator:a6ddccba908d992cde51adc3f3db84292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79375da282ff4f83889082026ab3650e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a79375da282ff4f83889082026ab3650e">M2_BUTTON</a> (el_debug_update,&quot;f4&quot;,&quot;MAJ&quot;, fn_debug_update)</td></tr>
+<tr class="separator:a79375da282ff4f83889082026ab3650e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90b98e84a38d172f61ed7ba2fc94a75c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a90b98e84a38d172f61ed7ba2fc94a75c">M2_LIST</a> (num_list_debug_01)</td></tr>
+<tr class="separator:a90b98e84a38d172f61ed7ba2fc94a75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17c51087d533caf223e980becbd3eec0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a17c51087d533caf223e980becbd3eec0">M2_GRIDLIST</a> (el_num_list_debug_01,&quot;c4&quot;, num_list_debug_01)</td></tr>
+<tr class="separator:a17c51087d533caf223e980becbd3eec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19e30d0514edea178376a4bcfddec27a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a19e30d0514edea178376a4bcfddec27a">M2_ALIGN</a> (el_top_num_menu_debug_01,&quot;-1|1W64H64&quot;,&amp;el_num_list_debug_01)</td></tr>
+<tr class="separator:a19e30d0514edea178376a4bcfddec27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7f188b7a5f50ad6f68a443ca358f113"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ae7f188b7a5f50ad6f68a443ca358f113">M2_LIST</a> (num_list_debug_02)</td></tr>
+<tr class="separator:ae7f188b7a5f50ad6f68a443ca358f113"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57201f1047008022dbeb62657340c25b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a57201f1047008022dbeb62657340c25b">M2_GRIDLIST</a> (el_num_list_debug_02,&quot;c4&quot;, num_list_debug_02)</td></tr>
+<tr class="separator:a57201f1047008022dbeb62657340c25b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e3084e3ec3a0437a34ba417e8b7573b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a1e3084e3ec3a0437a34ba417e8b7573b">M2_ALIGN</a> (el_top_num_menu_debug_02,&quot;-1|1W64H64&quot;,&amp;el_num_list_debug_02)</td></tr>
+<tr class="separator:a1e3084e3ec3a0437a34ba417e8b7573b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55bc51910eb69f831b247234bac93237"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a55bc51910eb69f831b247234bac93237">fs_strlist_getstr</a> (uint8_t idx, uint8_t msg)</td></tr>
 <tr class="separator:a55bc51910eb69f831b247234bac93237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1320bdf0b85bd44a741b45ffd70ba4ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a1320bdf0b85bd44a741b45ffd70ba4ea">M2_STRLIST</a> (el_fs_strlist,&quot;l5F3e15W49&quot;,&amp;fs_m2tk_first,&amp;<a class="el" href="_bot_menu_8cpp.html#ae9a8725e62d13faf5e3a9e656d36fd5b">fs_m2tk_cnt</a>, <a class="el" href="_bot_menu_8cpp.html#a55bc51910eb69f831b247234bac93237">fs_strlist_getstr</a>)</td></tr>
+<tr class="memitem:a1320bdf0b85bd44a741b45ffd70ba4ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a1320bdf0b85bd44a741b45ffd70ba4ea">M2_STRLIST</a> (el_fs_strlist,&quot;l5F3e15W49&quot;,&amp;fs_m2tk_first,&amp;<a class="el" href="_bot_menu_initial_8cpp.html#ae9a8725e62d13faf5e3a9e656d36fd5b">fs_m2tk_cnt</a>, <a class="el" href="_bot_menu_initial_8cpp.html#a55bc51910eb69f831b247234bac93237">fs_strlist_getstr</a>)</td></tr>
 <tr class="separator:a1320bdf0b85bd44a741b45ffd70ba4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0f74a2fafe19453706f6146be191d0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aa0f74a2fafe19453706f6146be191d0c">M2_SPACE</a> (el_fs_space,&quot;W1h1&quot;)</td></tr>
 <tr class="separator:aa0f74a2fafe19453706f6146be191d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23efa26ebe1831f294483f4c70bbd4b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a23efa26ebe1831f294483f4c70bbd4b3">M2_VSB</a> (el_fs_strlist_vsb,&quot;l5W4r1&quot;,&amp;fs_m2tk_first,&amp;<a class="el" href="_bot_menu_8cpp.html#ae9a8725e62d13faf5e3a9e656d36fd5b">fs_m2tk_cnt</a>)</td></tr>
+<tr class="memitem:a23efa26ebe1831f294483f4c70bbd4b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a23efa26ebe1831f294483f4c70bbd4b3">M2_VSB</a> (el_fs_strlist_vsb,&quot;l5W4r1&quot;,&amp;fs_m2tk_first,&amp;<a class="el" href="_bot_menu_initial_8cpp.html#ae9a8725e62d13faf5e3a9e656d36fd5b">fs_m2tk_cnt</a>)</td></tr>
 <tr class="separator:a23efa26ebe1831f294483f4c70bbd4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f6a45d2d44c368a609e8ed5ff1cf4ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a4f6a45d2d44c368a609e8ed5ff1cf4ab">M2_LIST</a> (list_fs_strlist)</td></tr>
 <tr class="separator:a4f6a45d2d44c368a609e8ed5ff1cf4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,27 +297,36 @@ Functions</h2></td></tr>
 <tr class="separator:af9f7c8a691f00ef6e9afb0aa57abcf25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbf876d1ccdc80fec62116a80b483295"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#acbf876d1ccdc80fec62116a80b483295">M2_ALIGN</a> (el_top_fs,&quot;-1|1W64H64&quot;,&amp;el_fs_hlist)</td></tr>
 <tr class="separator:acbf876d1ccdc80fec62116a80b483295"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7c33b51b1c9054abb61d6b41afb5a82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ab7c33b51b1c9054abb61d6b41afb5a82">M2_2LMENU</a> (el_2lmenu,&quot;l4F3e15W43&quot;,&amp;m2_2lmenu_first,&amp;<a class="el" href="_bot_menu_8cpp.html#ab60295d1d8b0661791d63b9cd25a1376">m2_2lmenu_cnt</a>, <a class="el" href="_bot_menu_8cpp.html#a876bf7b2855095cbd1b600d4e8232ef9">m2_2lmenu_data</a>, 65, 102,'\0')</td></tr>
+<tr class="memitem:ab7c33b51b1c9054abb61d6b41afb5a82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ab7c33b51b1c9054abb61d6b41afb5a82">M2_2LMENU</a> (el_2lmenu,&quot;l4F3e15W43&quot;,&amp;m2_2lmenu_first,&amp;<a class="el" href="_bot_menu_initial_8cpp.html#ab60295d1d8b0661791d63b9cd25a1376">m2_2lmenu_cnt</a>, <a class="el" href="_bot_menu_initial_8cpp.html#a876bf7b2855095cbd1b600d4e8232ef9">m2_2lmenu_data</a>, 65, 102,'\0')</td></tr>
 <tr class="separator:ab7c33b51b1c9054abb61d6b41afb5a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cb79330c363e61be79e8da0a40dbef7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7cb79330c363e61be79e8da0a40dbef7">M2_SPACE</a> (el_space,&quot;W1h1&quot;)</td></tr>
 <tr class="separator:a7cb79330c363e61be79e8da0a40dbef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa898cac6b5e3473352c50b59a80a6db2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aa898cac6b5e3473352c50b59a80a6db2">M2_VSB</a> (el_vsb,&quot;l4W2r1&quot;,&amp;m2_2lmenu_first,&amp;<a class="el" href="_bot_menu_8cpp.html#ab60295d1d8b0661791d63b9cd25a1376">m2_2lmenu_cnt</a>)</td></tr>
+<tr class="memitem:aa898cac6b5e3473352c50b59a80a6db2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aa898cac6b5e3473352c50b59a80a6db2">M2_VSB</a> (el_vsb,&quot;l4W2r1&quot;,&amp;m2_2lmenu_first,&amp;<a class="el" href="_bot_menu_initial_8cpp.html#ab60295d1d8b0661791d63b9cd25a1376">m2_2lmenu_cnt</a>)</td></tr>
 <tr class="separator:aa898cac6b5e3473352c50b59a80a6db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe4b89a5e0e8e86dba5262193b170e3d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#abe4b89a5e0e8e86dba5262193b170e3d">M2_LIST</a> (list_2lmenu)</td></tr>
 <tr class="separator:abe4b89a5e0e8e86dba5262193b170e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addea46fee1b1abe0d8e66069ca1a8f2a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#addea46fee1b1abe0d8e66069ca1a8f2a">M2_HLIST</a> (el_hlist, NULL, list_2lmenu)</td></tr>
 <tr class="separator:addea46fee1b1abe0d8e66069ca1a8f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbd1d7187b0cae02377331b851e4c5e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#afbd1d7187b0cae02377331b851e4c5e9">M2_ALIGN</a> (<a class="el" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>,&quot;-1|1W64H64&quot;,&amp;el_hlist)</td></tr>
+<tr class="memitem:afbd1d7187b0cae02377331b851e4c5e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#afbd1d7187b0cae02377331b851e4c5e9">M2_ALIGN</a> (<a class="el" href="_bot_menu_initial_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>,&quot;-1|1W64H64&quot;,&amp;el_hlist)</td></tr>
 <tr class="separator:afbd1d7187b0cae02377331b851e4c5e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0ddbef32e3582352a3dfa86af6c071d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#af0ddbef32e3582352a3dfa86af6c071d">receiveEvent2</a> (int howMany)</td></tr>
+<tr class="separator:af0ddbef32e3582352a3dfa86af6c071d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaef6f073e1dfc92dc41837a414584928"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aaef6f073e1dfc92dc41837a414584928">i2creceive2</a> (int adresse)</td></tr>
+<tr class="separator:aaef6f073e1dfc92dc41837a414584928"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2e97e7b54d0bf35e406b91fbdd2f256"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ad2e97e7b54d0bf35e406b91fbdd2f256">draw</a> (void)</td></tr>
+<tr class="memdesc:ad2e97e7b54d0bf35e406b91fbdd2f256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw procedure.  <a href="#ad2e97e7b54d0bf35e406b91fbdd2f256">More...</a><br /></td></tr>
 <tr class="separator:ad2e97e7b54d0bf35e406b91fbdd2f256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dfd9b79bc5a37d7df40207afbc5431f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7dfd9b79bc5a37d7df40207afbc5431f">setup</a> (void)</td></tr>
+<tr class="memdesc:a7dfd9b79bc5a37d7df40207afbc5431f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction setup d'arduino.  <a href="#a7dfd9b79bc5a37d7df40207afbc5431f">More...</a><br /></td></tr>
 <tr class="separator:a7dfd9b79bc5a37d7df40207afbc5431f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction loop d'arduino.  <a href="#afe461d27b9c48d5921c00d521181f12f">More...</a><br /></td></tr>
 <tr class="separator:afe461d27b9c48d5921c00d521181f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:aa31755b733cb04ed5b320897c40f81ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#aa31755b733cb04ed5b320897c40f81ae">finInitialisationMoteur</a> = 0</td></tr>
+<tr class="separator:aa31755b733cb04ed5b320897c40f81ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb2364757d18ac2ee4f9650164df5e20"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#abb2364757d18ac2ee4f9650164df5e20">uiKeyUpPin</a> = 50</td></tr>
 <tr class="memdesc:abb2364757d18ac2ee4f9650164df5e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaration de l'encodeur (le bouton) const int entry = 2; const int encoderMoins = 52; const int encoderPlus = 50;.  <a href="#abb2364757d18ac2ee4f9650164df5e20">More...</a><br /></td></tr>
 <tr class="separator:abb2364757d18ac2ee4f9650164df5e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -268,22 +338,32 @@ Variables</h2></td></tr>
 <tr class="separator:ab24db6c2b2ea68b731b3021eef7da3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7061e6a209c61c081d2ce187646d2c32"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a7061e6a209c61c081d2ce187646d2c32">rb_select_strat</a> = 0</td></tr>
 <tr class="separator:a7061e6a209c61c081d2ce187646d2c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb12d19e8a40713b7c3312cd5949b03e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#afb12d19e8a40713b7c3312cd5949b03e">num_1</a> = 0</td></tr>
+<tr class="separator:afb12d19e8a40713b7c3312cd5949b03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d0c3bb87808484ffdcea6484accbecb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a0d0c3bb87808484ffdcea6484accbecb">num_2</a> = 0</td></tr>
+<tr class="separator:a0d0c3bb87808484ffdcea6484accbecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accd6d94b0fc37bd5c979672506ff6c1d"><td class="memItemLeft" align="right" valign="top">byte *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#accd6d94b0fc37bd5c979672506ff6c1d">dataI2C</a> = new byte[3]</td></tr>
+<tr class="separator:accd6d94b0fc37bd5c979672506ff6c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79e4701ac69371c6771e10d53d164927"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a79e4701ac69371c6771e10d53d164927">valueI2C</a> [2]</td></tr>
+<tr class="separator:a79e4701ac69371c6771e10d53d164927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5573b803a0f52328d0bd3bfc3c4ed214"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a5573b803a0f52328d0bd3bfc3c4ed214">recoveredValueI2C</a></td></tr>
+<tr class="separator:a5573b803a0f52328d0bd3bfc3c4ed214"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af58f7967409a75825ff1be36d694d648"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#af58f7967409a75825ff1be36d694d648">multi_select_strings</a> [<a class="el" href="_bot_menu_initial_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { &quot;value01&quot;, &quot;value02&quot;, &quot;value03&quot; }</td></tr>
+<tr class="separator:af58f7967409a75825ff1be36d694d648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aa6a749f4aeb615d010b94f06eccece"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a5aa6a749f4aeb615d010b94f06eccece">multi_select_status</a> [<a class="el" href="_bot_menu_initial_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { 0, 0, 0}</td></tr>
+<tr class="separator:a5aa6a749f4aeb615d010b94f06eccece"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1480bd892b81cb878cff92b2c58f7f84"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a1480bd892b81cb878cff92b2c58f7f84">el_muse_first</a> = 0</td></tr>
+<tr class="separator:a1480bd892b81cb878cff92b2c58f7f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07b88d5df5744351231abe9309fb7cbb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a07b88d5df5744351231abe9309fb7cbb">el_muse_cnt</a> = <a class="el" href="_bot_menu_initial_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a></td></tr>
+<tr class="separator:a07b88d5df5744351231abe9309fb7cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbeca923f2d2ec29b4d86d393aff62a5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#abbeca923f2d2ec29b4d86d393aff62a5">select_coord</a> = 0</td></tr>
 <tr class="separator:abbeca923f2d2ec29b4d86d393aff62a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9574bb537328bd612e2900042bc9e2c2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a9574bb537328bd612e2900042bc9e2c2">select_priority</a> = 0</td></tr>
 <tr class="separator:a9574bb537328bd612e2900042bc9e2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1a379f64e9164eb29ce491d5097bc30"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ae1a379f64e9164eb29ce491d5097bc30">u8num</a> = 0</td></tr>
-<tr class="separator:ae1a379f64e9164eb29ce491d5097bc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58166e72eb00841cbaa472cf7a5061ba"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a58166e72eb00841cbaa472cf7a5061ba">u32num</a> = 0</td></tr>
-<tr class="separator:a58166e72eb00841cbaa472cf7a5061ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af58f7967409a75825ff1be36d694d648"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#af58f7967409a75825ff1be36d694d648">multi_select_strings</a> [<a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { &quot;value01&quot;, &quot;value02&quot;, &quot;value03&quot; }</td></tr>
-<tr class="separator:af58f7967409a75825ff1be36d694d648"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aa6a749f4aeb615d010b94f06eccece"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a5aa6a749f4aeb615d010b94f06eccece">multi_select_status</a> [<a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { 0, 0, 0}</td></tr>
-<tr class="separator:a5aa6a749f4aeb615d010b94f06eccece"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1480bd892b81cb878cff92b2c58f7f84"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a1480bd892b81cb878cff92b2c58f7f84">el_muse_first</a> = 0</td></tr>
-<tr class="separator:a1480bd892b81cb878cff92b2c58f7f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07b88d5df5744351231abe9309fb7cbb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a07b88d5df5744351231abe9309fb7cbb">el_muse_cnt</a> = <a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a></td></tr>
-<tr class="separator:a07b88d5df5744351231abe9309fb7cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fb7e4b949de5f606e23d069e9c4e8dc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a9fb7e4b949de5f606e23d069e9c4e8dc">global_value_01</a> = 245</td></tr>
+<tr class="separator:a9fb7e4b949de5f606e23d069e9c4e8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12e071f140d85a477ba75f91ada30faf"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a12e071f140d85a477ba75f91ada30faf">global_value_02</a> = 1</td></tr>
+<tr class="separator:a12e071f140d85a477ba75f91ada30faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1f85492ed282a7cd140a488a6aaf55f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ad1f85492ed282a7cd140a488a6aaf55f">fs_m2tk_first</a> = 0</td></tr>
 <tr class="separator:ad1f85492ed282a7cd140a488a6aaf55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9a8725e62d13faf5e3a9e656d36fd5b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ae9a8725e62d13faf5e3a9e656d36fd5b">fs_m2tk_cnt</a> = 0</td></tr>
@@ -294,14 +374,86 @@ Variables</h2></td></tr>
 <tr class="separator:ae8556b92b9bd46784bb0a33867cff0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab60295d1d8b0661791d63b9cd25a1376"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#ab60295d1d8b0661791d63b9cd25a1376">m2_2lmenu_cnt</a></td></tr>
 <tr class="separator:ab60295d1d8b0661791d63b9cd25a1376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9337e1e7c6a73a41c70efb0cd3d3276c"><td class="memItemLeft" align="right" valign="top">M2tk m2 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a></td></tr>
+<tr class="memitem:a9337e1e7c6a73a41c70efb0cd3d3276c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_m2tk.html">M2tk</a> m2 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a></td></tr>
 <tr class="separator:a9337e1e7c6a73a41c70efb0cd3d3276c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Code d'affichage de l'écran. Définition des menus, sous-menus et de l'affichage des valeurs. </p>
+<div class="textblock"><p>Code d'affichage de l'écran. </p>
 <dl class="section author"><dt>Author</dt><dd>Nicolas Sobczak </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>octobre 2016 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ac2f6c63aa3c36d633383ac36e3239725"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _RECEIVEADRESS_01_&#160;&#160;&#160;9</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a46ca1d0f95a8bc1de689e513d21a1564"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _RECEIVEADRESS_02_&#160;&#160;&#160;11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4c365f09716e8f8907513dc2e0607464"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _RECEIVEADRESS_03_&#160;&#160;&#160;13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af5cd66db4f799ff4f8d9c9cc5c8a8879"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _SENDADRESS_01_&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a94dd4d2aa9af21f698124de3905e2e46"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _SENDADRESS_02_&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af64f7f1fb93f02776c1f8891c899183f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _SENDADRESS_03_&#160;&#160;&#160;12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a43524150be17f4503696e20469ef8fae"></a>
 <div class="memitem">
 <div class="memproto">
@@ -340,6 +492,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draw procedure. </p>
 
 </div>
 </div>
@@ -385,6 +539,30 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6ddccba908d992cde51adc3f3db84292"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fn_debug_update </td>
+          <td>(</td>
+          <td class="paramtype">m2_el_fnarg_p&#160;</td>
+          <td class="paramname"><em>fnarg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de test d'actualisation des valeurs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m2_el_fnarg_p</td><td>fnarg </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a8efda50d6409985342bc143c499f0cee"></a>
 <div class="memitem">
 <div class="memproto">
@@ -417,6 +595,54 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a81c764a9c718ebb9a3ff1ba0c71d912e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fn_num_go_i2c </td>
+          <td>(</td>
+          <td class="paramtype">m2_el_fnarg_p&#160;</td>
+          <td class="paramname"><em>fnarg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de test i2c. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m2_el_fnarg_p</td><td>fnarg </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a55911d39f16e4d5d0ed9b071491fe432"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fn_num_go_pince </td>
+          <td>(</td>
+          <td class="paramtype">m2_el_fnarg_p&#160;</td>
+          <td class="paramname"><em>fnarg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction de test de la pince avec l'i2c. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m2_el_fnarg_p</td><td>fnarg </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ac7ca3196108dc21ff23f4a4216cf5dac"></a>
 <div class="memitem">
 <div class="memproto">
@@ -430,6 +656,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction de remise à zero des valeurs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m2_el_fnarg_p</td><td>fnarg </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -446,6 +680,30 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a939737f6bc2673dfd55e03aca8a3c663"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fn_start_robot </td>
+          <td>(</td>
+          <td class="paramtype">m2_el_fnarg_p&#160;</td>
+          <td class="paramname"><em>fnarg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction qui lance le robot avec les paramètres sélctionnées par la stratégie </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -475,6 +733,22 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aaef6f073e1dfc92dc41837a414584928"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2creceive2 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>adresse</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="afe461d27b9c48d5921c00d521181f12f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -488,6 +762,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction loop d'arduino. </p>
+<p>fonction loop d'arduino </p>
 
 </div>
 </div>
@@ -522,7 +799,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a876bf7b2855095cbd1b600d4e8232ef9">m2_2lmenu_data</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a876bf7b2855095cbd1b600d4e8232ef9">m2_2lmenu_data</a>&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -585,38 +862,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa2c9ee4286f64407a9200a3d2158bb39"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">M2_ALIGN </td>
-          <td>(</td>
-          <td class="paramtype">el_top_combo&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;-1|1W64H64&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>el_combo_grid</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a841601b2d46f5d977ec1432d9a6e5ac9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -649,6 +894,38 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a423d7853e7d5dd9441803835ab783e8d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_ALIGN </td>
+          <td>(</td>
+          <td class="paramtype">el_top_num_menu_2&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;-1|1W64H64&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>el_num_menu_grid_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a7304214e0fe657f4ea25ed16f92d1063"></a>
 <div class="memitem">
 <div class="memproto">
@@ -670,6 +947,102 @@ Variables</h2></td></tr>
           <td></td>
           <td class="paramtype">&amp;&#160;</td>
           <td class="paramname"><em>el_muse_vlist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa2c9ee4286f64407a9200a3d2158bb39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_ALIGN </td>
+          <td>(</td>
+          <td class="paramtype">el_top_combo&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;-1|1W64H64&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>el_combo_grid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a19e30d0514edea178376a4bcfddec27a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_ALIGN </td>
+          <td>(</td>
+          <td class="paramtype">el_top_num_menu_debug_01&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;-1|1W64H64&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>el_num_list_debug_01</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1e3084e3ec3a0437a34ba417e8b7573b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_ALIGN </td>
+          <td>(</td>
+          <td class="paramtype">el_top_num_menu_debug_02&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;-1|1W64H64&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>el_num_list_debug_02</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -720,7 +1093,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">M2_ALIGN </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -745,14 +1118,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa4cbf3c26b6a7c6336f6fab72455c0e8"></a>
+<a class="anchor" id="aacc81ec529c7dd1782bdd3be1067a019"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">M2_BUTTON </td>
           <td>(</td>
-          <td class="paramtype">el_cancel&#160;</td>
+          <td class="paramtype">el_start_robot&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -764,51 +1137,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;cancel&quot;&#160;</td>
+          <td class="paramtype">&quot;Go&quot;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a8a3c6fcc095a1d9db5dbdde7f8d3fc4d">fn_cancel</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a14186c8b77a0579cb2a79c934424a507"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">M2_BUTTON </td>
-          <td>(</td>
-          <td class="paramtype">el_ok&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;f4&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&quot;ok&quot;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a7e6529d2af7c3733a2a539d33f51d396">fn_ok</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a939737f6bc2673dfd55e03aca8a3c663">fn_start_robot</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -846,7 +1181,197 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#ac7ca3196108dc21ff23f4a4216cf5dac">fn_num_zero</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#ac7ca3196108dc21ff23f4a4216cf5dac">fn_num_zero</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0fab2e3cdca2afa69ce2d0cac53131e3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_BUTTON </td>
+          <td>(</td>
+          <td class="paramtype">el_num_go_i2c&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;f4&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot; I2C test &quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a81c764a9c718ebb9a3ff1ba0c71d912e">fn_num_go_i2c</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac80770c1e7ce22f0e4a7ab977f8fd6a7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_BUTTON </td>
+          <td>(</td>
+          <td class="paramtype">el_num_go_pince&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;f4&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot; I2C pince &quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a55911d39f16e4d5d0ed9b071491fe432">fn_num_go_pince</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa4cbf3c26b6a7c6336f6fab72455c0e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_BUTTON </td>
+          <td>(</td>
+          <td class="paramtype">el_cancel&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;f4&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;cancel&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a8a3c6fcc095a1d9db5dbdde7f8d3fc4d">fn_cancel</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a14186c8b77a0579cb2a79c934424a507"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_BUTTON </td>
+          <td>(</td>
+          <td class="paramtype">el_ok&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;f4&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;ok&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a7e6529d2af7c3733a2a539d33f51d396">fn_ok</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a79375da282ff4f83889082026ab3650e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_BUTTON </td>
+          <td>(</td>
+          <td class="paramtype">el_debug_update&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;f4&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;MAJ&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a6ddccba908d992cde51adc3f3db84292">fn_debug_update</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -890,7 +1415,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a8efda50d6409985342bc143c499f0cee">fn_idx_to_color</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a8efda50d6409985342bc143c499f0cee">fn_idx_to_color</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -934,7 +1459,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a4ec9ca795394ccbd02d19cece9c659f5">fn_idx_to_priority</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a4ec9ca795394ccbd02d19cece9c659f5">fn_idx_to_priority</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -954,7 +1479,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">M2_EXTERN_ALIGN </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -983,6 +1508,70 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">list_rb&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ec908ee01cd1c9fccaae5de088cda5b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_GRIDLIST </td>
+          <td>(</td>
+          <td class="paramtype">el_num_menu_grid&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;c2&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">num_list_1&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5bc592d5641aebdece63b6b1f850d97f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_GRIDLIST </td>
+          <td>(</td>
+          <td class="paramtype">el_num_menu_grid_2&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;c2&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">num_list_2&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1027,26 +1616,58 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4470c9dc2d9540d27acb1e456ea013f7"></a>
+<a class="anchor" id="a17c51087d533caf223e980becbd3eec0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">M2_GRIDLIST </td>
           <td>(</td>
-          <td class="paramtype">el_num_menu_grid&#160;</td>
+          <td class="paramtype">el_num_list_debug_01&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;c2&quot;&#160;</td>
+          <td class="paramtype">&quot;c4&quot;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">num_list&#160;</td>
+          <td class="paramtype">num_list_debug_01&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a57201f1047008022dbeb62657340c25b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_GRIDLIST </td>
+          <td>(</td>
+          <td class="paramtype">el_num_list_debug_02&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;c4&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">num_list_debug_02&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1251,6 +1872,38 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3daa09d8e9eec18f3495a1dc333da207"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_LABEL </td>
+          <td>(</td>
+          <td class="paramtype">el_num_label1&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NULL&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;Variable:&quot;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a048e6476c5c71bc6b80e8c8a6dc60548"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1315,14 +1968,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7fe8da54d2d835c526eab6691aa0a1be"></a>
+<a class="anchor" id="a0dca451e2a7acedf6c6782d9d2f877cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">M2_LABEL </td>
           <td>(</td>
-          <td class="paramtype">el_num_label1&#160;</td>
+          <td class="paramtype">el_num_label_debug_01&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -1334,7 +1987,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;U8:&quot;&#160;</td>
+          <td class="paramtype">&quot;Var_1:&quot;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1347,14 +2000,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab148e4d5de8e32b6565e5f2407400c59"></a>
+<a class="anchor" id="a579ab225376e8fa9cd680ba216aaaaff"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">M2_LABEL </td>
           <td>(</td>
-          <td class="paramtype">el_num_label2&#160;</td>
+          <td class="paramtype">el_num_label_debug_02&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -1366,7 +2019,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;U32:&quot;&#160;</td>
+          <td class="paramtype">&quot;Var_2:&quot;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1395,14 +2048,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adac9aa02bf28e11d795976e5fa561446"></a>
+<a class="anchor" id="a6751994684394efb1b010843b57c7100"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">M2_LIST </td>
           <td>(</td>
-          <td class="paramtype">list_combo&#160;</td>
+          <td class="paramtype">num_list_1&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -1411,14 +2064,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab564aaf40e80b104ceca35834190c79e"></a>
+<a class="anchor" id="ad2b92e87a623b39a50adbc46ab57d457"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">M2_LIST </td>
           <td>(</td>
-          <td class="paramtype">num_list&#160;</td>
+          <td class="paramtype">num_list_2&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -1435,6 +2088,54 @@ Variables</h2></td></tr>
           <td class="memname">M2_LIST </td>
           <td>(</td>
           <td class="paramtype">muse_list&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adac9aa02bf28e11d795976e5fa561446"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_LIST </td>
+          <td>(</td>
+          <td class="paramtype">list_combo&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a90b98e84a38d172f61ed7ba2fc94a75c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_LIST </td>
+          <td>(</td>
+          <td class="paramtype">num_list_debug_01&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae7f188b7a5f50ad6f68a443ca358f113"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_LIST </td>
+          <td>(</td>
+          <td class="paramtype">num_list_debug_02&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -1603,7 +2304,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ada6d4ee05a83b31b6050eaede6be5374"></a>
+<a class="anchor" id="a28663243e629060ba31e28a1745c4d7d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1622,7 +2323,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot; back &quot;&#160;</td>
+          <td class="paramtype">&quot; Back &quot;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
@@ -1800,7 +2501,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#aef16a7ab93977d04bc1a962d6603da06">el_muse_strlist_cb</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#aef16a7ab93977d04bc1a962d6603da06">el_muse_strlist_cb</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1844,7 +2545,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_bot_menu_8cpp.html#a55bc51910eb69f831b247234bac93237">fs_strlist_getstr</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_bot_menu_initial_8cpp.html#a55bc51910eb69f831b247234bac93237">fs_strlist_getstr</a>&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -1857,27 +2558,27 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aebe2c2388e6904e4090639d8c5cd95b5"></a>
+<a class="anchor" id="a3f3f5ed52abcd4738e1c50b0a231769b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">M2_U32NUM </td>
           <td>(</td>
-          <td class="paramtype">el_num_2&#160;</td>
+          <td class="paramtype">el_num_1&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">&quot;c5&quot;&#160;</td>
+          <td class="paramtype">&quot;c3&quot;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>u32num</em>&#160;</td>
+          <td class="paramname"><em>num_1</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1889,39 +2590,59 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a854f41500e9ed28b54658fb117a08018"></a>
+<a class="anchor" id="a7b798d3b9e361cc4f615aace1369456d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">M2_U8NUM </td>
+          <td class="memname">M2_U32NUM </td>
           <td>(</td>
-          <td class="paramtype">el_num_1&#160;</td>
+          <td class="paramtype">el_num_debug_01&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">NULL&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">0&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">255&#160;</td>
+          <td class="paramtype">&quot;c3r1&quot;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>u8num</em>&#160;</td>
+          <td class="paramname"><em>global_value_01</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a801fda39a4c8854efc60ecee448b2646"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">M2_U32NUM </td>
+          <td>(</td>
+          <td class="paramtype">el_num_debug_02&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&quot;c3r1&quot;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>global_value_02</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2041,6 +2762,22 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af0ddbef32e3582352a3dfa86af6c071d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void receiveEvent2 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>howMany</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a7dfd9b79bc5a37d7df40207afbc5431f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2054,6 +2791,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fonction setup d'arduino. </p>
+<p>fonction setup d'arduino </p>
 
 </div>
 </div>
@@ -2090,12 +2830,24 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="accd6d94b0fc37bd5c979672506ff6c1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte* dataI2C = new byte[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a07b88d5df5744351231abe9309fb7cbb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t el_muse_cnt = <a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a></td>
+          <td class="memname">uint8_t el_muse_cnt = <a class="el" href="_bot_menu_initial_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2108,6 +2860,18 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint8_t el_muse_first = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa31755b733cb04ed5b320897c40f81ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int finInitialisationMoteur = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2138,6 +2902,30 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a9fb7e4b949de5f606e23d069e9c4e8dc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t global_value_01 = 245</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a12e071f140d85a477ba75f91ada30faf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t global_value_02 = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ab60295d1d8b0661791d63b9cd25a1376"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2159,7 +2947,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= </div><div class="line">{</div><div class="line">  { <span class="stringliteral">&quot;Epreuve&quot;</span>, NULL },</div><div class="line">  { <span class="stringliteral">&quot;. Strategie&quot;</span>, &amp;el_rb_grid },</div><div class="line">  { <span class="stringliteral">&quot;. Initialisation&quot;</span>, &amp;el_top_combo },</div><div class="line">  { <span class="stringliteral">&quot;Tests&quot;</span>, NULL },</div><div class="line">  { <span class="stringliteral">&quot;. Test01&quot;</span>, &amp;top_el_muse },</div><div class="line">  { <span class="stringliteral">&quot;. Test02&quot;</span>, &amp;top_el_muse },</div><div class="line">  { <span class="stringliteral">&quot;. Test03&quot;</span>, &amp;top_el_muse },</div><div class="line">  { <span class="stringliteral">&quot;. File Select&quot;</span>, &amp;el_top_fs },</div><div class="line">  { <span class="stringliteral">&quot;Debug &quot;</span>, &amp;el_top_num_menu },</div><div class="line">  { <span class="stringliteral">&quot;Logo&quot;</span>, &amp;<a class="code" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a> },</div><div class="line">  { NULL, NULL },</div><div class="line">}</div><div class="ttc" id="_bot_menu_8cpp_html_a9337e1e7c6a73a41c70efb0cd3d3276c"><div class="ttname"><a href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a></div><div class="ttdeci">M2tk m2 &amp; top_el_expandable_menu</div><div class="ttdef"><b>Definition:</b> BotMenu.cpp:290</div></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= </div><div class="line">{</div><div class="line">  { <span class="stringliteral">&quot;Epreuve&quot;</span>, NULL },</div><div class="line">  { <span class="stringliteral">&quot;. Strategie&quot;</span>, &amp;el_rb_grid },</div><div class="line">  { <span class="stringliteral">&quot;. Initialisation&quot;</span>, &amp;<a class="code" href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a> },</div><div class="line">  { <span class="stringliteral">&quot;Tests robots&quot;</span>, NULL },</div><div class="line">  { <span class="stringliteral">&quot;. Test I2C&quot;</span>, &amp;el_top_num_menu },</div><div class="line">  { <span class="stringliteral">&quot;. Test Pince&quot;</span>, &amp;el_top_num_menu_2},</div><div class="line">  { <span class="stringliteral">&quot;. Test Moteur&quot;</span>, &amp;top_el_muse},</div><div class="line">  { <span class="stringliteral">&quot;Tests ecran&quot;</span>, NULL },</div><div class="line">  { <span class="stringliteral">&quot;. Combo&quot;</span>, &amp;el_top_combo},</div><div class="line">  { <span class="stringliteral">&quot;. File Select&quot;</span>, &amp;el_top_fs },</div><div class="line">  { <span class="stringliteral">&quot;Debug &quot;</span>, NULL },</div><div class="line">  { <span class="stringliteral">&quot;. Debug Moteur&quot;</span>, &amp;el_top_num_menu_debug_01},</div><div class="line">  { <span class="stringliteral">&quot;. Debug Autre&quot;</span>, &amp;el_top_num_menu_debug_02},</div><div class="line">  </div><div class="line">  { NULL, NULL },</div><div class="line">}</div><div class="ttc" id="_bot_menu_8cpp_html_a9337e1e7c6a73a41c70efb0cd3d3276c"><div class="ttname"><a href="_bot_menu_8cpp.html#a9337e1e7c6a73a41c70efb0cd3d3276c">top_el_expandable_menu</a></div><div class="ttdeci">M2tk m2 &amp; top_el_expandable_menu</div><div class="ttdef"><b>Definition:</b> BotMenu.cpp:505</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2180,7 +2968,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t multi_select_status[<a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { 0, 0, 0}</td>
+          <td class="memname">uint8_t multi_select_status[<a class="el" href="_bot_menu_initial_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { 0, 0, 0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2192,7 +2980,31 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* multi_select_strings[<a class="el" href="_bot_menu_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { &quot;value01&quot;, &quot;value02&quot;, &quot;value03&quot; }</td>
+          <td class="memname">const char* multi_select_strings[<a class="el" href="_bot_menu_initial_8cpp.html#a8a8ae01755757f685a7bf2046e7ad0fa">MULTI_SELECT_CNT</a>] = { &quot;value01&quot;, &quot;value02&quot;, &quot;value03&quot; }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afb12d19e8a40713b7c3312cd5949b03e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t num_1 = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0d0c3bb87808484ffdcea6484accbecb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t num_2 = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2205,6 +3017,18 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint8_t rb_select_strat = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5573b803a0f52328d0bd3bfc3c4ed214"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int recoveredValueI2C</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2240,31 +3064,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">M2tk m2&amp; top_el_expandable_menu</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a58166e72eb00841cbaa472cf7a5061ba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t u32num = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae1a379f64e9164eb29ce491d5097bc30"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t u8num = 0</td>
+          <td class="memname"><a class="el" href="class_m2tk.html">M2tk</a> m2&amp; top_el_expandable_menu</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2318,6 +3118,18 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Declaration de l'encodeur (le bouton) const int entry = 2; const int encoderMoins = 52; const int encoderPlus = 50;. </p>
+
+</div>
+</div>
+<a class="anchor" id="a79e4701ac69371c6771e10d53d164927"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte valueI2C[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

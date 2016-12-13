@@ -188,7 +188,7 @@ void i2csend(uint8_t order, int adresse)
   Wire.write(order);             	// envoi d'un byte/octet (valeur numérique)  
   Serial.print("Envoi via i2c de : ");
   Serial.print(order);
-  Serial.print(" a l'adresse : ");
+  Serial.print(" a l'adresse ");
   Serial.println(adresse);
   Wire.endTransmission();    		// fin transmission
 }

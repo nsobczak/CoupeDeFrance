@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.5</span>
+   &#160;<span id="projectnumber">1.6</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -115,11 +115,15 @@ $(document).ready(function(){initNavTree('class_odometrie.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Classe <a class="el" href="class_odometrie.html" title="Classe Odometrie. ">Odometrie</a>.  
+ <a href="class_odometrie.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="odometrie_8h_source.html">odometrie.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a0cbea2f7eda59fa2ae96236056b024"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a1a0cbea2f7eda59fa2ae96236056b024">Odometrie</a> ()</td></tr>
+<tr class="memdesc:a1a0cbea2f7eda59fa2ae96236056b024"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructeur  <a href="#a1a0cbea2f7eda59fa2ae96236056b024">More...</a><br /></td></tr>
 <tr class="separator:a1a0cbea2f7eda59fa2ae96236056b024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae68ca6d28bf47ec2c1835714a9839456"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#ae68ca6d28bf47ec2c1835714a9839456">calculer_pas</a> ()</td></tr>
 <tr class="separator:ae68ca6d28bf47ec2c1835714a9839456"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,19 +132,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6900512580f5347a37c4cb8b5fd93043"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a6900512580f5347a37c4cb8b5fd93043">calculer_variation_angle</a> ()</td></tr>
 <tr class="separator:a6900512580f5347a37c4cb8b5fd93043"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3777f956fc5f4d0e5087cc873b4c6147"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a3777f956fc5f4d0e5087cc873b4c6147">calculer_ImpulionParmm</a> ()</td></tr>
+<tr class="memdesc:a3777f956fc5f4d0e5087cc873b4c6147"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructeur qui initialise et met des valeurs par defauts  <a href="#a3777f956fc5f4d0e5087cc873b4c6147">More...</a><br /></td></tr>
 <tr class="separator:a3777f956fc5f4d0e5087cc873b4c6147"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0661c3b98db0e45c096d11181ecb983"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#ac0661c3b98db0e45c096d11181ecb983">calculer_ImpulsionParrad</a> ()</td></tr>
+<tr class="memdesc:ac0661c3b98db0e45c096d11181ecb983"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de connaitre sa position en x, sa position en y et son angle  <a href="#ac0661c3b98db0e45c096d11181ecb983">More...</a><br /></td></tr>
 <tr class="separator:ac0661c3b98db0e45c096d11181ecb983"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9f3987c74ae16c6bb73475f6fa995d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#aa9f3987c74ae16c6bb73475f6fa995d5">calculer_distanceParcourueRoue</a> (<a class="el" href="struct_tick.html">Tick</a> <a class="el" href="mon_main_8cpp.html#a8f98065fd6bcc83a4240976034f13e3b">codeuse</a>)</td></tr>
+<tr class="memitem:aa9f3987c74ae16c6bb73475f6fa995d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#aa9f3987c74ae16c6bb73475f6fa995d5">calculer_distanceParcourueRoue</a> (<a class="el" href="struct_tick.html">Tick</a> codeuse)</td></tr>
 <tr class="separator:aa9f3987c74ae16c6bb73475f6fa995d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b9266574fce4de4131421053e8fa73b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a8b9266574fce4de4131421053e8fa73b">retournerValeur</a> (<a class="el" href="struct_position.html">Position</a> *<a class="el" href="mon_main_8cpp.html#a01bbbc37cd4af521f5f5723d3ef38078">roueCodeuse</a>, <a class="el" href="struct_tick.html">Tick</a> <a class="el" href="mon_main_8cpp.html#a8f98065fd6bcc83a4240976034f13e3b">codeuse</a>)</td></tr>
+<tr class="memitem:a8b9266574fce4de4131421053e8fa73b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a8b9266574fce4de4131421053e8fa73b">retournerValeur</a> (<a class="el" href="struct_position.html">Position</a> *roueCodeuse, <a class="el" href="struct_tick.html">Tick</a> codeuse)</td></tr>
+<tr class="memdesc:a8b9266574fce4de4131421053e8fa73b"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de connaitre sa position en x, sa position en y et son angle  <a href="#a8b9266574fce4de4131421053e8fa73b">More...</a><br /></td></tr>
 <tr class="separator:a8b9266574fce4de4131421053e8fa73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45bd260006f6f5e4596814c80c578025"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a45bd260006f6f5e4596814c80c578025">calculer_angle</a> (<a class="el" href="struct_position.html">Position</a> *<a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:a45bd260006f6f5e4596814c80c578025"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a45bd260006f6f5e4596814c80c578025">calculer_angle</a> (<a class="el" href="struct_position.html">Position</a> *destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
 <tr class="separator:a45bd260006f6f5e4596814c80c578025"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49c4d594d1280d18302ad3274a732118"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a49c4d594d1280d18302ad3274a732118">calculer_distance</a> (<a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="el" href="struct_position.html">Position</a> <a class="el" href="mon_main_8cpp.html#a9115cebddb176491d23f3f526a2ca5c0">robot</a>)</td></tr>
+<tr class="memitem:a49c4d594d1280d18302ad3274a732118"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_odometrie.html#a49c4d594d1280d18302ad3274a732118">calculer_distance</a> (<a class="el" href="struct_position.html">Position</a> destination, <a class="el" href="struct_position.html">Position</a> robot)</td></tr>
+<tr class="memdesc:a49c4d594d1280d18302ad3274a732118"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculer la distance que le robot doit ateindre  <a href="#a49c4d594d1280d18302ad3274a732118">More...</a><br /></td></tr>
 <tr class="separator:a49c4d594d1280d18302ad3274a732118"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Classe <a class="el" href="class_odometrie.html" title="Classe Odometrie. ">Odometrie</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1a0cbea2f7eda59fa2ae96236056b024"></a>
 <div class="memitem">
 <div class="memproto">
@@ -153,6 +163,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>constructeur </p>
 
 </div>
 </div>
@@ -180,6 +192,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>*destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -206,6 +225,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>calculer la distance que le robot doit ateindre </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>destination </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>robot </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -238,6 +266,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>constructeur qui initialise et met des valeurs par defauts </p>
+
 </div>
 </div>
 <a class="anchor" id="ac0661c3b98db0e45c096d11181ecb983"></a>
@@ -252,6 +282,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>permet de connaitre sa position en x, sa position en y et son angle </p>
 
 </div>
 </div>
@@ -324,6 +356,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>permet de connaitre sa position en x, sa position en y et son angle </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_position.html">Position</a></td><td>*roueCodeuse </td></tr>
+    <tr><td class="paramname"><a class="el" href="struct_tick.html">Tick</a></td><td>codeuse </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

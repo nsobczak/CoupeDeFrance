@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.5</span>
+   &#160;<span id="projectnumber">1.6</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -127,7 +127,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="i2c_communication_8h__dep__incl.png" border="0" usemap="#_i2_c_2i2c_communication_2i2c_communication_8hdep" alt=""/></div>
 <map name="_i2_c_2i2c_communication_2i2c_communication_8hdep" id="_i2_c_2i2c_communication_2i2c_communication_8hdep">
-<area shape="rect" id="node2" href="i2c_communication_8cpp.html" title="Bibliothèque de communication i2c. " alt="" coords="5,95,164,136"/>
+<area shape="rect" id="node2" href="_bot_menu_8cpp.html" title="Code d&#39;affichage de l&#39;écran. " alt="" coords="5,102,199,129"/>
+<area shape="rect" id="node3" href="slave__1_8cpp.html" title="Esclave du BotMenu I2C. " alt="" coords="223,95,370,136"/>
+<area shape="rect" id="node4" href="i2c_communication_8cpp.html" title="Bibliothèque de communication i2c. " alt="" coords="395,95,553,136"/>
+<area shape="rect" id="node5" href="_capteur___i_r__detection__position_8cpp.html" title="Ce programme permet d&#39;informer la carte maitre si il y a présence ou non d&#39;un obstacle, ici d&#39;un cylindre et de déterminer sa position. " alt="" coords="578,95,765,136"/>
+<area shape="rect" id="node6" href="_moteur__deplacement_8cpp.html" title="Code de déplacement de la pince. " alt="" coords="789,102,994,129"/>
 </map>
 </div>
 </div>
@@ -144,12 +148,14 @@ Functions</h2></td></tr>
 <tr class="memitem:ae6a3bc2609421898c94e1058b328272b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#ae6a3bc2609421898c94e1058b328272b">ledControl</a> (int, int)</td></tr>
 <tr class="memdesc:ae6a3bc2609421898c94e1058b328272b"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui eteint une LED  <a href="#ae6a3bc2609421898c94e1058b328272b">More...</a><br /></td></tr>
 <tr class="separator:ae6a3bc2609421898c94e1058b328272b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94201be24d7adb6b945db4d1acdea014"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#a94201be24d7adb6b945db4d1acdea014">orderNumber</a> (uint8_t)</td></tr>
-<tr class="memdesc:a94201be24d7adb6b945db4d1acdea014"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui execute l'ordre dont le numéro est entrée en parametre  <a href="#a94201be24d7adb6b945db4d1acdea014">More...</a><br /></td></tr>
-<tr class="separator:a94201be24d7adb6b945db4d1acdea014"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac31db9974f1b5e83c5870d3d3f28343c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#ac31db9974f1b5e83c5870d3d3f28343c">byteReceived</a> (byte)</td></tr>
 <tr class="memdesc:ac31db9974f1b5e83c5870d3d3f28343c"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui affiche l'octet reçu  <a href="#ac31db9974f1b5e83c5870d3d3f28343c">More...</a><br /></td></tr>
 <tr class="separator:ac31db9974f1b5e83c5870d3d3f28343c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94201be24d7adb6b945db4d1acdea014"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#a94201be24d7adb6b945db4d1acdea014">orderNumber</a> (uint8_t)</td></tr>
+<tr class="memdesc:a94201be24d7adb6b945db4d1acdea014"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui execute l'ordre dont le numéro est entrée en parametre  <a href="#a94201be24d7adb6b945db4d1acdea014">More...</a><br /></td></tr>
+<tr class="separator:a94201be24d7adb6b945db4d1acdea014"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a917fec01015ba91de2e469869b49358f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#a917fec01015ba91de2e469869b49358f">changeData</a> (byte <a class="el" href="slave__1_8cpp.html#a334a72293f44ebf05fc2015a94947879">data</a>[], int <a class="el" href="slave__1_8cpp.html#addbbb62a113f94dcec9154d87b9bedc7">correspondance</a>[], int numberOfVariables)</td></tr>
+<tr class="separator:a917fec01015ba91de2e469869b49358f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa57c53d43c435c6efe21932b18c13591"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#aa57c53d43c435c6efe21932b18c13591">i2csend</a> (uint8_t, int)</td></tr>
 <tr class="memdesc:aa57c53d43c435c6efe21932b18c13591"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction d'envoi d'1 octet via l'i2c  <a href="#aa57c53d43c435c6efe21932b18c13591">More...</a><br /></td></tr>
 <tr class="separator:aa57c53d43c435c6efe21932b18c13591"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,11 +163,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa072a4dcb87b819a72db58c21754971b"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction d'envoi de 3 octets via l'i2c avec initialisation de l'I2C  <a href="#aa072a4dcb87b819a72db58c21754971b">More...</a><br /></td></tr>
 <tr class="separator:aa072a4dcb87b819a72db58c21754971b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99f319b005d8969e66a25460524a84ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#a99f319b005d8969e66a25460524a84ce">receiveEvent</a> (int)</td></tr>
-<tr class="memdesc:a99f319b005d8969e66a25460524a84ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction <a class="el" href="mon_main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a>  <a href="#a99f319b005d8969e66a25460524a84ce">More...</a><br /></td></tr>
+<tr class="memdesc:a99f319b005d8969e66a25460524a84ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction <a class="el" href="_bot_menu_8cpp.html#a7dfd9b79bc5a37d7df40207afbc5431f" title="Fonction setup d&#39;arduino. ">setup()</a>  <a href="#a99f319b005d8969e66a25460524a84ce">More...</a><br /></td></tr>
 <tr class="separator:a99f319b005d8969e66a25460524a84ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac864e500ced6fb98e9b3e10fef9b3d25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#ac864e500ced6fb98e9b3e10fef9b3d25">i2creceive</a> (int)</td></tr>
 <tr class="memdesc:ac864e500ced6fb98e9b3e10fef9b3d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction de lecture de données reçues via l'i2c  <a href="#ac864e500ced6fb98e9b3e10fef9b3d25">More...</a><br /></td></tr>
 <tr class="separator:ac864e500ced6fb98e9b3e10fef9b3d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8583786b76c62294b407eb479369a4ef"><td class="memItemLeft" align="right" valign="top">byte *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#a8583786b76c62294b407eb479369a4ef">i2crequest</a> (int adresse, int nbBytes, int variable, int numberOfVariables)</td></tr>
+<tr class="separator:a8583786b76c62294b407eb479369a4ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7835d18dc0842d01422d5593771bfacf"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_communication_8h.html#a7835d18dc0842d01422d5593771bfacf">getLowByte</a> (int)</td></tr>
 <tr class="memdesc:a7835d18dc0842d01422d5593771bfacf"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction qui convertit un entier en 2 bytes - low ici  <a href="#a7835d18dc0842d01422d5593771bfacf">More...</a><br /></td></tr>
 <tr class="separator:a7835d18dc0842d01422d5593771bfacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +209,38 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a917fec01015ba91de2e469869b49358f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void changeData </td>
+          <td>(</td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>data</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>correspondance</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numberOfVariables</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -273,6 +313,44 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a8583786b76c62294b407eb479369a4ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte* i2crequest </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>adresse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbBytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>variable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numberOfVariables</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -514,7 +592,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction <a class="el" href="mon_main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a> </p>
+<p>fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction <a class="el" href="_bot_menu_8cpp.html#a7dfd9b79bc5a37d7df40207afbc5431f" title="Fonction setup d&#39;arduino. ">setup()</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">int</td><td>howMany </td></tr>
