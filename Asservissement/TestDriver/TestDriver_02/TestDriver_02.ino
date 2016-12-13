@@ -159,7 +159,7 @@ void setup() {
 void loop() {
     i2creceive2(_RECEIVEADRESS_);
     
-    if ((demarrerMoteurRobot >= 1) && (demarrerMoteurRobot <= 3))
+    if ((demarrerMoteurRobot > 0) && (demarrerMoteurRobot < 5))
     {
       startMoteur();
       /*

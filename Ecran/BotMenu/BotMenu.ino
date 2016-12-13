@@ -102,7 +102,7 @@ void fn_start_robot(m2_el_fnarg_p fnarg)
   */
   // conversion sur 2 octets de la valeur à envoyer
   byte bytesTab[2];
-  intTo2Bytes(bytesTab, rb_select_strat);
+  intTo2Bytes(bytesTab, rb_select_strat + 1);
   // envoi
   i2csend3bytes(0, bytesTab[0], bytesTab[1], _SENDADRESS_03_);    // Envoi de rb_select_strat (0 dans le tableau de correspondance)
   
