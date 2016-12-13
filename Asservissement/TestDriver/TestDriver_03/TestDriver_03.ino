@@ -1,5 +1,5 @@
 /**
- *    \file TestDriver_02.ino
+ *    \file TestDriver_03.ino
  *    \brief test pour faire fonctionner les moteurs du robot et donc faire rouler le robot
  *
  *    \author Arthur Duytschaever et Nicolas Sobczak
