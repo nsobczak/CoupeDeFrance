@@ -37,7 +37,7 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 int finInitialisationMoteur = 0;
 
 /*Tableau de correspondance des variables
-0 => rb_select_strat
+0 => demarrerMoteurRobot
 1 => finInitialisationMoteur
 2 => 
 3 =>
@@ -104,7 +104,7 @@ void fn_start_robot(m2_el_fnarg_p fnarg)
   byte bytesTab[2];
   intTo2Bytes(bytesTab, rb_select_strat);
   // envoi
-  i2csend3bytes(rb_select_strat, bytesTab[0], bytesTab[1], _SENDADRESS_03_);    // Envoi de rb_select_strat (0 dans le tableau de correspondance)
+  i2csend3bytes(0, bytesTab[0], bytesTab[1], _SENDADRESS_03_);    // Envoi de rb_select_strat (0 dans le tableau de correspondance)
   
 }
 
