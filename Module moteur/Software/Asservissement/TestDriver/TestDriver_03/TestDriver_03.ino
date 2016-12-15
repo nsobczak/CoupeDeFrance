@@ -1,5 +1,5 @@
 /**
- *    \file TestDriver_02.ino
+ *    \file TestDriver_03.ino
  *    \brief test pour faire fonctionner les moteurs du robot et donc faire rouler le robot
  *
  *    \author Arthur Duytschaever et Nicolas Sobczak
@@ -37,9 +37,10 @@ int IN1MotorR = 52;
 int IN2MotorR = 53;
 
 int demarrerMoteurRobot = -1;
+int startAfter5Sec = -1;
 /*Tableau de correspondance des variables
 0 => demarrerMoteurRobot
-1 => 
+1 => StartAfter5Sec
 2 => 
 3 =>
 4 =>
@@ -72,6 +73,10 @@ void receiveEvent2(int howMany)
        case 0:  
           Serial.println("variable recue : demarrerMoteurRobot");
           demarrerMoteurRobot = value;
+          break;
+       case 1:
+          Serial.println("variable recue : StartAfter5Sec");
+          startAfter5Sec = value; 
           break;     
        default:   
           Serial.println("variable recue inconnue");
@@ -94,7 +99,7 @@ void i2creceive2(int adresse)
 {
   Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
   Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
-  Wire.endTransmission();    	 // fin transmission
+  Wire.endTransmission();       // fin transmission
 }
 
 

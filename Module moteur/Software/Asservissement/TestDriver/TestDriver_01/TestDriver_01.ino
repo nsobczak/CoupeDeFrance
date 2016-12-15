@@ -14,7 +14,7 @@
 int MotorR =3; // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
 int MotorL = 6; 
 int IN1MotorL = 22;
-int IN2MotorL = 21;
+int IN2MotorL = 23;
 int IN1MotorR = 52;
 int IN2MotorR = 53;
  
@@ -52,21 +52,42 @@ void loop() {
   digitalWrite(IN2MotorR,LOW);
   digitalWrite(IN1MotorL,HIGH);
   digitalWrite(IN2MotorL,LOW);
-  analogWrite(MotorR,10);
-  analogWrite(MotorL,10);
-  /*delay(1000);
+  analogWrite(MotorR,100);
+  analogWrite(MotorL,100);
+  delay(5000);
   digitalWrite(IN1MotorR,LOW);
   digitalWrite(IN2MotorR,LOW);
   digitalWrite(IN1MotorL,LOW);
   digitalWrite(IN2MotorL,LOW);
-  analogWrite(MotorR,10);
-  analogWrite(MotorL,10);
-  delay(500);
+  analogWrite(MotorR,100);
+  analogWrite(MotorL,100);
+  delay(1000);
+  digitalWrite(IN1MotorR,LOW);
+  digitalWrite(IN2MotorR,HIGH);
+  digitalWrite(IN1MotorL,LOW);
+  digitalWrite(IN2MotorL,HIGH);
+  analogWrite(MotorR,100);
+  analogWrite(MotorL,100);
+  delay(5000);
+  digitalWrite(IN1MotorR,LOW);
+  digitalWrite(IN2MotorR,LOW);
+  digitalWrite(IN1MotorL,LOW);
+  digitalWrite(IN2MotorL,LOW);
+  analogWrite(MotorR,100);
+  analogWrite(MotorL,100);
+  delay(1000);
   digitalWrite(IN1MotorR,HIGH);
   digitalWrite(IN2MotorR,LOW);
   digitalWrite(IN1MotorL,HIGH);
   digitalWrite(IN2MotorL,LOW);
   analogWrite(MotorR,10);
   analogWrite(MotorL,10);
-  delay(1000);*/
+  delay(5000);
+  digitalWrite(IN1MotorR,LOW);
+  digitalWrite(IN2MotorR,LOW);
+  digitalWrite(IN1MotorL,LOW);
+  digitalWrite(IN2MotorL,LOW);
+  analogWrite(MotorR,100);
+  analogWrite(MotorL,100);
 }
+
