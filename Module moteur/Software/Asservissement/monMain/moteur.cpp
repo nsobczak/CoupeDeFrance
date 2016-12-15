@@ -25,10 +25,10 @@
  *      Define
  * ======================================================================================================
  */
-#define IN1MoteurB0 49 // IN1 moteur Gauche 
-#define IN2MoteurB0 50 // IN2 moteur Gauche 
-#define IN1MoteurA0 51 // IN1 moteur Droite
-#define IN2MoteurA0 53 // IN2 moteur Droite 
+#define IN1MoteurB0 52 // IN1 moteur Gauche 
+#define IN2MoteurB0 53 // IN2 moteur Gauche 
+#define IN1MoteurA0 22 // IN1 moteur Droite
+#define IN2MoteurA0 23 // IN2 moteur Droite 
 #define PWM_FREQ 20000 // in Hertz (SET YOUR FREQUENCY)
 
 uint16_t TIM_ARR = (uint16_t)(24000000 / PWM_FREQ) - 1; // Don't change! Calc's period.

@@ -21,10 +21,10 @@
  */
 #define TEMPS 115
 // les 4 ci-dessous sont à redéfinir dans erreur.cpp
-#define encoder0PinA_L 21
-#define encoder0PinB_L 22
-#define encoder0PinA_R 30
-#define encoder0PinB_R 31
+#define encoder0PinA_L 13   //encodeur gauche A 
+#define encoder0PinB_L 12   //encodeur gauche B 
+#define encoder0PinA_R 11   //encodeur droit A 
+#define encoder0PinB_R 10   //encodeur droit B 
 
 
 /* ======================================================================================================
