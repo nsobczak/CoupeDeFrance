@@ -32,7 +32,7 @@
 int MotorR =3; // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
 int MotorL = 6; 
 int IN1MotorL = 22;
-int IN2MotorL = 21;
+int IN2MotorL = 23;
 int IN1MotorR = 52;
 int IN2MotorR = 53;
 
@@ -56,6 +56,10 @@ int demarrerMoteurRobot = -1;
  */
 void receiveEvent2(int howMany)
 {
+
+  Serial.print("Wire.available() = ");
+  Serial.println(Wire.available());
+  
   if (Wire.available() == 3)
   {
     //lecture de la variable
@@ -94,7 +98,7 @@ void i2creceive2(int adresse)
 {
   Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
   Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
-  Wire.endTransmission();    	 // fin transmission
+  Wire.endTransmission();    	   // fin transmission
 }
 
 
@@ -149,6 +153,8 @@ void setup() {
   pinMode(IN1MotorL,OUTPUT);
   pinMode(IN2MotorL,OUTPUT);
   //analogWriteResolution(8);// seulement sur Arduino Due pour gere la Resolution du convertisseur DAC 
+  demarrerMoteurRobot = -1;
+  Serial.begin(9600);
 }
 
 
@@ -161,6 +167,7 @@ void loop() {
     
     if ((demarrerMoteurRobot > 0) && (demarrerMoteurRobot < 5))
     {
+      Serial.println("start moteur");
       startMoteur();
       /*
       // conversion sur 2 octets de la valeur à envoyer
