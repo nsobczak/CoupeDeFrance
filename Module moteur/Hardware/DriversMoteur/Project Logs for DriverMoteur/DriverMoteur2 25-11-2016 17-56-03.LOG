@@ -1,0 +1,27 @@
+Removed Pin From Net: NetName=GNDBIS Pin=Connector1-1
+Removed Pin From Net: NetName=VCCBIS Pin=Connector1-2
+Removed Pin From Net: NetName=SIGNAL1 Pin=Connector1-3
+Removed Pin From Net: NetName=SIGNAL1 Pin=Connector1-4
+Removed Pin From Net: NetName=SIGNAL2 Pin=Connector1-5
+Removed Pin From Net: NetName=SIGNAL2 Pin=Connector1-6
+Removed Pin From Net: NetName=PWM Pin=Connector1-7
+Removed Pin From Net: NetName=PWM Pin=Connector1-8
+Removed Pin From Net: NetName=VCC24 Pin=U1-1
+Removed Pin From Net: NetName=GND Pin=U1-2
+Removed Pin From Net: NetName=VCC5 Pin=U1-3
+Removed Member From Class: ClassName=SchemaDriverMoteur Member=Connector1
+Added Component: Designator=J?(HE10-10V)
+Added Pin To Net: NetName=VCCBIS Pin=J?-1
+Added Pin To Net: NetName=VCCBIS Pin=J?-2
+Added Pin To Net: NetName=PWM Pin=J?-3
+Added Pin To Net: NetName=PWM Pin=J?-4
+Added Pin To Net: NetName=SIGNAL2 Pin=J?-5
+Added Pin To Net: NetName=SIGNAL2 Pin=J?-6
+Added Pin To Net: NetName=SIGNAL1 Pin=J?-7
+Added Pin To Net: NetName=SIGNAL1 Pin=J?-8
+Added Pin To Net: NetName=GNDBIS Pin=J?-9
+Added Pin To Net: NetName=GNDBIS Pin=J?-10
+Added Pin To Net: NetName=GND Pin=U1-1
+Added Pin To Net: NetName=VCC5 Pin=U1-2
+Added Pin To Net: NetName=VCC24 Pin=U1-3
+Added Member To Class: ClassName=SchemaDriverMoteur Member=Component J? comment

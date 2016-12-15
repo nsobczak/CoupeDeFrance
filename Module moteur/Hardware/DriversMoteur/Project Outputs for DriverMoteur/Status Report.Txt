@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [DriverMoteur.PrjPCB]
+   Generated File[DriverMoteur2.1.TXT]
+   Generated File[DriverMoteur2.1.LDP]
+   Generated File[DriverMoteur2.1.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 20:57:34 On 08/12/2016

@@ -1,0 +1,10 @@
+Added Component: Designator=Connector1(BMI_HEARDER_4mm)
+Added Pin To Net: NetName=VCCBIS Pin=Connector1-1
+Added Pin To Net: NetName=VCCBIS Pin=Connector1-2
+Added Pin To Net: NetName=SIGNAL1 Pin=Connector1-3
+Added Pin To Net: NetName=SIGNAL1 Pin=Connector1-4
+Added Pin To Net: NetName=SIGNAL2 Pin=Connector1-5
+Added Pin To Net: NetName=SIGNAL2 Pin=Connector1-6
+Added Pin To Net: NetName=GNDBIS Pin=Connector1-7
+Added Pin To Net: NetName=GNDBIS Pin=Connector1-8
+Added Member To Class: ClassName=SchemaDriverMoteur Member=Component Connector1 BMI_HEARDER_4mm

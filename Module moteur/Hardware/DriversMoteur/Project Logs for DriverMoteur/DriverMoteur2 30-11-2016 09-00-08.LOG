@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=VCC5 Pin=C2-1
+Removed Pin From Net: NetName=VCC5(2) Pin=C2-2
+Removed Pin From Net: NetName=VCC24 Pin=U1-1
+Removed Pin From Net: NetName=GND Pin=U1-2
+Removed Pin From Net: NetName=VCC5 Pin=U1-3
+Change Component Footprint: Designator=C1 Old Footprint=0805 New Footprint=RAD0.1
+Change Component Footprint: Designator=C2 Old Footprint=0805 New Footprint=RAD0.1
+Added Pin To Net: NetName=VCC5(2) Pin=C2-1
+Added Pin To Net: NetName=VCC5 Pin=C2-2
+Added Pin To Net: NetName=GND Pin=U1-1
+Added Pin To Net: NetName=VCC5 Pin=U1-2
+Added Pin To Net: NetName=VCC24 Pin=U1-3

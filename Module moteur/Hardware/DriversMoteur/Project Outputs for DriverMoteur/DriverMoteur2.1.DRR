@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: DriverMoteur2.1.PCBDOC   08/12/2016  20:57:34
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : DriverMoteur2.1.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        23.6mil (0.59944mm)      Round          19               2.13 Inch (54.12 mm)
+T2        24mil (0.6096mm)         Round          4                0.31 Inch (7.95 mm)
+T3        28mil (0.7112mm)         Round          24               5.40 Inch (137.10 mm)
+T4        36mil (0.9144mm)         Round          10               0.90 Inch (22.86 mm)
+T5        40mil (1.016mm)          Round          3                0.20 Inch (5.08 mm)
+T6        52mil (1.3208mm)         Round          8                1.44 Inch (36.60 mm)
+T7        126mil (3.2004mm)        Round          4                3.86 Inch (98.00 mm)
+---------------------------------------------------------------------------
+Totals                                            72               14.24 Inch (361.72 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

@@ -1,0 +1,70 @@
+Added Component: Designator=*(BMI_HEARDER_4mm)
+Added Component: Designator=C1(0805)
+Added Component: Designator=C2(0805)
+Added Component: Designator=JMP1(JMP2-100)
+Added Component: Designator=JMP2(JMP2-100)
+Added Component: Designator=JMP3(JMP2-100)
+Added Component: Designator=JMP4(JMP2-100)
+Added Component: Designator=LD1(LED0805)
+Added Component: Designator=LD2(LED0805)
+Added Component: Designator=LD3(LED0805)
+Added Component: Designator=R1(0805)
+Added Component: Designator=R2(0805)
+Added Component: Designator=R3(0805)
+Added Component: Designator=U1(TO220V)
+Added Pin To Net: NetName=GNDBIS Pin=*-7
+Added Pin To Net: NetName=GNDBIS Pin=*-8
+Added Pin To Net: NetName=GNDBIS Pin=LD2-K
+Added Net: Name=GNDBIS
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=GND Pin=JMP2-1
+Added Pin To Net: NetName=GND Pin=JMP2-2
+Added Pin To Net: NetName=GND Pin=LD1-K
+Added Pin To Net: NetName=GND Pin=LD3-K
+Added Pin To Net: NetName=GND Pin=U1-1
+Added Net: Name=GND
+Added Net: Name=IN1
+Added Net: Name=IN2
+Added Net: Name=NetD1_16
+Added Pin To Net: NetName=NetLD1_A Pin=LD1-A
+Added Pin To Net: NetName=NetLD1_A Pin=R1-1
+Added Net: Name=NetLD1_A
+Added Pin To Net: NetName=NetLD2_A Pin=LD2-A
+Added Pin To Net: NetName=NetLD2_A Pin=R2-1
+Added Net: Name=NetLD2_A
+Added Pin To Net: NetName=NetLD3_A Pin=LD3-A
+Added Pin To Net: NetName=NetLD3_A Pin=R3-1
+Added Net: Name=NetLD3_A
+Added Pin To Net: NetName=OUTMOTOR1 Pin=JMP4-1
+Added Pin To Net: NetName=OUTMOTOR1 Pin=JMP4-2
+Added Net: Name=OUTMOTOR1
+Added Pin To Net: NetName=OUTMOTOR2 Pin=JMP3-1
+Added Pin To Net: NetName=OUTMOTOR2 Pin=JMP3-2
+Added Net: Name=OUTMOTOR2
+Added Net: Name=PWM
+Added Net: Name=RSO
+Added Pin To Net: NetName=SIGNAL1 Pin=*-3
+Added Pin To Net: NetName=SIGNAL1 Pin=*-4
+Added Net: Name=SIGNAL1
+Added Pin To Net: NetName=SIGNAL2 Pin=*-5
+Added Pin To Net: NetName=SIGNAL2 Pin=*-6
+Added Net: Name=SIGNAL2
+Added Pin To Net: NetName=VCC5(2) Pin=C2-2
+Added Net: Name=VCC5(2)
+Added Pin To Net: NetName=VCC5 Pin=C2-1
+Added Pin To Net: NetName=VCC5 Pin=R1-2
+Added Pin To Net: NetName=VCC5 Pin=U1-2
+Added Net: Name=VCC5
+Added Pin To Net: NetName=VCC24 Pin=C1-1
+Added Pin To Net: NetName=VCC24 Pin=JMP1-1
+Added Pin To Net: NetName=VCC24 Pin=JMP1-2
+Added Pin To Net: NetName=VCC24 Pin=R3-2
+Added Pin To Net: NetName=VCC24 Pin=U1-3
+Added Net: Name=VCC24
+Added Pin To Net: NetName=VCCBIS Pin=*-1
+Added Pin To Net: NetName=VCCBIS Pin=*-1
+Added Pin To Net: NetName=VCCBIS Pin=*-2
+Added Pin To Net: NetName=VCCBIS Pin=R2-2
+Added Net: Name=VCCBIS
+Added Class: Name=SchemaDriverMoteur
+Added Room: Name=SchemaDriverMoteur

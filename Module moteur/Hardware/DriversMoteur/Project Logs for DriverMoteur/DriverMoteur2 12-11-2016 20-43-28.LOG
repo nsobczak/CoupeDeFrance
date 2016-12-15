@@ -1,0 +1,34 @@
+Removed Pin From Net: NetName=VCCBIS Pin=Connector1-2
+Removed Pin From Net: NetName=GNDBIS Pin=Connector1-7
+Removed Pin From Net: NetName=GNDBIS Pin=Connector1-8
+Removed Pin From Net: NetName=PWM Pin=D1-14
+Removed Pin From Net: NetName=VCCBIS Pin=HCPL-9030/0930-1
+Removed Pin From Net: NetName=SIGNAL1 Pin=HCPL-9030/0930-2
+Removed Pin From Net: NetName=SIGNAL2 Pin=HCPL-9030/0930-3
+Removed Pin From Net: NetName=GNDBIS Pin=HCPL-9030/0930-4
+Removed Pin From Net: NetName=GND Pin=HCPL-9030/0930-5
+Removed Pin From Net: NetName=VCC5 Pin=HCPL-9030/0930-8
+Removed Member From Class: ClassName=SchemaDriverMoteur Member=HCPL-9030/0930
+Added Component: Designator=HCPL-900J(HCPL-0900j)
+Added Pin To Net: NetName=GNDBIS Pin=Connector1-2
+Added Pin To Net: NetName=PWM Pin=Connector1-7
+Added Pin To Net: NetName=PWM Pin=Connector1-8
+Added Pin To Net: NetName=VCCBIS Pin=HCPL-900J-1
+Added Pin To Net: NetName=GNDBIS Pin=HCPL-900J-2
+Added Pin To Net: NetName=SIGNAL1 Pin=HCPL-900J-3
+Added Pin To Net: NetName=SIGNAL2 Pin=HCPL-900J-4
+Added Pin To Net: NetName=PWM Pin=HCPL-900J-5
+Added Pin To Net: NetName=GNDBIS Pin=HCPL-900J-8
+Added Pin To Net: NetName=GND Pin=HCPL-900J-9
+Added Pin To Net: NetName=GND Pin=HCPL-900J-15
+Added Pin To Net: NetName=VCC5 Pin=HCPL-900J-16
+Added Pin To Net: NetName=OUT_IN1 Pin=D1-12
+Added Pin To Net: NetName=OUT_IN1 Pin=HCPL-900J-14
+Added Net: Name=OUT_IN1
+Added Pin To Net: NetName=OUT_IN2 Pin=D1-13
+Added Pin To Net: NetName=OUT_IN2 Pin=HCPL-900J-13
+Added Net: Name=OUT_IN2
+Added Pin To Net: NetName=OUT_PWM Pin=D1-14
+Added Pin To Net: NetName=OUT_PWM Pin=HCPL-900J-12
+Added Net: Name=OUT_PWM
+Added Member To Class: ClassName=SchemaDriverMoteur Member=Component HCPL-900J U?

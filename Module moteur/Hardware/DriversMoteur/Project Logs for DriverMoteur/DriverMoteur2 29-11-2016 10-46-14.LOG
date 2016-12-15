@@ -1,0 +1,36 @@
+Removed Pin From Net: NetName=VCC24 Pin=JMP1-1
+Removed Pin From Net: NetName=VCC24 Pin=JMP1-2
+Removed Pin From Net: NetName=GND Pin=JMP2-1
+Removed Pin From Net: NetName=GND Pin=JMP2-2
+Removed Pin From Net: NetName=OUTMOTOR2 Pin=JMP3-1
+Removed Pin From Net: NetName=OUTMOTOR2 Pin=JMP3-2
+Removed Pin From Net: NetName=OUTMOTOR1 Pin=JMP4-1
+Removed Pin From Net: NetName=OUTMOTOR1 Pin=JMP4-2
+Removed Pin From Net: NetName=VCC24 Pin=U1-1
+Removed Pin From Net: NetName=GND Pin=U1-2
+Removed Pin From Net: NetName=VCC5 Pin=U1-3
+Removed Member From Class: ClassName=SchemaDriverMoteur Member=JMP1
+Removed Member From Class: ClassName=SchemaDriverMoteur Member=JMP2
+Removed Member From Class: ClassName=SchemaDriverMoteur Member=JMP3
+Removed Member From Class: ClassName=SchemaDriverMoteur Member=JMP4
+Change Component Designator: OldDesignator=C? NewDesignator=C3
+Change Component Designator: OldDesignator=J? NewDesignator=J5
+Added Component: Designator=J1(AMP_2)
+Added Component: Designator=J2(AMP_2)
+Added Component: Designator=J3(AMP_2)
+Added Component: Designator=J4(AMP_2)
+Added Pin To Net: NetName=VCC24 Pin=J1-1
+Added Pin To Net: NetName=VCC24 Pin=J1-2
+Added Pin To Net: NetName=GND Pin=J2-1
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=OUTMOTOR2 Pin=J3-1
+Added Pin To Net: NetName=OUTMOTOR2 Pin=J3-2
+Added Pin To Net: NetName=OUTMOTOR1 Pin=J4-1
+Added Pin To Net: NetName=OUTMOTOR1 Pin=J4-2
+Added Pin To Net: NetName=GND Pin=U1-1
+Added Pin To Net: NetName=VCC5 Pin=U1-2
+Added Pin To Net: NetName=VCC24 Pin=U1-3
+Added Member To Class: ClassName=SchemaDriverMoteur Member=Component J1 comment
+Added Member To Class: ClassName=SchemaDriverMoteur Member=Component J2 comment
+Added Member To Class: ClassName=SchemaDriverMoteur Member=Component J3 comment
+Added Member To Class: ClassName=SchemaDriverMoteur Member=Component J4 comment

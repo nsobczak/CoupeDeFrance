@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=VCCBIS Pin=J?-1
+Removed Pin From Net: NetName=VCCBIS Pin=J?-2
+Removed Pin From Net: NetName=GNDBIS Pin=J?-9
+Removed Pin From Net: NetName=GNDBIS Pin=J?-10
+Added Pin To Net: NetName=GNDBIS Pin=J?-1
+Added Pin To Net: NetName=GNDBIS Pin=J?-2
+Added Pin To Net: NetName=VCCBIS Pin=J?-9
+Added Pin To Net: NetName=VCCBIS Pin=J?-10

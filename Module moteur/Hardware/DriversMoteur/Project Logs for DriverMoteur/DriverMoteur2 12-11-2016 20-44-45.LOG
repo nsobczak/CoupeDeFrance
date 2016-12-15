@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=VCCBIS Pin=Connector1-1
+Removed Pin From Net: NetName=GNDBIS Pin=Connector1-2
+Added Pin To Net: NetName=GNDBIS Pin=Connector1-1
+Added Pin To Net: NetName=VCCBIS Pin=Connector1-2
