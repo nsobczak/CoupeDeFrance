@@ -1,0 +1,8 @@
+Added Pin To Net: NetName=ENCODER0PINB_L Pin=EncoderMotorL-5
+Added Pin To Net: NetName=ENCODER0PINB_L Pin=EncoderMotorL-6
+Added Pin To Net: NetName=ENCODER0PINA_L Pin=EncoderMotorL-9
+Added Pin To Net: NetName=ENCODER0PINA_L Pin=EncoderMotorL-10
+Added Pin To Net: NetName=ENCODER0PINA_R Pin=EncoderMotorR-1
+Added Pin To Net: NetName=ENCODER0PINA_R Pin=EncoderMotorR-2
+Added Pin To Net: NetName=ENCODER0PINB_R Pin=EncoderMotorR-5
+Added Pin To Net: NetName=ENCODER0PINB_R Pin=EncoderMotorR-6

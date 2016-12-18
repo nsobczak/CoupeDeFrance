@@ -1,0 +1,70 @@
+Added Component: Designator=*(LvlConverter_Adg3304)
+Added Component: Designator=Capa_Sw(0805)
+Added Component: Designator=Connector_Input_5V(Connector2_3.5mm_puissance)
+Added Component: Designator=Connector_Input_7V(Connector2_3.5mm_puissance)
+Added Component: Designator=Connector_Input_I2C(AMP_2)
+Added Component: Designator=Decouplage_Input_3.3V_LvlConverter(0805)
+Added Component: Designator=Decouplage_Input_5V_LvlConverter(0805)
+Added Component: Designator=Decouplage_Input_7V_Arduino(0805)
+Added Component: Designator=Led_Alim_5V(LED0805)
+Added Component: Designator=Led_Alim_7V(LED0805)
+Added Component: Designator=Res_PullUp_switch(0805)
+Added Component: Designator=ResLed_5V(0805)
+Added Component: Designator=ResLed_7V(0805)
+Added Component: Designator=SW_Reset(KSA)
+Added Pin To Net: NetName=VCC5 Pin=*-1
+Added Pin To Net: NetName=SDA5V Pin=*-2
+Added Pin To Net: NetName=SCL5V Pin=*-3
+Added Pin To Net: NetName=GND Pin=*-7
+Added Pin To Net: NetName=GND Pin=*-8
+Added Pin To Net: NetName=SCL3.3V Pin=*-12
+Added Pin To Net: NetName=SDA3.3V Pin=*-13
+Added Pin To Net: NetName=VCC3.3 Pin=*-14
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=Capa_Sw-1
+Added Pin To Net: NetName=GND Pin=Capa_Sw-2
+Added Pin To Net: NetName=VCC5 Pin=Connector_Input_5V-1
+Added Pin To Net: NetName=GND Pin=Connector_Input_5V-2
+Added Pin To Net: NetName=VCC7 Pin=Connector_Input_7V-1
+Added Pin To Net: NetName=GND Pin=Connector_Input_7V-2
+Added Pin To Net: NetName=SDA5V Pin=Connector_Input_I2C-1
+Added Pin To Net: NetName=SCL5V Pin=Connector_Input_I2C-2
+Added Pin To Net: NetName=GND Pin=Decouplage_Input_3.3V_LvlConverter-1
+Added Pin To Net: NetName=VCC3.3 Pin=Decouplage_Input_3.3V_LvlConverter-2
+Added Pin To Net: NetName=GND Pin=Decouplage_Input_5V_LvlConverter-1
+Added Pin To Net: NetName=VCC5 Pin=Decouplage_Input_5V_LvlConverter-2
+Added Pin To Net: NetName=GND Pin=Decouplage_Input_7V_Arduino-1
+Added Pin To Net: NetName=VCC7 Pin=Decouplage_Input_7V_Arduino-2
+Added Pin To Net: NetName=NetLed_Alim_5V_A Pin=Led_Alim_5V-A
+Added Pin To Net: NetName=GND Pin=Led_Alim_5V-K
+Added Pin To Net: NetName=NetLed_Alim_7V_A Pin=Led_Alim_7V-A
+Added Pin To Net: NetName=GND Pin=Led_Alim_7V-K
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=Res_PullUp_switch-1
+Added Pin To Net: NetName=VCC5 Pin=Res_PullUp_switch-2
+Added Pin To Net: NetName=VCC5 Pin=ResLed_5V-1
+Added Pin To Net: NetName=NetLed_Alim_5V_A Pin=ResLed_5V-2
+Added Pin To Net: NetName=VCC7 Pin=ResLed_7V-1
+Added Pin To Net: NetName=NetLed_Alim_7V_A Pin=ResLed_7V-2
+Added Pin To Net: NetName=GND Pin=SW_Reset-1
+Added Pin To Net: NetName=GND Pin=SW_Reset-2
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=SW_Reset-3
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=SW_Reset-4
+Added Pin To Net: NetName=ENCODER0PINA_R Pin=U?-7
+Added Pin To Net: NetName=ENCODER0PINB_R Pin=U?-8
+Added Pin To Net: NetName=ENCODER0PINA_L Pin=U?-5
+Added Net: Name=ENCODER0PINA_L
+Added Pin To Net: NetName=ENCODER0PINB_L Pin=U?-6
+Added Net: Name=ENCODER0PINB_L
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component * LvlConverter_Adg3304
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Capa_Sw CAP
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_5V Connector2_3.5mm_puissance
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_7V Connector2_3.5mm_puissance
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_I2C comment
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Decouplage_Input_3.3V_LvlConverter CAP
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Decouplage_Input_5V_LvlConverter CAP
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Decouplage_Input_7V_Arduino CAP
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Led_Alim_5V comment
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Led_Alim_7V comment
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Res_PullUp_switch RES
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component ResLed_5V RES
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component ResLed_7V RES
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component SW_Reset SW_PB
