@@ -13,6 +13,6 @@ Dossier contenant le fichier du code pour lancer les moteurs de déplacement de 
 Dossier contenant le fichier du code pour utiliser les capteur infrarouge de detection des obstacles.
 
 
-## Test
+## Tests
 
 Dossier de tests.
