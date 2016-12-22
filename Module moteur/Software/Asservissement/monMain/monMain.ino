@@ -101,7 +101,6 @@ void loop()
 {   
     codeuse.NG = encoder0Pos_L;
     codeuse.ND = encoder0Pos_R;
-
     keepPosition(destination, roueCodeuse, robot, roue, codeuse);
     //square(destination, roueCodeuse, robot, roue, codeuse);
 }
