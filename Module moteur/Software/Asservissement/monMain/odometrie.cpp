@@ -157,7 +157,7 @@ void Odometrie::retournerValeur(Position *roueCodeuse, Tick codeuse)
         derive_X =  CORFUGE * m_delta_angle * dY;
         derive_Y = -CORFUGE * m_delta_angle * dX;
 
-        //met à jour
+        //met à jour avec position actuelle réelle du robot
       	(*roueCodeuse).thetha =   m_variation_angle_moyRad;
       	(*roueCodeuse).x = (*roueCodeuse).x + dX;
       	(*roueCodeuse).y = (*roueCodeuse).y + dY;

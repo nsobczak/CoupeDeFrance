@@ -78,12 +78,18 @@ void setup()
 {
     Serial.begin(250000);
     crysteo.initPWM();
+    
     //interruption pour encodeurs
     attachInterrupt(encoder0PinA_L, doEncoderA_L, CHANGE);
     attachInterrupt(encoder0PinB_L, doEncoderB_L, CHANGE);
 
     attachInterrupt(encoder0PinA_R, doEncoderA_R, CHANGE);
     attachInterrupt(encoder0PinB_R, doEncoderB_R, CHANGE);
+    
+    roueCodeuse.x=0;                                      //position actuelle
+    roueCodeuse.y=0;                                      // Itinialisation de la roue codeuse (a verifier par test)
+    roueCodeuse.thetha=0;                                 //
+    // rajouter codeuse ND NG  à initialiser à 0 
 }
 
 
@@ -93,6 +99,9 @@ void setup()
  */
 void loop()
 {   
+    codeuse.NG = encoder0Pos_L;
+    codeuse.ND = encoder0Pos_R;
+
     keepPosition(destination, roueCodeuse, robot, roue, codeuse);
     //square(destination, roueCodeuse, robot, roue, codeuse);
 }
@@ -108,13 +117,11 @@ void loop()
  */
  void keepPosition(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
 {
+    
     destination.x=0;
     destination.y=0;
     destination.thetha=0.0;                               //"destination.distance" utile car utile dans odométrie (pour les calculs)
-    roueCodeuse.x=0;                                      //
-    roueCodeuse.y=0;                                      // Itinialisation de la roue codeuse (a verifier par test)
-    roueCodeuse.thetha=0;                                 // 
-    robot.appliquerOrdre(destination, roueCodeuse, 3);    // attention pas tout pigé
+    robot.appliquerOrdre(destination, roueCodeuse, 3);    // fonctionnement moteur
     roue.retournerValeur(&roueCodeuse, codeuse);          // met à jour roue codeuse
     errorLT();  
 }
@@ -124,7 +131,7 @@ void loop()
  * \fn  void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
  * \brief fonction qui fait faire un carré au robot
  */
- void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
+ void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)// faire machine d'état
 {
     destination.x=0;
     destination.y=0;

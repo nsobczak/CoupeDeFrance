@@ -111,14 +111,14 @@ void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit)
             m_vitesse_moteur=convertir_pourcentage_en_octet ();
             //m_PWM_G[0]=m_PWM_G[1]=m_vitesse_moteur;
               if(m_vitesse_moteur>127){
-                digitalWrite(IN1MoteurB0,HIGH);// voire si le sens OK
-                digitalWrite(IN2MoteurB0,LOW);// voire si le sens OK
+                digitalWrite(IN1MoteurB0,HIGH);// voir si le sens OK
+                digitalWrite(IN2MoteurB0,LOW);// voir si le sens OK
                 analogWrite(PMW_MOTEUR_B0,255-m_vitesse_moteur);
                 
               }
               else if(m_vitesse_moteur<127){
-                digitalWrite(IN1MoteurB0,LOW);// voire si le sens OK
-                digitalWrite(IN2MoteurB0,HIGH);// voire si le sens OK
+                digitalWrite(IN1MoteurB0,LOW);// voir si le sens OK
+                digitalWrite(IN2MoteurB0,HIGH);// voir si le sens OK
                 analogWrite(PMW_MOTEUR_B0,255-m_vitesse_moteur);
               }
 

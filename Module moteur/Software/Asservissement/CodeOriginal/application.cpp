@@ -451,7 +451,7 @@ void loop()
            
             errorLT();
             if(robotCouleur=="VERT"){
-                printOLED(roueCodeuse,"VERT");
+                printOLED(roueCodeuse,"VEiRT");
             }
             else{
                 printOLED(roueCodeuse,"JAUNE");
@@ -1053,7 +1053,7 @@ void scare(){
     case 0 : 
             destination.x=0;
             destination.y=0;
-            DoAngle=0;
+            DoAngle=0;  // si à 0 => faut lui donner que la position, si à 1 => faut donner l'angle et la distance
             TargetAngle=0;
             etape++;
     break;
