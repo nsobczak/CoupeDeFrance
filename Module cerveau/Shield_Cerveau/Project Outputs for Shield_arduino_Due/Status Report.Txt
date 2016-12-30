@@ -1,0 +1,15 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [Shield_arduino_Due.PrjPCB]
+   Generated File[Shield_Arduino_Due.GTL]
+   Generated File[Shield_Arduino_Due.GBL]
+   Generated File[Shield_Arduino_Due.GM1]
+   Generated File[Shield_Arduino_Due.RUL]
+   Generated File[Shield_Arduino_Due.EXTREP]
+   Generated File[Shield_Arduino_Due.REP]
+
+
+Files Generated   : 6
+Documents Printed : 0
+
+Finished Output Generation At 12:09:17 On 22/12/2016
