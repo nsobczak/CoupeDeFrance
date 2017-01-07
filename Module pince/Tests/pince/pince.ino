@@ -6,14 +6,14 @@
  *    \file pince.cpp
  *    \brief Gestion de la pince
  *    \author Olivier JOMBART
- *    \date Novemmbre 2016
+ *    \date Janvier 2016
 */
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
 
 #include <Servo.h>
 
-/*
+
 // I2C
 #include <Wire.h>
 #include "i2cCommunication.h"
@@ -61,7 +61,7 @@
 #define HEATER_1_PIN       8
 #define TEMP_0_PIN          13   // ANALOG NUMBERING
 #define TEMP_1_PIN          14   // ANALOG NUMBERING
-*/
+
 
 
 //_____________________________________________________________________________________________
@@ -69,21 +69,20 @@
 
 
 Servo myservo;        // create servo object to control a servo
-
-int interrupt_pin=7;  //exemple de pin d'entrée à toi de choisir celle qui convient le mieux
-
+int interrupt_pin;
 
 /**
  * \fn void mouvement_pince(const int pin_in)
  * \brief pour un pin, la pince se ferme si elle reçoit l'état l'état low et s'ouvre si elle reçoit l'état high
  * \param const int pin_in
  */
-void mouvement_pince(const int pin_in){   //la pin d'entrée qui commande l'ouverture ou fermeture
+ 
+void mouvement_pince(const int pin_in){   // Selon ce qu'elle reçoit (LOW/HIGH) elle effectuera le mouvement prévu
   if(digitalRead(pin_in)==LOW) {
-    myservo.write(55);     //fermée
+    myservo.write(100);                   // fermée
   }
   if (digitalRead(pin_in)==HIGH) { 
-    myservo.write(10);     // ouverte
+    myservo.write(140);                   // ouverte
   }
 }
 
@@ -95,10 +94,7 @@ void mouvement_pince(const int pin_in){   //la pin d'entrée qui commande l'ouve
  * \brief fonction setup d'arduino
  */
 void setup() {
-  pinMode(interrupt_pin,INPUT); 
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-  pinMode(2, OUTPUT);
-  digitalWrite(2, LOW);
+  myservo.attach(2);                      // attaches the servo on pin 2 to the servo object
 }
 
 
@@ -108,8 +104,5 @@ void setup() {
  */
 void loop() 
 {
-  //mouvement_pince(interrupt_pin);
-  myservo.write(120);     // ouverte
-  delay(1000);
- 
+  mouvement_pince(interrupt_pin);
 }
