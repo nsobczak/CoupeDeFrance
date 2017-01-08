@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=VCC5 Pin=Input_5V-1
+Removed Pin From Net: NetName=GND Pin=Input_5V-2
+Removed Pin From Net: NetName=VCC7 Pin=Input_7V-1
+Removed Pin From Net: NetName=GND Pin=Input_7V-2
+Removed Member From Class: ClassName=ShieldArduino Due.~(5) Member=Input_5V
+Removed Member From Class: ClassName=ShieldArduino Due.~(5) Member=Input_7V
+Added Component: Designator=Cosse_GND_5V(AMP_2)
+Added Component: Designator=Cosse_GND_7V(AMP_2)
+Added Component: Designator=Cosse_VCC_5V(AMP_2)
+Added Component: Designator=Cosse_VCC_7V(AMP_2)
+Added Pin To Net: NetName=GND Pin=Cosse_GND_5V-1
+Added Pin To Net: NetName=GND Pin=Cosse_GND_5V-2
+Added Pin To Net: NetName=GND Pin=Cosse_GND_7V-1
+Added Pin To Net: NetName=GND Pin=Cosse_GND_7V-2
+Added Pin To Net: NetName=VCC5 Pin=Cosse_VCC_5V-1
+Added Pin To Net: NetName=VCC5 Pin=Cosse_VCC_5V-2
+Added Pin To Net: NetName=VCC7 Pin=Cosse_VCC_7V-1
+Added Pin To Net: NetName=VCC7 Pin=Cosse_VCC_7V-2
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Cosse_GND_5V comment
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Cosse_GND_7V comment
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Cosse_VCC_5V comment
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Cosse_VCC_7V comment
