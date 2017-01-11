@@ -63,6 +63,20 @@ double beta, depassement;
 double TargetAngle;
 int DoAngle;
 
+int etape;
+int timer;
+
+//Détection adversaire
+int StopIR;
+//Donné objet capter par la raspberry
+uint32_t dataRaspberry;
+int detecteObjet_Raspberry;
+double distance_Raspberry;
+double Angle_Raspberry;
+//Variable pour la corde
+boolean startRound;
+
+String robotCouleur;
 
 //_______________________________________________________________________________________________________
 //_______________________________________________________________________________________________________
@@ -76,9 +90,22 @@ int DoAngle;
  */
 void setup()
 {
-    Serial.begin(250000);
-    crysteo.initPWM();
+    Serial.begin(9600);
     
+    etape=0; 
+
+    codeuse.ND=0;
+    codeuse.NG=0;
+    
+    forward=0;
+    depassement=0;
+    beta=0;
+    DoAngle=0;
+    TargetAngle=0;
+    StopIR=0;
+    startRound = true;
+    
+    crysteo.initPWM();
     //interruption pour encodeurs
     attachInterrupt(encoder0PinA_L, doEncoderA_L, CHANGE);
     attachInterrupt(encoder0PinB_L, doEncoderB_L, CHANGE);
@@ -97,13 +124,180 @@ void setup()
  * \fn void loop()
  * \brief fonction loop d'arduino
  */
-void loop()
-{   
+ void loop()
+{
+    Serial.println("Entering_loop...");
+    
     codeuse.NG = encoder0Pos_L;
     codeuse.ND = encoder0Pos_R;
-    keepPosition(destination, roueCodeuse, robot, roue, codeuse);
-    //square(destination, roueCodeuse, robot, roue, codeuse);
+    
+    //receiveIRSONAR();
+    
+   timer=millis();
+   // delay(1000);
+   //interrupts();   // enable interrupts
+    //    do{
+    //    }while(millis()-timer < 10);
+    if(startRound == false){
+        while(startRound != true)
+        {
+            crysteo.fonctionnement_moteur(0,0);
+            //CORDE();
+            //Serial.print("Start :\t");
+            //Serial.println(startRound);
+        }
+        /*
+        display.clearDisplay();   // clears the screen and buffer
+        display.setTextSize(1);    //taille de la police
+        display.setTextColor(WHITE); //couleur du texte blanc sur noir
+        display.setCursor(0, 0);            //Position du texte [colonne=128| ligne=32]
+        display.print("START");
+        display.display();
+        */
+        //TimerRound=millis();
+        delay(1000);
+        //permet d'afficher
+        Serial.print("Start :\t");
+        Serial.println(startRound);
+    }
+    
+    //noInterrupts(); // disable interrupts
+    //Serial.print("StopIR : \t");
+    //Serial.println(StopIR);
+    // if(millis()-TimerRound <=90000){ //timer coupe
+    Serial.println("coucou_1");
+    if(StopIR==0){
+        Serial.println("coucou_2");
+        if(millis()-timer >= 100){
+            Serial.println("coucou_3");
+            //LED_SetRGBColor(RGB_COLOR_RED);
+            //LED_On(LED_RGB);
+            //Serial.print(millis());
+            //Serial.print(" \t ");
+            //Serial.print (destination.thetha);
+            //Serial.print(" \t ");
+            //Serial.println (roueCodeuse.thetha);
+            //Serial.println (200 - roueCodeuse.distance);
+            //Serial.println (roue.calculer_distance(destination, roueCodeuse));
+            //destination.distance=roue.calculer_distance(destination, roueCodeuse);
+            //robot.appliquerOrdre(destination,roueCodeuse,1); //Angle
+            //robot.appliquerOrdre(destination,roueCodeuse,2);  //distance
+                robot.appliquerOrdre(destination,roueCodeuse,3);  //curve
+    	    //This will run in a loop
+                timer=millis();
+        }
+        else
+        {
+            Serial.println("coucou_4");
+            //LED_SetRGBColor(RGB_COLOR_BLUE);
+            //LED_On(LED_RGB);
+        
+            codeuse.ND=encoder0Pos_R;
+            codeuse.NG=encoder0Pos_L;
+               /* Serial.print (encoder0Pos_L);
+                Serial.print ("\t");
+                Serial.println (encoder0Pos_R);
+               */
+            roue.retournerValeur(&roueCodeuse,codeuse);
+           
+            errorLT();
+            /*
+            if(robotCouleur=="VERT"){
+                //printOLED(roueCodeuse,"VERT");
+            }
+            else{
+                //printOLED(roueCodeuse,"JAUNE");
+            }
+            */
+            
+            int X =roueCodeuse.x;
+            int Y = roueCodeuse.y;
+            int ANGLE = roueCodeuse.thetha;
+            
+            int DX = destination.x;
+            int DY = destination.y;
+            int DA = memory_destination.thetha;
+             
+             
+           //if( (millis()-timer2) >= 5000){
+            //if( roueCodeuse.distance <= 60){
+            if(((X <= DX + 50) && (X >= DX - 50)) || (memory_destination.x == destination.x) ){
+                Serial.println("coucou_5_if_DX");
+                if(((Y <= DY + 50) && (Y >= DY - 50)) || (memory_destination.y == destination.y) ){
+                    Serial.println("coucou_6_if_DY");
+                    if((ANGLE <= DA + 10) && (ANGLE >= DA - 10)){
+                            Serial.println("coucou_7_if_DA");
+                            //LED_SetRGBColor(RGB_COLOR_GREEN);
+                            //LED_On(LED_RGB);
+                            //keepPosition(destination, roueCodeuse, robot, roue, codeuse);
+                            Serial.println("___entering square___");
+                            square(destination, roueCodeuse, robot, roue, codeuse);
+                            Serial.println("exiting square___");
+                            //exemple1();
+                            //deplacementColor();
+                            delay(100);
+                            //timer2=millis();
+                    }
+                }
+            }
+            
+              
+            //Serial.print(" \t THETHA : \t");
+            //Serial.println (roueCodeuse.thetha);
+
+            //Serial.print(" \t X : \t");
+            //Serial.println (roueCodeuse.x);
+
+            //Serial.print(" \t Y : \t");
+            //Serial.println (roueCodeuse.y);
+            //crysteo.fonctionnement_moteur( 0, 0);
+            }
+    }
+    else{
+          Serial.println("coucou_8");
+          crysteo.fonctionnement_moteur(0,0);  
+     }
+/*  }
+  else{
+          crysteo.fonctionnement_moteur(0,0);  
+     }*/
+  
+     /*   if(test==1){
+            val= (number[0] <<24) |(number[1] << 16)|(number[2] << 8) | number[3];
+            val=(-(val & 4294967296))+(val & 4294967295);
+            test=0;
+        }
+    delay(100);
+    Serial.print("la valeur est de :\t");
+    Serial.println(val);
+    
+    Serial.print("la number[0] est de :\t");
+    Serial.println(number[0],BIN);
+    
+    Serial.print("la number[1] est de :\t");
+    Serial.println(number[1],BIN);
+    Serial.print("la number[2] est de :\t");
+    Serial.println(number[2],BIN);
+    Serial.print("la number[3] est de :\t");
+    Serial.println(number[3],BIN);
+   */
+   /*  if(!songDone) { // Start song
+      digitalWrite(D7,HIGH); // Light the onboard Blue LED while the song plays
+      songDone = true;
+      begin_rtttl(song);
+    }
+    if(!next_rtttl()) { // Play next note
+      digitalWrite(D7,LOW); // Turn off the onboard Blue LED.
+      songDone = false;
+      remoteTriggered = false;
+      if(DEBUG) Serial1.println("Done!");
+      delay(2000);
+    }
+    */  
+    
+    Serial.println("...Exiting_loop");
 }
+
 
 
 /* ======================================================================================================
@@ -116,7 +310,6 @@ void loop()
  */
  void keepPosition(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
 {
-    
     destination.x=0;
     destination.y=0;
     destination.thetha=0.0;                               //"destination.distance" utile car utile dans odométrie (pour les calculs)
@@ -130,6 +323,92 @@ void loop()
  * \fn  void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
  * \brief fonction qui fait faire un carré au robot
  */
+ void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)
+{
+    
+    memory_destination.x=destination.x;
+    memory_destination.y=destination.y;
+    //memory_destination.thetha=destination.thetha;
+    
+    switch (etape){
+        
+    case 0 : 
+            Serial.println("switch case 0");
+            destination.x=0;
+            destination.y=0;
+            DoAngle=0;
+            TargetAngle=0;
+            etape++;
+    break;
+    case 1 : 
+            Serial.println("switch case 1");
+            destination.x=300;
+            destination.y=0;
+            TargetAngle=0;
+            DoAngle=0;
+            etape++;
+    break;
+    case 2 : 
+            Serial.println("switch case 2");
+            destination.x=300;
+            destination.y=0;
+            TargetAngle+=90;
+            DoAngle=1;
+            etape++;
+    break;
+    case 3 : 
+            Serial.println("switch case 3");
+            destination.x=300;
+            destination.y=300;
+            //destination.thetha=90;
+            DoAngle=0;
+            etape++;
+    break;
+    case 4 : 
+            Serial.println("switch case 4");
+            destination.x=300;
+            destination.y=300;
+            TargetAngle+=90;
+            DoAngle=1;
+            etape++;
+    break;
+    case 5 : 
+            Serial.println("switch case 5");
+            destination.x=0;
+            destination.y=300;
+            //destination.thetha=180;
+            DoAngle=0;
+            etape++;
+    break;
+    case 6 : 
+            Serial.println("switch case 6");
+            destination.x=0;
+            destination.y=300;
+            TargetAngle=-90;
+            DoAngle=1;
+            etape++;
+   break;
+   case 7: 
+            Serial.println("switch case 7");
+            destination.x=0;
+            destination.y=0;
+            //destination.thetha=90;
+            DoAngle=0;
+            etape++;
+    break;
+    case 8 : 
+            Serial.println("switch case 8");
+            destination.x=0;
+            destination.y=0;
+            TargetAngle=0;
+            DoAngle=1;
+            etape=0;
+    break;
+    }
+     memory_destination.thetha=TargetAngle;       
+}
+
+/*
  void square(Position destination, Position roueCodeuse, Asservissement robot, Odometrie roue, Tick codeuse)// faire machine d'état
 {
     destination.x=0;
@@ -172,6 +451,7 @@ void loop()
     errorLT();
 
 }
+*/
 
 
 //_______________________________________________________________________________________________________
