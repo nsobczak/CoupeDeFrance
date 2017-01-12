@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=R2- Pin=LED_REG3-K
+Added Pin To Net: NetName=REG3- Pin=LED_REG3-K
+Added Pin To Net: NetName=REG3+ Pin=RES_REG3-2
