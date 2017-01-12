@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=NetLed_Reset_A Pin=Led_Reset-A
+Added Pin To Net: NetName=NetLed_Reset_A Pin=ResReset-2
+Added Net: Name=NetLed_Reset_A

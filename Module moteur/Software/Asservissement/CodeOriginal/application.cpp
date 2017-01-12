@@ -1054,7 +1054,7 @@ void scare(){
             destination.x=0;
             destination.y=0;
             DoAngle=0;  // si à 0 => faut lui donner que la position, si à 1 => faut donner l'angle et la distance
-            TargetAngle=0;
+            TargetAngle=0;// angle.destination
             etape++;
     break;
     case 1 : 

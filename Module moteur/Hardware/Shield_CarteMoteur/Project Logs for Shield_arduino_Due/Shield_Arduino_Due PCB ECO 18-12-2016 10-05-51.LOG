@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=ENCODER0PINA_R Pin=EncoderMotorR-1
+Removed Pin From Net: NetName=ENCODER0PINA_R Pin=EncoderMotorR-2
+Removed Pin From Net: NetName=ENCODER0PINB_R Pin=EncoderMotorR-5
+Removed Pin From Net: NetName=ENCODER0PINB_R Pin=EncoderMotorR-6
+Added Pin To Net: NetName=NetEncoderMotorR_1 Pin=EncoderMotorR-1
+Added Pin To Net: NetName=NetEncoderMotorR_1 Pin=EncoderMotorR-2
+Added Net: Name=NetEncoderMotorR_1
+Added Pin To Net: NetName=NetEncoderMotorR_5 Pin=EncoderMotorR-5
+Added Pin To Net: NetName=NetEncoderMotorR_5 Pin=EncoderMotorR-6
+Added Net: Name=NetEncoderMotorR_5

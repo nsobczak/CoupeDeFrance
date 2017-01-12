@@ -1,0 +1,116 @@
+Added Component: Designator=Alim5v(JMP2-100)
+Added Component: Designator=AlimSecour_Out5V(JMP2-100)
+Added Component: Designator=Capa_Sw(0805)
+Added Component: Designator=Cmd_MotorL(HE10-10V)
+Added Component: Designator=Cmd_MotorR(HE10-10V)
+Added Component: Designator=Decouplage(0805)
+Added Component: Designator=EncoderMotorL(HE10-10V)
+Added Component: Designator=EncoderMotorR(HE10-10V)
+Added Component: Designator=I2C(JMP2-100)
+Added Component: Designator=Res_PullUp_SCL(0805)
+Added Component: Designator=Res_PullUp_SDA(0805)
+Added Component: Designator=Res_PullUp_switch(0805)
+Added Component: Designator=SW_Reset(KSA)
+Added Component: Designator=U1(ARDUINO_DUE)
+Added Pin To Net: NetName=CMD_MOTEURL_IN1 Pin=Cmd_MotorL-3
+Added Pin To Net: NetName=CMD_MOTEURL_IN1 Pin=Cmd_MotorL-4
+Added Pin To Net: NetName=CMD_MOTEURL_IN1 Pin=U1-55
+Added Net: Name=CMD_MOTEURL_IN1
+Added Pin To Net: NetName=CMD_MOTEURL_IN2 Pin=Cmd_MotorL-5
+Added Pin To Net: NetName=CMD_MOTEURL_IN2 Pin=Cmd_MotorL-6
+Added Pin To Net: NetName=CMD_MOTEURL_IN2 Pin=U1-53
+Added Net: Name=CMD_MOTEURL_IN2
+Added Pin To Net: NetName=CMD_MOTEURR_IN1 Pin=Cmd_MotorR-3
+Added Pin To Net: NetName=CMD_MOTEURR_IN1 Pin=Cmd_MotorR-4
+Added Pin To Net: NetName=CMD_MOTEURR_IN1 Pin=U1-33
+Added Net: Name=CMD_MOTEURR_IN1
+Added Pin To Net: NetName=CMD_MOTEURR_IN2 Pin=Cmd_MotorR-5
+Added Pin To Net: NetName=CMD_MOTEURR_IN2 Pin=Cmd_MotorR-6
+Added Pin To Net: NetName=CMD_MOTEURR_IN2 Pin=U1-35
+Added Net: Name=CMD_MOTEURR_IN2
+Added Pin To Net: NetName=ENCODER0PINA_L Pin=U1-57
+Added Net: Name=ENCODER0PINA_L
+Added Pin To Net: NetName=ENCODER0PINA_R Pin=EncoderMotorR-1
+Added Pin To Net: NetName=ENCODER0PINA_R Pin=EncoderMotorR-2
+Added Pin To Net: NetName=ENCODER0PINA_R Pin=U1-29
+Added Net: Name=ENCODER0PINA_R
+Added Pin To Net: NetName=ENCODER0PINB_L Pin=U1-59
+Added Net: Name=ENCODER0PINB_L
+Added Pin To Net: NetName=ENCODER0PINB_R Pin=EncoderMotorR-5
+Added Pin To Net: NetName=ENCODER0PINB_R Pin=EncoderMotorR-6
+Added Pin To Net: NetName=ENCODER0PINB_R Pin=U1-31
+Added Net: Name=ENCODER0PINB_R
+Added Pin To Net: NetName=GND Pin=Alim5v-2
+Added Pin To Net: NetName=GND Pin=Capa_Sw-2
+Added Pin To Net: NetName=GND Pin=Cmd_MotorL-9
+Added Pin To Net: NetName=GND Pin=Cmd_MotorL-10
+Added Pin To Net: NetName=GND Pin=Cmd_MotorR-9
+Added Pin To Net: NetName=GND Pin=Cmd_MotorR-10
+Added Pin To Net: NetName=GND Pin=Decouplage-2
+Added Pin To Net: NetName=GND Pin=EncoderMotorL-1
+Added Pin To Net: NetName=GND Pin=EncoderMotorL-2
+Added Pin To Net: NetName=GND Pin=EncoderMotorR-9
+Added Pin To Net: NetName=GND Pin=EncoderMotorR-10
+Added Pin To Net: NetName=GND Pin=SW_Reset-1
+Added Pin To Net: NetName=GND Pin=SW_Reset-2
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=GND Pin=U1-61
+Added Pin To Net: NetName=GND Pin=U1-62
+Added Pin To Net: NetName=GND Pin=U1-80
+Added Pin To Net: NetName=GND Pin=U1-81
+Added Pin To Net: NetName=GND Pin=U1-92
+Added Net: Name=GND
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=Capa_Sw-1
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=Res_PullUp_switch-1
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=SW_Reset-3
+Added Pin To Net: NetName=NetCapa_Sw_1 Pin=SW_Reset-4
+Added Net: Name=NetCapa_Sw_1
+Added Pin To Net: NetName=NetEncoderMotorL_3 Pin=EncoderMotorL-3
+Added Pin To Net: NetName=NetEncoderMotorL_3 Pin=EncoderMotorL-4
+Added Net: Name=NetEncoderMotorL_3
+Added Pin To Net: NetName=NetEncoderMotorL_5 Pin=EncoderMotorL-5
+Added Pin To Net: NetName=NetEncoderMotorL_5 Pin=EncoderMotorL-6
+Added Net: Name=NetEncoderMotorL_5
+Added Pin To Net: NetName=NetEncoderMotorL_9 Pin=EncoderMotorL-9
+Added Pin To Net: NetName=NetEncoderMotorL_9 Pin=EncoderMotorL-10
+Added Net: Name=NetEncoderMotorL_9
+Added Pin To Net: NetName=NetEncoderMotorR_7 Pin=EncoderMotorR-7
+Added Pin To Net: NetName=NetEncoderMotorR_7 Pin=EncoderMotorR-8
+Added Net: Name=NetEncoderMotorR_7
+Added Pin To Net: NetName=PWM_MOTORL Pin=Cmd_MotorL-7
+Added Pin To Net: NetName=PWM_MOTORL Pin=Cmd_MotorL-8
+Added Pin To Net: NetName=PWM_MOTORL Pin=U1-12
+Added Net: Name=PWM_MOTORL
+Added Pin To Net: NetName=PWM_MOTORR Pin=Cmd_MotorR-7
+Added Pin To Net: NetName=PWM_MOTORR Pin=Cmd_MotorR-8
+Added Pin To Net: NetName=PWM_MOTORR Pin=U1-15
+Added Net: Name=PWM_MOTORR
+Added Pin To Net: NetName=SCL Pin=I2C-2
+Added Pin To Net: NetName=SCL Pin=Res_PullUp_SCL-1
+Added Pin To Net: NetName=SCL Pin=U1-26
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=I2C-1
+Added Pin To Net: NetName=SDA Pin=Res_PullUp_SDA-1
+Added Pin To Net: NetName=SDA Pin=U1-25
+Added Net: Name=SDA
+Added Pin To Net: NetName=VCC5_ARDUINO Pin=AlimSecour_Out5V-2
+Added Pin To Net: NetName=VCC5_ARDUINO Pin=U1-82
+Added Net: Name=VCC5_ARDUINO
+Added Pin To Net: NetName=VCC5 Pin=Alim5v-1
+Added Pin To Net: NetName=VCC5 Pin=AlimSecour_Out5V-1
+Added Pin To Net: NetName=VCC5 Pin=Cmd_MotorL-1
+Added Pin To Net: NetName=VCC5 Pin=Cmd_MotorL-2
+Added Pin To Net: NetName=VCC5 Pin=Cmd_MotorR-1
+Added Pin To Net: NetName=VCC5 Pin=Cmd_MotorR-2
+Added Pin To Net: NetName=VCC5 Pin=Decouplage-1
+Added Pin To Net: NetName=VCC5 Pin=EncoderMotorL-7
+Added Pin To Net: NetName=VCC5 Pin=EncoderMotorL-8
+Added Pin To Net: NetName=VCC5 Pin=EncoderMotorR-3
+Added Pin To Net: NetName=VCC5 Pin=EncoderMotorR-4
+Added Pin To Net: NetName=VCC5 Pin=Res_PullUp_SCL-2
+Added Pin To Net: NetName=VCC5 Pin=Res_PullUp_SDA-2
+Added Pin To Net: NetName=VCC5 Pin=Res_PullUp_switch-2
+Added Net: Name=VCC5
+Added Pin To Net: NetName=VCC7 Pin=U1-79
+Added Net: Name=VCC7
+Added Class: Name=ShieldArduino Due

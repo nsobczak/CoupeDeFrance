@@ -1,0 +1,23 @@
+Removed Pin From Net: NetName=VCC5 Pin=Input_5V-1
+Removed Pin From Net: NetName=GND Pin=Input_5V-2
+Removed Pin From Net: NetName=VCC7 Pin=Input_7V-1
+Removed Pin From Net: NetName=GND Pin=Input_7V-2
+Removed Member From Class: ClassName=ShieldArduino Due.~(5) Member=Input_5V
+Removed Member From Class: ClassName=ShieldArduino Due.~(5) Member=Input_7V
+Added Component: Designator=Connector_Input_5V+(Connector_Cosse)
+Added Component: Designator=Connector_Input_5V-(Connector_Cosse)
+Added Component: Designator=Connector_Input_7V+(Connector_Cosse)
+Added Component: Designator=Connector_Input_7V-(Connector_Cosse)
+Added Pin To Net: NetName=VCC5 Pin=Connector_Input_5V+-1
+Added Pin To Net: NetName=VCC5 Pin=Connector_Input_5V+-1
+Added Pin To Net: NetName=GND Pin=Connector_Input_5V--1
+Added Pin To Net: NetName=GND Pin=Connector_Input_5V--1
+Added Pin To Net: NetName=VCC7 Pin=Connector_Input_7V+-1
+Added Pin To Net: NetName=VCC7 Pin=Connector_Input_7V+-1
+Added Pin To Net: NetName=GND Pin=Connector_Input_7V--1
+Added Pin To Net: NetName=GND Pin=Connector_Input_7V--1
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_5V+ Connector_Cosse
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_5V- Connector_Cosse
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_7V+ Connector_Cosse
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_7V- Connector_Cosse
+Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Connector_Input_I2C comment
