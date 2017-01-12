@@ -1,5 +1,0 @@
-Removed Pin From Net: NetName=SDA5V Pin=Connector_Input_I2C-1
-Removed Pin From Net: NetName=SCL5V Pin=Connector_Input_I2C-2
-Change Component Designator: OldDesignator=U? NewDesignator=U1
-Added Pin To Net: NetName=SCL5V Pin=Connector_Input_I2C-1
-Added Pin To Net: NetName=SDA5V Pin=Connector_Input_I2C-2

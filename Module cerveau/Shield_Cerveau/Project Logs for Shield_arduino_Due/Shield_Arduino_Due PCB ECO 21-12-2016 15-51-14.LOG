@@ -1,6 +1,0 @@
-Added Component: Designator=Led_Reset(LED0805)
-Added Component: Designator=ResReset(0805)
-Added Pin To Net: NetName=GND Pin=Led_Reset-K
-Added Pin To Net: NetName=RESET Pin=ResReset-1
-Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component Led_Reset comment
-Added Member To Class: ClassName=ShieldArduino Due.~(5) Member=Component ResReset RES
