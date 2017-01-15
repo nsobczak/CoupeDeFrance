@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Carte_alim_moteur.PrjPcb]
+   Generated File[Carte_alim.TXT]
+   Generated File[Carte_alim.LDP]
+   Generated File[Carte_alim.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 15:51:05 On 15/01/2017
