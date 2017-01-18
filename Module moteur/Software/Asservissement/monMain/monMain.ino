@@ -14,6 +14,11 @@
 #include "asservissement.h"
 #include "structures.h"          // pour les types
 
+#include "odometrie.h"
+#include "PID.h"
+#include "moteur.h"
+#include "math.h"
+
 
 /* ======================================================================================================
  *      Define
@@ -63,16 +68,19 @@ double beta, depassement;
 double TargetAngle;
 int DoAngle;
 
+int value,test;
+int number[7];
+long int val;
 int etape;
-int timer;
+unsigned long timer;
 
 //Détection adversaire
 int StopIR;
-//Donné objet capter par la raspberry
-uint32_t dataRaspberry;
-int detecteObjet_Raspberry;
-double distance_Raspberry;
-double Angle_Raspberry;
+// //Donné objet capter par la raspberry
+// uint32_t dataRaspberry;
+// int detecteObjet_Raspberry;
+// double distance_Raspberry;
+// double Angle_Raspberry;
 //Variable pour la corde
 boolean startRound;
 
@@ -106,6 +114,13 @@ void setup()
     startRound = true;
     
     crysteo.initPWM();
+
+  	pinMode(encoder0PinA_L, INPUT);
+  	pinMode(encoder0PinB_L, INPUT);
+  
+  	pinMode(encoder0PinA_R, INPUT);
+  	pinMode(encoder0PinB_R, INPUT);
+
     //interruption pour encodeurs
     attachInterrupt(encoder0PinA_L, doEncoderA_L, CHANGE);
     attachInterrupt(encoder0PinB_L, doEncoderB_L, CHANGE);
@@ -117,6 +132,18 @@ void setup()
     roueCodeuse.y=0;                                      // Itinialisation de la roue codeuse (a verifier par test)
     roueCodeuse.thetha=0;                                 //
     // rajouter codeuse ND NG  à initialiser à 0 
+
+	  destination.x=0;     //consigne de positions et d'angle (ordre)
+    destination.y=0;
+    destination.thetha=0.0;
+    destination.distance=0;
+
+    memory_destination.x = 0.0;
+    memory_destination.y = 0.0;
+    memory_destination.thetha = 0.0;
+    memory_destination.distance = 0.0;
+
+    timer=millis();
 }
 
 
@@ -133,11 +160,12 @@ void setup()
     
     //receiveIRSONAR();
     
-   timer=millis();
-   // delay(1000);
-   //interrupts();   // enable interrupts
+    
+    // delay(1000);
+    //interrupts();   // enable interrupts
     //    do{
     //    }while(millis()-timer < 10);
+    
     if(startRound == false){
         while(startRound != true)
         {
@@ -168,6 +196,8 @@ void setup()
     Serial.println("coucou_1");
     if(StopIR==0){
         Serial.println("coucou_2");
+        Serial.print("millis()-timer : ");
+        Serial.println(millis()-timer);
         if(millis()-timer >= 100){
             Serial.println("coucou_3");
             //LED_SetRGBColor(RGB_COLOR_RED);
@@ -213,6 +243,8 @@ void setup()
             int X =roueCodeuse.x;
             int Y = roueCodeuse.y;
             int ANGLE = roueCodeuse.thetha;
+            //Serial.println("ANGLE :");
+            //Serial.println(ANGLE);
             
             int DX = destination.x;
             int DY = destination.y;
@@ -224,6 +256,11 @@ void setup()
             if(((X <= DX + 50) && (X >= DX - 50)) || (memory_destination.x == destination.x) ){
                 Serial.println("coucou_5_if_DX");
                 if(((Y <= DY + 50) && (Y >= DY - 50)) || (memory_destination.y == destination.y) ){
+                    Serial.println("coucou_6_if_DY");
+                    Serial.println("ANGLE :");
+                    Serial.println(ANGLE);
+                    Serial.println("DA :");
+                    Serial.println(DA);
                     Serial.println("coucou_6_if_DY");
                     if((ANGLE <= DA + 10) && (ANGLE >= DA - 10)){
                             Serial.println("coucou_7_if_DA");
