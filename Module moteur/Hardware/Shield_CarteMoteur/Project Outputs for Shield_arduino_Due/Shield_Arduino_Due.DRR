@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
-NCDrill File Report For: Shield_Arduino_Due.PCBDOC   17/01/2017  10:47:26
+NCDrill File Report For: Shield_Arduino_Due.PCBDOC   19/01/2017  12:23:36
 ---------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -7,12 +7,12 @@ ASCII RoundHoles File : Shield_Arduino_Due.TXT
 
 Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
 ---------------------------------------------------------------------------
-T1        28mil (0.7112mm)         Round          21               11.43 Inch (290.39 mm)
-T2        36mil (0.9144mm)         Round          40               7.82 Inch (198.60 mm)
-T3        40mil (1.016mm)          Round          96               16.32 Inch (414.59 mm)
-T4        52mil (1.3208mm)         Round          10               4.16 Inch (105.78 mm)
+T1        28mil (0.7112mm)         Round          23               13.82 Inch (351.08 mm)
+T2        36mil (0.9144mm)         Round          40               6.58 Inch (167.22 mm)
+T3        40mil (1.016mm)          Round          96               18.28 Inch (464.41 mm)
+T4        52mil (1.3208mm)         Round          10               3.70 Inch (93.98 mm)
 T5        126mil (3.2004mm)        Round          6                8.22 Inch (208.83 mm)
 ---------------------------------------------------------------------------
-Totals                                            173              47.96 Inch (1218.19 mm)
+Totals                                            175              50.61 Inch (1285.52 mm)
 
 Total Processing Time (hh:mm:ss) : 00:00:01

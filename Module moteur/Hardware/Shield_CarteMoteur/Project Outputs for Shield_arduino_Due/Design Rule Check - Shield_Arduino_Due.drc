@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
-PCB File : C:\Users\ISEN\Documents\CoupeDeFrance\Module cerveau\Shield_Cerveau\Shield_Arduino_Due.PCBDOC
-Date     : 11/01/2017
-Time     : 09:05:07
+PCB File : C:\Users\ISEN\Documents\CoupeDeFrance\Module moteur\Hardware\Shield_CarteMoteur\Shield_Arduino_Due.PCBDOC
+Date     : 18/01/2017
+Time     : 19:21:48
 
 Processing Rule : Clearance Constraint (Gap=0.508mm) (OnLayer('Top Layer')  Or OnLayer('Multi-Layer')),(OnLayer('Top Layer') And InPoly)
 Rule Violations :0
@@ -13,7 +13,9 @@ Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-Rule Violations :0
+   Violation between Un-Routed Net Constraint: Net VCC3.3 Between Track on layer Top Layer (7.217,8.963mm) And Track on layer Top Layer (20.295,44.171mm)
+   Violation between Un-Routed Net Constraint: Net GND Between Pad Decouplage_Input_3.3V_LvlConverter-1 (2.946,6.477mm) And Pad *-7 (4.75,12.866mm)
+Rule Violations :2
 
 Processing Rule : Hole Size Constraint (Min=0.406mm) (Max=25.4mm) (All)
 Rule Violations :0
@@ -51,5 +53,5 @@ Processing Rule : Clearance Constraint (Gap=0.254mm) (OnLayer('Multi-Layer')),(O
 Rule Violations :0
 
 
-Violations Detected : 7
-Time Elapsed        : 00:00:00
+Violations Detected : 9
+Time Elapsed        : 00:00:01
