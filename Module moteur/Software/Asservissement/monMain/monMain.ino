@@ -39,6 +39,9 @@
 // choix équipe (couleur)
 endodeur = roues codeuses pour connaitre la position de la roue (pour asservissement)
 
+// Pour débuguer on a besoin de:
+coefficients du PID
+
 
 */
 
