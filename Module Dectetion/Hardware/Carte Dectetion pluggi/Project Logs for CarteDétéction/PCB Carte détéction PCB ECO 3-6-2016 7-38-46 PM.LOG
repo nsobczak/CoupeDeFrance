@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=B Pin=Arduino-1
+Removed Pin From Net: NetName=C Pin=Arduino-2
+Added Component: Designator=Cdec5 Mux(0805)
+Added Pin To Net: NetName=C Pin=Arduino-1
+Added Pin To Net: NetName=B Pin=Arduino-2
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5 Mux-1
+Added Pin To Net: NetName=GND Pin=Cdec5 Mux-2
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 Mux CAP
+Added Room: Name=CarteDetection With Multiplexor
+Added Room: Name=Test Mux

@@ -1,0 +1,69 @@
+Added Component: Designator=*(CONNECTEUR3V-ALIM-PLUGGI)
+Added Component: Designator=*(Arduino Nano FootPrint)
+Added Component: Designator=IR1(Connecteur InfraRouge)
+Added Component: Designator=IR2(Connecteur InfraRouge)
+Added Component: Designator=IR3(Connecteur InfraRouge)
+Added Component: Designator=IR4(Connecteur InfraRouge)
+Added Component: Designator=IR5(Connecteur InfraRouge)
+Added Component: Designator=Ultra Son1(Conecteur UltraSon)
+Added Component: Designator=Ultra Son2(Conecteur UltraSon)
+Added Component: Designator=Ultra Son3(Conecteur UltraSon)
+Added Component: Designator=Ultra Son4(Conecteur UltraSon)
+Added Component: Designator=Ultra Son5(Conecteur UltraSon)
+Added Pin To Net: NetName=A0 Pin=*-19
+Added Pin To Net: NetName=A0 Pin=IR1-1
+Added Net: Name=A0
+Added Pin To Net: NetName=A1 Pin=*-20
+Added Pin To Net: NetName=A1 Pin=IR2-1
+Added Net: Name=A1
+Added Pin To Net: NetName=A2 Pin=*-21
+Added Pin To Net: NetName=A2 Pin=IR3-1
+Added Net: Name=A2
+Added Pin To Net: NetName=A3 Pin=*-22
+Added Pin To Net: NetName=A3 Pin=IR4-1
+Added Net: Name=A3
+Added Pin To Net: NetName=A4 Pin=*-23
+Added Pin To Net: NetName=A4 Pin=IR5-1
+Added Net: Name=A4
+Added Pin To Net: NetName=GND Pin=*-2
+Added Pin To Net: NetName=GND Pin=*-4
+Added Pin To Net: NetName=GND Pin=*-29
+Added Pin To Net: NetName=GND Pin=IR1-3
+Added Pin To Net: NetName=GND Pin=IR2-3
+Added Pin To Net: NetName=GND Pin=IR3-3
+Added Pin To Net: NetName=GND Pin=IR4-3
+Added Pin To Net: NetName=GND Pin=IR5-3
+Added Pin To Net: NetName=GND Pin=Ultra Son1-4
+Added Pin To Net: NetName=GND Pin=Ultra Son2-4
+Added Pin To Net: NetName=GND Pin=Ultra Son3-4
+Added Pin To Net: NetName=GND Pin=Ultra Son4-4
+Added Pin To Net: NetName=GND Pin=Ultra Son5-4
+Added Net: Name=GND
+Added Pin To Net: NetName=VCC 5V Pin=*-1
+Added Pin To Net: NetName=VCC 5V Pin=*-27
+Added Pin To Net: NetName=VCC 5V Pin=IR1-2
+Added Pin To Net: NetName=VCC 5V Pin=IR2-2
+Added Pin To Net: NetName=VCC 5V Pin=IR3-2
+Added Pin To Net: NetName=VCC 5V Pin=IR4-2
+Added Pin To Net: NetName=VCC 5V Pin=IR5-2
+Added Pin To Net: NetName=VCC 5V Pin=Ultra Son1-1
+Added Pin To Net: NetName=VCC 5V Pin=Ultra Son2-1
+Added Pin To Net: NetName=VCC 5V Pin=Ultra Son3-1
+Added Pin To Net: NetName=VCC 5V Pin=Ultra Son4-1
+Added Pin To Net: NetName=VCC 5V Pin=Ultra Son5-1
+Added Net: Name=VCC 5V
+Added Pin To Net: NetName=VCC 9V Pin=*-3
+Added Pin To Net: NetName=VCC 9V Pin=*-30
+Added Net: Name=VCC 9V
+Added Member To Class: ClassName=CarteDetection Member=Component * Connecteur3V-alim-Pluggi
+Added Member To Class: ClassName=CarteDetection Member=Component IR1 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection Member=Component IR2 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection Member=Component IR3 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection Member=Component IR4 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection Member=Component IR5 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection Member=Component Ultra Son1 Ultra Son
+Added Member To Class: ClassName=CarteDetection Member=Component Ultra Son2 Ultra Son
+Added Member To Class: ClassName=CarteDetection Member=Component Ultra Son3 Ultra Son
+Added Member To Class: ClassName=CarteDetection Member=Component Ultra Son4 Ultra Son
+Added Member To Class: ClassName=CarteDetection Member=Component Ultra Son5 Ultra Son
+Added Room: Name=CarteDetection

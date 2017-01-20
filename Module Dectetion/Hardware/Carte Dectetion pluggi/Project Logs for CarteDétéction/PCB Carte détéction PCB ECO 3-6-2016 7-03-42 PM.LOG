@@ -1,0 +1,8 @@
+Added Pin To Net: NetName=CAN+ Pin=CAN Co1-5
+Added Pin To Net: NetName=CAN- Pin=CAN Co1-6
+Added Pin To Net: NetName=6V Pin=CAN Co1-1
+Added Pin To Net: NetName=6V Pin=CAN Co2-1
+Added Net: Name=6V
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA4 CAP
+Added Room: Name=CarteDetection With Multiplexor
+Added Room: Name=Test Mux

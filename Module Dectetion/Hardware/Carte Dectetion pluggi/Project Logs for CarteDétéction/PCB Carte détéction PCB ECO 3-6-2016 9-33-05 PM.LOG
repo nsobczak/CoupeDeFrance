@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=3.3V Pin=0R 3.3V 1-1
+Removed Pin From Net: NetName=VCC 5V Pin=0R 5V 1-1
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=0R 3.3V 1
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=0R 5V 1
+Added Pin To Net: NetName=CAN3.3V Pin=0R 3.3V 2-2
+Added Pin To Net: NetName=CAN3.3V Pin=CAN Co1-3
+Added Pin To Net: NetName=CAN3.3V Pin=CAN Co2-3
+Added Net: Name=CAN3.3V
+Added Pin To Net: NetName=CAN5V Pin=0R 5V 2-2
+Added Pin To Net: NetName=CAN5V Pin=CAN Co1-2
+Added Pin To Net: NetName=CAN5V Pin=CAN Co2-2
+Added Net: Name=CAN5V
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 CAN CAP
+Added Room: Name=CarteDetection With Multiplexor
+Added Room: Name=Test Mux
