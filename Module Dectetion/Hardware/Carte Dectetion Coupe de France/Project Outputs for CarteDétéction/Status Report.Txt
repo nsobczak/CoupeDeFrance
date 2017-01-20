@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [CarteDétéction.PrjPCB]
+   Generated File[PCB Carte détéction Sans Ecriture.TXT]
+   Generated File[PCB Carte détéction Sans Ecriture.LDP]
+   Generated File[PCB Carte détéction Sans Ecriture.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 6:35:30 PM On 3/8/2016

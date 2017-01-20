@@ -1,0 +1,31 @@
+Removed Pin From Net: NetName=TRIG FRONT RIGHT Pin=*-1
+Removed Pin From Net: NetName=TRIG Pin=*-3
+Removed Pin From Net: NetName=TRIG FRONT LEFT Pin=*-12
+Removed Pin From Net: NetName=TRIG BACK Pin=*-13
+Removed Pin From Net: NetName=TRIG LEFT Pin=*-14
+Removed Pin From Net: NetName=TRIG RIGHT Pin=*-15
+Removed Pin From Net: NetName=A4 Pin=C?-1
+Change Component Designator: OldDesignator=* NewDesignator=Arduino
+Change Component Designator: OldDesignator=* NewDesignator=MUX
+Added Pin To Net: NetName=VCC 5V Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-2
+Added Pin To Net: NetName=VCC 9V Pin=*-3
+Added Pin To Net: NetName=B Pin=Arduino-1
+Added Pin To Net: NetName=D9 Pin=Arduino-12
+Added Pin To Net: NetName=_CS Pin=Arduino-13
+Added Pin To Net: NetName=SI Pin=Arduino-14
+Added Pin To Net: NetName=SO Pin=Arduino-15
+Added Pin To Net: NetName=A0 Pin=C?-1
+Added Pin To Net: NetName=A1 Pin=C?-1
+Added Pin To Net: NetName=A2 Pin=C?-1
+Added Pin To Net: NetName=A3 Pin=C?-1
+Added Pin To Net: NetName=A4 Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=TRIG Pin=MUX-3
+Added Pin To Net: NetName=GND Pin=MUX-7
+Added Pin To Net: NetName=VCC 5V Pin=MUX-8
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Arduino Arduino Nano
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component MUX MUX 8:1 CD4051B

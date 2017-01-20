@@ -1,0 +1,21 @@
+Removed Pin From Net: NetName=A4 Pin=C?-1
+Change Component Designator: OldDesignator=C? NewDesignator=CA0
+Change Component Designator: OldDesignator=C? NewDesignator=CA1
+Change Component Designator: OldDesignator=C? NewDesignator=CA2
+Change Component Designator: OldDesignator=C? NewDesignator=CA3
+Change Component Designator: OldDesignator=C? NewDesignator=CA4
+Added Pin To Net: NetName=A0 Pin=CA0-1
+Added Pin To Net: NetName=A1 Pin=CA1-1
+Added Pin To Net: NetName=GND Pin=CA1-2
+Added Pin To Net: NetName=A2 Pin=CA2-1
+Added Pin To Net: NetName=GND Pin=CA2-2
+Added Pin To Net: NetName=A3 Pin=CA3-1
+Added Pin To Net: NetName=GND Pin=CA3-2
+Added Pin To Net: NetName=A4 Pin=CA4-1
+Added Pin To Net: NetName=GND Pin=CA4-2
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA0 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA1 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA2 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA3 CAP
+Added Room: Name=CarteDetection With Multiplexor
+Added Room: Name=Test Mux

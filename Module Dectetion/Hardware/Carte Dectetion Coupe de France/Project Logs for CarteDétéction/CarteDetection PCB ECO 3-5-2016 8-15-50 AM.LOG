@@ -1,0 +1,216 @@
+Added Component: Designator=*(MUX 8:1*)
+Added Component: Designator=*(CONNECTEUR3V-ALIM-PLUGGI)
+Added Component: Designator=*(Arduino Nano FootPrint)
+Added Component: Designator=0R 3.3V 1(0805)
+Added Component: Designator=0R 3.3V 2(0805)
+Added Component: Designator=0R 5V 1(0805)
+Added Component: Designator=0R 5V 2(0805)
+Added Component: Designator=C0(0805)
+Added Component: Designator=C1(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=CAN Co1(CAN Connecteur)
+Added Component: Designator=CAN Co2(CAN Connecteur)
+Added Component: Designator=CAN(SO8)
+Added Component: Designator=Cdec5(0805)
+Added Component: Designator=Cdec9(0805)
+Added Component: Designator=IR1(Connecteur InfraRouge)
+Added Component: Designator=IR2(Connecteur InfraRouge)
+Added Component: Designator=IR3(Connecteur InfraRouge)
+Added Component: Designator=IR4(Connecteur InfraRouge)
+Added Component: Designator=IR5(Connecteur InfraRouge)
+Added Component: Designator=Led5V(LED5)
+Added Component: Designator=Led9V(LED5)
+Added Component: Designator=pullup2(0805)
+Added Component: Designator=pullup3(0805)
+Added Component: Designator=pullup Reset(0805)
+Added Component: Designator=ResLed5V(0805)
+Added Component: Designator=ResLed9V(0805)
+Added Component: Designator=SPI-CAN(DIP18)
+Added Component: Designator=US Back(Conecteur UltraSon)
+Added Component: Designator=US Front Left(Conecteur UltraSon)
+Added Component: Designator=US Front Right(Conecteur UltraSon)
+Added Component: Designator=US Left(Conecteur UltraSon)
+Added Component: Designator=US Right(Conecteur UltraSon)
+Added Component: Designator=X?(HC5U)
+Added Pin To Net: NetName=VCC 5V Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-2
+Added Pin To Net: NetName=VCC 9V Pin=*-3
+Added Pin To Net: NetName=GND Pin=*-4
+Added Pin To Net: NetName=GND Pin=*-6
+Added Pin To Net: NetName=GND Pin=*-7
+Added Pin To Net: NetName=GND Pin=*-8
+Added Pin To Net: NetName=VCC 5V Pin=*-16
+Added Pin To Net: NetName=A0 Pin=*-19
+Added Pin To Net: NetName=A1 Pin=*-20
+Added Pin To Net: NetName=A2 Pin=*-21
+Added Pin To Net: NetName=A3 Pin=*-22
+Added Pin To Net: NetName=A4 Pin=*-23
+Added Pin To Net: NetName=VCC 5V Pin=*-27
+Added Pin To Net: NetName=GND Pin=*-29
+Added Pin To Net: NetName=VCC 9V Pin=*-30
+Added Pin To Net: NetName=VCC 5V Pin=0R 5V 1-1
+Added Pin To Net: NetName=VCC 5V Pin=0R 5V 2-1
+Added Pin To Net: NetName=GND Pin=C0-1
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=A0 Pin=C?-1
+Added Pin To Net: NetName=A1 Pin=C?-1
+Added Pin To Net: NetName=A2 Pin=C?-1
+Added Pin To Net: NetName=A3 Pin=C?-1
+Added Pin To Net: NetName=A4 Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=CAN-2
+Added Pin To Net: NetName=VCC 5V Pin=CAN-3
+Added Pin To Net: NetName=GND Pin=CAN-8
+Added Pin To Net: NetName=GND Pin=CAN Co1-4
+Added Pin To Net: NetName=GND Pin=CAN Co2-4
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5-1
+Added Pin To Net: NetName=GND Pin=Cdec5-2
+Added Pin To Net: NetName=GND Pin=Cdec9-1
+Added Pin To Net: NetName=VCC 9V Pin=Cdec9-2
+Added Pin To Net: NetName=A0 Pin=IR1-1
+Added Pin To Net: NetName=VCC 5V Pin=IR1-2
+Added Pin To Net: NetName=GND Pin=IR1-3
+Added Pin To Net: NetName=A1 Pin=IR2-1
+Added Pin To Net: NetName=VCC 5V Pin=IR2-2
+Added Pin To Net: NetName=GND Pin=IR2-3
+Added Pin To Net: NetName=A2 Pin=IR3-1
+Added Pin To Net: NetName=VCC 5V Pin=IR3-2
+Added Pin To Net: NetName=GND Pin=IR3-3
+Added Pin To Net: NetName=A3 Pin=IR4-1
+Added Pin To Net: NetName=VCC 5V Pin=IR4-2
+Added Pin To Net: NetName=GND Pin=IR4-3
+Added Pin To Net: NetName=A4 Pin=IR5-1
+Added Pin To Net: NetName=VCC 5V Pin=IR5-2
+Added Pin To Net: NetName=GND Pin=IR5-3
+Added Pin To Net: NetName=GND Pin=Led5V-K
+Added Pin To Net: NetName=GND Pin=Led9V-K
+Added Pin To Net: NetName=VCC 5V Pin=pullup2-1
+Added Pin To Net: NetName=VCC 5V Pin=pullup3-1
+Added Pin To Net: NetName=VCC 5V Pin=pullup Reset-1
+Added Pin To Net: NetName=VCC 5V Pin=ResLed5V-2
+Added Pin To Net: NetName=VCC 9V Pin=ResLed9V-2
+Added Pin To Net: NetName=VCC 5V Pin=SPI-CAN-18
+Added Pin To Net: NetName=VCC 5V Pin=US Back-1
+Added Pin To Net: NetName=GND Pin=US Back-4
+Added Pin To Net: NetName=VCC 5V Pin=US Front Left-1
+Added Pin To Net: NetName=GND Pin=US Front Left-4
+Added Pin To Net: NetName=VCC 5V Pin=US Front Right-1
+Added Pin To Net: NetName=GND Pin=US Front Right-4
+Added Pin To Net: NetName=VCC 5V Pin=US Left-1
+Added Pin To Net: NetName=GND Pin=US Left-4
+Added Pin To Net: NetName=VCC 5V Pin=US Right-1
+Added Pin To Net: NetName=GND Pin=US Right-4
+Added Pin To Net: NetName=3.3V Pin=*-17
+Added Pin To Net: NetName=3.3V Pin=0R 3.3V 1-1
+Added Pin To Net: NetName=3.3V Pin=0R 3.3V 2-1
+Added Net: Name=3.3V
+Added Pin To Net: NetName=_CS Pin=*-13
+Added Pin To Net: NetName=_CS Pin=SPI-CAN-16
+Added Net: Name=_CS
+Added Pin To Net: NetName=_INT Pin=*-5
+Added Pin To Net: NetName=_INT Pin=pullup3-2
+Added Pin To Net: NetName=_INT Pin=SPI-CAN-12
+Added Net: Name=_INT
+Added Pin To Net: NetName=_RESET Pin=pullup Reset-2
+Added Pin To Net: NetName=_RESET Pin=SPI-CAN-17
+Added Net: Name=_RESET
+Added Pin To Net: NetName=A Pin=*-6
+Added Pin To Net: NetName=A Pin=*-11
+Added Net: Name=A
+Added Pin To Net: NetName=B Pin=*-1
+Added Pin To Net: NetName=B Pin=*-10
+Added Net: Name=B
+Added Pin To Net: NetName=CAN+ Pin=CAN-7
+Added Pin To Net: NetName=CAN+ Pin=CAN Co2-5
+Added Net: Name=CAN+
+Added Pin To Net: NetName=CAN- Pin=CAN-6
+Added Pin To Net: NetName=CAN- Pin=CAN Co2-6
+Added Net: Name=CAN-
+Added Pin To Net: NetName=C Pin=*-2
+Added Pin To Net: NetName=C Pin=*-9
+Added Net: Name=C
+Added Pin To Net: NetName=D5 Pin=*-8
+Added Pin To Net: NetName=D5 Pin=US Front Right-3
+Added Net: Name=D5
+Added Pin To Net: NetName=D6 Pin=*-9
+Added Pin To Net: NetName=D6 Pin=US Front Left-3
+Added Net: Name=D6
+Added Pin To Net: NetName=D7 Pin=*-10
+Added Pin To Net: NetName=D7 Pin=US Right-3
+Added Net: Name=D7
+Added Pin To Net: NetName=D8 Pin=*-11
+Added Pin To Net: NetName=D8 Pin=US Left-3
+Added Net: Name=D8
+Added Pin To Net: NetName=D9 Pin=*-12
+Added Pin To Net: NetName=D9 Pin=US Back-3
+Added Net: Name=D9
+Added Pin To Net: NetName=Net0R 3.3V 1_2 Pin=0R 3.3V 1-2
+Added Pin To Net: NetName=Net0R 3.3V 1_2 Pin=CAN Co1-3
+Added Net: Name=Net0R 3.3V 1_2
+Added Pin To Net: NetName=Net0R 3.3V 2_2 Pin=0R 3.3V 2-2
+Added Pin To Net: NetName=Net0R 3.3V 2_2 Pin=CAN Co2-3
+Added Net: Name=Net0R 3.3V 2_2
+Added Pin To Net: NetName=Net0R 5V 1_2 Pin=0R 5V 1-2
+Added Pin To Net: NetName=Net0R 5V 1_2 Pin=CAN Co1-2
+Added Net: Name=Net0R 5V 1_2
+Added Pin To Net: NetName=Net0R 5V 2_2 Pin=0R 5V 2-2
+Added Pin To Net: NetName=Net0R 5V 2_2 Pin=CAN Co2-2
+Added Net: Name=Net0R 5V 2_2
+Added Pin To Net: NetName=NetC0_2 Pin=C0-2
+Added Pin To Net: NetName=NetC0_2 Pin=SPI-CAN-7
+Added Pin To Net: NetName=NetC0_2 Pin=X?-2
+Added Net: Name=NetC0_2
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=NetC1_2 Pin=SPI-CAN-8
+Added Pin To Net: NetName=NetC1_2 Pin=X?-1
+Added Net: Name=NetC1_2
+Added Pin To Net: NetName=NetCAN_1 Pin=CAN-1
+Added Pin To Net: NetName=NetCAN_1 Pin=SPI-CAN-1
+Added Net: Name=NetCAN_1
+Added Pin To Net: NetName=NetCAN_4 Pin=CAN-4
+Added Pin To Net: NetName=NetCAN_4 Pin=SPI-CAN-2
+Added Net: Name=NetCAN_4
+Added Pin To Net: NetName=NetLed5V_A Pin=Led5V-A
+Added Pin To Net: NetName=NetLed5V_A Pin=ResLed5V-1
+Added Net: Name=NetLed5V_A
+Added Pin To Net: NetName=NetLed9V_A Pin=Led9V-A
+Added Pin To Net: NetName=NetLed9V_A Pin=ResLed9V-1
+Added Net: Name=NetLed9V_A
+Added Pin To Net: NetName=SCK Pin=*-16
+Added Pin To Net: NetName=SCK Pin=pullup2-2
+Added Pin To Net: NetName=SCK Pin=SPI-CAN-13
+Added Net: Name=SCK
+Added Pin To Net: NetName=SI Pin=*-14
+Added Pin To Net: NetName=SI Pin=SPI-CAN-14
+Added Net: Name=SI
+Added Pin To Net: NetName=SO Pin=*-15
+Added Pin To Net: NetName=SO Pin=SPI-CAN-15
+Added Net: Name=SO
+Added Pin To Net: NetName=TRIG BACK Pin=*-13
+Added Pin To Net: NetName=TRIG BACK Pin=US Back-2
+Added Net: Name=TRIG BACK
+Added Pin To Net: NetName=TRIG FRONT LEFT Pin=*-12
+Added Pin To Net: NetName=TRIG FRONT LEFT Pin=US Front Left-2
+Added Net: Name=TRIG FRONT LEFT
+Added Pin To Net: NetName=TRIG FRONT RIGHT Pin=*-1
+Added Pin To Net: NetName=TRIG FRONT RIGHT Pin=US Front Right-2
+Added Net: Name=TRIG FRONT RIGHT
+Added Pin To Net: NetName=TRIG LEFT Pin=*-14
+Added Pin To Net: NetName=TRIG LEFT Pin=US Left-2
+Added Net: Name=TRIG LEFT
+Added Pin To Net: NetName=TRIG RIGHT Pin=*-15
+Added Pin To Net: NetName=TRIG RIGHT Pin=US Right-2
+Added Net: Name=TRIG RIGHT
+Added Pin To Net: NetName=TRIG Pin=*-3
+Added Pin To Net: NetName=TRIG Pin=*-7
+Added Net: Name=TRIG
+Added Class: Name=CarteDetection With Multiplexor
+Added Room: Name=CarteDetection With Multiplexor

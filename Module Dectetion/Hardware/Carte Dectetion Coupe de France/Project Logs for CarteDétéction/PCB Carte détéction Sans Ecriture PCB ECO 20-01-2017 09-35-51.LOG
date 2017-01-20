@@ -1,0 +1,108 @@
+Removed Pin From Net: NetName=3.3V Pin=0R 3.3V 2-1
+Removed Pin From Net: NetName=VCC 5V Pin=0R 5V 2-1
+Removed Pin From Net: NetName=VCC 5V Pin=Alimentation-1
+Removed Pin From Net: NetName=GND Pin=Alimentation-2
+Removed Pin From Net: NetName=VCC 9V Pin=Alimentation-3
+Removed Pin From Net: NetName=GND Pin=C0-1
+Removed Pin From Net: NetName=GND Pin=C1-1
+Removed Pin From Net: NetName=GND Pin=CAN-2
+Removed Pin From Net: NetName=VCC 5V Pin=CAN-3
+Removed Pin From Net: NetName=GND Pin=CAN-8
+Removed Pin From Net: NetName=GND Pin=CAN Co1-4
+Removed Pin From Net: NetName=GND Pin=CAN Co2-4
+Removed Pin From Net: NetName=NetLed5V_A Pin=Led5VCMS-A
+Removed Pin From Net: NetName=GND Pin=Led5VCMS-K
+Removed Pin From Net: NetName=NetLed9V_A Pin=Led9VCMS-A
+Removed Pin From Net: NetName=GND Pin=Led9VCMS-K
+Removed Pin From Net: NetName=VCC 5V Pin=pullup2-1
+Removed Pin From Net: NetName=VCC 5V Pin=pullup3-1
+Removed Pin From Net: NetName=_INT Pin=pullup3-2
+Removed Pin From Net: NetName=VCC 5V Pin=pullup Reset-1
+Removed Pin From Net: NetName=_INT Pin=SPI-CAN-12
+Removed Pin From Net: NetName=VCC 5V Pin=SPI-CAN-18
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=0R 3.3V 2
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=0R 5V 2
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=Alimentation
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=C0
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=C1
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=CAN Co1
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=CAN Co2
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=CAN
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=Led5VCMS
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=Led9VCMS
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=pullup2
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=pullup3
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=pullup Reset
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=SPI-CAN
+Removed Member From Class: ClassName=CarteDetection With Multiplexor Member=X?
+Change Component Comment : Designator=Led5V Old Comment=comment New Comment=Blue
+Change Component Comment : Designator=Led9V Old Comment=comment New Comment=Orange
+Added Component: Designator=1(TESTPOINT)
+Added Component: Designator=2(TESTPOINT)
+Added Component: Designator=3(TESTPOINT)
+Added Component: Designator=4(TESTPOINT)
+Added Component: Designator=5(TESTPOINT)
+Added Component: Designator=6(TESTPOINT)
+Added Component: Designator=7(TESTPOINT)
+Added Component: Designator=8(TESTPOINT)
+Added Component: Designator=9(TESTPOINT)
+Added Component: Designator=10(TESTPOINT)
+Added Component: Designator=11(TESTPOINT)
+Added Component: Designator=12(TESTPOINT)
+Added Component: Designator=13(TESTPOINT)
+Added Component: Designator=14(TESTPOINT)
+Added Component: Designator=15(TESTPOINT)
+Added Component: Designator=16(TESTPOINT)
+Added Component: Designator=Cdec5 Mux(0805)
+Added Component: Designator=Vcc_5v_+(Connector_Cosse)
+Added Component: Designator=Vcc_5v_-(Connector_Cosse)
+Added Component: Designator=Vcc_7v_+(Connector_Cosse)
+Added Component: Designator=Vcc_7v_-(Connector_Cosse)
+Added Pin To Net: NetName=1 Pin=1-1
+Added Pin To Net: NetName=2 Pin=2-1
+Added Pin To Net: NetName=3 Pin=3-1
+Added Pin To Net: NetName=4 Pin=4-1
+Added Pin To Net: NetName=5 Pin=5-1
+Added Pin To Net: NetName=6 Pin=6-1
+Added Pin To Net: NetName=7 Pin=7-1
+Added Pin To Net: NetName=7 Pin=8-1
+Added Pin To Net: NetName=9 Pin=9-1
+Added Pin To Net: NetName=10 Pin=10-1
+Added Pin To Net: NetName=11 Pin=11-1
+Added Pin To Net: NetName=12 Pin=12-1
+Added Pin To Net: NetName=13 Pin=13-1
+Added Pin To Net: NetName=14 Pin=14-1
+Added Pin To Net: NetName=15 Pin=15-1
+Added Pin To Net: NetName=16 Pin=16-1
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5 Mux-1
+Added Pin To Net: NetName=GND Pin=Cdec5 Mux-2
+Added Pin To Net: NetName=VCC 5V Pin=Vcc_5v_+-1
+Added Pin To Net: NetName=VCC 5V Pin=Vcc_5v_+-1
+Added Pin To Net: NetName=GND Pin=Vcc_5v_--1
+Added Pin To Net: NetName=GND Pin=Vcc_5v_--1
+Added Pin To Net: NetName=VCC 9V Pin=Vcc_7v_+-1
+Added Pin To Net: NetName=VCC 9V Pin=Vcc_7v_+-1
+Added Pin To Net: NetName=GND Pin=Vcc_7v_--1
+Added Pin To Net: NetName=GND Pin=Vcc_7v_--1
+Change Net Name : Old Net Name=VCC 9V New Net Name=VCC 7V
+Added Member To Class: ClassName=Test Mux Member=Component 1 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 2 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 3 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 4 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 5 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 6 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 7 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 8 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 9 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 10 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 11 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 12 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 13 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 14 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 15 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 16 PIN
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 Mux CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_5v_+ Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_5v_- Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_7v_+ Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_7v_- Connector_Cosse

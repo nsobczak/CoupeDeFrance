@@ -1,0 +1,23 @@
+Removed Pin From Net: NetName=A4 Pin=C?-1
+Removed Pin From Net: NetName=VCC 5V Pin=MUX-8
+Added Pin To Net: NetName=A0 Pin=C?-1
+Added Pin To Net: NetName=A1 Pin=C?-1
+Added Pin To Net: NetName=A2 Pin=C?-1
+Added Pin To Net: NetName=A3 Pin=C?-1
+Added Pin To Net: NetName=A4 Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=TRIG FRONT RIGHT Pin=MUX-1
+Added Pin To Net: NetName=GND Pin=MUX-6
+Added Pin To Net: NetName=GND Pin=MUX-8
+Added Pin To Net: NetName=C Pin=MUX-9
+Added Pin To Net: NetName=B Pin=MUX-10
+Added Pin To Net: NetName=A Pin=MUX-11
+Added Pin To Net: NetName=TRIG FRONT LEFT Pin=MUX-12
+Added Pin To Net: NetName=TRIG BACK Pin=MUX-13
+Added Pin To Net: NetName=TRIG LEFT Pin=MUX-14
+Added Pin To Net: NetName=TRIG RIGHT Pin=MUX-15
+Added Pin To Net: NetName=VCC 5V Pin=MUX-16
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component * Connecteur3V-alim-Pluggi

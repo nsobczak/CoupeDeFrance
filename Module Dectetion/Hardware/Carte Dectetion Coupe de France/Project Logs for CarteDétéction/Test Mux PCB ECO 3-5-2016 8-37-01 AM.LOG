@@ -1,0 +1,236 @@
+Added Component: Designator=0R 3.3V 1(0805)
+Added Component: Designator=0R 3.3V 2(0805)
+Added Component: Designator=0R 5V 1(0805)
+Added Component: Designator=0R 5V 2(0805)
+Added Component: Designator=Alimentation(CONNECTEUR3V-ALIM-PLUGGI)
+Added Component: Designator=Arduino(Arduino Nano FootPrint)
+Added Component: Designator=C0(0805)
+Added Component: Designator=C1(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=C?(0805)
+Added Component: Designator=CAN Co1(CAN Connecteur)
+Added Component: Designator=CAN Co2(CAN Connecteur)
+Added Component: Designator=CAN(SO8)
+Added Component: Designator=Cdec5(0805)
+Added Component: Designator=Cdec9(0805)
+Added Component: Designator=IR1(Connecteur InfraRouge)
+Added Component: Designator=IR2(Connecteur InfraRouge)
+Added Component: Designator=IR3(Connecteur InfraRouge)
+Added Component: Designator=IR4(Connecteur InfraRouge)
+Added Component: Designator=IR5(Connecteur InfraRouge)
+Added Component: Designator=Led5V(LED5)
+Added Component: Designator=Led9V(LED5)
+Added Component: Designator=MUX(MUX 8:1*)
+Added Component: Designator=pullup2(0805)
+Added Component: Designator=pullup3(0805)
+Added Component: Designator=pullup Reset(0805)
+Added Component: Designator=ResLed5V(0805)
+Added Component: Designator=ResLed9V(0805)
+Added Component: Designator=SPI-CAN(DIP18)
+Added Component: Designator=US Back(Conecteur UltraSon)
+Added Component: Designator=US Front Left(Conecteur UltraSon)
+Added Component: Designator=US Front Right(Conecteur UltraSon)
+Added Component: Designator=US Left(Conecteur UltraSon)
+Added Component: Designator=US Right(Conecteur UltraSon)
+Added Component: Designator=X?(HC5U)
+Added Pin To Net: NetName=7 Pin=*-8
+Added Pin To Net: NetName=3.3V Pin=0R 3.3V 1-1
+Added Pin To Net: NetName=Net0R 3.3V 1_2 Pin=0R 3.3V 1-2
+Added Pin To Net: NetName=3.3V Pin=0R 3.3V 2-1
+Added Pin To Net: NetName=Net0R 3.3V 2_2 Pin=0R 3.3V 2-2
+Added Pin To Net: NetName=VCC 5V Pin=0R 5V 1-1
+Added Pin To Net: NetName=Net0R 5V 1_2 Pin=0R 5V 1-2
+Added Pin To Net: NetName=VCC 5V Pin=0R 5V 2-1
+Added Pin To Net: NetName=Net0R 5V 2_2 Pin=0R 5V 2-2
+Added Pin To Net: NetName=7 Pin=8-1
+Added Pin To Net: NetName=VCC 5V Pin=Alimentation-1
+Added Pin To Net: NetName=GND Pin=Alimentation-2
+Added Pin To Net: NetName=VCC 9V Pin=Alimentation-3
+Added Pin To Net: NetName=B Pin=Arduino-1
+Added Pin To Net: NetName=C Pin=Arduino-2
+Added Pin To Net: NetName=GND Pin=Arduino-4
+Added Pin To Net: NetName=_INT Pin=Arduino-5
+Added Pin To Net: NetName=A Pin=Arduino-6
+Added Pin To Net: NetName=TRIG Pin=Arduino-7
+Added Pin To Net: NetName=D5 Pin=Arduino-8
+Added Pin To Net: NetName=D6 Pin=Arduino-9
+Added Pin To Net: NetName=D7 Pin=Arduino-10
+Added Pin To Net: NetName=D8 Pin=Arduino-11
+Added Pin To Net: NetName=D9 Pin=Arduino-12
+Added Pin To Net: NetName=_CS Pin=Arduino-13
+Added Pin To Net: NetName=SI Pin=Arduino-14
+Added Pin To Net: NetName=SO Pin=Arduino-15
+Added Pin To Net: NetName=SCK Pin=Arduino-16
+Added Pin To Net: NetName=3.3V Pin=Arduino-17
+Added Pin To Net: NetName=A0 Pin=Arduino-19
+Added Pin To Net: NetName=A1 Pin=Arduino-20
+Added Pin To Net: NetName=A2 Pin=Arduino-21
+Added Pin To Net: NetName=A3 Pin=Arduino-22
+Added Pin To Net: NetName=A4 Pin=Arduino-23
+Added Pin To Net: NetName=VCC 5V Pin=Arduino-27
+Added Pin To Net: NetName=GND Pin=Arduino-29
+Added Pin To Net: NetName=VCC 9V Pin=Arduino-30
+Added Pin To Net: NetName=GND Pin=C0-1
+Added Pin To Net: NetName=NetC0_2 Pin=C0-2
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=A0 Pin=C?-1
+Added Pin To Net: NetName=A1 Pin=C?-1
+Added Pin To Net: NetName=A2 Pin=C?-1
+Added Pin To Net: NetName=A3 Pin=C?-1
+Added Pin To Net: NetName=A4 Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=NetCAN_1 Pin=CAN-1
+Added Pin To Net: NetName=GND Pin=CAN-2
+Added Pin To Net: NetName=VCC 5V Pin=CAN-3
+Added Pin To Net: NetName=NetCAN_4 Pin=CAN-4
+Added Pin To Net: NetName=CAN- Pin=CAN-6
+Added Pin To Net: NetName=CAN+ Pin=CAN-7
+Added Pin To Net: NetName=GND Pin=CAN-8
+Added Pin To Net: NetName=Net0R 5V 1_2 Pin=CAN Co1-2
+Added Pin To Net: NetName=Net0R 3.3V 1_2 Pin=CAN Co1-3
+Added Pin To Net: NetName=GND Pin=CAN Co1-4
+Added Pin To Net: NetName=Net0R 5V 2_2 Pin=CAN Co2-2
+Added Pin To Net: NetName=Net0R 3.3V 2_2 Pin=CAN Co2-3
+Added Pin To Net: NetName=GND Pin=CAN Co2-4
+Added Pin To Net: NetName=CAN+ Pin=CAN Co2-5
+Added Pin To Net: NetName=CAN- Pin=CAN Co2-6
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5-1
+Added Pin To Net: NetName=GND Pin=Cdec5-2
+Added Pin To Net: NetName=GND Pin=Cdec9-1
+Added Pin To Net: NetName=VCC 9V Pin=Cdec9-2
+Added Pin To Net: NetName=A0 Pin=IR1-1
+Added Pin To Net: NetName=VCC 5V Pin=IR1-2
+Added Pin To Net: NetName=GND Pin=IR1-3
+Added Pin To Net: NetName=A1 Pin=IR2-1
+Added Pin To Net: NetName=VCC 5V Pin=IR2-2
+Added Pin To Net: NetName=GND Pin=IR2-3
+Added Pin To Net: NetName=A2 Pin=IR3-1
+Added Pin To Net: NetName=VCC 5V Pin=IR3-2
+Added Pin To Net: NetName=GND Pin=IR3-3
+Added Pin To Net: NetName=A3 Pin=IR4-1
+Added Pin To Net: NetName=VCC 5V Pin=IR4-2
+Added Pin To Net: NetName=GND Pin=IR4-3
+Added Pin To Net: NetName=A4 Pin=IR5-1
+Added Pin To Net: NetName=VCC 5V Pin=IR5-2
+Added Pin To Net: NetName=GND Pin=IR5-3
+Added Pin To Net: NetName=NetLed5V_A Pin=Led5V-A
+Added Pin To Net: NetName=GND Pin=Led5V-K
+Added Pin To Net: NetName=NetLed9V_A Pin=Led9V-A
+Added Pin To Net: NetName=GND Pin=Led9V-K
+Added Pin To Net: NetName=TRIG FRONT RIGHT Pin=MUX-1
+Added Pin To Net: NetName=TRIG Pin=MUX-3
+Added Pin To Net: NetName=GND Pin=MUX-6
+Added Pin To Net: NetName=GND Pin=MUX-7
+Added Pin To Net: NetName=GND Pin=MUX-8
+Added Pin To Net: NetName=C Pin=MUX-9
+Added Pin To Net: NetName=B Pin=MUX-10
+Added Pin To Net: NetName=A Pin=MUX-11
+Added Pin To Net: NetName=TRIG FRONT LEFT Pin=MUX-12
+Added Pin To Net: NetName=TRIG BACK Pin=MUX-13
+Added Pin To Net: NetName=TRIG LEFT Pin=MUX-14
+Added Pin To Net: NetName=TRIG RIGHT Pin=MUX-15
+Added Pin To Net: NetName=VCC 5V Pin=MUX-16
+Added Pin To Net: NetName=VCC 5V Pin=pullup2-1
+Added Pin To Net: NetName=SCK Pin=pullup2-2
+Added Pin To Net: NetName=VCC 5V Pin=pullup3-1
+Added Pin To Net: NetName=_INT Pin=pullup3-2
+Added Pin To Net: NetName=VCC 5V Pin=pullup Reset-1
+Added Pin To Net: NetName=_RESET Pin=pullup Reset-2
+Added Pin To Net: NetName=NetLed5V_A Pin=ResLed5V-1
+Added Pin To Net: NetName=VCC 5V Pin=ResLed5V-2
+Added Pin To Net: NetName=NetLed9V_A Pin=ResLed9V-1
+Added Pin To Net: NetName=VCC 9V Pin=ResLed9V-2
+Added Pin To Net: NetName=NetCAN_1 Pin=SPI-CAN-1
+Added Pin To Net: NetName=NetCAN_4 Pin=SPI-CAN-2
+Added Pin To Net: NetName=NetC0_2 Pin=SPI-CAN-7
+Added Pin To Net: NetName=NetC1_2 Pin=SPI-CAN-8
+Added Pin To Net: NetName=_INT Pin=SPI-CAN-12
+Added Pin To Net: NetName=SCK Pin=SPI-CAN-13
+Added Pin To Net: NetName=SI Pin=SPI-CAN-14
+Added Pin To Net: NetName=SO Pin=SPI-CAN-15
+Added Pin To Net: NetName=_CS Pin=SPI-CAN-16
+Added Pin To Net: NetName=_RESET Pin=SPI-CAN-17
+Added Pin To Net: NetName=VCC 5V Pin=SPI-CAN-18
+Added Pin To Net: NetName=VCC 5V Pin=US Back-1
+Added Pin To Net: NetName=TRIG BACK Pin=US Back-2
+Added Pin To Net: NetName=D9 Pin=US Back-3
+Added Pin To Net: NetName=GND Pin=US Back-4
+Added Pin To Net: NetName=VCC 5V Pin=US Front Left-1
+Added Pin To Net: NetName=TRIG FRONT LEFT Pin=US Front Left-2
+Added Pin To Net: NetName=D6 Pin=US Front Left-3
+Added Pin To Net: NetName=GND Pin=US Front Left-4
+Added Pin To Net: NetName=VCC 5V Pin=US Front Right-1
+Added Pin To Net: NetName=TRIG FRONT RIGHT Pin=US Front Right-2
+Added Pin To Net: NetName=D5 Pin=US Front Right-3
+Added Pin To Net: NetName=GND Pin=US Front Right-4
+Added Pin To Net: NetName=VCC 5V Pin=US Left-1
+Added Pin To Net: NetName=TRIG LEFT Pin=US Left-2
+Added Pin To Net: NetName=D8 Pin=US Left-3
+Added Pin To Net: NetName=GND Pin=US Left-4
+Added Pin To Net: NetName=VCC 5V Pin=US Right-1
+Added Pin To Net: NetName=TRIG RIGHT Pin=US Right-2
+Added Pin To Net: NetName=D7 Pin=US Right-3
+Added Pin To Net: NetName=GND Pin=US Right-4
+Added Pin To Net: NetName=NetC1_2 Pin=X?-1
+Added Pin To Net: NetName=NetC0_2 Pin=X?-2
+Added Member To Class: ClassName=Test Mux Member=Component * MUX 8:1 CD4051B
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component 0R 3.3V 1 RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component 0R 3.3V 2 RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component 0R 5V 1 RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component 0R 5V 2 RES
+Added Member To Class: ClassName=Test Mux Member=Component 1 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 2 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 3 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 4 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 5 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 6 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 7 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 8 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 9 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 10 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 11 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 12 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 13 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 14 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 15 PIN
+Added Member To Class: ClassName=Test Mux Member=Component 16 PIN
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Alimentation Connecteur3V-alim-Pluggi
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Arduino Arduino Nano
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component C0 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component C1 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component C? CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CAN Co1 ConnecteurCAN
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CAN Co2 ConnecteurCAN
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CAN SN65HVD1040
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec9 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR1 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR2 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR3 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR4 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR5 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led5V comment
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led9V comment
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component MUX MUX 8:1 CD4051B
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component pullup2 RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component pullup3 RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component pullup Reset RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component ResLed5V RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component ResLed9V RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component SPI-CAN MCP2510-P/SO
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Back Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Front Left Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Front Right Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Left Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Right Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component X? 16.000MHz
+Added Room: Name=CarteDetection With Multiplexor
+Added Room: Name=Test Mux

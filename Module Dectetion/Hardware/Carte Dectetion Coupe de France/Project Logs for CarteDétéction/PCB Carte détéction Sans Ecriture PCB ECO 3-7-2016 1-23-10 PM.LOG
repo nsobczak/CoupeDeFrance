@@ -1,0 +1,11 @@
+Added Component: Designator=Led5VCMS(LED1206)
+Added Component: Designator=Led9VCMS(LED1206)
+Added Pin To Net: NetName=NetLed5V_A Pin=Led5VCMS-A
+Added Pin To Net: NetName=GND Pin=Led5VCMS-K
+Added Pin To Net: NetName=NetLed9V_A Pin=Led9VCMS-A
+Added Pin To Net: NetName=GND Pin=Led9VCMS-K
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CAN SN65HVD1040
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led5VCMS comment
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led9VCMS comment
+Added Room: Name=CarteDetection With Multiplexor
+Added Room: Name=Test Mux
