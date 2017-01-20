@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=24V+ Pin=R3-1
+Removed Pin From Net: NetName=24V- Pin=R3-2
+Removed Pin From Net: NetName=R2- Pin=R3-3
+Removed Pin From Net: NetName=R3+ Pin=R3-4
+Removed Member From Class: ClassName=Carte_alim Member=R3
+Added Component: Designator=R?(Régulateur)
+Added Pin To Net: NetName=24V+ Pin=R?-1
+Added Pin To Net: NetName=24V- Pin=R?-2
+Added Pin To Net: NetName=R2- Pin=R?-3
+Added Pin To Net: NetName=R3+ Pin=R?-4
+Added Member To Class: ClassName=Carte_alim Member=Component R? Régulateur

@@ -1,0 +1,4 @@
+Added Component: Designator=Decouplage_input_reg(0805)
+Added Pin To Net: NetName=24V- Pin=Decouplage_input_reg-1
+Added Pin To Net: NetName=24V+ Pin=Decouplage_input_reg-2
+Added Member To Class: ClassName=Carte_alim Member=Component Decouplage_input_reg CAP

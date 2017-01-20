@@ -1,0 +1,16 @@
+Added Component: Designator=R1(Régulateur)
+Added Component: Designator=R2(Régulateur)
+Added Component: Designator=R3(Régulateur)
+Added Component: Designator=R5(Régulateur)
+Added Pin To Net: NetName=24V+ Pin=R1-1
+Added Pin To Net: NetName=24V+ Pin=R2-1
+Added Pin To Net: NetName=24V+ Pin=R3-1
+Added Pin To Net: NetName=R2- Pin=R3-3
+Added Pin To Net: NetName=R3+ Pin=R3-4
+Added Pin To Net: NetName=24V+ Pin=R5-1
+Added Pin To Net: NetName=R4- Pin=R5-3
+Added Pin To Net: NetName=R4+ Pin=R5-4
+Added Member To Class: ClassName=Carte_alim Member=Component R1 Régulateur
+Added Member To Class: ClassName=Carte_alim Member=Component R2 Régulateur
+Added Member To Class: ClassName=Carte_alim Member=Component R3 Régulateur
+Added Member To Class: ClassName=Carte_alim Member=Component R5 Régulateur
