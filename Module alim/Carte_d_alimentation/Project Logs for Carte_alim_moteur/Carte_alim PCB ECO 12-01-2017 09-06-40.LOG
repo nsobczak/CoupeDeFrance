@@ -1,5 +1,0 @@
-Change Component Footprint: Designator=LED_REG1 Old Footprint=LED1206 New Footprint=LED0805
-Change Component Footprint: Designator=LED_REG2 Old Footprint=LED1206 New Footprint=LED0805
-Change Component Footprint: Designator=LED_REG3 Old Footprint=LED1206 New Footprint=LED0805
-Change Component Footprint: Designator=LED_REG4 Old Footprint=LED1206 New Footprint=LED0805
-Change Component Footprint: Designator=LED_V24 Old Footprint=LED1206 New Footprint=LED0805
