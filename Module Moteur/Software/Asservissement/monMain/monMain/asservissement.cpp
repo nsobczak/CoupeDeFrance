@@ -46,13 +46,13 @@
  * \param double periode
  * \param Moteur grobot
  */
-Asservissement::Asservissement(double periode, Moteur grobot):m_periode(periode), m_moteur(grobot)
+Asservissement::Asservissement(double periode, Moteur grobot) : m_periode(periode), m_moteur(grobot)
 {
     //init PID -> controle distance
     //PID distance(30.46,76.14,3.05,m_periode);
     //PID distance(0.7*0.6,0.002,140,m_periode);
-    PID distance(1.8,0,0,m_periode);
-    m_distance=distance;
+    PID distance(1.8, 0, 0, m_periode);
+    m_distance = distance;
 
     //init PID -> controle angle
     //PID angle(1056.0,2641.0,105.6,m_periode);
@@ -60,15 +60,15 @@ Asservissement::Asservissement(double periode, Moteur grobot):m_periode(periode)
 
     //PID angle(150*0.7,0.00181,207.15,m_periode); //ok angle en Radian
 
-    PID angle(7*0.6,0.0017,10.5,m_periode);
+    PID angle(7 * 0.6, 0.0017, 10.5, m_periode);
     //PID angle(7*0.6,0.0018,10.0,m_periode);
-    m_angle=angle;
+    m_angle = angle;
 
-    m_commandeType=0;
-    m_directionType=2;
+    m_commandeType = 0;
+    m_directionType = 2;
     //Odometrie m_robot;
-    m_stop=0;
-    m_maxSpeed=60;
+    m_stop = 0;
+    m_maxSpeed = 60;
 
     //robot can't move
     L_done = 1;
@@ -115,7 +115,7 @@ double Asservissement::contDistance(Position destination, Position robot)
     double _PID_, error;
 
     //error =destination.x - robot.x ;
-    error= destination.distance;
+    error = destination.distance;
 
     L_done = 0;
 
@@ -139,7 +139,7 @@ double Asservissement::contAngle(Position destination, Position robot)
     double _PID_, error;
 
     //m_robot.calculer_angle(&destination,robot);
-    error=destination.thetha - robot.thetha;
+    error = destination.thetha - robot.thetha;
 
     //appel PID
     _PID_ = m_angle.computePID(error);
@@ -183,19 +183,16 @@ void Asservissement::checkEnslavementType(double error_L, double error_T, int *a
         if (abs(error_T) >= ERROR_THETA_ACCEPTED)  //if robot is far from target or if angle error is too bigger
         {
             (*asserv_T) = 1;
-        }
-        else
+        } else
         {
             (*asserv_T) = 0;
         }
-    }
-    else if (error_L >= ERROR_L_ACCEPTED)    //only angle asserv and THEN distance asserv
+    } else if (error_L >= ERROR_L_ACCEPTED)    //only angle asserv and THEN distance asserv
     {
         if (abs(error_T) >= ERROR_THETA_ACCEPTED)  //if robot is far from target or if angle error is too bigger
         {
             (*asserv_T) = 1;
-        }
-        else
+        } else
         {
             (*asserv_T) = 0;
         }
@@ -203,13 +200,11 @@ void Asservissement::checkEnslavementType(double error_L, double error_T, int *a
         if ((*asserv_T) == 0)  //if angle asserv is finished and distance error is too bigger
         {
             (*asserv_L) = 1;
-        }
-        else
+        } else
         {
             (*asserv_L) = 0;
         }
-    }
-    else    //robot is not so far from target, so he can be considered on the target
+    } else    //robot is not so far from target, so he can be considered on the target
     {
         (*asserv_T) = 0;
         (*asserv_L) = 0;
@@ -242,7 +237,7 @@ void Asservissement::addPWM(double pwmControl_L, double pwmControl_T, int sens)
     //speedL = pwmControl_L * sens + pwmControl_T;
     //speedR = pwmControl_L * sens - pwmControl_T;
 
-    speedL = pwmControl_L  + pwmControl_T;
+    speedL = pwmControl_L + pwmControl_T;
     speedR = pwmControl_L - pwmControl_T;
 
     double max;
@@ -254,26 +249,24 @@ void Asservissement::addPWM(double pwmControl_L, double pwmControl_T, int sens)
     {
         max = speedL;
         min = speedR;
-    }
-    else
+    } else
     {
         max = speedR;
         min = speedL;
     }
 
-    if ((max > m_maxSpeed || min<-m_maxSpeed))//if an overflow occured
+    if ((max > m_maxSpeed || min < -m_maxSpeed))//if an overflow occured
     {
         if (abs1(max) > abs1(min))//if max overflow more than min
         {
             ratio = (m_maxSpeed * 1.0) / abs1(max);
-        }
-        else  //else min overflow more than max
+        } else  //else min overflow more than max
         {
             ratio = (m_maxSpeed * 1.0) / abs1(min);
         }
 
-        speedL = speedL*ratio;
-        speedR = speedR*ratio;
+        speedL = speedL * ratio;
+        speedR = speedR * ratio;
     }
 
     m_leftMotorSpeed = speedL;
@@ -292,45 +285,45 @@ void Asservissement::addPWM(double pwmControl_L, double pwmControl_T, int sens)
 void Asservissement::appliquerOrdre(Position destination, Position robot, int sens)
 {
 
-    m_commandeType=sens;
+    m_commandeType = sens;
 
-    switch(m_commandeType)
+    switch (m_commandeType)
     {
 
-    case 1:
-        atteindreAngle(destination,robot);
+        case 1:
+            atteindreAngle(destination, robot);
 
-        break;
-    case 2:
+            break;
+        case 2:
 
-        atteindreDistance(destination,robot);
+            atteindreDistance(destination, robot);
 
-        break;
-    case 3:
+            break;
+        case 3:
 
-        //atteindrePosition ( destination, robot); //courbe curviligne
-        curve ( destination, robot);
-        //atteindrePosition ( destination, robot);
+            //atteindrePosition ( destination, robot); //courbe curviligne
+            curve(destination, robot);
+            //atteindrePosition ( destination, robot);
 
-        break;
+            break;
 
-    default:
-        m_leftMotorSpeed=0;
-        m_rightMotorSpeed=0;
+        default:
+            m_leftMotorSpeed = 0;
+            m_rightMotorSpeed = 0;
 
-        break;
+            break;
     }
 
-    if(m_stop == 1 ||  (theta_done ==1 && L_done==1 ))
+    if (m_stop == 1 || (theta_done == 1 && L_done == 1))
     {
 
-        m_leftMotorSpeed=0;
-        m_rightMotorSpeed=0;
+        m_leftMotorSpeed = 0;
+        m_rightMotorSpeed = 0;
 
     }
 
     //envoie de la consigne vitesse au moteur
-    m_moteur.fonctionnement_moteur( m_leftMotorSpeed, m_rightMotorSpeed);
+    m_moteur.fonctionnement_moteur(m_leftMotorSpeed, m_rightMotorSpeed);
 
 }
 
@@ -369,12 +362,11 @@ void Asservissement::atteindreAngle(Position destination, Position robot)
       */
 
 
-    pwmControl_T = contAngle(destination,robot);
+    pwmControl_T = contAngle(destination, robot);
     if (abs1(error) <= ERROR_THETA_ACCEPTED)
     {
         theta_done = 1;
-    }
-    else
+    } else
     {
         theta_done = 0;
     }
@@ -382,15 +374,14 @@ void Asservissement::atteindreAngle(Position destination, Position robot)
     if (pwmControl_T > m_maxSpeed)
     {
         pwmControl_T = m_maxSpeed;
-    }
-    else if (pwmControl_T < - m_maxSpeed)
+    } else if (pwmControl_T < -m_maxSpeed)
     {
-        pwmControl_T = -m_maxSpeed ;
+        pwmControl_T = -m_maxSpeed;
     }
 
 
-    m_leftMotorSpeed =    pwmControl_T;
-    m_rightMotorSpeed = - pwmControl_T;
+    m_leftMotorSpeed = pwmControl_T;
+    m_rightMotorSpeed = -pwmControl_T;
 }
 
 
@@ -404,12 +395,12 @@ void Asservissement::atteindreAngle(Position destination, Position robot)
 void Asservissement::atteindreDistance(Position destination, Position robot)
 {
     double pwmControl_L = 0;
-    int forward =0;
+    int forward = 0;
     double error;
-    double beta=0, depassement=0;
+    double beta = 0, depassement = 0;
 
 
-    error= robot.distance;
+    error = robot.distance;
 
     if (error != 0)
     {
@@ -420,16 +411,14 @@ void Asservissement::atteindreDistance(Position destination, Position robot)
             if (beta >= 0)  //target on the left (in the work plan)
             {
                 beta = PI - beta;
-            }
-            else    //right
+            } else    //right
             {
                 beta = -PI - beta;
             }
         }
-    }
-    else    //else target is on robot position
+    } else    //else target is on robot position
     {
-        beta=0;
+        beta = 0;
     }
     /*if (abs1(error) > ERROR_L_ACCEPTED) {
         L_done = 0;
@@ -446,14 +435,13 @@ void Asservissement::atteindreDistance(Position destination, Position robot)
     } else if (abs1(error) <= ERROR_L_ACCEPTED) {
         L_done = 1; //robot reaches point
     }*/
-    beta = beta*180.0/3.14;
+    beta = beta * 180.0 / 3.14;
     depassement = beta - robot.thetha;
-    depassement=boundError(depassement);
+    depassement = boundError(depassement);
     if (abs1(depassement) <= 90)  //if target ahead robot
     {
         forward = 1; //forward
-    }
-    else    //else target behind robot
+    } else    //else target behind robot
     {
         forward = -1; //backward
     }
@@ -473,15 +461,14 @@ void Asservissement::atteindreDistance(Position destination, Position robot)
     Serial.print(" , ");
     Serial.print(forward);
 
-    if(forward == 1)
+    if (forward == 1)
     {
-        m_leftMotorSpeed =  pwmControl_L;
+        m_leftMotorSpeed = pwmControl_L;
         m_rightMotorSpeed = pwmControl_L;
-    }
-    else
+    } else
     {
-        m_leftMotorSpeed =  -  pwmControl_L;
-        m_rightMotorSpeed = - pwmControl_L;
+        m_leftMotorSpeed = -pwmControl_L;
+        m_rightMotorSpeed = -pwmControl_L;
 
     }
 }
@@ -501,7 +488,7 @@ void Asservissement::curve(Position destination, Position robot)
     double pwmControl_T = 0;
     double pwmControl_L = 0;
     int forward = 0; // 1=forward -1=backward
-    double beta=0, depassement=0;
+    double beta = 0, depassement = 0;
 
     //ERROR
     double errorL = robot.distance;
@@ -541,15 +528,12 @@ void Asservissement::curve(Position destination, Position robot)
     pwmControl_L = m_distance.computePID(errorL);
 
 
-
-
     if (abs1(errorT) <= ERROR_THETA_ACCEPTED)
     {
         theta_done = 1;
-        pwmControl_T=0;
+        pwmControl_T = 0;
 
-    }
-    else
+    } else
     {
         theta_done = 0;
     }
@@ -557,9 +541,8 @@ void Asservissement::curve(Position destination, Position robot)
     if (abs1(errorL) <= ERROR_L_ACCEPTED)
     {
         L_done = 1;
-        pwmControl_L=0;
-    }
-    else
+        pwmControl_L = 0;
+    } else
     {
         L_done = 0;
     }
@@ -567,20 +550,18 @@ void Asservissement::curve(Position destination, Position robot)
     if (abs1(errorL) >= 40)
     {
         addPWM(pwmControl_L, pwmControl_T, forward);
-    }
-    else
+    } else
     {
         if (pwmControl_T > m_maxSpeed)
         {
             pwmControl_T = m_maxSpeed;
-        }
-        else if (pwmControl_T < - m_maxSpeed)
+        } else if (pwmControl_T < -m_maxSpeed)
         {
-            pwmControl_T = -m_maxSpeed ;
+            pwmControl_T = -m_maxSpeed;
         }
 
-        m_leftMotorSpeed =    pwmControl_T;
-        m_rightMotorSpeed = - pwmControl_T;
+        m_leftMotorSpeed = pwmControl_T;
+        m_rightMotorSpeed = -pwmControl_T;
     }
 }
 
@@ -621,16 +602,14 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
             if (beta >= 0)  //target on the left (in the work plan)
             {
                 beta = PI - beta;
-            }
-            else    //right
+            } else    //right
             {
                 beta = -PI - beta;
             }
         }
-    }
-    else    //else target is on robot position
+    } else    //else target is on robot position
     {
-        beta=0;
+        beta = 0;
     }
 
     //real angle between robot and target
@@ -641,14 +620,12 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
     if (m_directionType == 1)  //if robot is in "forward" mode (only forward)
     {
         forward = 1; //forward
-    }
-    else if (m_directionType == 2)    //if robot is in "freemode" (forward and backward)
+    } else if (m_directionType == 2)    //if robot is in "freemode" (forward and backward)
     {
         if (abs1(errorT) <= PI / 2)  //if target ahead robot
         {
             forward = 1; //forward
-        }
-        else    //else target behind robot
+        } else    //else target behind robot
         {
             forward = -1; //backward
 
@@ -656,8 +633,7 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
             if (beta >= 0)  //target on the left
             {
                 beta = beta - PI; //move right
-            }
-            else    //target on the right
+            } else    //target on the right
             {
                 beta = beta + PI; //move left
             }
@@ -677,8 +653,7 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
     if (asserv_L == 1)
     {
         delayL = 0;
-    }
-    else
+    } else
     {
         if (delayL < 10)
             delayL++;
@@ -687,8 +662,7 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
     if (delayL < 10)
     {
         pwmControl_L = contDistance(destination, robot);
-    }
-    else if (d <= ERROR_L_ACCEPTED)
+    } else if (d <= ERROR_L_ACCEPTED)
     {
         L_done = 1; //robot reaches point
     }
@@ -706,8 +680,7 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
         }
         delayT = 0;
 
-    }
-    else
+    } else
     {
         if (delayT < 10)
             delayT++;
@@ -719,8 +692,7 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
     {
         theta_done = 0;
         delayT = 0;
-    }
-    else
+    } else
     {
         if (delayT < 10)
             delayT++;
@@ -729,9 +701,8 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
     if (delayT < 10)
     {
         //calculate order for angle (must be called after control_L cause SET current value PWM orders)
-        pwmControl_T = contAngle(destination,robot);
-    }
-    else if (errorT <= ERROR_THETA_ACCEPTED)
+        pwmControl_T = contAngle(destination, robot);
+    } else if (errorT <= ERROR_THETA_ACCEPTED)
     {
         theta_done = 1; //robot reaches point
     }
@@ -750,11 +721,10 @@ void Asservissement::atteindrePosition(Position destination, Position robot)
  */
 double Asservissement::abs1(double nombre)
 {
-    if(nombre>0)
+    if (nombre > 0)
     {
         return nombre;
-    }
-    else
+    } else
     {
         return -nombre;
     }

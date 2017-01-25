@@ -30,27 +30,31 @@
  * \class PID
  * \brief Classe pour le correcteur Proportionnel Intégrateur Dérivé
  */
-class PID{
+class PID
+{
 
-	public:
+public:
 
-        PID();
-        PID(double kP,double kI,double kD,double periode);
-        void resetPID (double error);
-        double computePID(double error);
-        
+    PID();
 
-	private:
+    PID(double kP, double kI, double kD, double periode);
 
-	double m_kP;     //Coefficient proportionnel
-        double m_kI;     //Coefficient Intégrateur
-        double m_kD;     //Coefficient Dérivateur
+    void resetPID(double error);
 
-        double m_sumError; //somme des erreurs
-        double m_lastError; //dernière erreur
-        double m_diffError; //différences erreurs
+    double computePID(double error);
 
-        double m_periode;
+
+private:
+
+    double m_kP;     //Coefficient proportionnel
+    double m_kI;     //Coefficient Intégrateur
+    double m_kD;     //Coefficient Dérivateur
+
+    double m_sumError; //somme des erreurs
+    double m_lastError; //dernière erreur
+    double m_diffError; //différences erreurs
+
+    double m_periode;
 };
 
 #endif

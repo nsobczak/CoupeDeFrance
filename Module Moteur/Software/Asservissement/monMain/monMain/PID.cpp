@@ -33,7 +33,7 @@
  * \param double kP, double kI, double kD coeff du PID utilise pour calculer le PWM
  * \param double periode ???
  */
-PID::PID(double kP,double kI,double kD, double periode)
+PID::PID(double kP, double kI, double kD, double periode)
 {
 
     //init coeff
@@ -65,7 +65,7 @@ PID::PID()
  * \brief fonction qui reset le PID
  * \param double error reset le PID avec la derreniere error
  */
-void PID::resetPID (double error)
+void PID::resetPID(double error)
 {
     m_lastError = error;
     m_sumError = 0;
@@ -83,7 +83,7 @@ void PID::resetPID (double error)
 double PID::computePID(double error)
 {
 
-    double P,I,D;
+    double P, I, D;
     double PID;
 
     m_sumError = m_sumError + error;
@@ -102,7 +102,7 @@ double PID::computePID(double error)
     I = m_sumError * m_kI;// * m_periode;
 
     //Dérivateur
-    D =  (m_diffError * m_kD) ;// m_periode ;
+    D = (m_diffError * m_kD);// m_periode ;
 
     PID = P + I + D;
 

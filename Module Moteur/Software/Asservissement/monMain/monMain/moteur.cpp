@@ -44,7 +44,7 @@ uint16_t TIM_ARR = (uint16_t)(24000000 / PWM_FREQ) - 1; // Don't change! Calc's 
  */
 Moteur::Moteur()
 {
-  m_vitesse_moteur=0;
+    m_vitesse_moteur = 0;
 }
 
 
@@ -55,12 +55,12 @@ Moteur::Moteur()
  */
 void Moteur::initPWM()
 {
-   pinMode(IN1MoteurB0,OUTPUT);
-   pinMode(IN2MoteurB0,OUTPUT);
-   pinMode(IN1MoteurA0,OUTPUT);
-   pinMode(IN2MoteurA0,OUTPUT);
-   pinMode(PMW_MOTEUR_A0 ,OUTPUT);
-   pinMode(PMW_MOTEUR_B0 ,OUTPUT);
+    pinMode(IN1MoteurB0, OUTPUT);
+    pinMode(IN2MoteurB0, OUTPUT);
+    pinMode(IN1MoteurA0, OUTPUT);
+    pinMode(IN2MoteurA0, OUTPUT);
+    pinMode(PMW_MOTEUR_A0, OUTPUT);
+    pinMode(PMW_MOTEUR_B0, OUTPUT);
 }
 
 
@@ -72,26 +72,28 @@ void Moteur::initPWM()
  */
 void Moteur::brake(int choix_moteur)  // potentiellement inutile pour frein mettre les motor a 0
 {
-  if(choix_moteur == 1){
-    /*m_vitesse_moteur=-100;
-    m_vitesse_moteur=convertir_pourcentage_en_octet ();
-    m_PWM_G[0]= m_vitesse_moteur;
-    m_PWM_G[1]=255- m_vitesse_moteur;*/
-    digitalWrite(IN1MoteurA0,LOW);
-    digitalWrite(IN2MoteurA0,LOW);
-    analogWrite(PMW_MOTEUR_A0,255-m_vitesse_moteur);
-    //analogWrite(PMW_MOTEUR_A1,255-m_vitesse_moteur);
+    if (choix_moteur == 1)
+    {
+        /*m_vitesse_moteur=-100;
+        m_vitesse_moteur=convertir_pourcentage_en_octet ();
+        m_PWM_G[0]= m_vitesse_moteur;
+        m_PWM_G[1]=255- m_vitesse_moteur;*/
+        digitalWrite(IN1MoteurA0, LOW);
+        digitalWrite(IN2MoteurA0, LOW);
+        analogWrite(PMW_MOTEUR_A0, 255 - m_vitesse_moteur);
+        //analogWrite(PMW_MOTEUR_A1,255-m_vitesse_moteur);
     }
 
-   if(choix_moteur == 2){
-     /*m_vitesse_moteur=-100;
-     m_vitesse_moteur=convertir_pourcentage_en_octet ();
-     m_PWM_D[0]= m_vitesse_moteur;
-     m_PWM_D[1]=255- m_vitesse_moteur;*/
-     digitalWrite(IN1MoteurB0,LOW);
-     digitalWrite(IN2MoteurB0,LOW);
-     analogWrite(PMW_MOTEUR_B0,255-m_vitesse_moteur);
-     //analogWrite(PMW_MOTEUR_B1,255-m_vitesse_moteur);
+    if (choix_moteur == 2)
+    {
+        /*m_vitesse_moteur=-100;
+        m_vitesse_moteur=convertir_pourcentage_en_octet ();
+        m_PWM_D[0]= m_vitesse_moteur;
+        m_PWM_D[1]=255- m_vitesse_moteur;*/
+        digitalWrite(IN1MoteurB0, LOW);
+        digitalWrite(IN2MoteurB0, LOW);
+        analogWrite(PMW_MOTEUR_B0, 255 - m_vitesse_moteur);
+        //analogWrite(PMW_MOTEUR_B1,255-m_vitesse_moteur);
     }
 }
 
@@ -105,58 +107,62 @@ void Moteur::brake(int choix_moteur)  // potentiellement inutile pour frein mett
  */
 void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit)
 {
-        //moteur gauche
-        //if(vitesseGauche != 0){
-            m_vitesse_moteur=  vitesseGauche;
-            m_vitesse_moteur=convertir_pourcentage_en_octet ();
-            //m_PWM_G[0]=m_PWM_G[1]=m_vitesse_moteur;
-              if(m_vitesse_moteur>127){
-                digitalWrite(IN1MoteurB0,HIGH);// voir si le sens OK
-                digitalWrite(IN2MoteurB0,LOW);// voir si le sens OK
-                analogWrite(PMW_MOTEUR_B0,255-m_vitesse_moteur);
-                
-              }
-              else if(m_vitesse_moteur<127){
-                digitalWrite(IN1MoteurB0,LOW);// voir si le sens OK
-                digitalWrite(IN2MoteurB0,HIGH);// voir si le sens OK
-                analogWrite(PMW_MOTEUR_B0,255-m_vitesse_moteur);
-              }
+    //moteur gauche
+    //if(vitesseGauche != 0){
+    m_vitesse_moteur = vitesseGauche;
+    m_vitesse_moteur = convertir_pourcentage_en_octet();
+    //m_PWM_G[0]=m_PWM_G[1]=m_vitesse_moteur;
+    if (m_vitesse_moteur > 127)
+    {
+        digitalWrite(IN1MoteurB0, HIGH);// voir si le sens OK
+        digitalWrite(IN2MoteurB0, LOW);// voir si le sens OK
+        analogWrite(PMW_MOTEUR_B0, 255 - m_vitesse_moteur);
 
-            //analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
-            //analogWrite(PMW_MOTEUR_A1,m_vitesse_moteur);
-              else if(m_vitesse_moteur == 127){
-                brake(1);
-              }
+    } else if (m_vitesse_moteur < 127)
+    {
+        digitalWrite(IN1MoteurB0, LOW);// voir si le sens OK
+        digitalWrite(IN2MoteurB0, HIGH);// voir si le sens OK
+        analogWrite(PMW_MOTEUR_B0, 255 - m_vitesse_moteur);
+    }
 
-        //}
-        /*else{
-            brake(1);
-         }*/
+        //analogWrite(PMW_MOTEUR_A0,m_vitesse_moteur);
+        //analogWrite(PMW_MOTEUR_A1,m_vitesse_moteur);
+    else if (m_vitesse_moteur == 127)
+    {
+        brake(1);
+    }
 
-        //moteur droit
-        //if(vitesseDroit != 0){
-            m_vitesse_moteur= vitesseDroit;
-            m_vitesse_moteur=convertir_pourcentage_en_octet ();
-            //m_PWM_D[0]=m_PWM_D[1]=m_vitesse_moteur;
-              if(m_vitesse_moteur>127){
-                digitalWrite(IN1MoteurA0,HIGH);// voire si le sens OK
-                digitalWrite(IN2MoteurA0,LOW);// voire si le sens OK
-                analogWrite(PMW_MOTEUR_A0,255-m_vitesse_moteur);
-              }
-              else if(m_vitesse_moteur<127){
-                digitalWrite(IN1MoteurB0,LOW);// voire si le sens OK
-                digitalWrite(IN2MoteurB0,HIGH);// voire si le sens OK
-                analogWrite(PMW_MOTEUR_A0,255-m_vitesse_moteur);
-              }
-            //analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
-            //analogWrite(PMW_MOTEUR_B1,m_vitesse_moteur);
-            //digitalWrite(PMW_MOTEUR_B1,!digitalRead(keep_B));
-              else if(m_vitesse_moteur == 127){
-                brake(2);
-              }
-        //}
-     
-          //envoieData();
+    //}
+    /*else{
+        brake(1);
+     }*/
+
+    //moteur droit
+    //if(vitesseDroit != 0){
+    m_vitesse_moteur = vitesseDroit;
+    m_vitesse_moteur = convertir_pourcentage_en_octet();
+    //m_PWM_D[0]=m_PWM_D[1]=m_vitesse_moteur;
+    if (m_vitesse_moteur > 127)
+    {
+        digitalWrite(IN1MoteurA0, HIGH);// voire si le sens OK
+        digitalWrite(IN2MoteurA0, LOW);// voire si le sens OK
+        analogWrite(PMW_MOTEUR_A0, 255 - m_vitesse_moteur);
+    } else if (m_vitesse_moteur < 127)
+    {
+        digitalWrite(IN1MoteurB0, LOW);// voire si le sens OK
+        digitalWrite(IN2MoteurB0, HIGH);// voire si le sens OK
+        analogWrite(PMW_MOTEUR_A0, 255 - m_vitesse_moteur);
+    }
+        //analogWrite(PMW_MOTEUR_B0,m_vitesse_moteur);
+        //analogWrite(PMW_MOTEUR_B1,m_vitesse_moteur);
+        //digitalWrite(PMW_MOTEUR_B1,!digitalRead(keep_B));
+    else if (m_vitesse_moteur == 127)
+    {
+        brake(2);
+    }
+    //}
+
+    //envoieData();
 }
 
 
@@ -166,22 +172,24 @@ void Moteur::fonctionnement_moteur(double vitesseGauche, double vitesseDroit)
  * \brief permet de convertir la vitesse exprimé en pourcentage (-100 à +100) en octet (de 0 à 255)
  * \return int vitesse
  */
-int Moteur::convertir_pourcentage_en_octet ()
+int Moteur::convertir_pourcentage_en_octet()
 {
-        int vitesse=0;
-	//vitesse moteur positif (0 à 100%)
-        if((m_vitesse_moteur > 0) && (m_vitesse_moteur <= 100	)){
-		      vitesse=127+((m_vitesse_moteur*128)/100);
+    int vitesse = 0;
+    //vitesse moteur positif (0 à 100%)
+    if ((m_vitesse_moteur > 0) && (m_vitesse_moteur <= 100))
+    {
+        vitesse = 127 + ((m_vitesse_moteur * 128) / 100);
 
-	}
+    }
 
-        //vitesse moteur négatif (0 à -100%)
-        if((m_vitesse_moteur <= 0) && (m_vitesse_moteur >= -100	)){
-		      vitesse=((100+m_vitesse_moteur)*127)/100;
+    //vitesse moteur négatif (0 à -100%)
+    if ((m_vitesse_moteur <= 0) && (m_vitesse_moteur >= -100))
+    {
+        vitesse = ((100 + m_vitesse_moteur) * 127) / 100;
 
-	}
+    }
 
-	return vitesse;
+    return vitesse;
 }
 
 

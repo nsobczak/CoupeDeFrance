@@ -45,19 +45,23 @@
  */
 class Moteur
 {
-  public:
-        Moteur();
-        void initPWM();
-        int convertir_pourcentage_en_octet ();
-        void brake(int choix_moteur);
-	void fonctionnement_moteur(double vitesseGauche, double vitesseDroit);
-	//void analogWrite2(uint16_t pin, uint8_t value);
-        //void envoieData();
+public:
+    Moteur();
 
-  private:
-        byte m_PWM_G[2];
-        byte m_PWM_D[2];
-        double m_vitesse_moteur;
+    void initPWM();
+
+    int convertir_pourcentage_en_octet();
+
+    void brake(int choix_moteur);
+
+    void fonctionnement_moteur(double vitesseGauche, double vitesseDroit);
+    //void analogWrite2(uint16_t pin, uint8_t value);
+    //void envoieData();
+
+private:
+    byte m_PWM_G[2];
+    byte m_PWM_D[2];
+    double m_vitesse_moteur;
 };
 
 #endif
