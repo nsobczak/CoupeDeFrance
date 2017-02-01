@@ -15,9 +15,10 @@
 
 
 /* ======================================================================================================
- *      Fonctions
+ *      Variables globales
  * ======================================================================================================
  */
+
 #define _DEBUG false
 #define encoder0PinA_L 13   //encodeur gauche A
 #define encoder0PinB_L 12   //encodeur gauche B
@@ -49,6 +50,11 @@ float ki = 5.5;           // Coefficient intégrateur
 float kd = 100;           // Coefficient dérivateur
 
 
+/* ======================================================================================================
+ *      Fonctions
+ * ======================================================================================================
+ */
+
 /**
  * \fn void setup()
  * \brief fonction setup d'arduino
@@ -74,7 +80,7 @@ void setup()
     delay(5000);                  // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 
     attachInterrupt(0, compteur, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-    timer.setInterval(1000/frequence_echantillonnage, asservissement);  // Interruption pour calcul du PID et asservissement
+    timer.setInterval(1000/frequence_echantillonnage, asservissement;  // Interruption pour calcul du PID et asservissement
 }
 
 
@@ -88,38 +94,44 @@ void setup()
  }
 
 
-/* Interruption sur tick de la codeuse */
+/**
+ * \fn void compteur()
+ * \brief Interruption sur tick de la codeuse
+ */
 void compteur(){
     tick_codeuse++;  // On incrémente le nombre de tick de la codeuse
 }
 
 
- /**
-  * \fn asservissement()
-  * \brief Interruption pour calcul du PID
-  */
- void asservissement()
- {
-    // Réinitialisation du nombre de tick de la codeuse
-    int tick = tick_codeuse;
-    tick_codeuse=0;
+/**
+ * \fn asservissement()
+ * \brief Interruption pour calcul du PID
+ */
+void asservissement()
+{
+   // Réinitialisation du nombre de tick de la codeuse
+   int tick = tick_codeuse;
+   tick_codeuse=0;
 
-    // Calcul des erreurs
-    int frequence_codeuse = frequence_echantillonnage*tick;
-    float nb_tour_par_sec = (float)frequence_codeuse/(float)tick_par_tour_codeuse/(float)rapport_reducteur;
-    float erreur = consigne_moteur_nombre_tours_par_seconde - nb_tour_par_sec;
-    somme_erreur += erreur;
-    float delta_erreur = erreur-erreur_precedente;
-    erreur_precedente = erreur;
+   // Calcul des erreurs
+   int frequence_codeuse = frequence_echantillonnage*tick;
+   float nb_tour_par_sec = (float)frequence_codeuse/(float)tick_par_tour_codeuse/(float)rapport_reducteur;
+   float erreur = consigne_moteur_nombre_tours_par_seconde - nb_tour_par_sec;
+   somme_erreur += erreur;
+   float delta_erreur = erreur-erreur_precedente;
+   erreur_precedente = erreur;
 
-    // PID : calcul de la commande
-    cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
+   // PID : calcul de la commande
+   cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
 
-    // Normalisation et contrôle du moteur
-    if(cmd < 0) cmd=0;
-    else if(cmd > 255) cmd = 255;
-    analogWrite(_MOTEUR, 255-cmd);
+   // Normalisation et contrôle du moteur
+   if(cmd < 0) cmd=0;
+   else if(cmd > 255) cmd = 255;
+   analogWrite(_MOTEUR, 255-cmd);
 
-    // DEBUG
-    if(_DEBUG)  Serial.println(nb_tour_par_sec,8);
+   // DEBUG
+   if(_DEBUG)
+   {
+     Serial.println(nb_tour_par_sec, 8);
+   }
 }
