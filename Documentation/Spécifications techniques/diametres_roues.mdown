@@ -1,0 +1,8 @@
+# Spécifications mécaniques du robot
+
+- diamètre roues codeuses = 52,28mm
+- diamètre roues non codeuses = 80,22mm
+
+2500 ticks par tour de roue codeuse
+3836 ticks par tour de roue non codeuse
+
