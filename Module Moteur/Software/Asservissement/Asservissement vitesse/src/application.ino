@@ -2,7 +2,7 @@
  *    \file application.ino
  *    \brief asservissement vitesse
  *
- *    \author Arthur D. & Nicolas SOBCZAK
+ *    \author Arthur Duytschaever & Nicolas SOBCZAK
  *    \date Février 2017
  */
 //_______________________________________________________________________________________________________
@@ -18,8 +18,18 @@
  *      Fonctions
  * ======================================================================================================
  */
-
 #define _DEBUG false
+#define encoder0PinA_L 13   //encodeur gauche A
+#define encoder0PinB_L 12   //encodeur gauche B
+#define encoder0PinA_R 11   //encodeur droit A
+#define encoder0PinB_R 10   //encodeur droit B
+
+int MotorR =3; // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
+int MotorL = 6;
+int IN1MotorL = 22;
+int IN2MotorL = 23;
+int IN1MotorR = 52;
+int IN2MotorR = 53;
 
 SimpleTimer timer;                 // Timer pour échantillonnage
 const int _MOTEUR =  9;            // Digital pin pour commande moteur
@@ -46,6 +56,18 @@ float kd = 100;           // Coefficient dérivateur
 void setup()
 {
     Serial.begin(115200);         // Initialisation port COM
+    pinMode(MotorR,OUTPUT);
+    pinMode(MotorL,OUTPUT);
+    pinMode(IN1MotorR,OUTPUT);
+    pinMode(IN2MotorR,OUTPUT);
+    pinMode(IN1MotorL,OUTPUT);
+    pinMode(IN2MotorL,OUTPUT);
+
+    pinMode(encoder0PinA_L, INPUT);
+    pinMode(encoder0PinB_L, INPUT);
+    pinMode(encoder0PinA_R, INPUT);
+    pinMode(encoder0PinB_R, INPUT);
+
     pinMode(_MOTEUR, OUTPUT);     // Sortie moteur
     analogWrite(_MOTEUR, 255);    // Sortie moteur à 0
 

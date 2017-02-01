@@ -1,3 +1,10 @@
+/**
+ *    \file application.ino
+ *    \brief asservissement vitesse
+ *
+ *    \author Arthur Duytschaever & Nicolas SOBCZAK
+ *    \date Février 2017
+ */
 //_______________________________________________________________________________________________________
 /* ======================================================================================================
  *      Include
@@ -22,6 +29,7 @@ int IN1MotorL = 22;
 int IN2MotorL = 23;
 int IN1MotorR = 52;
 int IN2MotorR = 53;
+
 const int _MOTEUR =  9;            // Digital pin pour commande moteur
 unsigned int tick_codeuse = 0;     // Compteur de tick de la codeuse
 uint32_t timer;
@@ -57,11 +65,11 @@ void setup() {
 
 /* Fonction principale */
 void loop(){
-    timer = millis();
-    if (timer > 20000)
+    if (millis() - timer > 5000)
     {
       Serial.print("\t tick_codeuse : \t");
       Serial.println(tick_codeuse);
+      timer = millis();
       // delay(10);
     }
 }
