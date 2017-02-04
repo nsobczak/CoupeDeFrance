@@ -1,0 +1,72 @@
+Added Component: Designator=CA0(0805)
+Added Component: Designator=CA1(0805)
+Added Component: Designator=CA2(0805)
+Added Component: Designator=CA3(0805)
+Added Component: Designator=CA4(0805)
+Added Component: Designator=Cdec5 Alim(0805)
+Added Component: Designator=Cdec5 CAN(0805)
+Added Component: Designator=Cdec5 Mux(0805)
+Added Component: Designator=Cdec5 SPI-CAN(0805)
+Added Component: Designator=Cdec9Alim(0805)
+Added Component: Designator=Led5V(LED5)
+Added Component: Designator=Led9V(LED5)
+Added Component: Designator=ResLed5V(0805)
+Added Component: Designator=ResLed9V(0805)
+Added Component: Designator=Vcc_5v_+(Connector_Cosse)
+Added Component: Designator=Vcc_5v_-(Connector_Cosse)
+Added Component: Designator=Vcc_7v_+(Connector_Cosse)
+Added Component: Designator=Vcc_7v_-(Connector_Cosse)
+Added Pin To Net: NetName=A0 Pin=CA0-1
+Added Pin To Net: NetName=GND Pin=CA0-2
+Added Pin To Net: NetName=A1 Pin=CA1-1
+Added Pin To Net: NetName=GND Pin=CA1-2
+Added Pin To Net: NetName=A2 Pin=CA2-1
+Added Pin To Net: NetName=GND Pin=CA2-2
+Added Pin To Net: NetName=A3 Pin=CA3-1
+Added Pin To Net: NetName=GND Pin=CA3-2
+Added Pin To Net: NetName=A4 Pin=CA4-1
+Added Pin To Net: NetName=GND Pin=CA4-2
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5 Alim-1
+Added Pin To Net: NetName=GND Pin=Cdec5 Alim-2
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5 CAN-1
+Added Pin To Net: NetName=GND Pin=Cdec5 CAN-2
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5 Mux-1
+Added Pin To Net: NetName=GND Pin=Cdec5 Mux-2
+Added Pin To Net: NetName=VCC 5V Pin=Cdec5 SPI-CAN-1
+Added Pin To Net: NetName=GND Pin=Cdec5 SPI-CAN-2
+Added Pin To Net: NetName=GND Pin=Cdec9Alim-1
+Added Pin To Net: NetName=VCC 7V Pin=Cdec9Alim-2
+Added Pin To Net: NetName=NetLed5V_A Pin=Led5V-A
+Added Pin To Net: NetName=GND Pin=Led5V-K
+Added Pin To Net: NetName=NetLed9V_A Pin=Led9V-A
+Added Pin To Net: NetName=GND Pin=Led9V-K
+Added Pin To Net: NetName=NetLed5V_A Pin=ResLed5V-1
+Added Pin To Net: NetName=VCC 5V Pin=ResLed5V-2
+Added Pin To Net: NetName=NetLed9V_A Pin=ResLed9V-1
+Added Pin To Net: NetName=VCC 7V Pin=ResLed9V-2
+Added Pin To Net: NetName=VCC 5V Pin=Vcc_5v_+-1
+Added Pin To Net: NetName=VCC 5V Pin=Vcc_5v_+-1
+Added Pin To Net: NetName=GND Pin=Vcc_5v_--1
+Added Pin To Net: NetName=GND Pin=Vcc_5v_--1
+Added Pin To Net: NetName=VCC 7V Pin=Vcc_7v_+-1
+Added Pin To Net: NetName=VCC 7V Pin=Vcc_7v_+-1
+Added Pin To Net: NetName=GND Pin=Vcc_7v_--1
+Added Pin To Net: NetName=GND Pin=Vcc_7v_--1
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA0 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA1 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA2 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA3 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA4 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 Alim CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 CAN CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 Mux CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 SPI-CAN CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec9Alim CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led5V Blue
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led9V Orange
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component ResLed5V RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component ResLed9V RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_5v_+ Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_5v_- Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_7v_+ Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_7v_- Connector_Cosse

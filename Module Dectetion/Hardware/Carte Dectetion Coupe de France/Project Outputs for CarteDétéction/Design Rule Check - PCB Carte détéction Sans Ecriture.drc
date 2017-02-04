@@ -1,0 +1,58 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\ISEN\Documents\CoupeDeFrance\Module Dectetion\Hardware\Carte Dectetion Coupe de France\PCB Carte détéction Sans Ecriture.PCBDOC
+Date     : 04/02/2017
+Time     : 11:30:53
+
+WARNING: Unplated multi-layer pad(s) detected
+   Pad Led5V-A(-8.89mm,87.63mm)  Multi-Layer on Net NetLed5V_A
+   Pad Led5V-K(-11.43mm,87.63mm)  Multi-Layer on Net GND
+   Pad Led9V-A(-8.89mm,93.98mm)  Multi-Layer on Net NetLed9V_A
+   Pad Led9V-K(-11.43mm,93.98mm)  Multi-Layer on Net GND
+
+Processing Rule : Clearance Constraint (Gap=0.508mm) (OnLayer('Top Layer')  Or OnLayer('Multi-Layer')),(OnLayer('Top Layer') And InPoly)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.508mm) (OnLayer('Bottom Layer') Or OnLayer('Multi-Layer')),(OnLayer('Bottom Layer')  And  InPoly)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+   Violation between Un-Routed Net Constraint: Unplated Pad Led5V-A(-8.89mm,87.63mm)  Multi-Layer
+   Violation between Un-Routed Net Constraint: Unplated Pad Led9V-A(-8.89mm,93.98mm)  Multi-Layer
+Rule Violations :2
+
+Processing Rule : Hole Size Constraint (Min=0.406mm) (Max=25.4mm) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : SMD To Plane Constraint (Distance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Minimum Annular Ring (Minimum=0.203mm) (PadXSize_AllLayers = PadYSize_AllLayers)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.254mm) (OnLayer('Top Layer')  Or OnLayer('Multi-Layer')),(OnLayer('Top Layer') And Not InPoly)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.254mm) (OnLayer('Bottom Layer') Or OnLayer('Multi-Layer')),(OnLayer('Bottom Layer')  And Not InPoly)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.5mm) (Max=254mm) (Preferred=0.813mm) (OnLayer('Bottom Layer') or OnLayer('Top Layer'))
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.254mm) (OnLayer('Multi-Layer')),(OnLayer('Multi-Layer'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (OnLayer('Mechanical 1') or OnLayer(' Mechanical 4'))
+Rule Violations :0
+
+
+Violations Detected : 2
+Time Elapsed        : 00:00:01
