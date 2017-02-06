@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 /**
  *    \file BotMenu.cpp
  *    \brief Code d'affichage de l'écran

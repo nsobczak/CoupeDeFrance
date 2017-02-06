@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 /**
  *    \file slave_1.cpp
  *    \brief Esclave du BotMenu I2C
