@@ -1,0 +1,38 @@
+Removed Pin From Net: NetName=C Pin=Arduino-1
+Removed Pin From Net: NetName=B Pin=Arduino-2
+Change Component Designator: OldDesignator=5v+ NewDesignator=Vcc_5v_+
+Change Component Designator: OldDesignator=5v- NewDesignator=Vcc_5v_-
+Change Component Designator: OldDesignator=7v+ NewDesignator=Vcc_7v_+
+Change Component Designator: OldDesignator=7v- NewDesignator=Vcc_7v_-
+Added Pin To Net: NetName=B Pin=Arduino-6
+Added Pin To Net: NetName=C Pin=Arduino-15
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Arduino Arduino Nano
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA0 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA1 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA2 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA3 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component CA4 CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 Alim CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 CAN CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 Mux CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec5 SPI-CAN CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Cdec9Alim CAP
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR1 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR2 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR3 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR4 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component IR5 Connecteur InfraRouge
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led5V Blue
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Led9V Orange
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component MUX MUX 8:1 CD4051B
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component ResLed5V RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component ResLed9V RES
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Back Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Front Left Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Front Right Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Left Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component US Right Ultra Son
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_5v_+ Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_5v_- Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_7v_+ Connector_Cosse
+Added Member To Class: ClassName=CarteDetection With Multiplexor Member=Component Vcc_7v_- Connector_Cosse
