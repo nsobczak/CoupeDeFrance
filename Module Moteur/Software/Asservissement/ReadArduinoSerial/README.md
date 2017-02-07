@@ -1,6 +1,6 @@
-# Proxy Serial to MQTT
+# ReadArduinoSerial
 
-Proxy Serial to MQTT is an application which gives information received on the serial port to Mosquitto. <br/>
+ReadArduinoSerial is an application which writes information received on the serial port in a csv file. <br/>
 Application developed in java.
 
 > src.app is the package which contains the code to send data
