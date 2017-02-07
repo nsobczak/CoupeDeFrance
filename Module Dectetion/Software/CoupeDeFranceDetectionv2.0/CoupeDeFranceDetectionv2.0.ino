@@ -17,25 +17,24 @@ SharpIR sharpR(IRPinR, NUM_IR_SAMPLES, 93, 1080);
 SharpIR sharpL(IRPinL, NUM_IR_SAMPLES, 93, 1080);
 SharpIR sharpB(IRPinB, NUM_IR_SAMPLES, 93, 1080);
 SharpIR infrared[] = {sharpFR, sharpFL, sharpR, sharpL, sharpB};
-const int NUM_IR = 5;
+const int NUM_IR = 5;// Number of IR sensor
 //pin for UltraSound
 //Trig
-int trigPin = 4;
+int trigPin = 11;
 
 //echo
 const int echoPinB = 9, echoPinL = 8, echoPinR = 7, echoPinFL = 6, echoPinFR = 5;
 const int ultrasonic[] = {echoPinFR, echoPinFL, echoPinR, echoPinL, echoPinB};
-const int NUM_ULTRASONIC = 5;
+const int NUM_ULTRASONIC = 5;// Number of ultrasonic sensor
 //Use Variable
 //int durationFR, durationFL, durationR, durationL, durationB,
 //      distanceCMFR, distanceCMFL, distanceCMR, distanceCML, distanceCMB;
 
 //pin For MUX
-int A=3;
-int B=0;
-int C=1;
+int A=2;
+int B=3;
+int C=12;
 
-//******************************************************************************************************************CAN ID NE PAS TOUCHER*******************************************************
 
 #define OWN_STD_ID 01 //avant = 23
 #define OWN_EXT_ID 1000
@@ -45,7 +44,7 @@ int C=1;
 
 void setup() {
 
-//********************************************************************Setup Ultrasonic
+//********************************************************************Setup Ultrasonic*****************************************************************************************
 
 //trig
 pinMode(trigPin, OUTPUT);
@@ -53,7 +52,7 @@ pinMode(trigPin, OUTPUT);
 //echo
 pinMode(echoPinFR, INPUT);
 
-//********************************************************************Setup MUX
+//********************************************************************Setup MUX*************************************************************************************************
 pinMode(A,OUTPUT);
 pinMode(B,OUTPUT);
 pinMode(C,OUTPUT);
