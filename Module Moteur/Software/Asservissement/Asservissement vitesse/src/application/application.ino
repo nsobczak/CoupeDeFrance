@@ -64,7 +64,7 @@ float kd = 0;           // Coefficient dérivateur
  */
 void setup()
 {
-    Serial.begin(115200);         // Initialisation port COM
+    Serial.begin(9600);         // Initialisation port COM
     pinMode(MotorR,OUTPUT);
     pinMode(MotorL,OUTPUT);
     pinMode(IN1MotorR,OUTPUT);
@@ -150,6 +150,7 @@ void asservissement()
   //  analogWrite(MotorL, (-1)*(cmd-255));
   analogWrite(MotorR, 255);
   analogWrite(MotorL, 255);
+
 
   // DEBUG
   if(_DEBUG)

@@ -48,7 +48,7 @@ void loop() {
   analogWrite(MotorR,10);
   analogWrite(MotorL,10);*/
   //delay(500);
-  digitalWrite(IN1MotorR,HIGH);
+  /*digitalWrite(IN1MotorR,HIGH);
   digitalWrite(IN2MotorR,LOW);
   digitalWrite(IN1MotorL,HIGH);
   digitalWrite(IN2MotorL,LOW);
@@ -82,10 +82,10 @@ void loop() {
   digitalWrite(IN2MotorL,LOW);
   analogWrite(MotorR,10);
   analogWrite(MotorL,10);
-  delay(5000);
-  digitalWrite(IN1MotorR,LOW);
+  delay(5000);*/
+  digitalWrite(IN1MotorR,HIGH);
   digitalWrite(IN2MotorR,LOW);
-  digitalWrite(IN1MotorL,LOW);
+  digitalWrite(IN1MotorL,HIGH);
   digitalWrite(IN2MotorL,LOW);
   analogWrite(MotorR,100);
   analogWrite(MotorL,100);
