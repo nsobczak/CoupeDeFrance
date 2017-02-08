@@ -52,7 +52,10 @@ public class DataReader implements SerialPortEventListener {
             "COM1", "COM2",
             "COM3", "COM4",
             "COM5", "COM6",
-            "COM7", "COM8" // Windows
+            "COM7", "COM8",
+            "COM9", "COM10",
+            "COM11", "COM12",
+            "COM13", "COM14",// Windows
     };
 
     /**
@@ -75,7 +78,7 @@ public class DataReader implements SerialPortEventListener {
     /**
      * Default bits per second for COM port.
      */
-    private static final int DATA_RATE = 9600;
+    private static final int DATA_RATE = 115200;
 
 
     //______________________________________________________________________
@@ -149,10 +152,14 @@ public class DataReader implements SerialPortEventListener {
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
+                //1st value
                 String inputLine = input.readLine();
                 System.out.println("value : " + inputLine);
-                //write file here
-                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine + "\r\n"); // \n sous linux ; \r\n sous windows
+                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine + ";"); // \n sous linux ; \r\n sous windows
+                //2nd value
+                inputLine = input.readLine();
+                System.out.println("value : " + inputLine);
+                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine + "\r\n");
             } catch (Exception e) {
                 System.err.println(e.toString());
             }
