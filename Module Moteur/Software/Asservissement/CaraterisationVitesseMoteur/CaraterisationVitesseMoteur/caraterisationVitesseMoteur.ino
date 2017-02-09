@@ -1,6 +1,6 @@
 /**
  *    \file caraterisationVitesseMoteur.ino
- *    \brief asservissement vitesse
+ *    \brief test des drivers, test des encodeurs
  *
  *    \author Arthur Duytschaever et Nicolas Sobczak
  *    \date Février 2017
@@ -71,32 +71,37 @@ void setup()
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
 
-        
-
         attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        //attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        
+        attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+
         i = 255;
-        
+
         digitalWrite(IN1MotorL, LOW);
         digitalWrite(IN2MotorL, LOW);
         analogWrite(MotorL,255);
-        
+
         //delay(1000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 }
 
 
 /**
  * \fn void loop()
- * \bLief fonction loop d'arduino
+ * \brief fonction loop d'arduino
  */
 void loop()
 {
-  if ((tick_codeuse_R%100 >= 0) && (tick_codeuse_R%100 <= 50)){
-    Serial.print("\t tick_codeuse_L : \t");
-    Serial.println(tick_codeuse_R);
-  }
-  delay(100);
+        if ((tick_codeuse_L%100 >= 0) && (tick_codeuse_L%100 <= 50)) {
+                Serial.print("\t tick_codeuse_L : \t");
+                Serial.println(tick_codeuse_L);
+        }
+
+        if ((tick_codeuse_R%100 >= 0) && (tick_codeuse_R%100 <= 50)) {
+                Serial.print("\t tick_codeuse_R : \t");
+                Serial.println(tick_codeuse_R);
+        }
+
+        Serial.println("\n");
+        delay(100);
 }
 
 
@@ -114,7 +119,7 @@ void compteur_tick_R(){
 
 /**
  * \fn void compteur_tick_L()
- * \brief Interruption sur tick de la codeuse right
+ * \brief Interruption sur tick de la codeuse left
  */
 void compteur_tick_L(){
         //Serial.println("Interruption");
@@ -127,3 +132,102 @@ void compteur_tick_L(){
         // duration = duration/2500 // durée / 2500tick = nb de tours/microsecond
 }
 
+
+/**
+ * \fn void testDriver()
+ * \brief fonction qui teste qui les drivers fonctionnent correctement
+ */
+void testDriver(){
+        //Moteur droit
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        Serial.print("On moteuL gauche \t 1");
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3");
+        delay(3000);
+        Serial.println("\t 4");
+
+
+        //Moteur gauche
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        Serial.print("On moteuL droit \t 1");
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3");
+        delay(3000);
+        Serial.println("\t 4");
+
+
+        //2 moteurs
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        Serial.print("On 2 moteurs \t 1");
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3");
+        delay(3000);
+        Serial.println("\t 4");
+
+        //Moteur gauche
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        Serial.print("On moteuL droit \t 1");
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3");
+        delay(3000);
+        Serial.println("\t 4");
+
+        //Moteur droit
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        Serial.print("On moteuL gauche \t 1");
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3");
+        delay(3000);
+        Serial.println("\t 4");
+
+
+        //2 moteurs
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        Serial.print("On 2 moteurs \t 1");
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3");
+        delay(3000);
+        Serial.println("\t 4");
+}
