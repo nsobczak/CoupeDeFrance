@@ -2,7 +2,7 @@
  *    \file caraterisationVitesseMoteur.ino
  *    \brief asservissement vitesse
  *
- *    \author Arthur Duytschaever
+ *    \author Arthur Duytschaever et Nicolas Sobczak
  *    \date Février 2017
  */
 //_______________________________________________________________________________________________________
@@ -163,7 +163,7 @@ void asservissement()
 
         //analogWrite(MotorR, i);
         analogWrite(MotorL, i);
-        i = i-2;
+        // i = i-2;
         if (i < 0) {
                 i=0;
                 //Moteur droit
