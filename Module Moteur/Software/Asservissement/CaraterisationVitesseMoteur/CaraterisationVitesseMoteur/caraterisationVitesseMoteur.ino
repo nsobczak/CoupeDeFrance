@@ -25,12 +25,12 @@
 #define encoder0PinA_R 11   //encodeur droit A
 #define encoder0PinB_R 10   //encodeur droit B
 
-#define MotorR 3 // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
-#define MotorL 6
-#define IN1MotorL 22
-#define IN2MotorL 23
-#define IN1MotorR 52
-#define IN2MotorR 53
+#define MotorR 6 // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
+#define MotorL 3
+#define IN1MotorR 22
+#define IN2MotorR 23
+#define IN1MotorL 52
+#define IN2MotorL 53
 
 SimpleTimer timer;                 // Timer pour échantillonnage
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
@@ -80,30 +80,118 @@ void setup()
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
 
-        //Moteur droit
-        digitalWrite(IN1MotorR, HIGH);
-        digitalWrite(IN2MotorR, LOW);
-        //Moteur gauche
-        digitalWrite(IN1MotorL, HIGH);
-        digitalWrite(IN2MotorL, LOW);
+  
 
         //attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        timer.setInterval(1000/frequence_echantillonnage, asservissement); // Interruption pour calcul du PID et asservissement
+        //attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        //timer.setInterval(1000/frequence_echantillonnage, asservissement); // Interruption pour calcul du PID et asservissement
 
         i = 255;
 
-        delay(5000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
+        delay(1000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 }
 
 
 /**
  * \fn void loop()
- * \brief fonction loop d'arduino
+ * \bLief fonction loop d'arduino
  */
 void loop(){
-        timer.run();
-        delay(10);
+        //timer.run();
+        //delay(10);
+
+//MoteuL droit a fond et moteuL gauche a R'aLLet
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255); 
+        Serial.print("On moteuL gauche \t 1");   
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3"); 
+        delay(3000);
+        Serial.println("\t 4"); 
+
+        
+//MoteuL gauche a fond et moteuL dLoit a R'aLLet
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255); 
+        Serial.print("On moteuL droit \t 1");   
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3"); 
+        delay(3000);
+        Serial.println("\t 4"); 
+
+        
+//2 moteurs
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);  
+        Serial.print("On 2 moteurs \t 1");     
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3"); 
+        delay(3000);
+        Serial.println("\t 4"); 
+
+//MoteuL gauche a fond et moteuL dLoit a R'aLLet
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255); 
+        Serial.print("On moteuL droit \t 1");   
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3"); 
+        delay(3000);
+        Serial.println("\t 4"); 
+
+//MoteuL droit a fond et moteuL gauche a R'aLLet
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255); 
+        Serial.print("On moteuL gauche \t 1");   
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3"); 
+        delay(3000);
+        Serial.println("\t 4"); 
+
+               
+//2 moteurs
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);  
+        Serial.print("On 2 moteurs \t 1");     
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
+        Serial.print("\t 2");
+        analogWrite(MotorL,100);
+        analogWrite(MotorR,100);
+        Serial.print("\t 3"); 
+        delay(3000);
+        Serial.println("\t 4"); 
 }
 
 
@@ -196,3 +284,4 @@ void asservissement()
         delay(100);
 
 }
+
