@@ -35,22 +35,13 @@
 SimpleTimer timer;                 // Timer pour échantillonnage
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
-unsigned int tick_codeuse_moyenne = 0;   // Compteur de tick de la codeuse
+
 int cmd = 0;                       // Commande du moteur
 
-const int frequence_echantillonnage = 25;  // Fréquence du pid
+
 const int tick_par_tour_codeuse = 2500;      // Nombre de tick codeuse par tour de roue codeuse
 const int tick_par_tour_non_codeuse = 3836;      // Nombre de tick codeuse par tour de roue non codeuse
 const float rapport_roueCodeuse_roueNonCodeuse = (52.28)/(80.22);
-
-
-float consigne_moteur_nombre_tours_par_seconde = 7.0;  //  Nombre de tours de roue par seconde
-
-float erreur_precedente = consigne_moteur_nombre_tours_par_seconde;
-float somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
-float kp = 0;           // Coefficient proportionnel
-float ki = 0;           // Coefficient intégrateur
-float kd = 0;           // Coefficient dérivateur
 
 int i; //Arthur pwm
 unsigned long duration;
@@ -80,15 +71,18 @@ void setup()
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
 
-  
+        
 
-        //attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
         //attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        //timer.setInterval(1000/frequence_echantillonnage, asservissement); // Interruption pour calcul du PID et asservissement
-
+        
         i = 255;
-
-        delay(1000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
+        
+        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN2MotorL, LOW);
+        analogWrite(MotorL,255);
+        
+        //delay(1000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 }
 
 
@@ -96,102 +90,13 @@ void setup()
  * \fn void loop()
  * \bLief fonction loop d'arduino
  */
-void loop(){
-        //timer.run();
-        //delay(10);
-
-//MoteuL droit a fond et moteuL gauche a R'aLLet
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255); 
-        Serial.print("On moteuL gauche \t 1");   
-        digitalWrite(IN1MotorR, LOW);
-        digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, HIGH);
-        digitalWrite(IN2MotorL, LOW);
-        Serial.print("\t 2");
-        analogWrite(MotorL,100);
-        analogWrite(MotorR,100);
-        Serial.print("\t 3"); 
-        delay(3000);
-        Serial.println("\t 4"); 
-
-        
-//MoteuL gauche a fond et moteuL dLoit a R'aLLet
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255); 
-        Serial.print("On moteuL droit \t 1");   
-        digitalWrite(IN1MotorR, HIGH);
-        digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, LOW);
-        digitalWrite(IN2MotorL, LOW);
-        Serial.print("\t 2");
-        analogWrite(MotorL,100);
-        analogWrite(MotorR,100);
-        Serial.print("\t 3"); 
-        delay(3000);
-        Serial.println("\t 4"); 
-
-        
-//2 moteurs
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255);  
-        Serial.print("On 2 moteurs \t 1");     
-        digitalWrite(IN1MotorR, HIGH);
-        digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, HIGH);
-        digitalWrite(IN2MotorL, LOW);
-        Serial.print("\t 2");
-        analogWrite(MotorL,100);
-        analogWrite(MotorR,100);
-        Serial.print("\t 3"); 
-        delay(3000);
-        Serial.println("\t 4"); 
-
-//MoteuL gauche a fond et moteuL dLoit a R'aLLet
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255); 
-        Serial.print("On moteuL droit \t 1");   
-        digitalWrite(IN1MotorR, HIGH);
-        digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, LOW);
-        digitalWrite(IN2MotorL, LOW);
-        Serial.print("\t 2");
-        analogWrite(MotorL,100);
-        analogWrite(MotorR,100);
-        Serial.print("\t 3"); 
-        delay(3000);
-        Serial.println("\t 4"); 
-
-//MoteuL droit a fond et moteuL gauche a R'aLLet
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255); 
-        Serial.print("On moteuL gauche \t 1");   
-        digitalWrite(IN1MotorR, LOW);
-        digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, HIGH);
-        digitalWrite(IN2MotorL, LOW);
-        Serial.print("\t 2");
-        analogWrite(MotorL,100);
-        analogWrite(MotorR,100);
-        Serial.print("\t 3"); 
-        delay(3000);
-        Serial.println("\t 4"); 
-
-               
-//2 moteurs
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255);  
-        Serial.print("On 2 moteurs \t 1");     
-        digitalWrite(IN1MotorR, HIGH);
-        digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, HIGH);
-        digitalWrite(IN2MotorL, LOW);
-        Serial.print("\t 2");
-        analogWrite(MotorL,100);
-        analogWrite(MotorR,100);
-        Serial.print("\t 3"); 
-        delay(3000);
-        Serial.println("\t 4"); 
+void loop()
+{
+  if ((tick_codeuse_R%100 >= 0) && (tick_codeuse_R%100 <= 50)){
+    Serial.print("\t tick_codeuse_L : \t");
+    Serial.println(tick_codeuse_R);
+  }
+  delay(100);
 }
 
 
@@ -200,7 +105,10 @@ void loop(){
  * \brief Interruption sur tick de la codeuse right
  */
 void compteur_tick_R(){
+        //Serial.println("Interruption");
         tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
+        //duration += pulseIn(encoder0PinA_R, HIGH); // in microsecond
+        //Serial.println("Je compte les ticks");
 }
 
 
@@ -209,79 +117,13 @@ void compteur_tick_R(){
  * \brief Interruption sur tick de la codeuse right
  */
 void compteur_tick_L(){
+        //Serial.println("Interruption");
         tick_codeuse_L++; // On incrémente le nombre de tick de la codeuse
+        //Serial.println("Je compte les ticks");
 
         /*Calcul du nombre de ticks dans un certain temps (pulseIn)*/
         //Peut poser pb parce qu'on est dans une interruption et on veut mesurer la durée de l'interruption
-        duration += pulseIn(encoder0PinA_L, HIGH); // in microsecond
+        //duration += pulseIn(encoder0PinA_L, HIGH); // in microsecond
         // duration = duration/2500 // durée / 2500tick = nb de tours/microsecond
-}
-
-
-/**
- * \fn asservissement()
- * \brief Interruption pour calcul du PID
- */
-void asservissement()
-{
-        // Réinitialisation du nombre de tick de la codeuse
-        tick_codeuse_R = 0;
-        tick_codeuse_L = 0;
-        duration = 0;
-
-
-        //===============================================
-        // Calcul des erreurs
-        // int frequence_codeuse = frequence_echantillonnage*tick;
-        // float nb_tour_par_sec = (float)frequence_codeuse/(float)tick_par_tour_non_codeuse/rapport_roueCodeuse_roueNonCodeuse;
-        // float erreur = consigne_moteur_nombre_tours_par_seconde - nb_tour_par_sec;
-        // somme_erreur += erreur;
-        // float delta_erreur = erreur-erreur_precedente;
-        // erreur_precedente = erreur;
-
-        // PID : calcul de la commande
-        // cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
-        //===============================================
-
-        // Normalisation et contrôle du moteur
-        //  if(cmd < 0) cmd=255;
-        //  else if(cmd > 255) cmd = 0;
-        //  analogWrite(MotorR, (-1)*(cmd-255));
-        //  analogWrite(MotorL, (-1)*(cmd-255));
-
-        //analogWrite(MotorR, i);
-        analogWrite(MotorL, i);
-        // i = i-2;
-        if (i < 0) {
-                i=0;
-                //Moteur droit
-                digitalWrite(IN1MotorR, LOW);
-                digitalWrite(IN2MotorR, LOW);
-                //Moteur gauche
-                digitalWrite(IN1MotorL, LOW);
-                digitalWrite(IN2MotorL, LOW);
-        }
-
-        // DEBUG
-        if(_DEBUG)
-        {
-                //Serial.print("\t pwm :\t");
-                // Serial.println(i);
-
-                //Serial.print("\t tick_codeuse_moyenne  :\t");
-                //Serial.println(tick_codeuse_moyenne, 8);
-
-                //Serial.print("\t nb_tour_par_sec : \t");
-                // Serial.println(nb_tour_par_sec, 8);
-
-                Serial.print("\t tick_codeuse_L : \t");
-                Serial.println(tick_codeuse_L);
-
-                Serial.print("\t duration : \t");
-                Serial.println(duration);
-        }
-
-        delay(100);
-
 }
 
