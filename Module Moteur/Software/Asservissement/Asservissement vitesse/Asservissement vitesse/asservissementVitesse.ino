@@ -20,6 +20,7 @@
  */
 
 #define _DEBUG true
+
 #define encoder0PinA_L 13   //encodeur gauche A
 #define encoder0PinB_L 12   //encodeur gauche B
 #define encoder0PinA_R 11   //encodeur droit A
@@ -64,31 +65,34 @@ float kd = 0;           // Coefficient dérivateur
  */
 void setup()
 {
-    Serial.begin(9600);         // Initialisation port COM
-    pinMode(MotorR,OUTPUT);
-    pinMode(MotorL,OUTPUT);
-    pinMode(IN1MotorR,OUTPUT);
-    pinMode(IN2MotorR,OUTPUT);
-    pinMode(IN1MotorL,OUTPUT);
-    pinMode(IN2MotorL,OUTPUT);
+        // Serial.begin(115200);     // Initialisation port COM
+        Serial.begin(9600);
+        pinMode(MotorR,OUTPUT);
+        pinMode(MotorL,OUTPUT);
+        pinMode(IN1MotorR,OUTPUT);
+        pinMode(IN2MotorR,OUTPUT);
+        pinMode(IN1MotorL,OUTPUT);
+        pinMode(IN2MotorL,OUTPUT);
 
-    pinMode(encoder0PinA_L, INPUT);
-    pinMode(encoder0PinB_L, INPUT);
-    pinMode(encoder0PinA_R, INPUT);
-    pinMode(encoder0PinB_R, INPUT);
+        pinMode(encoder0PinA_L, INPUT);
+        pinMode(encoder0PinB_L, INPUT);
+        pinMode(encoder0PinA_R, INPUT);
+        pinMode(encoder0PinB_R, INPUT);
 
-    //Moteur droit
-    digitalWrite(IN1MotorR, LOW);
-    digitalWrite(IN2MotorR, HIGH);
-    //Moteur gauche
-    digitalWrite(IN1MotorL, HIGH);
-    digitalWrite(IN2MotorL, LOW);
+        //Moteur droit
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, HIGH);
+        //Moteur gauche
+        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN2MotorL, LOW);
 
-    delay(5000);                  // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
+        delay(5000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 
-    attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-    attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-    timer.setInterval(1000/frequence_echantillonnage, asservissement);  // Interruption pour calcul du PID et asservissement
+        attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        timer.setInterval(1000/frequence_echantillonnage, asservissement); // Interruption pour calcul du PID et asservissement
+
+
 }
 
 
@@ -96,10 +100,10 @@ void setup()
  * \fn void loop()
  * \brief fonction loop d'arduino
  */
- void loop(){
-     timer.run();
-     delay(10);
- }
+void loop(){
+        timer.run();
+        delay(10);
+}
 
 
 /**
@@ -107,7 +111,7 @@ void setup()
  * \brief Interruption sur tick de la codeuse right
  */
 void compteur_tick_R(){
-    tick_codeuse_R++;  // On incrémente le nombre de tick de la codeuse
+        tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
 }
 
 
@@ -116,7 +120,7 @@ void compteur_tick_R(){
  * \brief Interruption sur tick de la codeuse right
  */
 void compteur_tick_L(){
-    tick_codeuse_L++;  // On incrémente le nombre de tick de la codeuse
+        tick_codeuse_L++; // On incrémente le nombre de tick de la codeuse
 }
 
 
@@ -126,43 +130,42 @@ void compteur_tick_L(){
  */
 void asservissement()
 {
-   // Réinitialisation du nombre de tick de la codeuse
-   tick_codeuse_moyenne = (tick_codeuse_R + tick_codeuse_L) / 2;
-   int tick = tick_codeuse_moyenne;
-   tick_codeuse_R = 0;
-   tick_codeuse_L = 0;
+        // Réinitialisation du nombre de tick de la codeuse
+        tick_codeuse_moyenne = (tick_codeuse_R + tick_codeuse_L) / 2;
+        int tick = tick_codeuse_moyenne;
+        tick_codeuse_R = 0;
+        tick_codeuse_L = 0;
 
-   // Calcul des erreurs
-   int frequence_codeuse = frequence_echantillonnage*tick;
-   float nb_tour_par_sec = (float)frequence_codeuse/(float)tick_par_tour_non_codeuse/rapport_roueCodeuse_roueNonCodeuse;
-   float erreur = consigne_moteur_nombre_tours_par_seconde - nb_tour_par_sec;
-   somme_erreur += erreur;
-   float delta_erreur = erreur-erreur_precedente;
-   erreur_precedente = erreur;
+        // Calcul des erreurs
+        int frequence_codeuse = frequence_echantillonnage*tick;
+        float nb_tour_par_sec = (float)frequence_codeuse/(float)tick_par_tour_non_codeuse/rapport_roueCodeuse_roueNonCodeuse;
+        float erreur = consigne_moteur_nombre_tours_par_seconde - nb_tour_par_sec;
+        somme_erreur += erreur;
+        float delta_erreur = erreur-erreur_precedente;
+        erreur_precedente = erreur;
 
-   // PID : calcul de la commande
-   cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
+        // PID : calcul de la commande
+        cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
 
-   // Normalisation et contrôle du moteur
-  //  if(cmd < 0) cmd=255;
-  //  else if(cmd > 255) cmd = 0;
-  //  analogWrite(MotorR, (-1)*(cmd-255));
-  //  analogWrite(MotorL, (-1)*(cmd-255));
-  analogWrite(MotorR, 255);
-  analogWrite(MotorL, 255);
+        // Normalisation et contrôle du moteur
+        //  if(cmd < 0) cmd=255;
+        //  else if(cmd > 255) cmd = 0;
+        //  analogWrite(MotorR, (-1)*(cmd-255));
+        //  analogWrite(MotorL, (-1)*(cmd-255));
+        analogWrite(MotorR, 255);
+        analogWrite(MotorL, 255);
 
+        if(_DEBUG)
+        {
+                Serial.print("\t cmd :\t");
+                Serial.println(cmd, 8);
 
-  // DEBUG
-  if(_DEBUG)
-  {
-    Serial.print("\t cmd :\t");
-    Serial.println(cmd, 8);
+                Serial.print("\t tick_codeuse_moyenne  :\t");
+                Serial.println(tick_codeuse_moyenne, 8);
 
-    Serial.print("\t tick_codeuse_moyenne  :\t");
-    Serial.println(tick_codeuse_moyenne, 8);
+                Serial.print("\t nb_tour_par_sec : \t");
+                Serial.println(nb_tour_par_sec, 8);
+        }
 
-    Serial.print("\t nb_tour_par_sec : \t");
-    Serial.println(nb_tour_par_sec, 8);
-  }
 
 }
