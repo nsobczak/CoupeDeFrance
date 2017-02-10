@@ -33,7 +33,11 @@
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 
-unsigned long duration;
+unsigned long pulseDuration;
+unsigned long totalDuration;
+unsigned long startTimer;
+unsigned long endTimer;
+unsigned long testDuration;
 
 
 /* ======================================================================================================
@@ -60,8 +64,9 @@ void setup()
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
 
-        attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        //attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        //attachInterrupt(encoder0PinA_R, StartTimer, HIGH);
+        //attachInterrupt(encoder0PinA_R,EndTimer,LOW);// Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
 
 /*
         digitalWrite(IN1MotorL, LOW);
@@ -76,12 +81,14 @@ void setup()
 //Moteur droit
         analogWrite(MotorL,255);
         analogWrite(MotorR,255);
-        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN1MotorR, LOW);
         digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN1MotorL, HIGH);
         digitalWrite(IN2MotorL, LOW);
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,0);
+        analogWrite(MotorL,0);
+        analogWrite(MotorR,255);
+
+        totalDuration = 0;
 }
 
 
@@ -91,18 +98,36 @@ void setup()
  */
 void loop()
 { 
-        //testDriver();
+        pulseDuration = pulseIn(encoder0PinA_L,HIGH);
+        totalDuration += pulseDuration;
+
+        //Serial.print("\t pulseDuration : \t");
+        Serial.println(pulseDuration);
         
-        Serial.print("\t tick_codeuse_R : \t");
-        Serial.println(tick_codeuse_R);
+        //Serial.print("\t tick_codeuse_L : \t");
+        Serial.println(tick_codeuse_L);
 
-        Serial.print("\t duration : \t");
-        Serial.println(duration);
+        //Serial.print("\t totalDuration : \t");
+        Serial.println(totalDuration);
 
-        Serial.println("\n");
+        testDuration = millis();
+        //Serial.print("\t testDuration : \t");
+        Serial.println(testDuration);
+
 }
 
+void StartTimer(){
+  startTimer = micros(); 
+  Serial.print("Start Timer");
+  tick_codeuse_R++;
 
+}
+
+void EndTimer(){
+  endTimer = micros();
+  Serial.print("End Timer");
+  tick_codeuse_R++;
+}
 /**
  * \fn void compteur_tick_R()
  * \brief Interruption sur tick de la codeuse right
@@ -110,11 +135,11 @@ void loop()
 void compteur_tick_R(){
         //Serial.println("Interruption");
         tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
-        duration += pulseIn(encoder0PinA_R, HIGH); // in microsecond
+
         //Serial.println("Je compte les ticks");
 }
 
-
+/*
 /**
  * \fn void compteur_tick_L()
  * \brief Interruption sur tick de la codeuse left
@@ -126,8 +151,8 @@ void compteur_tick_L(){
 
         /*Calcul du nombre de ticks dans un certain temps (pulseIn)*/
         //Peut poser pb parce qu'on est dans une interruption et on veut mesurer la durée de l'interruption
-        //duration += pulseIn(encoder0PinA_L, HIGH); // in microsecond
-        // duration = duration/2500 // durée / 2500tick = nb de tours/microsecond
+        //pulseDuration += pulseIn(encoder0PinA_L, HIGH); // in microsecond
+        // pulseDuration = pulseDuration/2500 // durée / 2500tick = nb de tours/microsecond
 }
 
 

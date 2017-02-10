@@ -154,11 +154,19 @@ public class DataReader implements SerialPortEventListener {
             try {
                 //1st value
                 String inputLine = input.readLine();
-                System.out.println("value : " + inputLine);
-                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine + ";"); // \n sous linux ; \r\n sous windows
+                System.out.println("===values===\n" + inputLine);
+                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine); // \n sous linux ; \r\n sous windows
                 //2nd value
                 inputLine = input.readLine();
-                System.out.println("value : " + inputLine);
+                System.out.println(inputLine);
+                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine);
+                //3rd value
+                inputLine = input.readLine();
+                System.out.println(inputLine);
+                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine);
+                //4th value
+                inputLine = input.readLine();
+                System.out.println(inputLine);
                 writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine + "\r\n");
             } catch (Exception e) {
                 System.err.println(e.toString());
