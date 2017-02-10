@@ -11,8 +11,6 @@
  * ======================================================================================================
  */
 #include <Arduino.h>
-#include <SimpleTimer.h>           // http://arduino.cc/playground/Code/SimpleTimer
-
 
 /* ======================================================================================================
  *      Variables globales
@@ -35,8 +33,6 @@ unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 
 unsigned long pulseDuration;
 unsigned long totalDuration;
-unsigned long startTimer;
-unsigned long endTimer;
 unsigned long testDuration;
 
 
@@ -63,30 +59,28 @@ void setup()
         pinMode(encoder0PinB_L, INPUT);
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
+        
+        attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
 
-        //attachInterrupt(encoder0PinA_R, StartTimer, HIGH);
-        //attachInterrupt(encoder0PinA_R,EndTimer,LOW);// Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-
-/*
-        digitalWrite(IN1MotorL, LOW);
-        digitalWrite(IN2MotorL, LOW);
+        /*
+        === Remarques ===
+        Pour changer le pwm:
+        0 -> 255
+        100% = 0
+        75% = 63
+        50% = 127
+        25% = 191
+        0% = 255
+        */
+        //Moteur droit
         analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
         digitalWrite(IN1MotorR, HIGH);
         digitalWrite(IN2MotorR, LOW);
-        analogWrite(MotorR,255);
-        delay(1000);              
-        analogWrite(MotorR,0);
-*/
-//Moteur droit
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255);
-        digitalWrite(IN1MotorR, LOW);
-        digitalWrite(IN2MotorR, LOW);
-        digitalWrite(IN1MotorL, HIGH);
+        digitalWrite(IN1MotorL, LOW);
         digitalWrite(IN2MotorL, LOW);
-        analogWrite(MotorL,0);
-        analogWrite(MotorR,255);
+        analogWrite(MotorL,255); 
+        analogWrite(MotorR,191);
 
         totalDuration = 0;
 }
@@ -98,14 +92,17 @@ void setup()
  */
 void loop()
 { 
-        pulseDuration = pulseIn(encoder0PinA_L,HIGH);
+        pulseDuration = pulseIn(encoder0PinA_R, HIGH);
         totalDuration += pulseDuration;
 
         //Serial.print("\t pulseDuration : \t");
         Serial.println(pulseDuration);
-        
+
         //Serial.print("\t tick_codeuse_L : \t");
-        Serial.println(tick_codeuse_L);
+        //Serial.println(tick_codeuse_L);
+        
+        //Serial.print("\t tick_codeuse_R : \t");
+        Serial.println(tick_codeuse_R);
 
         //Serial.print("\t totalDuration : \t");
         Serial.println(totalDuration);
@@ -113,30 +110,16 @@ void loop()
         testDuration = millis();
         //Serial.print("\t testDuration : \t");
         Serial.println(testDuration);
-
 }
 
-void StartTimer(){
-  startTimer = micros(); 
-  Serial.print("Start Timer");
-  tick_codeuse_R++;
 
-}
-
-void EndTimer(){
-  endTimer = micros();
-  Serial.print("End Timer");
-  tick_codeuse_R++;
-}
 /**
  * \fn void compteur_tick_R()
  * \brief Interruption sur tick de la codeuse right
  */
-void compteur_tick_R(){
-        //Serial.println("Interruption");
+void compteur_tick_R()
+{
         tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
-
-        //Serial.println("Je compte les ticks");
 }
 
 /*
@@ -144,15 +127,9 @@ void compteur_tick_R(){
  * \fn void compteur_tick_L()
  * \brief Interruption sur tick de la codeuse left
  */
-void compteur_tick_L(){
-        //Serial.println("Interruption");
+void compteur_tick_L()
+{
         tick_codeuse_L++; // On incrémente le nombre de tick de la codeuse
-        //Serial.println("Je compte les ticks");
-
-        /*Calcul du nombre de ticks dans un certain temps (pulseIn)*/
-        //Peut poser pb parce qu'on est dans une interruption et on veut mesurer la durée de l'interruption
-        //pulseDuration += pulseIn(encoder0PinA_L, HIGH); // in microsecond
-        // pulseDuration = pulseDuration/2500 // durée / 2500tick = nb de tours/microsecond
 }
 
 
@@ -160,7 +137,8 @@ void compteur_tick_L(){
  * \fn void testDriver()
  * \brief fonction qui teste qui les drivers fonctionnent correctement
  */
-void testDriver(){
+void testDriver()
+{
         //Moteur gauche
         analogWrite(MotorL,255);
         analogWrite(MotorR,255);
