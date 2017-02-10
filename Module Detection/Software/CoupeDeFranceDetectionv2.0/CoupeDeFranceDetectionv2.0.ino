@@ -56,6 +56,8 @@ pinMode(echoPinFR, INPUT);
 pinMode(A,OUTPUT);
 pinMode(B,OUTPUT);
 pinMode(C,OUTPUT);
+
+Serial.begin(9600);
  
 }
 
@@ -67,6 +69,7 @@ void loop() {
 
   for(int i = 0; i < NUM_IR; i++){
     IRValue[i] = getIRValue(infrared[i]);
+
   }
 
   
@@ -75,6 +78,11 @@ void loop() {
 //  }
 //  delay(10);
 //  sendUltrasonicValues(ultrasonicValue);
+int irDistance = getIRValue(sharpFL);
+
+Serial.print(" IRvalue");
+Serial.println(irDistance);
+delay(700);
   
 }
 
