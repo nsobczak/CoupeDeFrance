@@ -53,6 +53,10 @@
 #define TEMP_0_PIN          13   // ANALOG NUMBERING
 #define TEMP_1_PIN          14   // ANALOG NUMBERING
 
+#include <Servo.h>
+#include <math.h>
+
+
 
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
@@ -60,6 +64,14 @@
 int index;
 int demarrerMoteur;
 int finInitialisation;
+volatile byte state = LOW;
+int pin_capteur = A14;                
+float c;
+float d;
+int isInt = 0;
+
+Servo servo_capture;        // create servo object to control a servo
+Servo servo_rotation;
 
 /*Tableau de correspondance des variables
 0 => index
@@ -126,16 +138,33 @@ void remonter_legere()
  * \brief fonction qui permet de déplacer le rail
  * \param int vitesse
  */
-void rail_initialisation(int vitesse)
-{
-      digitalWrite(Z_DIR_PIN,HIGH);              //Sens horaire MOTEUR Z  
-      digitalWrite(Z_ENABLE_PIN,LOW);            //Activé MOTEUR Z
-      while(digitalRead(Z_MIN_PIN )!=HIGH)  {    //Tant que le capteur de fin de course à droite n'est pas activé
-      vitesse_moteur_rail(vitesse);      }
-      digitalWrite(Z_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
-      delay(1000);         
-}
 
+void rail_initialisation(int vitesse)
+{ 
+      digitalWrite(Z_DIR_PIN,HIGH);              //Sens horaire=LOW MOTEUR Z  
+      digitalWrite(Z_ENABLE_PIN,LOW);            //Activé MOTEUR Z
+      vitesse_moteur_rail(vitesse);
+      Serial.println("Rail en mouvement");  
+      
+      
+      
+}
+void rail_interruption_initialisation(){
+  digitalWrite(Z_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
+  Serial.println("STOP");
+  digitalWrite(Z_ENABLE_PIN,HIGH);
+  remonter_rail_legere();
+}
+void remonter_rail_legere() {
+   for(index=0;index<2000;index++) //un tour entier
+      { 
+        //sens trigo
+        digitalWrite(Z_DIR_PIN,LOW);             //Sens trigo MOTEUR Z  
+        digitalWrite(Z_ENABLE_PIN,LOW);          //Activé MOTEUR Z
+        vitesse_moteur_rail(100);
+      }
+ 
+}
 
 /**
  * \fn void monter_descente_initialisation(int vitesse)
@@ -144,21 +173,27 @@ void rail_initialisation(int vitesse)
  */
 void monter_descente_initialisation(int vitesse)
 {
-      digitalWrite(X_DIR_PIN,HIGH);              //Sens horaire MOTEUR X (on descend)
-      digitalWrite(Y_DIR_PIN,HIGH);              //Sens horaire MOTEUR Y (on descend)
+      digitalWrite(X_DIR_PIN,LOW);              //Sens horaire MOTEUR X (on descend=HIGH)
+      digitalWrite(Y_DIR_PIN,LOW);              //Sens horaire MOTEUR Y (on descend=HIGH)
       digitalWrite(X_ENABLE_PIN,LOW);            //Activé MOTEUR X
       digitalWrite(Y_ENABLE_PIN,LOW);            //Activé MOTEUR Y
-      while(digitalRead(X_MIN_PIN)!= HIGH)  
-      {
-        vitesse_moteur(vitesse);      
-      }
-      digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR X
-      digitalWrite(Y_ENABLE_PIN,HIGH);           //Désactivé MOTEUR Y
-      delay(1000);
-      remonter_legere();            
+      vitesse_moteur(vitesse); 
+      Serial.println("Moteur X|Y en mouvement");         
+                 
 }
 
-
+void interruption_descente_x(){
+  digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
+  Serial.println("STOP_X");
+  //digitalWrite(X_ENABLE_PIN,HIGH);
+  remonter_legere(); 
+}
+void interruption_descente_y(){
+  digitalWrite(Y_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
+  Serial.println("STOP_Y");
+  //digitalWrite(Y_ENABLE_PIN,HIGH);
+  remonter_legere(); 
+}
 /**
  * \fn void initialisation()
  * \brief fonction qui lance l'initialisation
@@ -166,11 +201,42 @@ void monter_descente_initialisation(int vitesse)
 void initialisation() 
 {
       monter_descente_initialisation(100);
-      //rail_initialisation(200);
+     // rail_initialisation(200);
       finInitialisation = 1;
       delay(1000);
 }
 
+//____________________________________________________________________________________________________
+//____________________________________________________________________________________________________
+// Gestion de la pince
+
+/**
+ * \fn void attraper_cylindre(int angle_fermeture, int angle_rotation_droite,int temps)
+ * \brief, Fn qui permet d'attraper et de retourner verticalement le cylindre
+ */
+ 
+void attraper_cylindre(int angle_fermeture, int angle_rotation_droite,int temps){  
+    
+  servo_capture.write(angle_fermeture);                              // la pince se ferme (100)
+  delay(temps);                      
+  servo_rotation.write(angle_rotation_droite);                       // rotation de la pince vers la droite (20)
+  delay(temps);      
+  
+}
+/**
+ * \fn void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temps)
+ * \brief, Fn qui permet de relacher le cylindre après sa capture, la pince revient à son état inital (ouverte)
+ */
+void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temps) {
+  servo_capture.write(angle_ouverture);                             // la pince s'ouvre (140)
+  delay(temps);
+  servo_rotation.write(angle_rotation_initial);                     // rotation à l'état initial de la pince (80)
+  delay(temps);
+}
+
+
+//____________________________________________________________________________________________________
+//____________________________________________________________________________________________________
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
@@ -243,43 +309,59 @@ void setup()
       pinMode(X_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
       pinMode(X_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(X_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
-      pinMode(X_MIN_PIN , INPUT);
+      attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),interruption_descente_x,LOW);
       pinMode(Y_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR Y
       pinMode(Y_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR Y
       pinMode(Y_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR Y
+      attachInterrupt(digitalPinToInterrupt(Y_MIN_PIN),interruption_descente_y,LOW);
       pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
       pinMode(Z_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(Z_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
-      pinMode(Z_MIN_PIN , INPUT);
-      
+      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation,LOW);
+      servo_rotation.attach(4);                                // attaches the servo on pin 3 to the servo object
+      servo_capture.attach(5);
       demarrerMoteur = 0;
       finInitialisation = 0;
       
       Serial.begin(9600);
 }
 
-
 /**
  * \fn void loop()
  * \brief fonction loop d'arduino
  */
 void loop() 
-{    
-    i2creceive2(_RECEIVEADRESS_);
+{   
     
-    if (demarrerMoteur == 1)
-    {
-      initialisation();
-
-      // conversion sur 2 octets de la valeur à envoyer
-      byte bytesTab[2];
-      intTo2Bytes(bytesTab, finInitialisation);     
-      // envoi une fois que l'initialisation est terminée
-      i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_); 
-      
-      //finInitialisation = 0;
-      demarrerMoteur = 0;
-    }
+    
+ //  attraper_cylindre(160,75,1000);           //angle à respecter
+ //  relacher_cylindre(80,120,1000);           //angle à respecter
+  
+   rail_initialisation(100);
+   monter_descente_initialisation(190);
+//    c=analogRead(pin_capteur);
+//    d=exp((c-740)/(-198));
+//    Serial.println("Distance : ");
+//    Serial.print(d);
+//    Serial.print("cm");
+//    Serial.println("");
+//    
+//    delay(500); 
+//    i2creceive2(_RECEIVEADRESS_);
+    
+//      if (demarrerMoteur == 1)
+//      {
+//        initialisation();
+//  
+//        // conversion sur 2 octets de la valeur à envoyer
+//        byte bytesTab[2];
+//        intTo2Bytes(bytesTab, finInitialisation);     
+//        // envoi une fois que l'initialisation est terminée
+//        i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_); 
+//        
+//        //finInitialisation = 0;
+//        demarrerMoteur = 0;
+//      }
     
 }
 

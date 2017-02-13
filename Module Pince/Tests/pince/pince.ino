@@ -14,12 +14,9 @@
 #include <Servo.h>
 
 
-
-
-
 Servo servo_capture;        // create servo object to control a servo
 Servo servo_rotation;
-int interrupt_pin;
+
 
 /**
  * \fn void attraper_cylindre(int angle_fermeture, int angle_rotation_droite,int temps)
@@ -28,7 +25,7 @@ int interrupt_pin;
  
 void attraper_cylindre(int angle_fermeture, int angle_rotation_droite,int temps){  
     
-  servo_capture.write(angle_fermeture);                         // la pince se ferme (100)
+  servo_capture.write(angle_fermeture);                              // la pince se ferme (100)
   delay(temps);                      
   servo_rotation.write(angle_rotation_droite);                       // rotation de la pince vers la droite (20)
   delay(temps);      
@@ -39,7 +36,7 @@ void attraper_cylindre(int angle_fermeture, int angle_rotation_droite,int temps)
  * \brief, Fn qui permet de relacher le cylindre après sa capture, la pince revient à son état inital (ouverte)
  */
 void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temps) {
-  servo_capture.write(angle_ouverture);                        // la pince s'ouvre (140)
+  servo_capture.write(angle_ouverture);                             // la pince s'ouvre (140)
   delay(temps);
   servo_rotation.write(angle_rotation_initial);                     // rotation à l'état initial de la pince (80)
   delay(temps);
@@ -54,8 +51,8 @@ void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temp
  */
 void setup() {
   Serial.begin(9600);
-  servo_capture.attach(2);                      // attaches the servo on pin 2 to the servo object
-  servo_rotation.attach(3);                                // attaches the servo on pin 3 to the servo object
+  servo_capture.attach(5);                                 // attaches the servo on pin 2 to the servo object
+  servo_rotation.attach(4);                                // attaches the servo on pin 3 to the servo object
 }
 
 /**
@@ -64,6 +61,6 @@ void setup() {
  */
 void loop() 
 {
-  
-  
+  attraper_cylindre(150,75,1000);          // angle à respecter
+  relacher_cylindre(80,155,1000);          // angle à respecter
   }
