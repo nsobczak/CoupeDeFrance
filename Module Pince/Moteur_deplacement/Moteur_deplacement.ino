@@ -235,7 +235,7 @@ void monter_descente_initialisation(int vitesse)
 void interruption_descente_x(){
     digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
     Serial.println("STOP_X");
-    remonter_legere(); 
+    
 }
 
 void interruption_descente_y(){
@@ -353,16 +353,16 @@ void setup()
       pinMode(X_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
       pinMode(X_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(X_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
-      attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),interruption_descente_x,LOW);
+     // attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),interruption_descente_x,LOW);
       pinMode(Y_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR Y
       pinMode(Y_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR Y
       pinMode(Y_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR Y
-      attachInterrupt(digitalPinToInterrupt(Y_MIN_PIN),interruption_descente_y,LOW);
+     // attachInterrupt(digitalPinToInterrupt(Y_MIN_PIN),interruption_descente_y,LOW);
       pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
       pinMode(Z_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(Z_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
-      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation_min,HIGH);
-      attachInterrupt(digitalPinToInterrupt(Z_MAX_PIN),rail_interruption_initialisation_max,HIGH);
+     // attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation_min,HIGH);
+     // attachInterrupt(digitalPinToInterrupt(Z_MAX_PIN),rail_interruption_initialisation_max,HIGH);
       servo_rotation.attach(4);                    // attaches the servo on pin 3 to the servo object
       servo_capture.attach(5);
       demarrerMoteur = 0;
