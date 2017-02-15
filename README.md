@@ -1,6 +1,6 @@
 #Coupe de France de robotique
 
-Code du grand robot
+Code du robot principal.
 
 ## Le grand robot
 
