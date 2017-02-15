@@ -114,19 +114,20 @@ void rail_initialisation(int vitesse)
     digitalWrite(Z_ENABLE_PIN,LOW);            //Activé MOTEUR Z
     vitesse_moteur_rail(vitesse);
     Serial.println("Rail en mouvement");       
+     
 }
 
 /**
  * \fn rail_interruption_initialisation_min()
  * \brief fonction d'interruption capteur fin de course droit
- * \param int vitesse
  */
 
 void rail_interruption_initialisation_min(){
     digitalWrite(Z_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
-    Serial.println("STOP");
-    digitalWrite(Z_ENABLE_PIN,HIGH);
+    Serial.println("STOP_Z_MIN");
     remonter_rail_legere_min();
+    
+   
   }
 
 /**
@@ -137,7 +138,7 @@ void rail_interruption_initialisation_min(){
 
 void rail_interruption_initialisation_max(){
     digitalWrite(Z_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
-    Serial.println("STOP");
+    Serial.println("STOP_Z_MAX");
     remonter_rail_legere_max();
 }
 
@@ -167,7 +168,7 @@ void remonter_rail_legere_max(){
     for(index=0;index<2000;index++) //un tour entier
         { 
           //sens trigo
-          digitalWrite(Z_DIR_PIN,HIGH);             //Sens trigo MOTEUR Z  
+          digitalWrite(Z_DIR_PIN,LOW);             //Sens trigo MOTEUR Z  
           digitalWrite(Z_ENABLE_PIN,LOW);          //Activé MOTEUR Z
           vitesse_moteur_rail(100);
         }
@@ -201,7 +202,6 @@ void remonter_legere()
 {
     for(index=0;index<2000;index++) //un tour entier
       { 
-        //sens trigo
         digitalWrite(X_DIR_PIN,LOW);             //Sens trigo MOTEUR X
         digitalWrite(Y_DIR_PIN,LOW);             //Sens trigo MOTEUR Y
         digitalWrite(X_ENABLE_PIN,LOW);          //Activé MOTEUR X
@@ -218,8 +218,8 @@ void remonter_legere()
  
 void monter_descente_initialisation(int vitesse)
 {
-    digitalWrite(X_DIR_PIN,LOW);              //Sens horaire MOTEUR X (on descend=HIGH)
-    digitalWrite(Y_DIR_PIN,LOW);              //Sens horaire MOTEUR Y (on descend=HIGH)
+    digitalWrite(X_DIR_PIN,LOW);               //Sens horaire MOTEUR X (on descend=HIGH)
+    digitalWrite(Y_DIR_PIN,LOW);               //Sens horaire MOTEUR Y (on descend=HIGH)
     digitalWrite(X_ENABLE_PIN,LOW);            //Activé MOTEUR X
     digitalWrite(Y_ENABLE_PIN,LOW);            //Activé MOTEUR Y
     vitesse_moteur(vitesse); 
@@ -235,21 +235,16 @@ void monter_descente_initialisation(int vitesse)
 void interruption_descente_x(){
     digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
     Serial.println("STOP_X");
-    //digitalWrite(X_ENABLE_PIN,HIGH);
     remonter_legere(); 
 }
 
-/**
- * \fn void interruption_descente_y()
- * \brief fonction d'interruption qui relève le rail afin d'éviter de boucler sur le capteur fin de course
- */
- 
 void interruption_descente_y(){
-    digitalWrite(Y_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
+    digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
     Serial.println("STOP_Y");
-    //digitalWrite(Y_ENABLE_PIN,HIGH);
     remonter_legere(); 
 }
+
+
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
@@ -283,6 +278,7 @@ void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temp
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
 // Reception I2C
+
 /**
  * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
@@ -331,6 +327,12 @@ void receiveEvent2(int howMany)
  * \fn void i2creceive(int adresse) - fonction de lecture de données reçues via l'i2c
  * \param int adresse sur laquelle recevoir les donnees
  */
+
+ 
+/**
+ * \fn void loop()
+ * \brief fonction loop d'arduino
+ */
 void i2creceive2(int adresse)
 {
   Wire.begin(adresse);           // Joindre le Bus I2C avec adresse
@@ -347,7 +349,7 @@ void i2creceive2(int adresse)
  */
 void setup() 
 {
-      pinMode(LED_PIN, OUTPUT);                    //Vérifie que tout a bien été téléversé 
+      
       pinMode(X_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
       pinMode(X_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(X_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
@@ -359,12 +361,13 @@ void setup()
       pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
       pinMode(Z_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
       pinMode(Z_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
-      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation_min,LOW);
-      attachInterrupt(digitalPinToInterrupt(Z_MAX_PIN),rail_interruption_initialisation_max,LOW);
+      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation_min,HIGH);
+      attachInterrupt(digitalPinToInterrupt(Z_MAX_PIN),rail_interruption_initialisation_max,HIGH);
       servo_rotation.attach(4);                    // attaches the servo on pin 3 to the servo object
       servo_capture.attach(5);
       demarrerMoteur = 0;
       finInitialisation = 0;
+      pinMode(LED_PIN, OUTPUT);
       
       Serial.begin(9600);
 }
@@ -377,9 +380,12 @@ void loop()
 {   
     
     
- //  attraper_cylindre(160,75,1000);           //angle à respecter
+  // attraper_cylindre(160,75,1000);           //angle à respecter
  //  relacher_cylindre(80,120,1000);           //angle à respecter
-  
+//  digitalWrite(LED_PIN,HIGH);
+//  delay(1000);
+//  digitalWrite(LED_PIN,LOW);
+//  delay(1000);
    rail_initialisation(100);
    monter_descente_initialisation(190);
 //    c=analogRead(pin_capteur);
