@@ -158,6 +158,7 @@ public class DataReader implements SerialPortEventListener {
                 writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine); // \n sous linux ; \r\n sous windows
                 //2nd value
                 inputLine = input.readLine();
+
                 System.out.println(inputLine);
                 writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine);
                 //3rd value

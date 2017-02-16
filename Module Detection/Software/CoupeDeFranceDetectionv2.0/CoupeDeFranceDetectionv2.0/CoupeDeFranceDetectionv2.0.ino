@@ -66,7 +66,7 @@ void setup() {
 //Takes readings and sends them over CAN bus using approriate message identifiers
 void loop() {
         int IRValue[NUM_IR];
-        int ultrasonicValue[NUM_ULTRASONIC];
+        //int ultrasonicValue[NUM_ULTRASONIC];
         long start = millis();
 
         for(int i = 0; i < NUM_IR; i++) {
@@ -75,12 +75,12 @@ void loop() {
         }
 
 
-        for(int i = 0; i < NUM_ULTRASONIC; i++) {
+ /*       for(int i = 0; i < NUM_ULTRASONIC; i++) {
                 ultrasonicValue[i] = getUltrasonicValue(ultrasonic[i]);
-        }
+        }*/
 //  delay(10);
 
-        /
+    
 /*int irDistance = getIRValue(sharpFL);
 
    Serial.print(" IRvalue");
@@ -90,7 +90,7 @@ void loop() {
         int ultrasonicValue = getUltrasonicValue(echoPinFR);
 
 
-        Serial.print(" Ultrasonic Value");
+        Serial.print(" Ultrasonic Value : ");
         Serial.println(ultrasonicValue);
         delay(700);
 

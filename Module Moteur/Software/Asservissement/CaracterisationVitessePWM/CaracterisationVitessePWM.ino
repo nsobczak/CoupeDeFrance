@@ -65,7 +65,6 @@ void setup()
         /*
         === Remarques ===
         Pour changer le pwm:
-        0 -> 255
         100% = 0
         75% = 63
         50% = 127
@@ -75,8 +74,9 @@ void setup()
         //Moteur droit
         analogWrite(MotorL,255);
         analogWrite(MotorR,255);
-        digitalWrite(IN1MotorR, HIGH);
-        digitalWrite(IN2MotorR, LOW);
+        
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, HIGH);
         digitalWrite(IN1MotorL, LOW);
         digitalWrite(IN2MotorL, LOW);
         analogWrite(MotorL,255); 

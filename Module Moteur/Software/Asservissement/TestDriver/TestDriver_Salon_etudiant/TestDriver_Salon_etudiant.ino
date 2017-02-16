@@ -33,6 +33,12 @@ void setup() {
   pinMode(IN1MotorL,OUTPUT);
   pinMode(IN2MotorL,OUTPUT);
   //analogWriteResolution(8);// seulement sur Arduino Due pour gere la Resolution du convertisseur DAC 
+  digitalWrite(IN1MotorR,LOW);
+  digitalWrite(IN2MotorR,LOW);
+  digitalWrite(IN1MotorL,LOW);
+  digitalWrite(IN2MotorL,LOW);
+  /*analogWrite(MotorR,255);
+  analogWrite(MotorL,255);*/
 }
 
 
@@ -41,21 +47,14 @@ void setup() {
  * \brief fonction loop d'arduino
  */
 void loop() {
-  /*digitalWrite(IN1MotorR,LOW);
-  digitalWrite(IN2MotorR,LOW);
+  delay(5000);
+  digitalWrite(IN1MotorR,LOW);
+  digitalWrite(IN2MotorR,HIGH);
   digitalWrite(IN1MotorL,LOW);
-  digitalWrite(IN2MotorL,LOW);
-  analogWrite(MotorR,10);
-  analogWrite(MotorL,10);*/
-  analogWrite(MotorR,255);
-  analogWrite(MotorL,255);
-  digitalWrite(IN1MotorR,HIGH);
-  digitalWrite(IN2MotorR,LOW);
-  digitalWrite(IN1MotorL,HIGH);
-  digitalWrite(IN2MotorL,LOW);
-  analogWrite(MotorR,155);
-  analogWrite(MotorL,155);
-  delay(700);
+  digitalWrite(IN2MotorL,HIGH);
+  analogWrite(MotorR,0);
+  analogWrite(MotorL,0);
+  delay(1000);/*
   analogWrite(MotorR,255);
   analogWrite(MotorL,255);
   digitalWrite(IN1MotorR,LOW);
@@ -82,7 +81,7 @@ void loop() {
   digitalWrite(IN2MotorL,LOW);
   analogWrite(MotorR,255);
   analogWrite(MotorL,255);
-  delay(700);
+  delay(700);*/
   
 }
 
