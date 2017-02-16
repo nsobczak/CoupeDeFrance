@@ -45,7 +45,7 @@ void loop() {
   //Serial.println(analogRead(pin_capteur));
   
   c=analogRead(pin_capteur);
-  Serial.println(c);
+  //Serial.println(c);
   d=exp((c-740)/(-198));
   Serial.println("Distance : ");
   Serial.print(d);
