@@ -28,7 +28,7 @@
 #define IN1MotorL 22
 #define IN2MotorL 23
 
-#define diametreRoueCodeuse 52.28
+#define diametreRoueCodeuse 0.05228 // 52,28mm
 #define nombreTicksPour1TourDeRoue 2500
 
 const float Pi = 3.14159;
@@ -69,8 +69,7 @@ void setup()
 
         /*
            === Remarques ===
-           Pour changer le pwm:
-           0 -> 255
+           Pour changer le pwm: 0 -> 255
            100% = 0
            75% = 63
            50% = 127
@@ -87,7 +86,7 @@ void setup()
         analogWrite(MotorL,255);
         analogWrite(MotorR,0);
 
-        // totalDuration = 0;
+        testDuration = millis();
 }
 
 
@@ -104,19 +103,21 @@ void loop()
         // Serial.println(pulseDuration);
 
 
-        if (testDuration > 50000) {
+        if (millis() - testDuration > 20) {
+
+                Serial.print("\t testDuration : \t " );
+                Serial.println(testDuration);
                 // //Serial.print("\t tick_codeuse_L : \t");
                 // Serial.println(tick_codeuse_L);
                 // // Serial.print("\t testDuration : \t");
                 // Serial.println(testDuration);
 
-                Serial.println(calculVitesse(tick_codeuse_R, testDuration));
+                printDouble(calculVitesse(tick_codeuse_R, testDuration), 1000000);
 
-                testDuration = 0;
+                tick_codeuse_R = 0;
+                testDuration = millis();
         }
 
-
-        testDuration = millis();
         //Serial.print("\t totalDuration : \t");
         // Serial.println(totalDuration);
 }
@@ -148,18 +149,42 @@ void compteur_tick_L()
  * \brief calcule la vitesse
  * \return unsigned long vitesse
  */
-unsigned long calculVitesse(unsigned int tick_codeuse, unsigned long duration)
+double calculVitesse(unsigned int tick_codeuse, unsigned long duration)
 {
-        float nombre_tours =  tick_codeuse / nombreTicksPour1TourDeRoue;
-        Serial.println("\t nombre_tours : \t " );
-        Serial.println(nombre_tours);
+        double nombre_tours = (double) tick_codeuse / (double) nombreTicksPour1TourDeRoue;
+        Serial.print("\t nombre_tours : \t " );
+        printDouble(nombre_tours, 1000);
 
-        unsigned long tour_par_seconde = (nombre_tours/duration)*1000;
-        Serial.println("\t tour_par_seconde : \t " );
-        Serial.println(tour_par_seconde);
+        double tour_par_seconde = ((double)nombre_tours/(double)duration)*1000;
+        Serial.print("\t tour_par_seconde : \t " );
+        printDouble(tour_par_seconde, 1000);
 
-        return perimetreRoueCodeuse*tour_par_seconde;
+        return (double)perimetreRoueCodeuse * tour_par_seconde;
 }
+
+
+void printDouble( double val, unsigned int precision){
+// prints val with number of decimal places determine by precision
+// NOTE: precision is 1 followed by the number of zeros for the desired number of decimial places
+// example: printDouble( 3.1415, 100); // prints 3.14 (two decimal places)
+
+        Serial.print (int(val)); //prints the int part
+        Serial.print("."); // print the decimal point
+        unsigned int frac;
+        if(val >= 0)
+                frac = (val - int(val)) * precision;
+        else
+                frac = (int(val)- val ) * precision;
+        int frac1 = frac;
+        while( frac1 /= 10 )
+                precision /= 10;
+        precision /= 10;
+        while(  precision /= 10)
+                Serial.print("0");
+
+        Serial.println(frac,DEC);
+}
+
 
 
 /**
