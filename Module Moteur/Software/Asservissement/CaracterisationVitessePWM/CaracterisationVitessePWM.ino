@@ -31,8 +31,8 @@
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 
-unsigned long pulseDuration;
-unsigned long totalDuration;
+// unsigned long pulseDuration;
+// unsigned long totalDuration;
 unsigned long testDuration;
 
 
@@ -40,7 +40,6 @@ unsigned long testDuration;
  *      Fonctions
  * ======================================================================================================
  */
-
 /**
  * \fn void setup()
  * \brief fonction setup d'arduino
@@ -59,30 +58,30 @@ void setup()
         pinMode(encoder0PinB_L, INPUT);
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
-        
+
         attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
 
         /*
-        === Remarques ===
-        Pour changer le pwm:
-        100% = 0
-        75% = 63
-        50% = 127
-        25% = 191
-        0% = 255
-        */
+           === Remarques ===
+           Pour changer le pwm:
+           0 -> 255
+           100% = 0
+           75% = 63
+           50% = 127
+           25% = 191
+           0% = 255
+         */
         //Moteur droit
         analogWrite(MotorL,255);
         analogWrite(MotorR,255);
-        
-        digitalWrite(IN1MotorR, LOW);
-        digitalWrite(IN2MotorR, HIGH);
+        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN2MotorR, LOW);
         digitalWrite(IN1MotorL, LOW);
         digitalWrite(IN2MotorL, LOW);
-        analogWrite(MotorL,255); 
+        analogWrite(MotorL,255);
         analogWrite(MotorR,191);
 
-        totalDuration = 0;
+        // totalDuration = 0;
 }
 
 
@@ -91,25 +90,32 @@ void setup()
  * \brief fonction loop d'arduino
  */
 void loop()
-{ 
-        pulseDuration = pulseIn(encoder0PinA_R, HIGH);
-        totalDuration += pulseDuration;
+{
+        // pulseDuration = pulseIn(encoder0PinA_R, HIGH);
+        // totalDuration += pulseDuration;
 
         //Serial.print("\t pulseDuration : \t");
-        Serial.println(pulseDuration);
+        // Serial.println(pulseDuration);
 
-        //Serial.print("\t tick_codeuse_L : \t");
-        //Serial.println(tick_codeuse_L);
-        
-        //Serial.print("\t tick_codeuse_R : \t");
-        Serial.println(tick_codeuse_R);
+        if (tick_codeuse_L % 100 == 0) {
+                //Serial.print("\t tick_codeuse_L : \t");
+                Serial.println(tick_codeuse_L);
+                // Serial.print("\t testDuration : \t");
+                Serial.println(testDuration);
+        }
 
-        //Serial.print("\t totalDuration : \t");
-        Serial.println(totalDuration);
+        if (tick_codeuse_R % 100 == 0) {
+                //Serial.print("\t tick_codeuse_R : \t");
+                Serial.println(tick_codeuse_R);
+                // Serial.print("\t testDuration : \t");
+                Serial.println(testDuration);
+
+        }
+
 
         testDuration = millis();
-        //Serial.print("\t testDuration : \t");
-        Serial.println(testDuration);
+        //Serial.print("\t totalDuration : \t");
+        // Serial.println(totalDuration);
 }
 
 
@@ -122,7 +128,7 @@ void compteur_tick_R()
         tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
 }
 
-/*
+
 /**
  * \fn void compteur_tick_L()
  * \brief Interruption sur tick de la codeuse left
@@ -154,7 +160,6 @@ void testDriver()
         delay(3000);
         Serial.println("\t 4");
 
-
         //Moteur droit
         analogWrite(MotorL,255);
         analogWrite(MotorR,255);
@@ -170,7 +175,6 @@ void testDriver()
         delay(3000);
         Serial.println("\t 4");
 
-
         //2 moteurs
         analogWrite(MotorL,255);
         analogWrite(MotorR,255);
@@ -185,6 +189,7 @@ void testDriver()
         Serial.print("\t 3");
         delay(3000);
         Serial.println("\t 4");
+
 
         //Moteur droit
         analogWrite(MotorL,255);
@@ -215,7 +220,6 @@ void testDriver()
         Serial.print("\t 3");
         delay(3000);
         Serial.println("\t 4");
-
 
         //2 moteurs
         analogWrite(MotorL,255);
