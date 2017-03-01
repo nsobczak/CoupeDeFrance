@@ -28,6 +28,12 @@
 #define IN1MotorL 22
 #define IN2MotorL 23
 
+#define diametreRoueCodeuse 52.28
+#define nombreTicksPour1TourDeRoue 2500
+
+const float Pi = 3.14159;
+const float perimetreRoueCodeuse = diametreRoueCodeuse*Pi;
+
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 
@@ -79,7 +85,7 @@ void setup()
         digitalWrite(IN1MotorL, LOW);
         digitalWrite(IN2MotorL, LOW);
         analogWrite(MotorL,255);
-        analogWrite(MotorR,191);
+        analogWrite(MotorR,0);
 
         // totalDuration = 0;
 }
@@ -97,19 +103,16 @@ void loop()
         //Serial.print("\t pulseDuration : \t");
         // Serial.println(pulseDuration);
 
-        if (tick_codeuse_L % 100 == 0) {
-                //Serial.print("\t tick_codeuse_L : \t");
-                Serial.println(tick_codeuse_L);
-                // Serial.print("\t testDuration : \t");
-                Serial.println(testDuration);
-        }
 
-        if (tick_codeuse_R % 100 == 0) {
-                //Serial.print("\t tick_codeuse_R : \t");
-                Serial.println(tick_codeuse_R);
-                // Serial.print("\t testDuration : \t");
-                Serial.println(testDuration);
+        if (testDuration > 50000) {
+                // //Serial.print("\t tick_codeuse_L : \t");
+                // Serial.println(tick_codeuse_L);
+                // // Serial.print("\t testDuration : \t");
+                // Serial.println(testDuration);
 
+                Serial.println(calculVitesse(tick_codeuse_R, testDuration));
+
+                testDuration = 0;
         }
 
 
@@ -136,6 +139,26 @@ void compteur_tick_R()
 void compteur_tick_L()
 {
         tick_codeuse_L++; // On incrémente le nombre de tick de la codeuse
+}
+
+
+/**
+ * \fn calculVitesse
+ * \param unsigned int tick_codeuse, unsigned long duration
+ * \brief calcule la vitesse
+ * \return unsigned long vitesse
+ */
+unsigned long calculVitesse(unsigned int tick_codeuse, unsigned long duration)
+{
+        float nombre_tours =  tick_codeuse / nombreTicksPour1TourDeRoue;
+        Serial.println("\t nombre_tours : \t " );
+        Serial.println(nombre_tours);
+
+        unsigned long tour_par_seconde = (nombre_tours/duration)*1000;
+        Serial.println("\t tour_par_seconde : \t " );
+        Serial.println(tour_par_seconde);
+
+        return perimetreRoueCodeuse*tour_par_seconde;
 }
 
 
