@@ -54,6 +54,7 @@
 #define TEMP_1_PIN          14   // ANALOG NUMBERING
 
 #include <Servo.h>
+#include <Stepper.h>
 #include <math.h>
 
 
@@ -70,180 +71,81 @@ float c;
 float d;
 int isInt = 0;
 
-Servo servo_capture;        // create servo object to control a servo
+Stepper motor_X(200, 54, 55, 3, 2);
+Stepper motor_Y(200, 60, 61, 14, 15);
+Stepper motor_Z(200, 46, 48, 18, 19);
+Servo servo_capture;        
 Servo servo_rotation;
 
-/*Tableau de correspondance des variables
-0 => index
-1 => demarrerMoteur
-2 => finInitialisation
-3 =>
-4 =>
-5 =>
-*/
 
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
 // Déplacement du rail
 
-/**
- * \fn void vitesse_moteur_rail(int vitesse)
- * \brief fonction qui permet de régler la vitesse du moteur de l'axe X (le rail)
- * \param int vitesse
- */
- 
-void vitesse_moteur_rail(int vitesse) 
-{        
-    digitalWrite(Z_STEP_PIN,HIGH);            //PWM pour MOTEUR Z
-    delayMicroseconds(vitesse);
-    digitalWrite(Z_STEP_PIN,LOW);             //Fin PWM pour MOTEUR Z
-    delayMicroseconds(vitesse); 
-}
 
 
-/**
- * \fn void rail_initialisation(int vitesse)
- * \brief fonction qui permet de déplacer le rail
- * \param int vitesse
- */
-
-void rail_initialisation(int vitesse)
+void rail_initialisation(int tour) // 800 sans cavalier = 1 Tour complet
 { 
-    digitalWrite(Z_DIR_PIN,HIGH);              //Sens horaire=LOW MOTEUR Z  
-    digitalWrite(Z_ENABLE_PIN,LOW);            //Activé MOTEUR Z
-    vitesse_moteur_rail(vitesse);
-    Serial.println("Rail en mouvement");       
-     
+    digitalWrite(Y_ENABLE_PIN,LOW); 
+    motor_Y.step(tour);
+    Serial.println("Mouvement moteur Y à gauche");           
 }
 
-/**
- * \fn rail_interruption_initialisation_min()
- * \brief fonction d'interruption capteur fin de course droit
- */
 
-void rail_interruption_initialisation_min(){
-    digitalWrite(Z_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
-    Serial.println("STOP_Z_MIN");
-    remonter_rail_legere_min();
-    
-   
+
+void rail_interruption_initialisation_gauche()
+{
+    digitalWrite(Z_ENABLE_PIN,HIGH);           
+    Serial.println("STOP Y GAUCHE");
+    delay(1000);
+    digitalWrite(Z_ENABLE_PIN,LOW);
+    deplacement_leger_droit();     
   }
 
-/**
- * \fn void rail interruption_initialisation_max()
- * \brief fonction  d'interruption capteur fin de course gauche
- * \param int vitesse
- */
 
-void rail_interruption_initialisation_max(){
-    digitalWrite(Z_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
-    Serial.println("STOP_Z_MAX");
-    remonter_rail_legere_max();
-}
-
-/**
- * \fn void rail_initialisation(int vitesse)
- * \brief fonction  qui redéplace le rail afin de ne pas le laisser boucler sur le capteur de fin de course
- * \param int vitesse
- */
-
-void remonter_rail_legere_min() {
-   for(index=0;index<2000;index++) //un tour entier
-      { 
-        //sens trigo
-        digitalWrite(Z_DIR_PIN,LOW);             //Sens trigo MOTEUR Z  
-        digitalWrite(Z_ENABLE_PIN,LOW);          //Activé MOTEUR Z
-        vitesse_moteur_rail(100);
-      }
-}
-
-/**
- * \fn remonter_rail_legere_max()
- * \brief fonction  qui redéplace le rail afin de ne pas le laisser boucler sur le capteur de fin de course
- * \param int vitesse
- */
- 
-void remonter_rail_legere_max(){
-    for(index=0;index<2000;index++) //un tour entier
-        { 
-          //sens trigo
-          digitalWrite(Z_DIR_PIN,LOW);             //Sens trigo MOTEUR Z  
-          digitalWrite(Z_ENABLE_PIN,LOW);          //Activé MOTEUR Z
-          vitesse_moteur_rail(100);
-        }
+void deplacement_leger_droit() {
+   motor_Y.step(-800);
+   Serial.println("Fin initialisation moteur Y");
+   delay(1000);
 }
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
 // Déplacement du vis sans fin
 
-/**
- * \fn void vitesse_moteur(int vitesse)
- * \brief fonction qui permet de régler le PWM des moteurs sur l'axe des Y
- * \param int vitesse
- */
-void vitesse_moteur(int vitesse) 
-{                                
-    digitalWrite(X_STEP_PIN,HIGH);            //PWM pour MOTEUR X
-    digitalWrite(Y_STEP_PIN,HIGH);            //PWM pour MOTEUR Y
-    delayMicroseconds(vitesse);
-    digitalWrite(X_STEP_PIN,LOW);             //Fin PWM pour MOTEUR X
-    digitalWrite(Y_STEP_PIN,LOW);             //Fin PWM pour MOTEUR Y
-    delayMicroseconds(vitesse); 
-}
 
-/**
- * \fn void remonter_legere() 
- * \brief fonction qui permet de remonter le moteur d'un tour quand il est arrivé au capteur de fin de course
- */
- 
 void remonter_legere() 
 {
-    for(index=0;index<2000;index++) //un tour entier
-      { 
-        digitalWrite(X_DIR_PIN,LOW);             //Sens trigo MOTEUR X
-        digitalWrite(Y_DIR_PIN,LOW);             //Sens trigo MOTEUR Y
-        digitalWrite(X_ENABLE_PIN,LOW);          //Activé MOTEUR X
-        digitalWrite(Y_ENABLE_PIN,LOW);          //Activé MOTEUR Y
-        vitesse_moteur(200);
-      }
+    motor_Z.step(-800);
+    Serial.println("Moteurs Z en mouvement");  
 }
 
-/**
- * \fn void monter_descente_initialisation(int vitesse)
- * \brief fonction qui permet d'intialisé le moteur tout en bas avec une légère remontée
- * \param int vitesse
- */
- 
-void monter_descente_initialisation(int vitesse)
+
+void monter_descente_initialisation(float tour)// 800 sans cavalier = 1 Tour complet
 {
-    digitalWrite(X_DIR_PIN,LOW);               //Sens horaire MOTEUR X (on descend=HIGH)
-    digitalWrite(Y_DIR_PIN,LOW);               //Sens horaire MOTEUR Y (on descend=HIGH)
-    digitalWrite(X_ENABLE_PIN,LOW);            //Activé MOTEUR X
-    digitalWrite(Y_ENABLE_PIN,LOW);            //Activé MOTEUR Y
-    vitesse_moteur(vitesse); 
-    Serial.println("Moteur X|Y en mouvement");         
+    digitalWrite(Z_ENABLE_PIN,LOW);           
+    if (tour<0){
+      digitalWrite(Z_DIR_PIN,LOW);
+      motor_Z.step(tour);
+    }
+    else {
+      digitalWrite(Z_DIR_PIN,LOW);
+      motor_Z.step(tour);
+    
+    Serial.println("Moteur Z en mouvement");     
+    }    
                
 }
 
-/**
- * \fn void interruption_descente_x()
- * \brief fonction d'interruption qui relève le rail afin d'éviter de boucler sur le capteur fin de course
- */
  
-void interruption_descente_x(){
-    digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
-    Serial.println("STOP_X");
-    
-}
-
-void interruption_descente_y(){
-    digitalWrite(X_ENABLE_PIN,HIGH);           //Désactivé MOTEUR 
-    Serial.println("STOP_Y");
+void interruption_descente_Z(){
+    digitalWrite(Z_ENABLE_PIN,HIGH);          
+    Serial.println("STOP_Z");
+    delay(1000);
+    digitalWrite(Z_ENABLE_PIN,LOW);
     remonter_legere(); 
 }
-
 
 
 //____________________________________________________________________________________________________
@@ -350,19 +252,18 @@ void i2creceive2(int adresse)
 void setup() 
 {
       
-      pinMode(X_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
-      pinMode(X_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
-      pinMode(X_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
+     //pinMode(X_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
      // attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),interruption_descente_x,LOW);
+    
+     //motor_X.setSpeed(1000);
       pinMode(Y_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR Y
-      pinMode(Y_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR Y
-      pinMode(Y_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR Y
-     // attachInterrupt(digitalPinToInterrupt(Y_MIN_PIN),interruption_descente_y,LOW);
+     // attachInterrupt(digitalPinToInterrupt(Y_MIN_PIN),interruption_droite,LOW);
+     // attachInterrupt(digitalPinToInterrupt(Y_MAX_PIN),interruption_gauche,LOW);
+      motor_Y.setSpeed(1000);
+      pinMode(Z_DIR_PIN,OUTPUT);
       pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
-      pinMode(Z_STEP_PIN, OUTPUT);                 //Step PWM MOTEUR X
-      pinMode(Z_DIR_PIN, OUTPUT);                  //Direction LOW=SENS TRIGO / HIGH=SENS HORAIRE  MOTEUR X 
-     // attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation_min,HIGH);
-     // attachInterrupt(digitalPinToInterrupt(Z_MAX_PIN),rail_interruption_initialisation_max,HIGH);
+     // attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation_Z,HIGH);
+      motor_Z.setSpeed(1000);
       servo_rotation.attach(4);                    // attaches the servo on pin 3 to the servo object
       servo_capture.attach(5);
       demarrerMoteur = 0;
@@ -380,14 +281,15 @@ void loop()
 {   
     
     
-  // attraper_cylindre(160,75,1000);           //angle à respecter
- //  relacher_cylindre(80,120,1000);           //angle à respecter
+ //  attraper_cylindre(160,75,1000);           //angle à respecter
+  // relacher_cylindre(80,120,1000);           //angle à respecter
 //  digitalWrite(LED_PIN,HIGH);
 //  delay(1000);
 //  digitalWrite(LED_PIN,LOW);
 //  delay(1000);
-   rail_initialisation(100);
-   monter_descente_initialisation(190);
+  
+   monter_descente_initialisation(1600);
+   rail_initialisation(-800);
 //    c=analogRead(pin_capteur);
 //    d=exp((c-740)/(-198));
 //    Serial.println("Distance : ");
