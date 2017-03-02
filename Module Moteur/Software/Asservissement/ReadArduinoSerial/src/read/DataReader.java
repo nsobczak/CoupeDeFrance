@@ -155,16 +155,7 @@ public class DataReader implements SerialPortEventListener {
                 //1st value
                 String inputLine = input.readLine();
                 System.out.println("===values===\n" + inputLine);
-                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine); // \n sous linux ; \r\n sous windows
-                //2nd value
-                inputLine = input.readLine();
-
-                System.out.println(inputLine);
-                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine);
-                //3rd value
-                inputLine = input.readLine();
-                System.out.println(inputLine);
-                writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine);
+                    writeFile(this.outputFile, this.bufferedWriter, ";" +  inputLine); // \n sous linux ; \r\n sous windows
                 //4th value
                 inputLine = input.readLine();
                 System.out.println(inputLine);
@@ -195,7 +186,7 @@ public class DataReader implements SerialPortEventListener {
 
     public static void main(String[] args) throws Exception {
 
-        DataReader main = new DataReader(Paths.get("src","tableau.csv"));
+                                                                                                                                                                                                                                                                                                                                                                                                            DataReader main = new DataReader(Paths.get("src","tableau.csv"));
         main.setBufferedWriter(Files.newBufferedWriter(main.getOutputFile(), StandardCharsets.UTF_8));
         main.initialize();
 

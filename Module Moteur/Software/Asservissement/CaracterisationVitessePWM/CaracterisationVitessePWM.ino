@@ -84,7 +84,7 @@ void setup()
         digitalWrite(IN1MotorL, LOW);
         digitalWrite(IN2MotorL, LOW);
         analogWrite(MotorL,255);
-        analogWrite(MotorR,0);
+        analogWrite(MotorR,127);
 
         testDuration = millis();
 }
@@ -103,16 +103,16 @@ void loop()
         // Serial.println(pulseDuration);
 
 
-        if (millis() - testDuration > 20) {
+        if (millis() - testDuration >= 20) {
 
-                Serial.print("\t testDuration : \t " );
-                Serial.println(testDuration);
+                //Serial.print("\t testDuration : \t " );
+                Serial.println(millis() - testDuration);
                 // //Serial.print("\t tick_codeuse_L : \t");
                 // Serial.println(tick_codeuse_L);
                 // // Serial.print("\t testDuration : \t");
                 // Serial.println(testDuration);
 
-                printDouble(calculVitesse(tick_codeuse_R, testDuration), 1000000);
+                printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
 
                 tick_codeuse_R = 0;
                 testDuration = millis();
@@ -146,18 +146,13 @@ void compteur_tick_L()
 /**
  * \fn calculVitesse
  * \param unsigned int tick_codeuse, unsigned long duration
- * \brief calcule la vitesse
+ * \brief calcule la vitesse instantannée
  * \return unsigned long vitesse
  */
 double calculVitesse(unsigned int tick_codeuse, unsigned long duration)
 {
-        double nombre_tours = (double) tick_codeuse / (double) nombreTicksPour1TourDeRoue;
-        Serial.print("\t nombre_tours : \t " );
-        printDouble(nombre_tours, 1000);
-
+        double nombre_tours = (double) tick_codeuse / (double) nombreTicksPour1TourDeRoue;        
         double tour_par_seconde = ((double)nombre_tours/(double)duration)*1000;
-        Serial.print("\t tour_par_seconde : \t " );
-        printDouble(tour_par_seconde, 1000);
 
         return (double)perimetreRoueCodeuse * tour_par_seconde;
 }
@@ -185,6 +180,18 @@ void printDouble( double val, unsigned int precision){
         Serial.println(frac,DEC);
 }
 
+
+void endTest()
+{
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, LOW);
+        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN2MotorL, LOW);
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+}
 
 
 /**
