@@ -3,4 +3,4 @@
 .clang_complete
 .gcc-flags.json
 .travis.yml
-*.fuse_hidden0000035700000001
+platformio.ini
