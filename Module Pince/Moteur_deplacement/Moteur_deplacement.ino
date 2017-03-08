@@ -71,9 +71,9 @@ float c;
 float d;
 int isInt = 0;
 
-Stepper motor_X(200, 54, 55, 3, 2);
-Stepper motor_Y(200, 60, 61, 14, 15);
-Stepper motor_Z(200, 46, 48, 18, 19);
+Stepper motor_X(200, 54, 55);
+Stepper motor_Y(200, 60, 61);
+Stepper motor_Z(200, 46, 48);
 Servo servo_capture;        
 Servo servo_rotation;
 
@@ -122,29 +122,19 @@ void remonter_legere()
 }
 
 
-void monter_descente_initialisation(float tour)// 800 sans cavalier = 1 Tour complet
+void monter_descente_initialisation(int tour)// 800 sans cavalier = 1 Tour complet
 {
     digitalWrite(Z_ENABLE_PIN,LOW);           
-    if (tour<0){
-      digitalWrite(Z_DIR_PIN,LOW);
-      motor_Z.step(tour);
-    }
-    else {
-      digitalWrite(Z_DIR_PIN,LOW);
-      motor_Z.step(tour);
-    
-    Serial.println("Moteur Z en mouvement");     
-    }    
-               
+    digitalWrite(Z_DIR_PIN,LOW);
+    motor_Z.step(tour);
+    Serial.println("Moteur Z en mouvement");             
 }
 
  
 void interruption_descente_Z(){
-    digitalWrite(Z_ENABLE_PIN,HIGH);          
+    //digitalWrite(Z_ENABLE_PIN,HIGH);          
     Serial.println("STOP_Z");
-    delay(1000);
-    digitalWrite(Z_ENABLE_PIN,LOW);
-    remonter_legere(); 
+    //remonter_legere(); 
 }
 
 
@@ -262,13 +252,13 @@ void setup()
       motor_Y.setSpeed(1000);
       pinMode(Z_DIR_PIN,OUTPUT);
       pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
-     // attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),rail_interruption_initialisation_Z,HIGH);
+      pinMode(Z_MIN_PIN,INPUT);
+      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),interruption_descente_Z,LOW);
       motor_Z.setSpeed(1000);
       servo_rotation.attach(4);                    // attaches the servo on pin 3 to the servo object
       servo_capture.attach(5);
       demarrerMoteur = 0;
       finInitialisation = 0;
-      pinMode(LED_PIN, OUTPUT);
       
       Serial.begin(9600);
 }
@@ -288,15 +278,12 @@ void loop()
 //  digitalWrite(LED_PIN,LOW);
 //  delay(1000);
   
-   monter_descente_initialisation(1600);
-   rail_initialisation(-800);
-//    c=analogRead(pin_capteur);
-//    d=exp((c-740)/(-198));
-//    Serial.println("Distance : ");
-//    Serial.print(d);
-//    Serial.print("cm");
-//    Serial.println("");
-//    
+   monter_descente_initialisation(3600);
+ //  delay(1000);
+ //  monter_descente_initialisation(-1600);
+//   delay(1000);
+//   rail_initialisation(-800);
+
 //    delay(500); 
 //    i2creceive2(_RECEIVEADRESS_);
     
