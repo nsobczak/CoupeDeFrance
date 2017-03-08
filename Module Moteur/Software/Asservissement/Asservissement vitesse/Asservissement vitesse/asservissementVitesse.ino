@@ -50,10 +50,10 @@ const int tick_par_tour_non_codeuse = 3836;      // Nombre de tick codeuse par t
 const float rapport_roueCodeuse_roueNonCodeuse = (52.28)/(80.22);
 
 
-float consigne_vitesse_moteur = 7.0;  //  Consigne de vitesse en m/s
+double consigne_vitesse_moteur = 2;  //  Consigne de vitesse en m/s
 
-float erreur_precedente = consigne_vitesse_moteur;
-float somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
+double erreur_precedente = consigne_vitesse_moteur;
+double somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
 // Gains du PID
 float kp = 1;           // Gain proportionnel
 float ki = 1;           // Gain intégrateur
@@ -65,6 +65,29 @@ float kd = 1;           // Gain dérivateur
  * ======================================================================================================
  */
 
+
+void initializeSetup()
+{
+  pinMode(MotorR,OUTPUT);
+  pinMode(MotorL,OUTPUT);
+  pinMode(IN1MotorR,OUTPUT);
+  pinMode(IN2MotorR,OUTPUT);
+  pinMode(IN1MotorL,OUTPUT);
+  pinMode(IN2MotorL,OUTPUT);
+
+  pinMode(encoder0PinA_L, INPUT);
+  pinMode(encoder0PinB_L, INPUT);
+  pinMode(encoder0PinA_R, INPUT);
+  pinMode(encoder0PinB_R, INPUT);
+
+  //Moteur droit
+  digitalWrite(IN1MotorR, LOW);
+  digitalWrite(IN2MotorR, LOW);
+  //Moteur gauche
+  digitalWrite(IN1MotorL, LOW);
+  digitalWrite(IN2MotorL, LOW);
+}
+
 /**
  * \fn void setup()
  * \brief fonction setup d'arduino
@@ -73,25 +96,7 @@ void setup()
 {
         // Serial.begin(115200);     // Initialisation port COM
         Serial.begin(9600);
-        pinMode(MotorR,OUTPUT);
-        pinMode(MotorL,OUTPUT);
-        pinMode(IN1MotorR,OUTPUT);
-        pinMode(IN2MotorR,OUTPUT);
-        pinMode(IN1MotorL,OUTPUT);
-        pinMode(IN2MotorL,OUTPUT);
-
-        pinMode(encoder0PinA_L, INPUT);
-        pinMode(encoder0PinB_L, INPUT);
-        pinMode(encoder0PinA_R, INPUT);
-        pinMode(encoder0PinB_R, INPUT);
-
-        //Moteur droit
-        digitalWrite(IN1MotorR, LOW);
-        digitalWrite(IN2MotorR, HIGH);
-        //Moteur gauche
-        digitalWrite(IN1MotorL, HIGH);
-        digitalWrite(IN2MotorL, LOW);
-
+        initializeSetup();
         delay(5000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 
         attachInterrupt(encoder0PinA_R, compteur_tick_R, RISING); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
@@ -104,7 +109,8 @@ void setup()
  * \fn void loop()
  * \brief fonction loop d'arduino
  */
-void loop(){
+void loop()
+{
         timer.run();
         delay(10);
 }
@@ -147,9 +153,8 @@ void asservissement()
 
         double erreur = consigne_vitesse_moteur - vitesse;
         somme_erreur += erreur;
-        double delta_erreur = erreur-erreur_precedente;
+        double delta_erreur = erreur - erreur_precedente;
         erreur_precedente = erreur;
-
 
 
         // PID : calcul de la commande
@@ -159,9 +164,6 @@ void asservissement()
         if(cmd < 0) cmd=255;
         else if(cmd > 255) cmd = 0;
         // analogWrite(Motesse_moteur - vitesse;
-        somme_erreur += erreur;
-        double delta_erreur = erreur-erreur_precedente;
-        erreur_precedente = errorR, (-1)*(cmd-255));
         // analogWrite(MotorL, (-1)*(cmd-255));
         analogWrite(MotorR, 255);
         analogWrite(MotorL, 255);
@@ -232,7 +234,8 @@ void robotGoBack(int vitesse)
 
 
 //______________________________________________________________________________
-void printDouble( double val, unsigned int precision){
+void printDouble( double val, unsigned int precision)
+{
 // prints val with number of decimal places determine by precision
 // NOTE: precision is 1 followed by the number of zeros for the desired number of decimial places
 // example: printDouble( 3.1415, 100); // prints 3.14 (two decimal places)
