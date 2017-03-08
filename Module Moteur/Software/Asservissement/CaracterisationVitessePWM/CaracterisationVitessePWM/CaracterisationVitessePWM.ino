@@ -96,30 +96,25 @@ void setup()
  */
 void loop()
 {
-        // pulseDuration = pulseIn(encoder0PinA_R, HIGH);
-        // totalDuration += pulseDuration;
-
-        //Serial.print("\t pulseDuration : \t");
-        // Serial.println(pulseDuration);
-
-
+        //fréquence de mesure de 50Hz
         if (millis() - testDuration >= 20) {
+                //Attente de 5" avant le début
+                if (millis() > 2000 && millis() < 12000) {
+                        //Serial.print("\t testDuration : \t " );
+                        Serial.println(millis() - testDuration);
+                        // //Serial.print("\t tick_codeuse_L : \t");
+                        // Serial.println(tick_codeuse_L);
+                        // // Serial.print("\t testDuration : \t");
+                        // Serial.println(testDuration);
 
-                //Serial.print("\t testDuration : \t " );
-                Serial.println(millis() - testDuration);
-                // //Serial.print("\t tick_codeuse_L : \t");
-                // Serial.println(tick_codeuse_L);
-                // // Serial.print("\t testDuration : \t");
-                // Serial.println(testDuration);
-
-                printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
-
-                tick_codeuse_R = 0;
+                        printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
+                }
+                else if (millis() > 10000) {
+                        endTest();
+                }
                 testDuration = millis();
+                tick_codeuse_R = 0;
         }
-
-        //Serial.print("\t totalDuration : \t");
-        // Serial.println(totalDuration);
 }
 
 
@@ -151,7 +146,7 @@ void compteur_tick_L()
  */
 double calculVitesse(unsigned int tick_codeuse, unsigned long duration)
 {
-        double nombre_tours = (double) tick_codeuse / (double) nombreTicksPour1TourDeRoue;        
+        double nombre_tours = (double) tick_codeuse / (double) nombreTicksPour1TourDeRoue;
         double tour_par_seconde = ((double)nombre_tours/(double)duration)*1000;
 
         return (double)perimetreRoueCodeuse * tour_par_seconde;

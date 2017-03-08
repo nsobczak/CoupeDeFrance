@@ -49,9 +49,10 @@ float consigne_moteur_nombre_tours_par_seconde = 7.0;  //  Nombre de tours de ro
 
 float erreur_precedente = consigne_moteur_nombre_tours_par_seconde;
 float somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
-float kp = 0;           // Coefficient proportionnel
-float ki = 0;           // Coefficient intégrateur
-float kd = 0;           // Coefficient dérivateur
+// Gains du PID
+float Kp = 1;           // Gain proportionnel
+float Ki = 0.05;        // Gain intégrateur
+float Kd = 0;           // Gain dérivateur
 
 
 /* ======================================================================================================
@@ -88,8 +89,8 @@ void setup()
 
         delay(5000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 
-        attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(encoder0PinA_R, compteur_tick_R, RISING); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(encoder0PinA_L, compteur_tick_L, RISING); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
         timer.setInterval(1000/frequence_echantillonnage, asservissement); // Interruption pour calcul du PID et asservissement
 
 
@@ -148,10 +149,10 @@ void asservissement()
         cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
 
         // Normalisation et contrôle du moteur
-        //  if(cmd < 0) cmd=255;
-        //  else if(cmd > 255) cmd = 0;
-        //  analogWrite(MotorR, (-1)*(cmd-255));
-        //  analogWrite(MotorL, (-1)*(cmd-255));
+        if(cmd < 0) cmd=255;
+        else if(cmd > 255) cmd = 0;
+        // analogWrite(MotorR, (-1)*(cmd-255));
+        // analogWrite(MotorL, (-1)*(cmd-255));
         analogWrite(MotorR, 255);
         analogWrite(MotorL, 255);
 
