@@ -44,14 +44,15 @@ unsigned int tick_codeuse_moyenne = 0;   // Compteur de tick de la codeuse
 int cmd = 0;                       // Commande du moteur
 
 const int frequence_echantillonnage = 50;  // Fréquence du pid
+const int periode = 1/50;
 const int tick_par_tour_codeuse = 2500;      // Nombre de tick codeuse par tour de roue codeuse
 const int tick_par_tour_non_codeuse = 3836;      // Nombre de tick codeuse par tour de roue non codeuse
 const float rapport_roueCodeuse_roueNonCodeuse = (52.28)/(80.22);
 
 
-float consigne_moteur_nombre_tours_par_seconde = 7.0;  //  Nombre de tours de roue par seconde
+float consigne_vitesse_moteur = 7.0;  //  Consigne de vitesse en m/s
 
-float erreur_precedente = consigne_moteur_nombre_tours_par_seconde;
+float erreur_precedente = consigne_vitesse_moteur;
 float somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
 // Gains du PID
 float kp = 1;           // Gain proportionnel
@@ -141,13 +142,14 @@ void asservissement()
 
         // Calcul des erreurs
         double nombre_tours = (double) buffer_tick_codeuse_R / (double) nombreTicksPour1TourDeRoue;
-        double tour_par_seconde = ((double)nombre_tours/ 20)*1000;
-        //vitesse = (double)perimetreRoueCodeuse * tour_par_seconde;
+        double tour_par_seconde = ((double)nombre_tours / (double)periode)*1000;
+        double vitesse = (double)perimetreRoueCodeuse * tour_par_seconde;
 
-        double erreur = consigne_moteur_nombre_tours_par_seconde - tour_par_seconde;
+        double erreur = consigne_vitesse_moteur - vitesse;
         somme_erreur += erreur;
         double delta_erreur = erreur-erreur_precedente;
         erreur_precedente = erreur;
+
 
 
         // PID : calcul de la commande
@@ -156,7 +158,10 @@ void asservissement()
         // Normalisation et contrôle du moteur
         if(cmd < 0) cmd=255;
         else if(cmd > 255) cmd = 0;
-        // analogWrite(MotorR, (-1)*(cmd-255));
+        // analogWrite(Motesse_moteur - vitesse;
+        somme_erreur += erreur;
+        double delta_erreur = erreur-erreur_precedente;
+        erreur_precedente = errorR, (-1)*(cmd-255));
         // analogWrite(MotorL, (-1)*(cmd-255));
         analogWrite(MotorR, 255);
         analogWrite(MotorL, 255);
@@ -173,8 +178,8 @@ void asservissement()
                 Serial.println(tour_par_seconde, 8);
         }
 
-
 }
+
 
 //______________________________________________________________________________
 /**
@@ -223,4 +228,28 @@ void robotGoStraightAhead(int vitesse)
 void robotGoBack(int vitesse)
 {
         robotGo(-1, vitesse);
+}
+
+
+//______________________________________________________________________________
+void printDouble( double val, unsigned int precision){
+// prints val with number of decimal places determine by precision
+// NOTE: precision is 1 followed by the number of zeros for the desired number of decimial places
+// example: printDouble( 3.1415, 100); // prints 3.14 (two decimal places)
+
+        Serial.print (int(val)); //prints the int part
+        Serial.print("."); // print the decimal point
+        unsigned int frac;
+        if(val >= 0)
+                frac = (val - int(val)) * precision;
+        else
+                frac = (int(val)- val ) * precision;
+        int frac1 = frac;
+        while( frac1 /= 10 )
+                precision /= 10;
+        precision /= 10;
+        while(  precision /= 10)
+                Serial.print("0");
+
+        Serial.println(frac,DEC);
 }
