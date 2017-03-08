@@ -40,6 +40,7 @@ unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 // unsigned long pulseDuration;
 // unsigned long totalDuration;
 unsigned long testDuration;
+unsigned long testStart;
 
 
 /* ======================================================================================================
@@ -79,14 +80,16 @@ void setup()
         //Moteur droit
         analogWrite(MotorL,255);
         analogWrite(MotorR,255);
-        digitalWrite(IN1MotorR, HIGH);
+        digitalWrite(IN1MotorR, LOW);
         digitalWrite(IN2MotorR, LOW);
         digitalWrite(IN1MotorL, LOW);
         digitalWrite(IN2MotorL, LOW);
         analogWrite(MotorL,255);
-        analogWrite(MotorR,127);
+        analogWrite(MotorR,255);
 
         testDuration = millis();
+        testStart = millis();
+        
 }
 
 
@@ -96,10 +99,18 @@ void setup()
  */
 void loop()
 {
+        
         //fréquence de mesure de 50Hz
         if (millis() - testDuration >= 20) {
-                //Attente de 5" avant le début
-                if (millis() > 2000 && millis() < 12000) {
+                //Attente de 2" avant le début
+                if ((millis() - testStart > 5000) && (millis() - testStart < 15000)) {
+                          //Moteur droit
+                        digitalWrite(IN1MotorR, HIGH);
+                        digitalWrite(IN2MotorR, LOW);
+                        digitalWrite(IN1MotorL, LOW);
+                        digitalWrite(IN2MotorL, LOW);
+                        analogWrite(MotorL,255);
+                        analogWrite(MotorR,63);
                         //Serial.print("\t testDuration : \t " );
                         Serial.println(millis() - testDuration);
                         // //Serial.print("\t tick_codeuse_L : \t");
@@ -109,7 +120,7 @@ void loop()
 
                         printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
                 }
-                else if (millis() > 10000) {
+                else if (millis() > 15000) {
                         endTest();
                 }
                 testDuration = millis();
