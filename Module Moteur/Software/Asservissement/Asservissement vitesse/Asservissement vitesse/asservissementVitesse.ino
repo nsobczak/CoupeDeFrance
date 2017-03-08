@@ -18,7 +18,6 @@
  *      Variables globales
  * ======================================================================================================
  */
-
 #define _DEBUG true
 
 #define encoder0PinA_L 13   //encodeur gauche A
@@ -32,6 +31,11 @@
 #define IN2MotorL 23
 #define IN1MotorR 52
 #define IN2MotorR 53
+
+#define diametreRoueCodeuse 0.05228 // 52,28mm
+#define nombreTicksPour1TourDeRoue 2500
+const float Pi = 3.14159;
+const float perimetreRoueCodeuse = diametreRoueCodeuse*Pi;
 
 SimpleTimer timer;                 // Timer pour échantillonnage
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
@@ -50,9 +54,9 @@ float consigne_moteur_nombre_tours_par_seconde = 7.0;  //  Nombre de tours de ro
 float erreur_precedente = consigne_moteur_nombre_tours_par_seconde;
 float somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
 // Gains du PID
-float Kp = 1;           // Gain proportionnel
-float Ki = 0.05;        // Gain intégrateur
-float Kd = 0;           // Gain dérivateur
+float kp = 1;           // Gain proportionnel
+float ki = 1;           // Gain intégrateur
+float kd = 1;           // Gain dérivateur
 
 
 /* ======================================================================================================
@@ -92,8 +96,6 @@ void setup()
         attachInterrupt(encoder0PinA_R, compteur_tick_R, RISING); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
         attachInterrupt(encoder0PinA_L, compteur_tick_L, RISING); // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
         timer.setInterval(1000/frequence_echantillonnage, asservissement); // Interruption pour calcul du PID et asservissement
-
-
 }
 
 
@@ -132,18 +134,21 @@ void compteur_tick_L(){
 void asservissement()
 {
         // Réinitialisation du nombre de tick de la codeuse
-        tick_codeuse_moyenne = (tick_codeuse_R + tick_codeuse_L) / 2;
-        int tick = tick_codeuse_moyenne;
+        int buffer_tick_codeuse_R = tick_codeuse_R;
+        // int buffer_tick_codeuse_L = tick_codeuse_L;
         tick_codeuse_R = 0;
-        tick_codeuse_L = 0;
+        // tick_codeuse_L = 0;
 
         // Calcul des erreurs
-        int frequence_codeuse = frequence_echantillonnage*tick;
-        float nb_tour_par_sec = (float)frequence_codeuse/(float)tick_par_tour_non_codeuse/rapport_roueCodeuse_roueNonCodeuse;
-        float erreur = consigne_moteur_nombre_tours_par_seconde - nb_tour_par_sec;
+        double nombre_tours = (double) buffer_tick_codeuse_R / (double) nombreTicksPour1TourDeRoue;
+        double tour_par_seconde = ((double)nombre_tours/ 20)*1000;
+        //vitesse = (double)perimetreRoueCodeuse * tour_par_seconde;
+
+        double erreur = consigne_moteur_nombre_tours_par_seconde - tour_par_seconde;
         somme_erreur += erreur;
-        float delta_erreur = erreur-erreur_precedente;
+        double delta_erreur = erreur-erreur_precedente;
         erreur_precedente = erreur;
+
 
         // PID : calcul de la commande
         cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
@@ -165,8 +170,57 @@ void asservissement()
                 Serial.println(tick_codeuse_moyenne, 8);
 
                 Serial.print("\t nb_tour_par_sec : \t");
-                Serial.println(nb_tour_par_sec, 8);
+                Serial.println(tour_par_seconde, 8);
         }
 
 
+}
+
+//______________________________________________________________________________
+/**
+ * \fn robotGo
+ * \brief fonction pour direiger le robot
+ * \param int pwm, int direction
+ */
+void robotGo(int pwm, int direction)
+{
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
+        switch (direction) {
+        case 1:
+                digitalWrite(IN1MotorR, HIGH);
+                digitalWrite(IN2MotorR, LOW);
+                digitalWrite(IN1MotorL, HIGH);
+                digitalWrite(IN2MotorL, LOW);
+                break;
+        case -1:
+                digitalWrite(IN1MotorR, LOW);
+                digitalWrite(IN2MotorR, HIGH);
+                digitalWrite(IN1MotorL, LOW);
+                digitalWrite(IN2MotorL, HIGH);
+                break;
+        default:
+                digitalWrite(IN1MotorR, LOW);
+                digitalWrite(IN2MotorR, LOW);
+                digitalWrite(IN1MotorL, LOW);
+                digitalWrite(IN2MotorL, LOW);
+                break;
+        }
+        analogWrite(MotorL, pwm);
+        analogWrite(MotorR, pwm);
+}
+
+void robotStop()
+{
+        robotGo(0, 0);
+}
+
+void robotGoStraightAhead(int vitesse)
+{
+        robotGo(1, vitesse);
+}
+
+void robotGoBack(int vitesse)
+{
+        robotGo(-1, vitesse);
 }
