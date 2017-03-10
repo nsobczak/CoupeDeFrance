@@ -17,15 +17,15 @@
  */
 void receiveEvent3Bytes(int howMany)
 {
-  //Serial.print("howMany = ");
-  //Serial.println(howMany);
+  Serial.print("howMany = ");
+  Serial.println(howMany);
   byte var = Wire.read();             // lecture de l'octet/byte ignoré comme un entier
   byte highByte = Wire.read();        // lecture de l'octet/byte ignoré comme un entier
   byte lowByte = Wire.read();         // lecture de l'octet/byte ignoré comme un entier
   
   byte bytesTab[2] = {highByte, lowByte};
   int value = recoverIntFrom2Bytes(bytesTab);
-  //byteReceived(value);
+  byteReceived(value);
   orderNumber(value);			  // lecture de l'ordre à executer
 
 }
