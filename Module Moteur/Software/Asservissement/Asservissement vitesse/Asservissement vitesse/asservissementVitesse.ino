@@ -26,12 +26,12 @@
 #define encoder0PinA_R 11   //encodeur droit A
 #define encoder0PinB_R 10   //encodeur droit B
 
-#define MotorR 3 // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
-#define MotorL 6
-#define IN1MotorL 52
-#define IN2MotorL 53
-#define IN1MotorR 22
-#define IN2MotorR 23
+#define MotorR 6 // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
+#define MotorL 3
+#define IN1MotorL 22
+#define IN2MotorL 23
+#define IN1MotorR 52
+#define IN2MotorR 53
 
 const float diametreRoueCodeuse = 0.05228; // 52,28mm
 const float Pi = 3.14159;
@@ -50,7 +50,7 @@ const int tick_par_tour_codeuse = 2500;      // Nombre de tick codeuse par tour 
 const int tick_par_tour_non_codeuse = 3836;      // Nombre de tick codeuse par tour de roue non codeuse
 const float rapport_roueCodeuse_roueNonCodeuse = (52.28)/(80.22);
 
-float consigne_vitesse_moteur = 1.0;  //  Consigne de vitesse en m/s
+float consigne_vitesse_moteur = 1.5;  //  Consigne de vitesse en m/s
 
 float erreur_precedente = consigne_vitesse_moteur;
 float somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
@@ -209,10 +209,10 @@ void asservissement()
  */
 float calculConsignePWM(float consigne_vitesse_moteur)
 {
-        // Sécurité
         if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
         else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
-        return sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
+        //y = -73.928 * x² - 35.964 * x + 204.14;
+        return -73.928 * consigne_vitesse_moteur*consigne_vitesse_moteur - 35.964 * consigne_vitesse_moteur + 204.14;// sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
 }
 
 
