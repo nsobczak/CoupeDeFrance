@@ -28,15 +28,15 @@
 
 #define MotorR 3 // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
 #define MotorL 6
-#define IN1MotorL 22
-#define IN2MotorL 23
-#define IN1MotorR 52
-#define IN2MotorR 53
+#define IN1MotorL 52
+#define IN2MotorL 53
+#define IN1MotorR 22
+#define IN2MotorR 23
 
 const float diametreRoueCodeuse = 0.05228; // 52,28mm
-const float nombreTicksPour1TourDeRoue = 2500;
 const float Pi = 3.14159;
 const float perimetreRoueCodeuse = diametreRoueCodeuse*Pi;
+const float nombreTicksPour1TourDeRoue = 1250;
 
 SimpleTimer timer;                 // Timer pour échantillonnage
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
@@ -97,8 +97,8 @@ void initializeSetup()
  */
 void setup()
 {
-        Serial.begin(115200);     // Initialisation port COM
-        // Serial.begin(9600);
+        // Serial.begin(115200);     // Initialisation port COM
+        Serial.begin(9600);
         initializeSetup();
         delay(5000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 
@@ -124,7 +124,7 @@ void loop()
  * \brief Interruption sur tick de la codeuse right
  */
 void compteur_tick_R(){
-        tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
+        tick_codeuse_R++;                 // On incrémente le nombre de tick de la codeuse
 }
 
 
@@ -143,58 +143,59 @@ void compteur_tick_L(){
  */
 void asservissement()
 {
-        // Réinitialisation du nombre de tick de la codeuse
+        // Réinitialisation du nombre de ticks de la codeuse
         int buffer_tick_codeuse_R = tick_codeuse_R;
         // int buffer_tick_codeuse_L = tick_codeuse_L;
         tick_codeuse_R = 0;
         // tick_codeuse_L = 0;
 
-        // Calculs
+        // Calculs vitesse et p
         float nombre_tours = (float) buffer_tick_codeuse_R / (float) nombreTicksPour1TourDeRoue;
-        float tour_par_seconde = ((float)nombre_tours / (float)periode)*(float)1000;
+        float tour_par_seconde = (float)nombre_tours * (float)frequence_echantillonnage;
         float vitesse = (float)perimetreRoueCodeuse * tour_par_seconde;
 
         float consignePWM = calculConsignePWM(consigne_vitesse_moteur);  //-180.85*consigne_vitesse_moteur - vitesse;
 
         // Calcul des erreurs
-        float erreur = 1.0 - vitesse; //consigne_vitesse_moteur - vitesse;
+        float erreur = consigne_vitesse_moteur - vitesse;
         somme_erreur += erreur;
         float delta_erreur = erreur - erreur_precedente;
         erreur_precedente = erreur;
 
         // PID : calcul de la commande
         cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur + consignePWM;
-
         // Normalisation et contrôle du moteur
         if(cmd < 0) cmd=255;
         else if(cmd > 255) cmd = 0;
-        robotGoStraightAhead(cmd);
+        robotTurnAroundFrontRight(cmd);
+        // robotGoStraightAhead(cmd);
+
 
         if(_DEBUG)
         {
-                Serial.print("\n\t buffer_tick_codeuse_R  :\t");
-                Serial.println(buffer_tick_codeuse_R, 1);
-
-                Serial.print("\t nombreTicksPour1TourDeRoue  :\t");
-                Serial.println(nombreTicksPour1TourDeRoue, 1);
-
-                Serial.print("\t nombre_tours  :\t");
-                Serial.println(nombre_tours, 6);
-
-                Serial.print("\t periode  :\t");
-                Serial.println(periode, 6);
-
-                Serial.print("\t nb_tour_par_sec : \t");
-                Serial.println(tour_par_seconde, 6);
+                // Serial.print("\n\t buffer_tick_codeuse_R  :\t");
+                // Serial.println(buffer_tick_codeuse_R, 1);
+                //
+                // Serial.print("\t nombreTicksPour1TourDeRoue  :\t");
+                // Serial.println(nombreTicksPour1TourDeRoue, 1);
+                //
+                // Serial.print("\t nombre_tours  :\t");
+                // Serial.println(nombre_tours, 6);
+                //
+                // Serial.print("\t periode  :\t");
+                // Serial.println(periode, 6);
+                //
+                // Serial.print("\t nb_tour_par_sec : \t");
+                // Serial.println(tour_par_seconde, 6);
 
                 Serial.print("\t vitesse  :\t");
                 Serial.println(vitesse, 6);
 
                 Serial.print("\t consignePWM  :\t");
                 Serial.println(consignePWM, 6);
-
-                Serial.print("\t cmd :\t");
-                Serial.println(cmd, 6);
+                //
+                // Serial.print("\t cmd :\t");
+                // Serial.println(cmd, 6);
         }
 
 }
@@ -213,7 +214,6 @@ float calculConsignePWM(float consigne_vitesse_moteur)
         else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
         return sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
 }
-
 
 
 //______________________________________________________________________________
@@ -261,6 +261,72 @@ void robotGoStraightAhead(int pwm)
 void robotGoBack(int pwm)
 {
         robotGo(pwm, -1);
+}
+
+/**
+ * \fn robotTurnAround
+ * \brief fonction faisant tourner le robot sur lui-même avec un seul moteur
+ * \param int pwm, int direction
+ */
+void robotTurnAround(int pwm, int direction)
+{
+        switch (direction) {
+        case 1:
+                digitalWrite(IN1MotorR, HIGH);
+                digitalWrite(IN2MotorR, LOW);
+                digitalWrite(IN1MotorL, LOW);
+                digitalWrite(IN2MotorL, LOW);
+                analogWrite(MotorL, 255);
+                analogWrite(MotorR, pwm);
+                break;
+        case -1:
+                digitalWrite(IN1MotorR, LOW);
+                digitalWrite(IN2MotorR, HIGH);
+                digitalWrite(IN1MotorL, LOW);
+                digitalWrite(IN2MotorL, LOW);
+                analogWrite(MotorL, 255);
+                analogWrite(MotorR, pwm);
+                break;
+        case 2:
+                digitalWrite(IN1MotorR, LOW);
+                digitalWrite(IN2MotorR, LOW);
+                digitalWrite(IN1MotorL, HIGH);
+                digitalWrite(IN2MotorL, LOW);
+                analogWrite(MotorL, pwm);
+                analogWrite(MotorR, 255);
+                break;
+        case -2:
+                digitalWrite(IN1MotorR, LOW);
+                digitalWrite(IN2MotorR, LOW);
+                digitalWrite(IN1MotorL, LOW);
+                digitalWrite(IN2MotorL, HIGH);
+                analogWrite(MotorL, pwm);
+                analogWrite(MotorR, 255);
+                break;
+        default:
+                robotStop();
+                break;
+        }
+}
+
+void robotTurnAroundFrontRight(int pwm)
+{
+        robotTurnAround(pwm, 1);
+}
+
+void robotTurnAroundBackRight(int pwm)
+{
+        robotTurnAround(pwm, -1);
+}
+
+void robotTurnAroundFrontLeft(int pwm)
+{
+        robotTurnAround(pwm, 2);
+}
+
+void robotTurnAroundBackLeft(int pwm)
+{
+        robotTurnAround(pwm, -2);
 }
 
 
