@@ -66,7 +66,7 @@ void setup()
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
 
-        attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
 
         /*
            === Remarques ===
@@ -105,26 +105,26 @@ void loop()
                 //Attente de 2" avant le début
                 if ((millis() - testStart > 5000) && (millis() - testStart < 15000)) {
                           //Moteur droit
-                        digitalWrite(IN1MotorR, HIGH);
+                        digitalWrite(IN1MotorR, LOW);
                         digitalWrite(IN2MotorR, LOW);
-                        digitalWrite(IN1MotorL, LOW);
+                        digitalWrite(IN1MotorL, HIGH);
                         digitalWrite(IN2MotorL, LOW);
-                        analogWrite(MotorL,255);
-                        analogWrite(MotorR,63);
+                        analogWrite(MotorL,6);
+                        analogWrite(MotorR,255);
                         //Serial.print("\t testDuration : \t " );
                         Serial.println(millis() - testDuration);
                         // //Serial.print("\t tick_codeuse_L : \t");
                         // Serial.println(tick_codeuse_L);
                         // // Serial.print("\t testDuration : \t");
                         // Serial.println(testDuration);
-
-                        printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
+                        // ne pas oublier de change l'encoder L ou R
+                        printDouble(calculVitesse(tick_codeuse_L, millis() - testDuration), 1000000);
                 }
                 else if (millis() > 15000) {
                         endTest();
                 }
                 testDuration = millis();
-                tick_codeuse_R = 0;
+                tick_codeuse_L = 0;
         }
 }
 
