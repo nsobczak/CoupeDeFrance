@@ -12,6 +12,7 @@
  */
 #include <Arduino.h>
 #include <SimpleTimer.h>           // http://arduino.cc/playground/Code/SimpleTimer
+#include <math.h>
 
 
 /* ======================================================================================================
@@ -32,8 +33,8 @@
 #define IN1MotorR 52
 #define IN2MotorR 53
 
-#define diametreRoueCodeuse 0.05228 // 52,28mm
-#define nombreTicksPour1TourDeRoue 2500
+const float diametreRoueCodeuse = 0.05228; // 52,28mm
+const float nombreTicksPour1TourDeRoue = 2500;
 const float Pi = 3.14159;
 const float perimetreRoueCodeuse = diametreRoueCodeuse*Pi;
 
@@ -41,23 +42,22 @@ SimpleTimer timer;                 // Timer pour échantillonnage
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_moyenne = 0;   // Compteur de tick de la codeuse
-int cmd = 0;                       // Commande du moteur
+float cmd = 0;                       // Commande du moteur
 
 const int frequence_echantillonnage = 50;  // Fréquence du pid
-const int periode = 1/50;
+const float periode = 1.0/(float)frequence_echantillonnage;
 const int tick_par_tour_codeuse = 2500;      // Nombre de tick codeuse par tour de roue codeuse
 const int tick_par_tour_non_codeuse = 3836;      // Nombre de tick codeuse par tour de roue non codeuse
 const float rapport_roueCodeuse_roueNonCodeuse = (52.28)/(80.22);
 
+float consigne_vitesse_moteur = 1.0;  //  Consigne de vitesse en m/s
 
-double consigne_vitesse_moteur = 2;  //  Consigne de vitesse en m/s
-
-double erreur_precedente = consigne_vitesse_moteur;
-double somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
+float erreur_precedente = consigne_vitesse_moteur;
+float somme_erreur = 0;   // Somme des erreurs pour l'intégrateur
 // Gains du PID
-float kp = 1;           // Gain proportionnel
-float ki = 1;           // Gain intégrateur
-float kd = 1;           // Gain dérivateur
+float kp = 0;           // Gain proportionnel
+float ki = 0;           // Gain intégrateur
+float kd = 0;           // Gain dérivateur
 
 
 /* ======================================================================================================
@@ -68,24 +68,27 @@ float kd = 1;           // Gain dérivateur
 
 void initializeSetup()
 {
-  pinMode(MotorR,OUTPUT);
-  pinMode(MotorL,OUTPUT);
-  pinMode(IN1MotorR,OUTPUT);
-  pinMode(IN2MotorR,OUTPUT);
-  pinMode(IN1MotorL,OUTPUT);
-  pinMode(IN2MotorL,OUTPUT);
+        pinMode(MotorR,OUTPUT);
+        pinMode(MotorL,OUTPUT);
+        pinMode(IN1MotorR,OUTPUT);
+        pinMode(IN2MotorR,OUTPUT);
+        pinMode(IN1MotorL,OUTPUT);
+        pinMode(IN2MotorL,OUTPUT);
 
-  pinMode(encoder0PinA_L, INPUT);
-  pinMode(encoder0PinB_L, INPUT);
-  pinMode(encoder0PinA_R, INPUT);
-  pinMode(encoder0PinB_R, INPUT);
+        pinMode(encoder0PinA_L, INPUT);
+        pinMode(encoder0PinB_L, INPUT);
+        pinMode(encoder0PinA_R, INPUT);
+        pinMode(encoder0PinB_R, INPUT);
 
-  //Moteur droit
-  digitalWrite(IN1MotorR, LOW);
-  digitalWrite(IN2MotorR, LOW);
-  //Moteur gauche
-  digitalWrite(IN1MotorL, LOW);
-  digitalWrite(IN2MotorL, LOW);
+        //Moteur droit
+        digitalWrite(IN1MotorR, LOW);
+        digitalWrite(IN2MotorR, LOW);
+        //Moteur gauche
+        digitalWrite(IN1MotorL, LOW);
+        digitalWrite(IN2MotorL, LOW);
+
+        analogWrite(MotorL,255);
+        analogWrite(MotorR,255);
 }
 
 /**
@@ -94,8 +97,8 @@ void initializeSetup()
  */
 void setup()
 {
-        // Serial.begin(115200);     // Initialisation port COM
-        Serial.begin(9600);
+        Serial.begin(115200);     // Initialisation port COM
+        // Serial.begin(9600);
         initializeSetup();
         delay(5000);              // Pause de 5 sec pour laisser le temps au moteur de s'arréter si celui-ci est en marche
 
@@ -146,53 +149,81 @@ void asservissement()
         tick_codeuse_R = 0;
         // tick_codeuse_L = 0;
 
-        // Calcul des erreurs
-        double nombre_tours = (double) buffer_tick_codeuse_R / (double) nombreTicksPour1TourDeRoue;
-        double tour_par_seconde = ((double)nombre_tours / (double)periode)*1000;
-        double vitesse = (double)perimetreRoueCodeuse * tour_par_seconde;
+        // Calculs
+        float nombre_tours = (float) buffer_tick_codeuse_R / (float) nombreTicksPour1TourDeRoue;
+        float tour_par_seconde = ((float)nombre_tours / (float)periode)*(float)1000;
+        float vitesse = (float)perimetreRoueCodeuse * tour_par_seconde;
 
-        double erreur = consigne_vitesse_moteur - vitesse;
+        float consignePWM = calculConsignePWM(consigne_vitesse_moteur);  //-180.85*consigne_vitesse_moteur - vitesse;
+
+        // Calcul des erreurs
+        float erreur = 1.0 - vitesse; //consigne_vitesse_moteur - vitesse;
         somme_erreur += erreur;
-        double delta_erreur = erreur - erreur_precedente;
+        float delta_erreur = erreur - erreur_precedente;
         erreur_precedente = erreur;
 
-
         // PID : calcul de la commande
-        cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur;
+        cmd = kp*erreur + ki*somme_erreur + kd*delta_erreur + consignePWM;
 
         // Normalisation et contrôle du moteur
         if(cmd < 0) cmd=255;
         else if(cmd > 255) cmd = 0;
-        // analogWrite(Motesse_moteur - vitesse;
-        // analogWrite(MotorL, (-1)*(cmd-255));
-        analogWrite(MotorR, 255);
-        analogWrite(MotorL, 255);
+        robotGoStraightAhead(cmd);
 
         if(_DEBUG)
         {
-                Serial.print("\t cmd :\t");
-                Serial.println(cmd, 8);
+                Serial.print("\n\t buffer_tick_codeuse_R  :\t");
+                Serial.println(buffer_tick_codeuse_R, 1);
 
-                Serial.print("\t tick_codeuse_moyenne  :\t");
-                Serial.println(tick_codeuse_moyenne, 8);
+                Serial.print("\t nombreTicksPour1TourDeRoue  :\t");
+                Serial.println(nombreTicksPour1TourDeRoue, 1);
+
+                Serial.print("\t nombre_tours  :\t");
+                Serial.println(nombre_tours, 6);
+
+                Serial.print("\t periode  :\t");
+                Serial.println(periode, 6);
 
                 Serial.print("\t nb_tour_par_sec : \t");
-                Serial.println(tour_par_seconde, 8);
+                Serial.println(tour_par_seconde, 6);
+
+                Serial.print("\t vitesse  :\t");
+                Serial.println(vitesse, 6);
+
+                Serial.print("\t consignePWM  :\t");
+                Serial.println(consignePWM, 6);
+
+                Serial.print("\t cmd :\t");
+                Serial.println(cmd, 6);
         }
 
 }
 
 
+/**
+ * \fn calculConsignePWM(double y)
+ * \brief fonction contenant l'équation permettant de convertir la consigne vitesse en consigne PWM
+ * \param double y, y > 1,5056
+ * \return x
+ */
+float calculConsignePWM(float consigne_vitesse_moteur)
+{
+        // Sécurité
+        if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
+        else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
+        return sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
+}
+
+
+
 //______________________________________________________________________________
 /**
  * \fn robotGo
- * \brief fonction pour direiger le robot
+ * \brief fonction pour diriger le robot
  * \param int pwm, int direction
  */
 void robotGo(int pwm, int direction)
 {
-        analogWrite(MotorL,255);
-        analogWrite(MotorR,255);
         switch (direction) {
         case 1:
                 digitalWrite(IN1MotorR, HIGH);
@@ -222,14 +253,14 @@ void robotStop()
         robotGo(0, 0);
 }
 
-void robotGoStraightAhead(int vitesse)
+void robotGoStraightAhead(int pwm)
 {
-        robotGo(1, vitesse);
+        robotGo(pwm, 1);
 }
 
-void robotGoBack(int vitesse)
+void robotGoBack(int pwm)
 {
-        robotGo(-1, vitesse);
+        robotGo(pwm, -1);
 }
 
 
