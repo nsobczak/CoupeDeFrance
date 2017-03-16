@@ -66,10 +66,11 @@ int index;
 int demarrerMoteur;
 int finInitialisation;
 volatile byte state = LOW;
-int pin_capteur = A14;                
-float c;
-float d;
+             
 int isInt = 0;
+int initt=0;
+int descente_init=0;
+int rail_init=0;
 
 Stepper motor_X(200, 54, 55);
 Stepper motor_Y(200, 60, 61);
@@ -87,27 +88,35 @@ Servo servo_rotation;
 
 void rail_initialisation(int tour) // 800 sans cavalier = 1 Tour complet
 { 
-    digitalWrite(Y_ENABLE_PIN,LOW); 
-    motor_Y.step(tour);
-    Serial.println("Mouvement moteur Y à gauche");           
+    delay(1000);
+    digitalWrite(X_ENABLE_PIN,LOW); 
+    motor_X.step(tour);
+    Serial.println("Mouvement moteur X ");           
 }
 
 
 
-void rail_interruption_initialisation_gauche()
+void rail_interruption_gauche()
 {
-    digitalWrite(Z_ENABLE_PIN,HIGH);           
-    Serial.println("STOP Y GAUCHE");
-    delay(1000);
-    digitalWrite(Z_ENABLE_PIN,LOW);
-    deplacement_leger_droit();     
+    digitalWrite(X_ENABLE_PIN,HIGH);           
+    Serial.println("STOP X GAUCHE");
+    for(int i=0;i<100;i++){
+      delayMicroseconds(500);
+      Serial.println("coucou du capteur gauche");
+    }
+    rail_initialisation(-400);    
   }
 
 
-void deplacement_leger_droit() {
-   motor_Y.step(-800);
-   Serial.println("Fin initialisation moteur Y");
-   delay(1000);
+void rail_interruption_droit() 
+{
+   digitalWrite(X_ENABLE_PIN,HIGH);
+   Serial.println("STOP X DROIT");
+   for(int i=0;i<50;i++){
+      delayMicroseconds(500);
+      Serial.println("Coucou du capteur droit");
+   }
+   rail_initialisation(400);
 }
 
 //____________________________________________________________________________________________________
@@ -115,26 +124,28 @@ void deplacement_leger_droit() {
 // Déplacement du vis sans fin
 
 
-void remonter_legere() 
-{
-    motor_Z.step(-800);
-    Serial.println("Moteurs Z en mouvement");  
-}
-
 
 void monter_descente_initialisation(int tour)// 800 sans cavalier = 1 Tour complet
 {
-    digitalWrite(Z_ENABLE_PIN,LOW);           
-    digitalWrite(Z_DIR_PIN,LOW);
-    motor_Z.step(tour);
-    Serial.println("Moteur Z en mouvement");             
+        delay(1000);
+        digitalWrite(Z_ENABLE_PIN,LOW);           
+        digitalWrite(Z_DIR_PIN,LOW);
+        motor_Z.step(tour);
+        Serial.println("Moteur Z en mouvement");
+          
+    
 }
 
- 
 void interruption_descente_Z(){
-    //digitalWrite(Z_ENABLE_PIN,HIGH);          
+
+    digitalWrite(Z_ENABLE_PIN,HIGH);          
     Serial.println("STOP_Z");
-    //remonter_legere(); 
+    for(int i=0;i<50;i++){
+      delayMicroseconds(500);
+      Serial.println("Coucou d'en bas");
+    }
+    descente_init=1;
+    monter_descente_initialisation(-1600);   
 }
 
 
@@ -241,26 +252,24 @@ void i2creceive2(int adresse)
  */
 void setup() 
 {
-      
-     //pinMode(X_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
-     // attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),interruption_descente_x,LOW);
+     motor_X.setSpeed(500); 
+     pinMode(X_ENABLE_PIN, OUTPUT);   
+     pinMode(X_MIN_PIN,OUTPUT);            
+     attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),rail_interruption_gauche,LOW);
+     pinMode(X_MAX_PIN,OUTPUT);
+     attachInterrupt(digitalPinToInterrupt(X_MAX_PIN),rail_interruption_droit,LOW);
+     
+    pinMode(Z_DIR_PIN,OUTPUT);
+    pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
+    pinMode(Z_MIN_PIN,INPUT);
+    attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),interruption_descente_Z,LOW);
+    motor_Z.setSpeed(1000);
+    servo_rotation.attach(4);                    // attaches the servo on pin 3 to the servo object
+    servo_capture.attach(5);
+    demarrerMoteur = 0;
+    finInitialisation = 0;
     
-     //motor_X.setSpeed(1000);
-      pinMode(Y_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR Y
-     // attachInterrupt(digitalPinToInterrupt(Y_MIN_PIN),interruption_droite,LOW);
-     // attachInterrupt(digitalPinToInterrupt(Y_MAX_PIN),interruption_gauche,LOW);
-      motor_Y.setSpeed(1000);
-      pinMode(Z_DIR_PIN,OUTPUT);
-      pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
-      pinMode(Z_MIN_PIN,INPUT);
-      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),interruption_descente_Z,LOW);
-      motor_Z.setSpeed(1000);
-      servo_rotation.attach(4);                    // attaches the servo on pin 3 to the servo object
-      servo_capture.attach(5);
-      demarrerMoteur = 0;
-      finInitialisation = 0;
-      
-      Serial.begin(9600);
+    Serial.begin(9600);
 }
 
 /**
@@ -268,22 +277,40 @@ void setup()
  * \brief fonction loop d'arduino
  */
 void loop() 
-{   
-    
-    
- //  attraper_cylindre(160,75,1000);           //angle à respecter
-  // relacher_cylindre(80,120,1000);           //angle à respecter
-//  digitalWrite(LED_PIN,HIGH);
-//  delay(1000);
-//  digitalWrite(LED_PIN,LOW);
-//  delay(1000);
-  
-   monter_descente_initialisation(3600);
- //  delay(1000);
- //  monter_descente_initialisation(-1600);
-//   delay(1000);
-//   rail_initialisation(-800);
+{
+   
+ if(initt==0){
+  Serial.println("1");
+  if(descente_init==0){   
+    Serial.println("2");
+    monter_descente_initialisation(10600);
+    Serial.println("init down done");
+  if(rail_init==0){
+    Serial.println("3");
+    rail_initialisation(800); 
+    Serial.println("init right done");
+  }  
+   attraper_cylindre(10,75,1000);
+   relacher_cylindre(80,120,1000);  
+  }             
+ Serial.println("end init");
+ initt=1;
+ if (initt==1){
+    attraper_cylindre(10,75,1000);
+    monter_descente_initialisation(-3600);
+    attraper_cylindre(80,75,1000);
+    rail_initialisation(300);
+    initt=3;
+ }
+ }           
 
+
+//  delay(1000);
+//  monter_descente_initialisation(-1600);
+//   delay(1000);
+//rail_initialisation(-200);
+
+//delay(4000);
 //    delay(500); 
 //    i2creceive2(_RECEIVEADRESS_);
     
