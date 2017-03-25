@@ -6,8 +6,9 @@ Ce dossier contient aussi les dossiers communs à tous les modules, comme l'i2c 
 
 ## Dossiers propres au cerveau
 
+- "Artificial Intelligence" est le dossier dans lequel est conservé ce qui concerne l'intelligence artificielle du robot.
 - "Ecran" est le dossier dans lequel est conservé ce qui concerne l'écran.
-- "Shield_Cerveau" est le dossier contenant le harware du shield de la carte du cerveau.
+- "ShieldCerveau" est le dossier contenant le harware du shield de la carte du cerveau.
 
 
 ## Dossiers communs aux différents modules
