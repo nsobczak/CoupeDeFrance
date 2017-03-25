@@ -6,8 +6,9 @@
 - aller ramasser et placer les cylindres
 - éventuellement s'occuper du rammassage de balles
 - funny action
+- utiliser un timer pour vérifier si l'épreuve est finie ou pas
 
-### Technique
+### Notes techniques
 - faire une classe Bot qui aura toutes les fonctions du robots
 - penser à prévoir des manoeuvres/actions spéciales en cas de bug (robot coincé dans un coin par exemple)
 
