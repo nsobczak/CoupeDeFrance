@@ -20,6 +20,7 @@
  *      Initialisation
  * ======================================================================================================
  */
+#define _DEBUG_ true
 Bot elPadre;
 
 
@@ -33,7 +34,7 @@ Bot elPadre;
  */
 void setup()
 {
-        //TODO: instancier un objet robot
+        Serial.begin(115200);
 }
 
 
@@ -55,4 +56,8 @@ void loop()
          * si on détecte l'adversaire => manoeuvre dévitement
          * si on détecte un cylindre => on le ramasse
          */
+        if (_DEBUG_) {
+                Serial.println("=== _DEBUG_ ===");
+                // Serial.println();
+        }
 }

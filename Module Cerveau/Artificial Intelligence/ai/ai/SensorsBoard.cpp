@@ -1,6 +1,6 @@
 /**
- *    \file Bot.h
- *    \brief classe robot
+ *    \file SensorsBoard.cpp
+ *    \brief classe carte capteurs
  *
  *    \author Nicolas SOBCZAK
  *    \date Mars 2017
@@ -10,42 +10,13 @@
  *      Include
  * ======================================================================================================
  */
-#include "Arduino.h"
-#include "Clamp.h"
 #include "SensorsBoard.h"
 
 
 /* ======================================================================================================
- *      Class
+ *      Constructor, getter, setter
  * ======================================================================================================
  */
-class Bot
+SensorsBoard::SensorsBoard()
 {
-private:
-
-Clamp clamp;
-SensorsBoard sensorsBoard;
-
-int colorNumber;
-int strategyNumber;
-
-
-public:
-
-Bot();
-Bot(int newColorNumber, int newStrategyNumber);
-
-Clamp getClamp();
-void setClamp(Clamp newClamp);
-SensorsBoard getSensorsBoard();
-void setSensorsBoard(SensorsBoard newSensorsBoard);
-
-int getColorNumber();
-void setColorNumber(int newColorNumber);
-int getStrategyNumber();
-void setStrategyNumber(int newStrategyNumber);
-
-
-//TODO: add les fonctions de la pince
-
-};
+}
