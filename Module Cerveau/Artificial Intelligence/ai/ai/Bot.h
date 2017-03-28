@@ -29,7 +29,7 @@ SensorsBoard sensorsBoard;
 int colorNumber;
 int strategyNumber;
 
-
+//____________________
 public:
 
 Bot();

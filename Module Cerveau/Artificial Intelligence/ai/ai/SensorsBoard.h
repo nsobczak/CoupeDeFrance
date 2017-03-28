@@ -13,6 +13,9 @@
  */
 #include "Arduino.h"
 
+//TODO: changer les define pour les remplacer par la bonne disance
+#define cylinderDistance 1.2
+#define foeDistance 0.8
 
 /* ======================================================================================================
  *      Class
@@ -33,37 +36,45 @@ int ultrasonicRight;
 int ultrasonicLeft;
 int ultrasonicBack;
 
-
+//____________________
 public:
 
 SensorsBoard();
 
-    int getInfraredSensorFrontBottomRight() const;
-    int getInfraredSensorFrontBottomLeft() const;
-    int getInfraredSensorFrontBottomCenter() const;
-    int getInfraredSensorFrontTop() const;
-    int getInfraredSensorBack() const;
+int getInfraredSensorFrontBottomRight() const;
+int getInfraredSensorFrontBottomLeft() const;
+int getInfraredSensorFrontBottomCenter() const;
+int getInfraredSensorFrontTop() const;
+int getInfraredSensorBack() const;
 
-    int getUltrasonicFront() const;
-    int getUltrasonicRight() const;
-    int getUltrasonicLeft() const;
-    int getUltrasonicBack() const;
+int getUltrasonicFront() const;
+int getUltrasonicRight() const;
+int getUltrasonicLeft() const;
+int getUltrasonicBack() const;
 
-    void setInfraredSensorFrontBottomRight(int infraredSensorFrontBottomRight);
-    void setInfraredSensorFrontBottomLeft(int infraredSensorFrontBottomLeft);
-    void setInfraredSensorFrontBottomCenter(int infraredSensorFrontBottomCenter);
-    void setInfraredSensorFrontTop(int infraredSensorFrontTop);
-    void setInfraredSensorBack(int infraredSensorBack);
+void setInfraredSensorFrontBottomRight(int infraredSensorFrontBottomRight);
+void setInfraredSensorFrontBottomLeft(int infraredSensorFrontBottomLeft);
+void setInfraredSensorFrontBottomCenter(int infraredSensorFrontBottomCenter);
+void setInfraredSensorFrontTop(int infraredSensorFrontTop);
+void setInfraredSensorBack(int infraredSensorBack);
 
-    void setUltrasonicFront(int ultrasonicFront);
-    void setUltrasonicRight(int ultrasonicRight);
-    void setUltrasonicLeft(int ultrasonicLeft);
-    void setUltrasonicBack(int ultrasonicBack);
+void setUltrasonicFront(int ultrasonicFront);
+void setUltrasonicRight(int ultrasonicRight);
+void setUltrasonicLeft(int ultrasonicLeft);
+void setUltrasonicBack(int ultrasonicBack);
 
-    void update();
+void update();
 
-    bool checkForCylinder();
-    bool checkForHindrance();
+bool checkForCylinderOnSensorFrontBottomLeft();
+bool checkForCylinderOnSensorFrontBottomCenter();
+bool checkForCylinderOnSensorFrontBottomRight();
+bool checkForCylinder();
+
+bool checkForHindranceOnFront();
+bool checkForHindranceOnRight();
+bool checkForHindranceOnLeft();
+bool checkForHindranceOnBack();
+bool checkForHindrance();
 
 
 };
