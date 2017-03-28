@@ -27,4 +27,9 @@ public:
 
 Clamp();
 
+void initialisation();
+void catchCylinder();
+void releaseCylinder();
+
+
 };
