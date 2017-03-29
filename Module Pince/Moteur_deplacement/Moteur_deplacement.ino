@@ -255,9 +255,9 @@ void setup()
      motor_X.setSpeed(500); 
      pinMode(X_ENABLE_PIN, OUTPUT);   
      pinMode(X_MIN_PIN,OUTPUT);            
-     attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),rail_interruption_gauche,LOW);
+     //attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),rail_interruption_gauche,LOW);
      pinMode(X_MAX_PIN,OUTPUT);
-     attachInterrupt(digitalPinToInterrupt(X_MAX_PIN),rail_interruption_droit,LOW);
+     //attachInterrupt(digitalPinToInterrupt(X_MAX_PIN),rail_interruption_droit,LOW);
      
     pinMode(Z_DIR_PIN,OUTPUT);
     pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
@@ -279,38 +279,36 @@ void setup()
 void loop() 
 {
    
- if(initt==0){
-  Serial.println("1");
-  if(descente_init==0){   
-    Serial.println("2");
-    monter_descente_initialisation(10600);
-    Serial.println("init down done");
-  if(rail_init==0){
-    Serial.println("3");
-    rail_initialisation(800); 
-    Serial.println("init right done");
-  }  
-   attraper_cylindre(10,75,1000);
-   relacher_cylindre(80,120,1000);  
-  }             
- Serial.println("end init");
- initt=1;
- if (initt==1){
-    attraper_cylindre(10,75,1000);
-    monter_descente_initialisation(-3600);
-    attraper_cylindre(80,75,1000);
-    rail_initialisation(300);
-    initt=3;
- }
- }           
+// if(initt==0){
+//  Serial.println("1");
+//  if(descente_init==0){   
+//    Serial.println("2");
+//    monter_descente_initialisation(10600);
+//    Serial.println("init down done");
+//  if(rail_init==0){
+//    Serial.println("3");
+//    rail_initialisation(800); 
+//    Serial.println("init right done");
+//  }  
+//   attraper_cylindre(10,75,1000);
+//   relacher_cylindre(80,120,1000);  
+//  }             
+// Serial.println("end init");
+// initt=1;
+// if (initt==1){
+//    attraper_cylindre(10,75,1000);
+//    monter_descente_initialisation(-3600);
+//    attraper_cylindre(80,75,1000);
+//    rail_initialisation(300);
+//    initt=3;
+// }
+// }           
 
 
 //  delay(1000);
-//  monter_descente_initialisation(-1600);
-//   delay(1000);
-//rail_initialisation(-200);
+  monter_descente_initialisation(-1600);
+  // delay(1000);
 
-//delay(4000);
 //    delay(500); 
 //    i2creceive2(_RECEIVEADRESS_);
     
