@@ -65,4 +65,9 @@ void Bot::setStrategyNumber(int newStrategyNumber){
  *      Methods
  * ======================================================================================================
  */
+
+//TODO: fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors pui qui va attraper le cylindre
+//TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
 //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
+
+//TODO: fonction qui lance la funny action, ce sera l'objet pince qui va la contenir

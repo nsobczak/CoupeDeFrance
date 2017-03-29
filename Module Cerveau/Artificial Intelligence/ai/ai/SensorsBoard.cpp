@@ -145,21 +145,16 @@ bool SensorsBoard::checkForCylinderOnSensorFrontBottomRight()
 //return true if there is a cylinder
 bool SensorsBoard::checkForCylinder()
 {
-        bool result = false;
-        this->update();
         if (this->checkForCylinderOnSensorFrontBottomLeft() ||
             this->checkForCylinderOnSensorFrontBottomCenter()||
             this->checkForCylinderOnSensorFrontBottomRight())
-        {
-                result = true;
-        }
-        return result;
+                return true;
+        return false;
 }
 
 
 bool SensorsBoard::checkForHindranceOnFront()
 {
-        //TODO: update si il faut !
         if (this->infraredSensorFrontTop < foeDistance || this->ultrasonicFront < foeDistance) return true;
         else return false;
 }
@@ -185,14 +180,10 @@ bool SensorsBoard::checkForHindranceOnBack()
 //return true if there is an hindrance
 bool SensorsBoard::checkForHindrance()
 {
-        bool result = false;
-        this->update();
         if (this->checkForHindranceOnFront() ||
             this->checkForHindranceOnRight() ||
             this->checkForHindranceOnLeft() ||
             this->checkForHindranceOnBack())
-        {
-                result = true;
-        }
-        return result;
+                return true;
+        else return false;
 }

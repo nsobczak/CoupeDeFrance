@@ -14,8 +14,8 @@
 #include "Arduino.h"
 
 //TODO: changer les define pour les remplacer par la bonne disance
-#define cylinderDistance 1.2
-#define foeDistance 0.8
+#define cylinderDistance 1.2 //voir la pince
+#define foeDistance 10.0 //10cm par rapport au capteur
 
 /* ======================================================================================================
  *      Class
