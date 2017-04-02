@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/ProxySerialToMQTT/libs/org.eclipse.paho.client.mqttv3-1.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/ProxySerialToMQTT/libs/RXTXcomm.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

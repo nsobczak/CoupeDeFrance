@@ -54,9 +54,9 @@ float consignePWML;
 float kpGauche = 1;
 float kiGauche = 0;
 float kdGauche = 0;
-float kpDroit = 4.5;
-float kiDroit = 0;
-float kdDroit = 0;
+float kpDroit = 92.65;//2500;//4.5;
+float kiDroit = 0.42;//7.5;//0.4;
+float kdDroit = 0;//5;
 
 
 /* ======================================================================================================
@@ -110,15 +110,17 @@ void setup()
  */
 void loop()
 {
-        //fréquence de mesure de 50Hz 
+        //fréquence de mesure de 50Hz
         if (millis() - testDuration >= 20) {
                 //Attente de 5" avant le début
-                if ((millis() - testStart > 5000) && (millis() - testStart < 15000)) {
+                if ((millis() - testStart > 5000) && (millis() - testStart < 25000)) {
 
-                        if ((millis() - testStart >= 5000) && (millis() - testStart < 7500)) consigneVitesseMoteur = 0.5;
-                        else if ((millis() - testStart >= 7500) && (millis() - testStart < 10000)) consigneVitesseMoteur = 1.5;
-                        else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 0.2;
-                        else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 1.0;
+                        if ((millis() - testStart >= 5000) && (millis() - testStart < 10000)) consigneVitesseMoteur = 0.5;
+                        else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 1.5;
+                        else if ((millis() - testStart >= 12500) && (millis() - testStart < 15000)) consigneVitesseMoteur = 1.0;
+                        else if ((millis() - testStart >= 15000) && (millis() - testStart < 17500)) consigneVitesseMoteur = 0.8;
+                        else if ((millis() - testStart >= 17500) && (millis() - testStart < 22500)) consigneVitesseMoteur = 0.1;
+                        else if ((millis() - testStart >= 22500) && (millis() - testStart < 25000)) consigneVitesseMoteur = 0.3;
                         consignePWML = calculConsignePWMMotorL(consigneVitesseMoteur);
                         consignePWMR = calculConsignePWMMotorR(consigneVitesseMoteur);
 
@@ -137,7 +139,8 @@ void loop()
                         erreurPrecedenteGauche = erreurGauche;
                         erreurPrecedenteDroite = erreurDroite;
 
-                        int cmdMoteurDroit = kpDroit * erreurDroite + kiDroit * sommeErreurDroite + kdDroit * deltaErreurDroite + consignePWMR;
+                        //int cmdMoteurDroit = kpDroit * erreurDroite + kiDroit * sommeErreurDroite + kdDroit * deltaErreurDroite + consignePWMR;
+                        int cmdMoteurDroit = kpDroit * erreurDroite + kiDroit * sommeErreurDroite  + kdDroit * deltaErreurDroite; 
                         int cmdMoteurGauche = kpGauche * erreurGauche + kiGauche * sommeErreurGauche + kdGauche * deltaErreurGauche + consignePWML;
                         if(cmdMoteurDroit < 0) cmdMoteurDroit = 0;
                         else if (cmdMoteurDroit > 255) cmdMoteurDroit = 255;
@@ -151,7 +154,7 @@ void loop()
                         // analogWrite(_MOTOR_L_, cmdMoteurGauche);
                         // analogWrite(_MOTOR_R_, cmdMoteurDroit);
                         // robotGoStraightAhead(cmdMoteurGauche, cmdMoteurDroit);
-                        robotTurnAroundFrontRight(cmdMoteurDroit);
+                        robotTurnAroundFrontRight(255-cmdMoteurDroit);
                         if (_DEBUG_) {
                                 // Serial.print("\t testDuration : \t " );
                                 // Serial.println(millis() - testDuration);
@@ -169,7 +172,7 @@ void loop()
                                 printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
                         }
                 }
-                else if (millis() > 15000) {
+                else if (millis() > 20000) {
                         robotStop();
                 }
                 testDuration = millis();
@@ -196,7 +199,7 @@ void compteur_tick_R()
  */
 void compteur_tick_L()
 {
-        tick_ codeuse_L++; // On incrémente le nombre de tick de la codeuse
+        tick_codeuse_L++; // On incrémente le nombre de tick de la codeuse
 }
 
 
@@ -223,15 +226,15 @@ double calculVitesse(unsigned int tick_codeuse, unsigned long duration)
  */
 float calculConsignePWMMotorR(float consigne_vitesse_moteur)
 {
-        if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
-        else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
+        //if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
+        //else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
         //y = -73.928 * x² - 35.964 * x + 204.14; = -60,778x2 - 62,861x + 212,94
         return -73.928 * consigne_vitesse_moteur*consigne_vitesse_moteur - 35.964 * consigne_vitesse_moteur + 204.14; // sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
 }
 float calculConsignePWMMotorL(float consigne_vitesse_moteur)
 {
-        if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
-        else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
+        //if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
+        //else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
         //y = -73.928 * x² - 35.964 * x + 204.14; = -60,778x2 - 62,861x + 212,94
         return -60.778 * consigne_vitesse_moteur*consigne_vitesse_moteur - 62.861 * consigne_vitesse_moteur + 212.94; // sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
 }

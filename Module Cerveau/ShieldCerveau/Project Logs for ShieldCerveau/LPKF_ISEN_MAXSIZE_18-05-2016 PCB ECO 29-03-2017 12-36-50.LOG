@@ -1,0 +1,77 @@
+Removed Pin From Net: NetName=VCC3.3V Pin=*-1
+Removed Pin From Net: NetName=VCC5V Pin=*-1
+Removed Pin From Net: NetName=SDA5V Pin=*-2
+Removed Pin From Net: NetName=SCL5V Pin=*-3
+Removed Pin From Net: NetName=SID3.3V(MOSI) Pin=*-3
+Removed Pin From Net: NetName=GND Pin=*-4
+Removed Pin From Net: NetName=SCLK3.3V Pin=*-4
+Removed Pin From Net: NetName=CS3.3V Pin=*-5
+Removed Pin From Net: NetName=GND Pin=*-5
+Removed Pin From Net: NetName=SCL3.3V Pin=*-6
+Removed Pin From Net: NetName=GND Pin=*-7
+Removed Pin From Net: NetName=SDA3.3V Pin=*-7
+Removed Pin From Net: NetName=VCC3.3V Pin=*-8
+Removed Pin From Net: NetName=VCC3.3V Pin=*-8
+Removed Pin From Net: NetName=CS5V Pin=*-10
+Removed Pin From Net: NetName=SCLK5V Pin=*-11
+Removed Pin From Net: NetName=SID5V(MOSI) Pin=*-12
+Removed Pin From Net: NetName=VCC5V Pin=*-14
+Change Component DesignItemId : Designator=* Old DesignItemId=LvlConverter_Adg3304 New DesignItemId=GyroscopeI2C
+Change Component Comment : Designator=* Old Comment=LvlConverter_Adg3304 New Comment=GyroscopeI2C
+Change Component Library : Designator=* Old Library=LvlConverter_Adg3304.SchLib New Library=GyroscopeI2C.SchLib
+Added Component: Designator=CapaDecoupGyro(0805)
+Added Component: Designator=ConvertisseurNiveauxI2C(ConvertisseurDeniveauxI2C)
+Added Component: Designator=ConvertisseurNiveauxSPI(LvlConverter_Adg3304)
+Added Component: Designator=LedReset(LED0805)
+Added Component: Designator=LedVCC3.3V(LED0805)
+Added Component: Designator=LedVCC5V(LED0805)
+Added Component: Designator=ResLedReset(0805)
+Added Component: Designator=ResLedVCC3.3V(0805)
+Added Component: Designator=ResLedVCC5V(0805)
+Added Pin To Net: NetName=VCC5V Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-2
+Added Pin To Net: NetName=SCL5V Pin=*-3
+Added Pin To Net: NetName=SDA5V Pin=*-4
+Added Pin To Net: NetName=VCC5V Pin=CapaDecoupGyro-1
+Added Pin To Net: NetName=GND Pin=CapaDecoupGyro-2
+Added Pin To Net: NetName=VCC5V Pin=ConvertisseurNiveauxI2C-1
+Added Pin To Net: NetName=SDA5V Pin=ConvertisseurNiveauxI2C-2
+Added Pin To Net: NetName=SCL5V Pin=ConvertisseurNiveauxI2C-3
+Added Pin To Net: NetName=GND Pin=ConvertisseurNiveauxI2C-5
+Added Pin To Net: NetName=SCL3.3V Pin=ConvertisseurNiveauxI2C-6
+Added Pin To Net: NetName=SDA3.3V Pin=ConvertisseurNiveauxI2C-7
+Added Pin To Net: NetName=VCC3.3V Pin=ConvertisseurNiveauxI2C-8
+Added Pin To Net: NetName=VCC3.3V Pin=*-1
+Added Pin To Net: NetName=SID3.3V(MOSI) Pin=*-3
+Added Pin To Net: NetName=SCLK3.3V Pin=*-4
+Added Pin To Net: NetName=CS3.3V Pin=*-5
+Added Pin To Net: NetName=GND Pin=*-7
+Added Pin To Net: NetName=VCC3.3V Pin=*-8
+Added Pin To Net: NetName=CS5V Pin=*-10
+Added Pin To Net: NetName=SCLK5V Pin=*-11
+Added Pin To Net: NetName=SID5V(MOSI) Pin=*-12
+Added Pin To Net: NetName=VCC5V Pin=*-14
+Added Pin To Net: NetName=GND Pin=LedReset-K
+Added Pin To Net: NetName=GND Pin=LedVCC3.3V-K
+Added Pin To Net: NetName=GND Pin=LedVCC5V-K
+Added Pin To Net: NetName=RESET Pin=ResLedReset-2
+Added Pin To Net: NetName=VCC3.3V Pin=ResLedVCC3.3V-2
+Added Pin To Net: NetName=VCC5V Pin=ResLedVCC5V-2
+Added Pin To Net: NetName=NetLedReset_A Pin=LedReset-A
+Added Pin To Net: NetName=NetLedReset_A Pin=ResLedReset-1
+Added Net: Name=NetLedReset_A
+Added Pin To Net: NetName=NetLedVCC3.3V_A Pin=LedVCC3.3V-A
+Added Pin To Net: NetName=NetLedVCC3.3V_A Pin=ResLedVCC3.3V-1
+Added Net: Name=NetLedVCC3.3V_A
+Added Pin To Net: NetName=NetLedVCC5V_A Pin=LedVCC5V-A
+Added Pin To Net: NetName=NetLedVCC5V_A Pin=ResLedVCC5V-1
+Added Net: Name=NetLedVCC5V_A
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component CapaDecoupGyro CAP
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component ConvertisseurNiveauxI2C ConvertisseurDeNiveau
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component ConvertisseurNiveauxSPI LvlConverter_Adg3304
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component LedReset comment
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component LedVCC3.3V comment
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component LedVCC5V comment
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component ResLedReset RES
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component ResLedVCC3.3V RES
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component ResLedVCC5V RES

@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: BarLed.PCBDOC   23/03/2017  10:19:19
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : BarLed.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        52.01mil (1.32105mm)     Round          4                0.83 Inch (21.13 mm)
+T2        118.11mil (2.99999mm)    Round          2                3.65 Inch (92.61 mm)
+---------------------------------------------------------------------------
+Totals                                            6                4.48 Inch (113.74 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

@@ -1,0 +1,88 @@
+Removed Pin From Net: NetName=GND Pin=*-4
+Removed Pin From Net: NetName=GND Pin=*-5
+Removed Pin From Net: NetName=GND Pin=*-7
+Removed Pin From Net: NetName=GND Pin=BoutonReset-3
+Removed Pin From Net: NetName=GND Pin=BoutonReset-4
+Removed Pin From Net: NetName=GND Pin=CapaDecouBoutonReset-2
+Removed Pin From Net: NetName=GND Pin=CapaDecoupI2C3.3V-1
+Removed Pin From Net: NetName=GND Pin=CapaDecoupI2C5V-1
+Removed Pin From Net: NetName=GND Pin=CapaDecoupLVLConverter3.3V-2
+Removed Pin From Net: NetName=GND Pin=CapaDecoupLVLConverter5V-2
+Removed Pin From Net: NetName=GND Pin=CapaDecoupVCC7+-2
+Removed Pin From Net: NetName=GND Pin=J4-9
+Removed Pin From Net: NetName=GND Pin=J5-9
+Removed Pin From Net: NetName=GND Pin=LedDebugAlim7V-K
+Removed Pin From Net: NetName=GND Pin=U1-4
+Removed Pin From Net: NetName=GND Pin=U1-61
+Removed Pin From Net: NetName=GND Pin=U1-62
+Removed Pin From Net: NetName=GND Pin=U1-80
+Removed Pin From Net: NetName=GND Pin=U1-81
+Removed Pin From Net: NetName=GND Pin=U1-92
+Removed Pin From Net: NetName=GND Pin=VCC7V--1
+Removed Pin From Net: NetName=GND Pin=VCC7V--1
+Change Component DesignItemId : Designator=* Old DesignItemId=LvlConverter_Adg3304 New DesignItemId=Connector_Cosse
+Change Component Footprint: Designator=* Old Footprint=LvlConverter_Adg3304 New Footprint=Connector_Cosse
+Change Component Comment : Designator=* Old Comment=LvlConverter_Adg3304 New Comment=Connector_Cosse
+Added Component: Designator=*(Connector_Cosse)
+Added Component: Designator=LD1(LED0805)
+Added Component: Designator=LD2(LED0805)
+Added Component: Designator=LD3(LED0805)
+Added Component: Designator=LD4(LED0805)
+Added Component: Designator=LD5(LED0805)
+Added Component: Designator=LD6(LED0805)
+Added Component: Designator=LD7(LED0805)
+Added Component: Designator=LD8(LED0805)
+Added Component: Designator=R1(0805)
+Added Component: Designator=R2(0805)
+Added Component: Designator=R3(0805)
+Added Component: Designator=R4(0805)
+Added Component: Designator=R5(0805)
+Added Component: Designator=R6(0805)
+Added Component: Designator=R7(0805)
+Added Component: Designator=R8(0805)
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=GND Pin=LD1-K
+Added Pin To Net: NetName=GND Pin=LD2-K
+Added Pin To Net: NetName=GND Pin=LD3-K
+Added Pin To Net: NetName=GND Pin=LD4-K
+Added Pin To Net: NetName=GND Pin=LD5-K
+Added Pin To Net: NetName=GND Pin=LD6-K
+Added Pin To Net: NetName=GND Pin=LD7-K
+Added Pin To Net: NetName=GND Pin=LD8-K
+Added Pin To Net: NetName=NetLD1_A Pin=LD1-A
+Added Pin To Net: NetName=NetLD1_A Pin=R1-1
+Added Net: Name=NetLD1_A
+Added Pin To Net: NetName=NetLD2_A Pin=LD2-A
+Added Pin To Net: NetName=NetLD2_A Pin=R2-1
+Added Net: Name=NetLD2_A
+Added Pin To Net: NetName=NetLD3_A Pin=LD3-A
+Added Pin To Net: NetName=NetLD3_A Pin=R3-1
+Added Net: Name=NetLD3_A
+Added Pin To Net: NetName=NetLD4_A Pin=LD4-A
+Added Pin To Net: NetName=NetLD4_A Pin=R4-1
+Added Net: Name=NetLD4_A
+Added Pin To Net: NetName=NetLD5_A Pin=LD5-A
+Added Pin To Net: NetName=NetLD5_A Pin=R5-1
+Added Net: Name=NetLD5_A
+Added Pin To Net: NetName=NetLD6_A Pin=LD6-A
+Added Pin To Net: NetName=NetLD6_A Pin=R6-1
+Added Net: Name=NetLD6_A
+Added Pin To Net: NetName=NetLD7_A Pin=LD7-A
+Added Pin To Net: NetName=NetLD7_A Pin=R7-1
+Added Net: Name=NetLD7_A
+Added Pin To Net: NetName=NetLD8_A Pin=LD8-A
+Added Pin To Net: NetName=NetLD8_A Pin=R8-1
+Added Net: Name=NetLD8_A
+Added Pin To Net: NetName=VCC Pin=*-1
+Added Pin To Net: NetName=VCC Pin=*-1
+Added Pin To Net: NetName=VCC Pin=R1-2
+Added Pin To Net: NetName=VCC Pin=R2-2
+Added Pin To Net: NetName=VCC Pin=R3-2
+Added Pin To Net: NetName=VCC Pin=R4-2
+Added Pin To Net: NetName=VCC Pin=R5-2
+Added Pin To Net: NetName=VCC Pin=R6-2
+Added Pin To Net: NetName=VCC Pin=R7-2
+Added Pin To Net: NetName=VCC Pin=R8-2
+Added Net: Name=VCC
+Added Class: Name=BarLed
