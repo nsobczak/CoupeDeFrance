@@ -45,21 +45,13 @@ unsigned long testDuration;
 unsigned long testStart;
 
 float consigneVitesseMoteur;
-/*float sommeErreurGauche = 0;
-float sommeErreurDroite = 0;*/
 float erreurPrecedenteGauche = 0;
 float erreurPrecedenteDroite = 0;
-/*float consignePWMR;
-float consignePWML;
-float kpGauche = 1;
-float kiGauche = 0;
-float kdGauche = 0;
-float kpDroit = 92.65;//2500;//4.5;
-float kiDroit = 0.42;//7.5;//0.4;
-float kdDroit = 0;//5;*/
-float r0 = 92.422;//19.786;
-float r1 = -30;//-2.817; //-59.541;//-2.817;
+int kp = 100;
+long r0 = 1829979.4;//-1022631.7;//-1008026.9;//19.786;
+long r1 = 21525987.0;//-201841.4;//-3478650.0;//-2.817; //-59.541;//-2.817;
 int cmdPrecedenteDroite = 0;
+int cmdPrecedenteGauche = 0;
 
 
 
@@ -119,14 +111,13 @@ void loop()
                 //Attente de 5" avant le début
                 if ((millis() - testStart > 5000) && (millis() - testStart < 25000)) {
 
-                        if ((millis() - testStart >= 5000) && (millis() - testStart < 10000)) consigneVitesseMoteur = 0.5;
-                        else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 1.5;
-                        else if ((millis() - testStart >= 12500) && (millis() - testStart < 15000)) consigneVitesseMoteur = 1.0;
-                        else if ((millis() - testStart >= 15000) && (millis() - testStart < 17500)) consigneVitesseMoteur = 0.8;
-                        else if ((millis() - testStart >= 17500) && (millis() - testStart < 22500)) consigneVitesseMoteur = 0.1;
-                        else if ((millis() - testStart >= 22500) && (millis() - testStart < 25000)) consigneVitesseMoteur = 0.3;
-                        //consignePWML = calculConsignePWMMotorL(consigneVitesseMoteur);
-                        //consignePWMR = calculConsignePWMMotorR(consigneVitesseMoteur);
+                        if ((millis() - testStart >= 5000) && (millis() - testStart < 10000)) consigneVitesseMoteur = 1;
+                        else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 1;
+                        else if ((millis() - testStart >= 12500) && (millis() - testStart < 15000)) consigneVitesseMoteur = 1;
+                        else if ((millis() - testStart >= 15000) && (millis() - testStart < 17500)) consigneVitesseMoteur = 1;
+                        else if ((millis() - testStart >= 17500) && (millis() - testStart < 22500)) consigneVitesseMoteur = 1;
+                        else if ((millis() - testStart >= 22500) && (millis() - testStart < 25000)) consigneVitesseMoteur = 1;
+
 
                         double vitesseReelleGauche = calculVitesse(tick_codeuse_L, millis() - testDuration);
                         double vitesseReelleDroite = calculVitesse(tick_codeuse_R, millis() - testDuration);
@@ -134,32 +125,23 @@ void loop()
                         //calcul erreur pour la correction proportionnelle*/
                         float erreurGauche = consigneVitesseMoteur - (float)vitesseReelleGauche;
                         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
-                        //calcul erreur pour la correction intégrale
-                        //sommeErreurGauche += erreurGauche;
-                        //sommeErreurDroite += erreurDroite;
-                        //calcul erreur pour la correction dérivation
-                        /*float deltaErreurGauche = erreurGauche - erreurPrecedenteGauche;
-                        float deltaErreurDroite = erreurDroite - erreurPrecedenteDroite;*/
                         erreurPrecedenteGauche = erreurGauche;
                         erreurPrecedenteDroite = erreurDroite;
-
-                        //int cmdMoteurDroit = kpDroit * erreurDroite + kiDroit * sommeErreurDroite + kdDroit * deltaErreurDroite + consignePWMR;
-                        //int cmdMoteurDroit = kpDroit * erreurDroite + kiDroit * sommeErreurDroite  + kdDroit * deltaErreurDroite; 
-                        //int cmdMoteurGauche = kpGauche * erreurGauche + kiGauche * sommeErreurGauche + kdGauche * deltaErreurGauche + consignePWML;
-                        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite ; 
-                        cmdPrecedenteDroite = cmdMoteurDroite;
+                        int CorrectionVitesse = kp*(vitesseReelleDroite-vitesseReelleGauche); 
+                        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite; 
+                        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
+                        
                         if(cmdMoteurDroite < 0) cmdMoteurDroite = 0;
                         else if (cmdMoteurDroite > 255) cmdMoteurDroite = 255;
+                        if(cmdMoteurGauche < 0) cmdMoteurGauche = 0;
+                        else if (cmdMoteurGauche > 255) cmdMoteurGauche = 255;
+                        cmdPrecedenteDroite = 255-cmdMoteurDroite;
+                        cmdPrecedenteGauche = 255-cmdMoteurGauche;
 
 
-                        // digitalWrite(_IN1_MOTOR_R_, LOW);
-                        // digitalWrite(_IN2_MOTOR_R_, HIGH);
-                        // digitalWrite(_IN1_MOTOR_L_, LOW);
-                        // digitalWrite(_IN2_MOTOR_L_, HIGH);
-                        // analogWrite(_MOTOR_L_, cmdMoteurGauche);
-                        // analogWrite(_MOTOR_R_, cmdMoteurDroit);
-                        // robotGoStraightAhead(cmdMoteurGauche, cmdMoteurDroit);
-                        robotTurnAroundFrontRight(255-cmdMoteurDroite);
+
+                         robotGoBack(255-cmdMoteurGauche, 255-cmdMoteurDroite);
+                        //robotTurnAroundFrontLeft(255-cmdMoteurGauche);
                         if (_DEBUG_) {
                                 // Serial.print("\t testDuration : \t " );
                                 // Serial.println(millis() - testDuration);
@@ -174,7 +156,7 @@ void loop()
                                 // Serial.print("\t consigneVitesseMoteur : \t");
                                 Serial.println(consigneVitesseMoteur);
                                 // Serial.print("\t calculVitesse : \t " );
-                                printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
+                                printDouble(calculVitesse(tick_codeuse_L, millis() - testDuration), 1000000);
                         }
                 }
                 else if (millis() > 20000) {
@@ -223,26 +205,7 @@ double calculVitesse(unsigned int tick_codeuse, unsigned long duration)
 }
 
 
-/**
- * \fn calculConsignePWMMotorR(double y)
- * \brief fonction contenant l'équation permettant de convertir la consigne vitesse en consigne PWM
- * \param double y, y > 1,5056
- * \return x
- */
-float calculConsignePWMMotorR(float consigne_vitesse_moteur)
-{
-        //if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
-        //else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
-        //y = -73.928 * x² - 35.964 * x + 204.14; = -60,778x2 - 62,861x + 212,94
-        return -73.928 * consigne_vitesse_moteur*consigne_vitesse_moteur - 35.964 * consigne_vitesse_moteur + 204.14; // sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
-}
-float calculConsignePWMMotorL(float consigne_vitesse_moteur)
-{
-        //if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
-        //else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;
-        //y = -73.928 * x² - 35.964 * x + 204.14; = -60,778x2 - 62,861x + 212,94
-        return -60.778 * consigne_vitesse_moteur*consigne_vitesse_moteur - 62.861 * consigne_vitesse_moteur + 212.94; // sqrt(1.0/(-0.00002) * (consigne_vitesse_moteur - 1.5056) ) - 65.0;
-}
+
 
 void printDouble( double val, unsigned int precision){
 // prints val with number of decimal places determine by precision

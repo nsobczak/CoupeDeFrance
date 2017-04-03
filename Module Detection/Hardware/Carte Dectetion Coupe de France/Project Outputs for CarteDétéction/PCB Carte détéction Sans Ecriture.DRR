@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
-NCDrill File Report For: PCB Carte détéction Sans Ecriture.PCBDOC   06/02/2017  15:25:06
+NCDrill File Report For: PCB Carte détéction Sans Ecriture.PCBDOC   03/04/2017  18:49:20
 ---------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -7,13 +7,13 @@ ASCII RoundHoles File : PCB Carte détéction Sans Ecriture.TXT
 
 Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
 ---------------------------------------------------------------------------
-T1        28mil (0.7112mm)         Round          37               13.57 Inch (344.56 mm)
+T1        28mil (0.7112mm)         Round          39               13.99 Inch (355.34 mm)
 T2        40.9mil (1.03886mm)      Round          30               3.40 Inch (86.36 mm)
-T3        41.3mil (1.04902mm)      Round          35               6.50 Inch (165.18 mm)
+T3        41.3mil (1.04902mm)      Round          35               5.80 Inch (147.32 mm)
 T4        52mil (1.3208mm)         Round          10               2.71 Inch (68.75 mm)
 T5        157.5mil (4.0005mm)      Round          4                6.01 Inch (152.75 mm)
 T6        32mil (0.8128mm)         Round          4         NPTH   0.45 Inch (11.43 mm)
 ---------------------------------------------------------------------------
-Totals                                            120              32.64 Inch (829.03 mm)
+Totals                                            122              32.36 Inch (821.94 mm)
 
 Total Processing Time (hh:mm:ss) : 00:00:00
