@@ -6,7 +6,7 @@ Le calcul de la position réelle est à réaliser en même temps que celui de l'
 
 Nous disposons des données suivantes :
 - ticks des codeuses
-- angle du robot obtenu par un gyroscope
+- angle du robot obtenu par un gyroscope, angle selon l'axe Z pour connaitre la direction
 - le temps qu'il a fallu pour se retrouver à une position donnée
 
 A partir du nombre de ticks, on calcule la vitesse du robot.
