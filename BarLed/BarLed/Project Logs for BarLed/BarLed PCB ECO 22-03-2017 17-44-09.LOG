@@ -1,8 +1,0 @@
-Removed Pin From Net: NetName=VCC Pin=*-1
-Removed Pin From Net: NetName=VCC Pin=*-1
-Added Component: Designator=*(Connector_Cosse)
-Added Pin To Net: NetName=GND Pin=*-1
-Added Pin To Net: NetName=GND Pin=*-1
-Added Pin To Net: NetName=VCC Pin=*-1
-Added Pin To Net: NetName=VCC Pin=*-1
-Added Member To Class: ClassName=BarLed Member=Component * Connector_Cosse
