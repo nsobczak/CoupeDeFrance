@@ -41,9 +41,9 @@ unsigned long testStart;
 float consigneVitesseMoteur;
 float erreurPrecedenteGauche = 0;
 float erreurPrecedenteDroite = 0;
-int kp = 50;
-long r0 = 1170734.2;//coef qui marche bien : 1829979.4;
-long r1 = 3659851.5;//coef qui marche bien : 21525987.0;
+int kp = -50;
+long r0 = 1170734.2; //coef qui marche bien : 1829979.4;
+long r1 = 3659851.5; //coef qui marche bien : 21525987.0;
 int cmdPrecedenteDroite = 0;
 int cmdPrecedenteGauche = 0;
 
@@ -125,10 +125,10 @@ void loop()
                         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
                         erreurPrecedenteGauche = erreurGauche;
                         erreurPrecedenteDroite = erreurDroite;
-                        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L); 
-                        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite; 
-                        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse ;
-                        
+                        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L);
+                        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite;
+                        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
+
                         if(cmdMoteurDroite < 0) cmdMoteurDroite = 0;
                         else if (cmdMoteurDroite > 255) cmdMoteurDroite = 255;
                         if(cmdMoteurGauche < 0) cmdMoteurGauche = 0;
@@ -138,7 +138,7 @@ void loop()
 
 
 
-                         robotGoBack(255-cmdMoteurGauche, 255-cmdMoteurDroite);
+                        robotGoBack(255-cmdMoteurGauche, 255-cmdMoteurDroite);
                         //robotTurnAroundFrontLeft(255-cmdMoteurGauche);
                         if (_DEBUG_) {
                                 // Serial.print("\t testDuration : \t " );
@@ -176,7 +176,7 @@ void loop()
 void compteur_tick_R()
 {
         tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
-        
+
 }
 
 
@@ -228,5 +228,3 @@ void printDouble( double val, unsigned int precision){
 
         Serial.println(frac,DEC);
 }
-
-
