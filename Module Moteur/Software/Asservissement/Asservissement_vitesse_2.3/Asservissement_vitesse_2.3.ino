@@ -25,15 +25,9 @@
 #define _ENDODER_0_PinA_R_ 11   //encodeur droit A
 #define _ENDODER_0_PinB_R_ 10   //encodeur droit B
 
-#define _MOTOR_R_ 6 // Attention sur Due PWM ou Pwm sont des keyword -> donc ne pas les utiliser pour des nom de variable
-#define _MOTOR_L_ 3
-#define _IN1_MOTOR_R_ 52
-#define _IN2_MOTOR_R_ 53
-#define _IN1_MOTOR_L_ 22
-#define _IN2_MOTOR_L_ 23
 
 #define diametreRoueCodeuse 0.05228 // 52,28mm
-#define nombreTicksPour1TourDeRoue 2500
+#define nombreTicksPour1TourDeRoue 1250
 
 const float Pi = 3.14159;
 const float perimetreRoueCodeuse = diametreRoueCodeuse*Pi;
@@ -47,11 +41,15 @@ unsigned long testStart;
 float consigneVitesseMoteur;
 float erreurPrecedenteGauche = 0;
 float erreurPrecedenteDroite = 0;
-int kp = 100;
-long r0 = 1829979.4;//-1022631.7;//-1008026.9;//19.786;
-long r1 = 21525987.0;//-201841.4;//-3478650.0;//-2.817; //-59.541;//-2.817;
+int kp = 50;
+long r0 = 1170734.2;//coef qui marche bien : 1829979.4;
+long r1 = 3659851.5;//coef qui marche bien : 21525987.0;
 int cmdPrecedenteDroite = 0;
 int cmdPrecedenteGauche = 0;
+
+unsigned int sommeTickR = 0;
+unsigned int sommeTickL = 0;
+
 
 
 
@@ -78,8 +76,8 @@ void setup()
         pinMode(_ENDODER_0_PinA_R_, INPUT);
         pinMode(_ENDODER_0_PinB_R_, INPUT);
 
-        attachInterrupt(_ENDODER_0_PinA_R_, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
-        attachInterrupt(_ENDODER_0_PinA_L_, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(_ENDODER_0_PinA_R_, compteur_tick_R, RISING);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        attachInterrupt(_ENDODER_0_PinA_L_, compteur_tick_L, RISING);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
 
         /*
            === Remarques ===
@@ -94,7 +92,7 @@ void setup()
         analogWrite(_MOTOR_R_, 255);
         robotStop();
 
-        consigneVitesseMoteur = 0.5;
+        consigneVitesseMoteur = 0.3;
         testDuration = millis();
         testStart = millis();
 }
@@ -111,12 +109,12 @@ void loop()
                 //Attente de 5" avant le début
                 if ((millis() - testStart > 5000) && (millis() - testStart < 25000)) {
 
-                        if ((millis() - testStart >= 5000) && (millis() - testStart < 10000)) consigneVitesseMoteur = 1;
-                        else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 1;
-                        else if ((millis() - testStart >= 12500) && (millis() - testStart < 15000)) consigneVitesseMoteur = 1;
-                        else if ((millis() - testStart >= 15000) && (millis() - testStart < 17500)) consigneVitesseMoteur = 1;
-                        else if ((millis() - testStart >= 17500) && (millis() - testStart < 22500)) consigneVitesseMoteur = 1;
-                        else if ((millis() - testStart >= 22500) && (millis() - testStart < 25000)) consigneVitesseMoteur = 1;
+                        if ((millis() - testStart >= 5000) && (millis() - testStart < 10000)) consigneVitesseMoteur = 0.5;
+                        else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 0.5;
+                        else if ((millis() - testStart >= 12500) && (millis() - testStart < 15000)) consigneVitesseMoteur = 0.5;
+                        else if ((millis() - testStart >= 15000) && (millis() - testStart < 17500)) consigneVitesseMoteur = 0.5;
+                        else if ((millis() - testStart >= 17500) && (millis() - testStart < 22500)) consigneVitesseMoteur = 0.5;
+                        else if ((millis() - testStart >= 22500) && (millis() - testStart < 25000)) consigneVitesseMoteur = 0.5;
 
 
                         double vitesseReelleGauche = calculVitesse(tick_codeuse_L, millis() - testDuration);
@@ -127,9 +125,9 @@ void loop()
                         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
                         erreurPrecedenteGauche = erreurGauche;
                         erreurPrecedenteDroite = erreurDroite;
-                        int CorrectionVitesse = kp*(vitesseReelleDroite-vitesseReelleGauche); 
+                        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L); 
                         int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite; 
-                        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
+                        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse ;
                         
                         if(cmdMoteurDroite < 0) cmdMoteurDroite = 0;
                         else if (cmdMoteurDroite > 255) cmdMoteurDroite = 255;
@@ -163,7 +161,8 @@ void loop()
                         robotStop();
                 }
                 testDuration = millis();
-                // Decommenter pour le moteur droit
+
+
                 tick_codeuse_R = 0;
                 tick_codeuse_L = 0;
         }
@@ -177,6 +176,7 @@ void loop()
 void compteur_tick_R()
 {
         tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
+        
 }
 
 
@@ -230,101 +230,3 @@ void printDouble( double val, unsigned int precision){
 }
 
 
-//______________________________________________________________________________
-/**
- * \fn void testDriver()
- * \brief fonction qui teste qui les drivers fonctionnent correctement
- */
-void testDriver()
-{
-        //Moteur gauche
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("On moteuL gauche \t 1");
-        digitalWrite(_IN1_MOTOR_R_, LOW);
-        digitalWrite(_IN2_MOTOR_R_, LOW);
-        digitalWrite(_IN1_MOTOR_L_, HIGH);
-        digitalWrite(_IN2_MOTOR_L_, LOW);
-        Serial.print("\t 2");
-        analogWrite(_MOTOR_L_,100);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("\t 3");
-        delay(3000);
-        Serial.println("\t 4");
-
-        //Moteur droit
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("On moteuL droit \t 1");
-        digitalWrite(_IN1_MOTOR_R_, HIGH);
-        digitalWrite(_IN2_MOTOR_R_, LOW);
-        digitalWrite(_IN1_MOTOR_L_, LOW);
-        digitalWrite(_IN2_MOTOR_L_, LOW);
-        Serial.print("\t 2");
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,100);
-        Serial.print("\t 3");
-        delay(3000);
-        Serial.println("\t 4");
-
-        //2 moteurs
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("On 2 moteurs \t 1");
-        digitalWrite(_IN1_MOTOR_R_, HIGH);
-        digitalWrite(_IN2_MOTOR_R_, LOW);
-        digitalWrite(_IN1_MOTOR_L_, HIGH);
-        digitalWrite(_IN2_MOTOR_L_, LOW);
-        Serial.print("\t 2");
-        analogWrite(_MOTOR_L_,100);
-        analogWrite(_MOTOR_R_,100);
-        Serial.print("\t 3");
-        delay(3000);
-        Serial.println("\t 4");
-
-
-        //Moteur droit
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("On moteuL droit \t 1");
-        digitalWrite(_IN1_MOTOR_R_, HIGH);
-        digitalWrite(_IN2_MOTOR_R_, LOW);
-        digitalWrite(_IN1_MOTOR_L_, LOW);
-        digitalWrite(_IN2_MOTOR_L_, LOW);
-        Serial.print("\t 2");
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,100);
-        Serial.print("\t 3");
-        delay(3000);
-        Serial.println("\t 4");
-
-        //Moteur gauche
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("On moteuL gauche \t 1");
-        digitalWrite(_IN1_MOTOR_R_, LOW);
-        digitalWrite(_IN2_MOTOR_R_, LOW);
-        digitalWrite(_IN1_MOTOR_L_, HIGH);
-        digitalWrite(_IN2_MOTOR_L_, LOW);
-        Serial.print("\t 2");
-        analogWrite(_MOTOR_L_,100);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("\t 3");
-        delay(3000);
-        Serial.println("\t 4");
-
-        //2 moteurs
-        analogWrite(_MOTOR_L_,255);
-        analogWrite(_MOTOR_R_,255);
-        Serial.print("On 2 moteurs \t 1");
-        digitalWrite(_IN1_MOTOR_R_, HIGH);
-        digitalWrite(_IN2_MOTOR_R_, LOW);
-        digitalWrite(_IN1_MOTOR_L_, HIGH);
-        digitalWrite(_IN2_MOTOR_L_, LOW);
-        Serial.print("\t 2");
-        analogWrite(_MOTOR_L_,100);
-        analogWrite(_MOTOR_R_,100);
-        Serial.print("\t 3");
-        delay(3000);
-        Serial.println("\t 4");
-}

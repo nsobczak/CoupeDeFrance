@@ -45,8 +45,9 @@ void robotGo(int pwmLeft, int pwmRight, int direction)
             digitalWrite(_IN2_MOTOR_L_, LOW);
             break;
     }
-    analogWrite(_MOTOR_L_, pwmLeft);
     analogWrite(_MOTOR_R_, pwmRight);
+    analogWrite(_MOTOR_L_, pwmLeft);
+    
 }
 
 void robotStop()
