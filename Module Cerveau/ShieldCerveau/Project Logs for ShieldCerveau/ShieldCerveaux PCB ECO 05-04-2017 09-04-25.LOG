@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=SCL5V Pin=*-3
+Removed Pin From Net: NetName=SDA5V Pin=*-4
+Added Pin To Net: NetName=SCL3.3V Pin=*-3
+Added Pin To Net: NetName=SDA3.3V Pin=*-4
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component U1 ARDUINO_DUE

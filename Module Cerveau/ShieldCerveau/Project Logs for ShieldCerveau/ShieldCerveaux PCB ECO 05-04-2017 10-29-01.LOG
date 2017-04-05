@@ -1,0 +1,24 @@
+Change Component Designator: OldDesignator=LD? NewDesignator=LD1
+Change Component Designator: OldDesignator=LD? NewDesignator=LD2
+Change Component Designator: OldDesignator=LD? NewDesignator=LD3
+Change Component Designator: OldDesignator=LD? NewDesignator=LD4
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=R? NewDesignator=R2
+Change Component Designator: OldDesignator=R? NewDesignator=R3
+Change Component Designator: OldDesignator=R? NewDesignator=R4
+Change Net Name : Old Net Name=NetLD?_A New Net Name=NetLD3_A
+Added Pin To Net: NetName=NetLD1_A Pin=LD1-A
+Added Pin To Net: NetName=NetLD1_A Pin=R1-1
+Added Net: Name=NetLD1_A
+Added Pin To Net: NetName=NetLD2_A Pin=LD2-A
+Added Pin To Net: NetName=NetLD2_A Pin=R2-1
+Added Net: Name=NetLD2_A
+Added Pin To Net: NetName=NetLD4_A Pin=LD4-A
+Added Pin To Net: NetName=NetLD4_A Pin=R3-1
+Added Net: Name=NetLD4_A
+Added Member To Class: ClassName=Led Member=Component LD1 comment
+Added Member To Class: ClassName=Led Member=Component LD3 comment
+Added Member To Class: ClassName=Led Member=Component LD4 comment
+Added Member To Class: ClassName=Led Member=Component R2 RES
+Added Member To Class: ClassName=Led Member=Component R3 RES
+Added Member To Class: ClassName=Led Member=Component R4 RES

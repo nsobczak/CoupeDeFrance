@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=NetLedJolie7V_A Pin=ResLedolie-1
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Added Pin To Net: NetName=VCC7V+ Pin=ResLedolie-1
+Added Pin To Net: NetName=VCC7V+ Pin=ResLedolie-1
+Added Pin To Net: NetName=VCC7V+ Pin=ResLedolie-1
+Added Pin To Net: NetName=VCC7V+ Pin=ResLedolie-1
+Added Pin To Net: NetName=NetLedJolie7V_A Pin=ResLedolie-2
+Added Member To Class: ClassName=Led Member=Component LedJolie7V comment
+Added Member To Class: ClassName=Led Member=Component ResLedolie RES

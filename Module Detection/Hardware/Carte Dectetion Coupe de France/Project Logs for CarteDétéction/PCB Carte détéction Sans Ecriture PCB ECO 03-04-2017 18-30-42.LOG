@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=SDA Pin=Arduino-7
+Removed Pin From Net: NetName=SDL Pin=Arduino-8
+Removed Pin From Net: NetName=A4 Pin=Arduino-23
+Change Component Designator: OldDesignator=5v+ NewDesignator=Vcc_5v_+
+Change Component Designator: OldDesignator=5v- NewDesignator=Vcc_5v_-
+Change Component Designator: OldDesignator=7v+ NewDesignator=Vcc_7v_+
+Change Component Designator: OldDesignator=7v- NewDesignator=Vcc_7v_-
+Added Pin To Net: NetName=SDA Pin=Arduino-23
+Added Pin To Net: NetName=SDL Pin=Arduino-24
+Added Pin To Net: NetName=A4 Pin=Arduino-25

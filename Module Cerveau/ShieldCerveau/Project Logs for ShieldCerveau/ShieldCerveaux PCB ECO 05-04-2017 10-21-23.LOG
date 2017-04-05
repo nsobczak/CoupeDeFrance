@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=GND Pin=LedJolie7V-K
+Removed Pin From Net: NetName=GND Pin=LedJolie7V-K
+Removed Pin From Net: NetName=GND Pin=LedJolie7V-K
+Removed Pin From Net: NetName=GND Pin=LedJolie7V-K
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Removed Pin From Net: NetName=VCC7V+ Pin=ResLedolie-2
+Removed Member From Class: ClassName=ShematicShieldCerveau Member=LedJolie7V
+Removed Member From Class: ClassName=ShematicShieldCerveau Member=ResLedolie

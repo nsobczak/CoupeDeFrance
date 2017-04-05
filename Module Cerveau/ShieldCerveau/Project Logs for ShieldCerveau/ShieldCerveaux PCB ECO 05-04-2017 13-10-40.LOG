@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=VCC7V+ Pin=R1-2
+Removed Pin From Net: NetName=VCC7V+ Pin=R2-2
+Removed Pin From Net: NetName=VCC7V+ Pin=R3-2
+Removed Pin From Net: NetName=VCC7V+ Pin=R4-2
+Added Component: Designator=JMP?(JMP2-100)
+Added Pin To Net: NetName=VCC7V+ Pin=JMP?-1
+Added Pin To Net: NetName=VCC7V+_1 Pin=JMP?-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R1-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R2-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R3-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R4-2
+Added Net: Name=VCC7V+_1
+Added Member To Class: ClassName=Led Member=Component JMP? JUMPER2
+Added Member To Class: ClassName=Led Member=Component LD2 comment
+Added Member To Class: ClassName=Led Member=Component R1 RES

@@ -1,0 +1,9 @@
+Added Component: Designator=LedJolie7V(LED0805)
+Added Component: Designator=ResLedolie(0805)
+Added Pin To Net: NetName=GND Pin=LedJolie7V-K
+Added Pin To Net: NetName=VCC7V+ Pin=ResLedolie-2
+Added Pin To Net: NetName=NetLedJolie7V_A Pin=LedJolie7V-A
+Added Pin To Net: NetName=NetLedJolie7V_A Pin=ResLedolie-1
+Added Net: Name=NetLedJolie7V_A
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component LedJolie7V comment
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component ResLedolie RES
