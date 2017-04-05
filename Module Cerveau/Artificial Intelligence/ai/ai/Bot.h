@@ -13,6 +13,8 @@
 #include "Arduino.h"
 #include "Clamp.h"
 #include "SensorsBoard.h"
+#include "I2Cdev.h"
+#include "MPU6050.h"
 
 
 /* ======================================================================================================
@@ -25,9 +27,11 @@ private:
 
 Clamp clamp;
 SensorsBoard sensorsBoard;
+MPU6050 accelgyro;
 
 int colorNumber;
 int strategyNumber;
+int16_t angleZ;
 
 //____________________
 public:
@@ -45,6 +49,12 @@ void setColorNumber(int newColorNumber);
 int getStrategyNumber();
 void setStrategyNumber(int newStrategyNumber);
 
+MPU6050 getAccelgyro();
+void setAccelgyro(MPU6050 newAccelgyro);
+int16_t getAngleZ();
+void setAngleZ(int16_t newAngleZ);
+
+void updateAngleZ();
 
 //TODO: add les fonctions de la pince
 

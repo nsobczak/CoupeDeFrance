@@ -61,6 +61,25 @@ void Bot::setStrategyNumber(int newStrategyNumber){
 }
 
 
+MPU6050 Bot::getAccelgyro()
+{
+        return this->accelgyro;
+}
+void Bot::setAccelgyro(MPU6050 newAccelgyro)
+{
+        this->accelgyro = newAccelgyro;
+}
+
+int16_t Bot::getAngleZ()
+{
+        return this->angleZ;
+}
+void Bot::setAngleZ(int16_t newAngleZ)
+{
+        this->angleZ = newAngleZ;
+}
+
+
 /* ======================================================================================================
  *      Methods
  * ======================================================================================================
@@ -71,3 +90,11 @@ void Bot::setStrategyNumber(int newStrategyNumber){
 //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
 
 //TODO: fonction qui lance la funny action, ce sera l'objet pince qui va la contenir
+
+
+void Bot::updateAngleZ()
+{
+        Wire.begin();
+        this->getAccelgyro().initialize();
+        this->setAngleZ(this->getAccelgyro().getRotationZ());
+}
