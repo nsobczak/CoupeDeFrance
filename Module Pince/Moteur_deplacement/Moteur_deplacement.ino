@@ -71,6 +71,7 @@ int isInt = 0;
 int initt=0;
 int descente_init=0;
 int rail_init=0;
+bool etat=true;
 
 Stepper motor_X(200, 54, 55);
 Stepper motor_Y(200, 60, 61);
@@ -102,7 +103,7 @@ void rail_interruption_gauche()
     Serial.println("STOP X GAUCHE");
     for(int i=0;i<100;i++){
       delayMicroseconds(500);
-      Serial.println("coucou du capteur gauche");
+      Serial.println("Capteur gauche");
     }
     rail_initialisation(-400);    
   }
@@ -142,10 +143,10 @@ void interruption_descente_Z(){
     Serial.println("STOP_Z");
     for(int i=0;i<50;i++){
       delayMicroseconds(500);
-      Serial.println("Coucou d'en bas");
+      Serial.println("Butee descente Z actionnee");
     }
     descente_init=1;
-    monter_descente_initialisation(-1600);   
+    monter_descente_initialisation(-800);   
 }
 
 
@@ -177,7 +178,54 @@ void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temp
     servo_rotation.write(angle_rotation_initial);                     // rotation à l'état initial de la pince (80)
     delay(temps);
 }
+//____________________________________________________________________________________________________
+//___________________________________________________________________________________________________
+//trois fonctions permettant de piloter la pince
+/**
+ * fonction nous permettant d'initialiser le mécanisme pince au démarrage du systeme
+ */
+void initialisation_pince(bool etat){
+  while(etat!=false){
+     monter_descente_initialisation(10600);
+     Serial.println("Initialisation de l'axe y : done");
+     //rail_initialisation(800);                            Comme on ne s'en sert pas je l'ai mis en commentaire
+     //Serial.println("Initialisation de l'axe x : done");
+     relacher_cylindre(170,120,1000);
+     Serial.println("Initialisation de la pince : done");
+     etat=false;
+  }
+  Serial.println("Fin de l'initialisation de la pince");
+}
 
+/**
+ * fonction permettant la capture du cylindre
+ */
+void capture_cylindre_pince (bool etat){
+  while(etat!=false){
+     attraper_cylindre(170,50,1000);
+     Serial.println("Cylindre attrapé");
+     monter_descente_initialisation(-10800);
+     Serial.println("Pince monte le cylindre");
+     attraper_cylindre(80,50,1000);
+     Serial.println("Cylindre à l'horizontal");
+     etat=false;
+  }
+  Serial.println("Fin de la capture du cylindre");
+}
+
+/**
+ * Fonction permettant de relacher le cylindre
+ */
+void relacher_cylindre_pince (bool etat){
+  while(etat!=false){
+    monter_descente_initialisation(10800);
+    Serial.println("Pince descend le cylindre");
+    relacher_cylindre(80,120,1000); 
+    Serial.println("Cylindre relacher");
+    etat=false;
+  }
+  Serial.println("Fin du relachement du cylindre");
+}
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
 // Reception I2C
@@ -255,60 +303,35 @@ void setup()
      motor_X.setSpeed(500); 
      pinMode(X_ENABLE_PIN, OUTPUT);   
      pinMode(X_MIN_PIN,OUTPUT);            
-     //attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),rail_interruption_gauche,LOW);
+     //attachInterrupt(digitalPinToInterrupt(X_MIN_PIN),rail_interruption_gauche,LOW); // utile pour le rail
      pinMode(X_MAX_PIN,OUTPUT);
-     //attachInterrupt(digitalPinToInterrupt(X_MAX_PIN),rail_interruption_droit,LOW);
+     //attachInterrupt(digitalPinToInterrupt(X_MAX_PIN),rail_interruption_droit,LOW); // utile pour le rail
      
-    pinMode(Z_DIR_PIN,OUTPUT);
-    pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
-    pinMode(Z_MIN_PIN,INPUT);
-    attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),interruption_descente_Z,LOW);
-    motor_Z.setSpeed(1000);
-    servo_rotation.attach(4);                    // attaches the servo on pin 3 to the servo object
-    servo_capture.attach(5);
-    demarrerMoteur = 0;
-    finInitialisation = 0;
-    
-    Serial.begin(9600);
+      pinMode(Z_DIR_PIN,OUTPUT);
+      pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
+      pinMode(Z_MIN_PIN,INPUT);
+      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),interruption_descente_Z,LOW);
+      motor_Z.setSpeed(1000);
+      servo_rotation.attach(4);                    
+      servo_capture.attach(5);
+      demarrerMoteur = 0;
+      finInitialisation = 0;
+      
+      Serial.begin(9600);
 }
 
+//____________________________________________________________________________________________________
+//____________________________________________________________________________________________________
 /**
  * \fn void loop()
  * \brief fonction loop d'arduino
  */
 void loop() 
 {
-   
-// if(initt==0){
-//  Serial.println("1");
-//  if(descente_init==0){   
-//    Serial.println("2");
-//    monter_descente_initialisation(10600);
-//    Serial.println("init down done");
-//  if(rail_init==0){
-//    Serial.println("3");
-//    rail_initialisation(800); 
-//    Serial.println("init right done");
-//  }  
-//   attraper_cylindre(10,75,1000);
-//   relacher_cylindre(80,120,1000);  
-//  }             
-// Serial.println("end init");
-// initt=1;
-// if (initt==1){
-//    attraper_cylindre(10,75,1000);
-//    monter_descente_initialisation(-3600);
-//    attraper_cylindre(80,75,1000);
-//    rail_initialisation(300);
-//    initt=3;
-// }
-// }           
-
-
-//  delay(1000);
-  monter_descente_initialisation(-1600);
-  // delay(1000);
-
+  initialisation_pince(etat);
+  capture_cylindre_pince(etat);
+  relacher_cylindre_pince(etat);
+  etat=false;
 //    delay(500); 
 //    i2creceive2(_RECEIVEADRESS_);
     
