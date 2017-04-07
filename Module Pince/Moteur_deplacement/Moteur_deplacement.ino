@@ -146,7 +146,7 @@ void interruption_descente_Z(){
       Serial.println("Butee descente Z actionnee");
     }
     descente_init=1;
-    monter_descente_initialisation(-800);   
+    monter_descente_initialisation(-1600);   
 }
 
 
@@ -187,7 +187,7 @@ void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temp
 void initialisation_pince(bool etat){
   while(etat!=false){
      monter_descente_initialisation(10600);
-     Serial.println("Initialisation de l'axe y : done");
+     Serial.println("Initialisation de l'axe z : done");
      //rail_initialisation(800);                            Comme on ne s'en sert pas je l'ai mis en commentaire
      //Serial.println("Initialisation de l'axe x : done");
      relacher_cylindre(170,120,1000);
@@ -202,12 +202,12 @@ void initialisation_pince(bool etat){
  */
 void capture_cylindre_pince (bool etat){
   while(etat!=false){
-     attraper_cylindre(170,50,1000);
-     Serial.println("Cylindre attrapé");
+     attraper_cylindre(170,60,1000);
+     Serial.println("Cylindre attrape");
      monter_descente_initialisation(-10800);
      Serial.println("Pince monte le cylindre");
-     attraper_cylindre(80,50,1000);
-     Serial.println("Cylindre à l'horizontal");
+     attraper_cylindre(80,60,1000);
+     Serial.println("Cylindre a l'horizontal");
      etat=false;
   }
   Serial.println("Fin de la capture du cylindre");
@@ -218,11 +218,13 @@ void capture_cylindre_pince (bool etat){
  */
 void relacher_cylindre_pince (bool etat){
   while(etat!=false){
-    monter_descente_initialisation(10800);
+    monter_descente_initialisation(-10800);
     Serial.println("Pince descend le cylindre");
     relacher_cylindre(80,120,1000); 
     Serial.println("Cylindre relacher");
     etat=false;
+    relacher_cylindre(170,120,1000);
+    Serial.println("Pince a son état initial");
   }
   Serial.println("Fin du relachement du cylindre");
 }
