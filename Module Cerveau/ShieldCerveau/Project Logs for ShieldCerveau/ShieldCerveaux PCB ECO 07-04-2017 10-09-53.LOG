@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=VCC5V Pin=*-1
+Removed Pin From Net: NetName=SDA5V Pin=*-2
+Removed Pin From Net: NetName=SCL5V Pin=*-3
+Removed Pin From Net: NetName=SCL3.3V Pin=*-6
+Removed Pin From Net: NetName=SDA3.3V Pin=*-7
+Removed Pin From Net: NetName=VCC3.3V Pin=*-8
+Added Component: Designator=C?(0402)
+Added Pin To Net: NetName=VCC3.3V Pin=*-1
+Added Pin To Net: NetName=SDA3.3V Pin=*-2
+Added Pin To Net: NetName=SCL3.3V Pin=*-3
+Added Pin To Net: NetName=SCL5V Pin=*-6
+Added Pin To Net: NetName=SDA5V Pin=*-7
+Added Pin To Net: NetName=VCC5V Pin=*-8
+Added Member To Class: ClassName=Led Member=Component C? CAP

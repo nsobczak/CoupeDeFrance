@@ -1,0 +1,76 @@
+Removed Member From Class: ClassName=ShematicShieldCerveau Member=JMP?
+Change Component Designator: OldDesignator=JMP? NewDesignator=JMP2
+Change Component Designator: OldDesignator=JMP? NewDesignator=JMP3
+Added Component: Designator=LD5(LED0805)
+Added Component: Designator=LD6(LED0805)
+Added Component: Designator=LD7(LED0805)
+Added Component: Designator=LD8(LED0805)
+Added Component: Designator=LD9(LED0805)
+Added Component: Designator=LD10(LED0805)
+Added Component: Designator=LD11(LED0805)
+Added Component: Designator=LD12(LED0805)
+Added Component: Designator=R5(0805)
+Added Component: Designator=R6(0805)
+Added Component: Designator=R7(0805)
+Added Component: Designator=R8(0805)
+Added Component: Designator=R9(0805)
+Added Component: Designator=R10(0805)
+Added Component: Designator=R11(0805)
+Added Component: Designator=R12(0805)
+Added Pin To Net: NetName=GND Pin=LD5-K
+Added Pin To Net: NetName=GND Pin=LD6-K
+Added Pin To Net: NetName=GND Pin=LD7-K
+Added Pin To Net: NetName=GND Pin=LD8-K
+Added Pin To Net: NetName=GND Pin=LD9-K
+Added Pin To Net: NetName=GND Pin=LD10-K
+Added Pin To Net: NetName=GND Pin=LD11-K
+Added Pin To Net: NetName=GND Pin=LD12-K
+Added Pin To Net: NetName=VCC7V+_1 Pin=R5-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R6-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R7-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R8-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R9-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R10-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R11-2
+Added Pin To Net: NetName=VCC7V+_1 Pin=R12-2
+Added Pin To Net: NetName=NetLD5_A Pin=LD5-A
+Added Pin To Net: NetName=NetLD5_A Pin=R5-1
+Added Net: Name=NetLD5_A
+Added Pin To Net: NetName=NetLD6_A Pin=LD6-A
+Added Pin To Net: NetName=NetLD6_A Pin=R6-1
+Added Net: Name=NetLD6_A
+Added Pin To Net: NetName=NetLD7_A Pin=LD7-A
+Added Pin To Net: NetName=NetLD7_A Pin=R7-1
+Added Net: Name=NetLD7_A
+Added Pin To Net: NetName=NetLD8_A Pin=LD8-A
+Added Pin To Net: NetName=NetLD8_A Pin=R8-1
+Added Net: Name=NetLD8_A
+Added Pin To Net: NetName=NetLD9_A Pin=LD9-A
+Added Pin To Net: NetName=NetLD9_A Pin=R9-1
+Added Net: Name=NetLD9_A
+Added Pin To Net: NetName=NetLD10_A Pin=LD10-A
+Added Pin To Net: NetName=NetLD10_A Pin=R10-1
+Added Net: Name=NetLD10_A
+Added Pin To Net: NetName=NetLD11_A Pin=LD11-A
+Added Pin To Net: NetName=NetLD11_A Pin=R11-1
+Added Net: Name=NetLD11_A
+Added Pin To Net: NetName=NetLD12_A Pin=LD12-A
+Added Pin To Net: NetName=NetLD12_A Pin=R12-1
+Added Net: Name=NetLD12_A
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component JMP2 JUMPER3
+Added Member To Class: ClassName=Led Member=Component LD5 comment
+Added Member To Class: ClassName=Led Member=Component LD6 comment
+Added Member To Class: ClassName=Led Member=Component LD7 comment
+Added Member To Class: ClassName=Led Member=Component LD8 comment
+Added Member To Class: ClassName=Led Member=Component LD9 comment
+Added Member To Class: ClassName=Led Member=Component LD10 comment
+Added Member To Class: ClassName=Led Member=Component LD11 comment
+Added Member To Class: ClassName=Led Member=Component LD12 comment
+Added Member To Class: ClassName=Led Member=Component R5 RES
+Added Member To Class: ClassName=Led Member=Component R6 RES
+Added Member To Class: ClassName=Led Member=Component R7 RES
+Added Member To Class: ClassName=Led Member=Component R8 RES
+Added Member To Class: ClassName=Led Member=Component R9 RES
+Added Member To Class: ClassName=Led Member=Component R10 RES
+Added Member To Class: ClassName=Led Member=Component R11 RES
+Added Member To Class: ClassName=Led Member=Component R12 RES

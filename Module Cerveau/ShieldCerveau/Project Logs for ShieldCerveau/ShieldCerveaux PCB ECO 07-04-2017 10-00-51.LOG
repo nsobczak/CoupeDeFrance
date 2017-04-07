@@ -1,0 +1,9 @@
+Added Component: Designator=C?(0402)
+Added Component: Designator=JMP?(JMP2-100)
+Added Component: Designator=JMP?(JMP2-100)
+Added Pin To Net: NetName=VCC7V+_1 Pin=JMP?-1
+Added Pin To Net: NetName=VCC7V+_1 Pin=JMP?-1
+Added Pin To Net: NetName=GND Pin=JMP?-2
+Added Pin To Net: NetName=GND Pin=JMP?-2
+Added Member To Class: ClassName=Led Member=Component C? CAP
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component JMP? JUMPER2

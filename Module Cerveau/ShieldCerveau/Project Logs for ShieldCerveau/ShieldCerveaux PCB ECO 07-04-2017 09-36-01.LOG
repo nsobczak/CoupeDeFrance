@@ -1,0 +1,4 @@
+Added Component: Designator=CapaDeocupLed(0402)
+Added Pin To Net: NetName=VCC7V+_1 Pin=CapaDeocupLed-1
+Added Pin To Net: NetName=GND Pin=CapaDeocupLed-2
+Added Member To Class: ClassName=Led Member=Component CapaDeocupLed CAP

@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=GND Pin=LD9-K
+Removed Pin From Net: NetName=GND Pin=LD10-K
+Removed Pin From Net: NetName=GND Pin=LD11-K
+Removed Pin From Net: NetName=GND Pin=LD12-K
+Removed Pin From Net: NetName=VCC7V+_1 Pin=R9-2
+Removed Pin From Net: NetName=VCC7V+_1 Pin=R10-2
+Removed Pin From Net: NetName=VCC7V+_1 Pin=R11-2
+Removed Pin From Net: NetName=VCC7V+_1 Pin=R12-2
+Removed Member From Class: ClassName=Led Member=JMP2
+Removed Member From Class: ClassName=Led Member=LD9
+Removed Member From Class: ClassName=Led Member=LD10
+Removed Member From Class: ClassName=Led Member=LD11
+Removed Member From Class: ClassName=Led Member=LD12
+Removed Member From Class: ClassName=Led Member=R9
+Removed Member From Class: ClassName=Led Member=R10
+Removed Member From Class: ClassName=Led Member=R11
+Removed Member From Class: ClassName=Led Member=R12
+Added Member To Class: ClassName=Led Member=Component JMP3 JUMPER2

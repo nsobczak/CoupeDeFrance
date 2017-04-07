@@ -38,7 +38,7 @@ PrefsRevisionGUID=
 
 [Document1]
 DocumentPath=ShematicShieldCerveau.SchDoc
-AnnotationEnabled=1
+AnnotationEnabled=0
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=

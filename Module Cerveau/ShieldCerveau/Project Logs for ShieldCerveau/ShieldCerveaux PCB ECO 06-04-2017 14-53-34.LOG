@@ -1,0 +1,21 @@
+Added Component: Designator=ConnecteurBoutonArretUrgence(AMP_2)
+Added Component: Designator=JMP?(JMP3-100)
+Added Component: Designator=Res1PontDiviseurBoutonUrgence(0805)
+Added Component: Designator=Res2PontDiviseurBoutonUrgence(0805)
+Added Pin To Net: NetName=GND Pin=ConnecteurBoutonArretUrgence-1
+Added Pin To Net: NetName=VCC3.3V Pin=JMP?-1
+Added Pin To Net: NetName=GND Pin=JMP?-3
+Added Pin To Net: NetName=GND Pin=Res2PontDiviseurBoutonUrgence-1
+Added Pin To Net: NetName=BOUTONARRET+ Pin=ConnecteurBoutonArretUrgence-2
+Added Pin To Net: NetName=BOUTONARRET+ Pin=Res1PontDiviseurBoutonUrgence-1
+Added Net: Name=BOUTONARRET+
+Added Pin To Net: NetName=DATABOUTONURGENCE Pin=Res1PontDiviseurBoutonUrgence-2
+Added Pin To Net: NetName=DATABOUTONURGENCE Pin=Res2PontDiviseurBoutonUrgence-2
+Added Pin To Net: NetName=DATABOUTONURGENCE Pin=U1-21
+Added Net: Name=DATABOUTONURGENCE
+Added Pin To Net: NetName=TIRETTE Pin=JMP?-2
+Added Net: Name=TIRETTE
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component ConnecteurBoutonArretUrgence comment
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component JMP? JUMPER3
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component Res1PontDiviseurBoutonUrgence RES
+Added Member To Class: ClassName=ShematicShieldCerveau Member=Component Res2PontDiviseurBoutonUrgence RES
