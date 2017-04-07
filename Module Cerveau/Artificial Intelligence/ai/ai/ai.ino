@@ -34,7 +34,7 @@ Bot elPadre;
  */
 void setup()
 {
-        Serial.begin(115200);
+        Serial.begin(9600);
 }
 
 
@@ -56,6 +56,8 @@ void loop()
          * si on détecte l'adversaire => manoeuvre dévitement
          * si on détecte un cylindre => on le ramasse
          */
+         elPadre.getClamp().initialisation();
+
         if (_DEBUG_) {
                 Serial.println("=== _DEBUG_ ===");
                 // Serial.println();

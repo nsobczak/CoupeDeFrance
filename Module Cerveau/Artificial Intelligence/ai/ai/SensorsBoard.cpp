@@ -126,19 +126,19 @@ void SensorsBoard::update()
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomLeft()
 {
-        if (this->infraredSensorFrontBottomLeft < cylinderDistance) return true;
+        if (this->infraredSensorFrontBottomLeft < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomCenter()
 {
-        if (this->infraredSensorFrontBottomCenter < cylinderDistance) return true;
+        if (this->infraredSensorFrontBottomCenter < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomRight()
 {
-        if (this->infraredSensorFrontBottomRight < cylinderDistance) return true;
+        if (this->infraredSensorFrontBottomRight < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
@@ -155,25 +155,25 @@ bool SensorsBoard::checkForCylinder()
 
 bool SensorsBoard::checkForHindranceOnFront()
 {
-        if (this->infraredSensorFrontTop < foeDistance || this->ultrasonicFront < foeDistance) return true;
+        if (this->infraredSensorFrontTop < _FOE_DISTANCE_ || this->ultrasonicFront < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnRight()
 {
-        if (this->ultrasonicRight < foeDistance) return true;
+        if (this->ultrasonicRight < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnLeft()
 {
-        if (this->ultrasonicLeft < foeDistance) return true;
+        if (this->ultrasonicLeft < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnBack()
 {
-        if (this->infraredSensorBack < foeDistance || this->ultrasonicBack < foeDistance) return true;
+        if (this->infraredSensorBack < _FOE_DISTANCE_ || this->ultrasonicBack < _FOE_DISTANCE_) return true;
         else return false;
 }
 

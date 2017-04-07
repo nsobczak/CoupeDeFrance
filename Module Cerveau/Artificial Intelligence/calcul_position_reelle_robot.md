@@ -19,11 +19,11 @@ L'axe y est dirigé vers la zone de départ bleue. L'axe x est dirigé vers le c
 
 |Donnée|Nom de la variable|
 |---|---|
-|Angle fourni par le giroscope|a|
+|Angle fourni par le gyroscope|a|
 |Distance parcourue |d|
 |Distance parcourue selon l'axe x |x|
 |Distance parcourue selon l'axe y |y|
-|Durée écoulée pour parcourir d|temps|
+|Durée écoulée pour parcourir d (durée échantillon)|temps|
 
 - d = vitesse/temps
 - x = d*cos(a)

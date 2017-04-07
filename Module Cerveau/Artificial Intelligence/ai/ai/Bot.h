@@ -16,6 +16,9 @@
 #include "I2Cdev.h"
 #include "MPU6050.h"
 
+//TODO: replace by the right pin
+#define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 13
+
 
 /* ======================================================================================================
  *      Class
@@ -53,6 +56,8 @@ MPU6050 getAccelgyro();
 void setAccelgyro(MPU6050 newAccelgyro);
 int16_t getAngleZ();
 void setAngleZ(int16_t newAngleZ);
+
+void startFunnyActionTimer();
 
 void updateAngleZ();
 

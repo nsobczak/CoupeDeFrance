@@ -85,16 +85,33 @@ void Bot::setAngleZ(int16_t newAngleZ)
  * ======================================================================================================
  */
 
-//TODO: fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors pui qui va attraper le cylindre
-//TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
-//TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
+// === FUNNY ACTION ===
 
-//TODO: fonction qui lance la funny action, ce sera l'objet pince qui va la contenir
+/* \fn void Bot::startFunnyActionTimer
+ * \brief fonction qui lance la funny action
+ */
+void Bot::startFunnyActionTimer()
+{
+        //TODO: write etat haut dans le pin de la nano, puis le remettre à bas
+        analogWrite(_PIN_ARDUINO_NANO_FUNNY_ACTION_, HIGH);
+}
 
 
+// === ANGLE ===
+
+/* \fn void Bot::updateAngleZ()
+ * \brief fonction qui récupère l'angle à partir du gyroscope et qui actualise la variable du robot correspondante
+ */
 void Bot::updateAngleZ()
 {
         Wire.begin();
         this->getAccelgyro().initialize();
         this->setAngleZ(this->getAccelgyro().getRotationZ());
 }
+
+
+// === CYLINDER ===
+
+//TODO: fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors pui qui va attraper le cylindre
+//TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
+//TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
