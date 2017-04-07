@@ -27,8 +27,9 @@
  #define ULTRASONIC_EXT_ID 1002
  #define IR_EXT_ID 1001
 
+
 /* === IR pins === */
-const int IRPinB = A4, IRPinL = A3, IRPinR = A2, IRPinFL = A1, IRPinFR = A0;
+const int IRPinB = A6, IRPinL = A3, IRPinR = A2, IRPinFL = A1, IRPinFR = A0;
 const int NUM_IR_SAMPLES = 25;
 SharpIR sharpFR(IRPinFR, NUM_IR_SAMPLES, 93, 1080);
 SharpIR sharpFL(IRPinFL, NUM_IR_SAMPLES, 93, 1080);
@@ -42,9 +43,9 @@ const int NUM_IR = 5; // Number of IR sensor
 //Trig
 int trigPin = 11;
 //echo
-const int echoPinB = 9, echoPinL = 8, echoPinR = 7, echoPinFL = 6, echoPinFR = 5;
-const int ultrasonic[] = {echoPinFL, echoPinR, echoPinL, echoPinB}; //echoPinFR,
-const int NUM_ULTRASONIC = 4; // Number of ultrasonic sensor
+const int echoPinFR = 10, echoPinB = 9, echoPinL = 8, echoPinR = 7, echoPinFL = 6;
+const int ultrasonic[] = {echoPinFR, echoPinFL, echoPinR, echoPinL, echoPinB}; //echoPinFR,
+const int NUM_ULTRASONIC = 5; // Number of ultrasonic sensor
 //Use Variable
 //int durationFR, durationFL, durationR, durationL, durationB,
 //      distanceCMFR, distanceCMFL, distanceCMR, distanceCML, distanceCMB;
@@ -133,9 +134,9 @@ int getUltrasonicValue(int echoPin){
         case echoPinFL:
                 channel = 3;
                 break;
-        // case echoPinFR:
-        //         channel = 4;
-        //         break;
+        case echoPinFR:
+                 channel = 4;
+                 break;
         default:
                 break;
         }
@@ -181,12 +182,12 @@ boolean setChannel(int channelNumber){
                 digitalWrite(A,HIGH);
                 digitalWrite(B,HIGH);
                 digitalWrite(C,LOW);
-                break;
-        // case 4: //Front Right
-        //         digitalWrite(A,LOW);
-        //         digitalWrite(B,LOW);
-        //         digitalWrite(C,HIGH);
-        //         break;
+               break;
+         case 4: //Front Right
+                 digitalWrite(A,LOW);
+                 digitalWrite(B,LOW);
+                 digitalWrite(C,HIGH);
+                 break;
         default:
                 break;
         }
