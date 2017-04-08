@@ -85,6 +85,62 @@ void Bot::setAngleZ(int16_t newAngleZ)
  * ======================================================================================================
  */
 
+// === BOT TRAVEL ===
+
+/* \fn void Bot::botGoForward
+ * \param int sendAddress, int speed
+ * \brief fonction qui déplace le robot vers l'avant
+ */
+void Bot::botGoForward(int sendAddress, int speed)
+{
+  //TODO: I2C - envoyer info de déplacer le robot au module asservissement
+  // conversion sur 2 octets de la valeur à envoyer
+  byte bytesTab[2];
+  intTo2Bytes(bytesTab, speed);
+  i2csend3bytes(_ASSERVISSMENT_BOTGOFORWARD_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
+}
+
+/* \fn void Bot::botGoBackward
+ * \param int sendAddress, int speed
+ * \brief fonction qui déplace le robot vers l'arrière
+ */
+void Bot::botGoBackward(int sendAddress, int speed)
+{
+  //TODO: I2C - envoyer info de déplacer le robot au module asservissement
+  // conversion sur 2 octets de la valeur à envoyer
+  byte bytesTab[2];
+  intTo2Bytes(bytesTab, speed);
+  i2csend3bytes(_ASSERVISSMENT_BOTGOBACKWARD_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
+}
+
+void Bot::botTurnAroundRight(int sendAddress, int speed)
+{
+  //TODO: I2C - envoyer info de tourner le robot vers la droite au module asservissement
+  // conversion sur 2 octets de la valeur à envoyer
+  byte bytesTab[2];
+  intTo2Bytes(bytesTab, speed);
+  i2csend3bytes(_ASSERVISSMENT_BOTTURNRIGHT_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
+}
+
+void Bot::botTurnAroundLeft(int sendAddress, int speed)
+{
+  //TODO: I2C - envoyer info de tourner le robot vers la gauche au module asservissement
+  // conversion sur 2 octets de la valeur à envoyer
+  byte bytesTab[2];
+  intTo2Bytes(bytesTab, speed);
+  i2csend3bytes(_ASSERVISSMENT_BOTTURNLEFT_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
+}
+
+void Bot::botStop(int sendAddress)
+{
+  //TODO: I2C - envoyer info d'arrêter le robot au module asservissement
+  // conversion sur 2 octets de la valeur à envoyer
+  byte bytesTab[2];
+  intTo2Bytes(bytesTab, 1);
+  i2csend3bytes(_ASSERVISSMENT_BOTSTOP_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
+}
+
+
 // === FUNNY ACTION ===
 
 /* \fn void Bot::startFunnyActionTimer

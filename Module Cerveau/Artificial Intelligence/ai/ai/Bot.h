@@ -11,13 +11,23 @@
  * ======================================================================================================
  */
 #include "Arduino.h"
+#include "i2cCommunication.h"
 #include "Clamp.h"
 #include "SensorsBoard.h"
 #include "I2Cdev.h"
 #include "MPU6050.h"
 
-//TODO: replace by the right pin
+//TODO: replace by the right pin#define _ASSERVISSMENT_BOTTURN_ 2
 #define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 13
+
+#define _ASSERVISSMENT_SENDADRESS_ 6
+
+#define _ASSERVISSMENT_BOTGOFORWARD_ 1
+#define _ASSERVISSMENT_BOTGOBACKWARD_ 2
+#define _ASSERVISSMENT_BOTTURNRIGHT_ 3
+#define _ASSERVISSMENT_BOTTURNLEFT_ 4
+#define _ASSERVISSMENT_BOTSTOP_ 5
+
 
 
 /* ======================================================================================================
@@ -56,6 +66,13 @@ MPU6050 getAccelgyro();
 void setAccelgyro(MPU6050 newAccelgyro);
 int16_t getAngleZ();
 void setAngleZ(int16_t newAngleZ);
+
+
+void botGoForward(int sendAddress, int speed);
+void botGoBackward(int sendAddress, int speed);
+void botTurnAroundRight(int sendAddress, int speed);
+void botTurnAroundLeft(int sendAddress, int speed);
+void botStop(int sendAddress);
 
 void startFunnyActionTimer();
 
