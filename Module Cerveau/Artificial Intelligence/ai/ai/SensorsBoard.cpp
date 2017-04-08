@@ -21,94 +21,95 @@ SensorsBoard::SensorsBoard()
 {
 }
 
-int SensorsBoard::getInfraredSensorFrontBottomRight()
+int SensorsBoard::getInfraredSensorFrontBottomRightValue()
 {
-        return infraredSensorFrontBottomRightValue;
+    return infraredSensorFrontBottomRightValue;
 }
 
-int SensorsBoard::getInfraredSensorFrontBottomLeft()
+int SensorsBoard::getInfraredSensorFrontBottomLeftValue()
 {
-        return infraredSensorFrontBottomLeftValue;
+    return infraredSensorFrontBottomLeftValue;
 }
 
-int SensorsBoard::getInfraredSensorFrontBottomCenter()
+int SensorsBoard::getInfraredSensorFrontBottomCenterValue()
 {
-        return infraredSensorFrontBottomCenterValue;
+    return infraredSensorFrontBottomCenterValue;
 }
 
-int SensorsBoard::getInfraredSensorFrontTop()
+int SensorsBoard::getInfraredSensorFrontTopValue()
 {
-        return infraredSensorFrontTopValue;
+    return infraredSensorFrontTopValue;
 }
 
-int SensorsBoard::getInfraredSensorBack()
+int SensorsBoard::getInfraredSensorBackValue()
 {
-        return infraredSensorBackValue;
+    return infraredSensorBackValue;
 }
 
-int SensorsBoard::getUltrasonicFront()
+int SensorsBoard::getUltrasonicFrontValue()
 {
-        return ultrasonicFrontValue;
+    return ultrasonicFrontValue;
 }
 
-int SensorsBoard::getUltrasonicRight()
+int SensorsBoard::getUltrasonicRightValue()
 {
-        return ultrasonicRightValue;
+    return ultrasonicRightValue;
 }
 
-int SensorsBoard::getUltrasonicLeft()
+int SensorsBoard::getUltrasonicLeftValue()
 {
-        return ultrasonicLeftValue;
+    return ultrasonicLeftValue;
 }
 
-int SensorsBoard::getUltrasonicBack()
+int SensorsBoard::getUltrasonicBackValue()
 {
-        return ultrasonicBackValue;
+    return ultrasonicBackValue;
 }
 
-void SensorsBoard::setInfraredSensorFrontBottomRight(int infraredSensorFrontBottomRight)
+
+void SensorsBoard::setInfraredSensorFrontBottomRightValue(int infraredSensorFrontBottomRightValue)
 {
-        SensorsBoard::infraredSensorFrontBottomRightValue = infraredSensorFrontBottomRight;
+    SensorsBoard::infraredSensorFrontBottomRightValue = infraredSensorFrontBottomRightValue;
 }
 
-void SensorsBoard::setInfraredSensorFrontBottomLeft(int infraredSensorFrontBottomLeft)
+void SensorsBoard::setInfraredSensorFrontBottomLeftValue(int infraredSensorFrontBottomLeftValue)
 {
-        SensorsBoard::infraredSensorFrontBottomLeftValue = infraredSensorFrontBottomLeft;
+    SensorsBoard::infraredSensorFrontBottomLeftValue = infraredSensorFrontBottomLeftValue;
 }
 
-void SensorsBoard::setInfraredSensorFrontBottomCenter(int infraredSensorFrontBottomCenter)
+void SensorsBoard::setInfraredSensorFrontBottomCenterValue(int infraredSensorFrontBottomCenterValue)
 {
-        SensorsBoard::infraredSensorFrontBottomCenterValue = infraredSensorFrontBottomCenter;
+    SensorsBoard::infraredSensorFrontBottomCenterValue = infraredSensorFrontBottomCenterValue;
 }
 
-void SensorsBoard::setInfraredSensorFrontTop(int infraredSensorFrontTop)
+void SensorsBoard::setInfraredSensorFrontTopValue(int infraredSensorFrontTopValue)
 {
-        SensorsBoard::infraredSensorFrontTopValue = infraredSensorFrontTop;
+    SensorsBoard::infraredSensorFrontTopValue = infraredSensorFrontTopValue;
 }
 
-void SensorsBoard::setInfraredSensorBack(int infraredSensorBack)
+void SensorsBoard::setInfraredSensorBackValue(int infraredSensorBackValue)
 {
-        SensorsBoard::infraredSensorBackValue = infraredSensorBack;
+    SensorsBoard::infraredSensorBackValue = infraredSensorBackValue;
 }
 
-void SensorsBoard::setUltrasonicFront(int ultrasonicFront)
+void SensorsBoard::setUltrasonicFrontValue(int ultrasonicFrontValue)
 {
-        SensorsBoard::ultrasonicFrontValue = ultrasonicFront;
+    SensorsBoard::ultrasonicFrontValue = ultrasonicFrontValue;
 }
 
-void SensorsBoard::setUltrasonicRight(int ultrasonicRight)
+void SensorsBoard::setUltrasonicRightValue(int ultrasonicRightValue)
 {
-        SensorsBoard::ultrasonicRightValue = ultrasonicRight;
+    SensorsBoard::ultrasonicRightValue = ultrasonicRightValue;
 }
 
-void SensorsBoard::setUltrasonicLeft(int ultrasonicLeft)
+void SensorsBoard::setUltrasonicLeftValue(int ultrasonicLeftValue)
 {
-        SensorsBoard::ultrasonicLeftValue = ultrasonicLeft;
+    SensorsBoard::ultrasonicLeftValue = ultrasonicLeftValue;
 }
 
-void SensorsBoard::setUltrasonicBack(int ultrasonicBack)
+void SensorsBoard::setUltrasonicBackValue(int ultrasonicBackValue)
 {
-        SensorsBoard::ultrasonicBackValue = ultrasonicBack;
+    SensorsBoard::ultrasonicBackValue = ultrasonicBackValue;
 }
 
 

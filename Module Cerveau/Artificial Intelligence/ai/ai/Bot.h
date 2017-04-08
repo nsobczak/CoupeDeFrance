@@ -10,12 +10,17 @@
  *      Include
  * ======================================================================================================
  */
+#include <cstdint>
 #include "Arduino.h"
 #include "i2cCommunication.h"
+#include "moonBoard.h"
+
 #include "Clamp.h"
+
 #include "SensorsBoard.h"
 #include "I2Cdev.h"
 #include "MPU6050.h"
+
 
 //TODO: replace by the right pin#define _ASSERVISSMENT_BOTTURN_ 2
 #define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 13
@@ -28,6 +33,10 @@
 #define _ASSERVISSMENT_BOTTURNLEFT_ 4
 #define _ASSERVISSMENT_BOTSTOP_ 5
 
+#define _NUMBER_OF_CYLINDERS_TO_CATCH_ 10 //TODO: replace by the right number of cylinders
+
+const CylinderPosition cylinderToCatchList_1B[_NUMBER_OF_CYLINDERS_TO_CATCH_]={{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}};
+const CylinderPosition cylinderToCatchList_2Y[_NUMBER_OF_CYLINDERS_TO_CATCH_]={{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}};
 
 
 /* ======================================================================================================
@@ -41,6 +50,7 @@ private:
 Clamp clamp;
 SensorsBoard sensorsBoard;
 MPU6050 accelgyro;
+CylinderPosition cylinderToCatchList[_NUMBER_OF_CYLINDERS_TO_CATCH_];
 
 int colorNumber;
 int strategyNumber;
@@ -66,6 +76,7 @@ MPU6050 getAccelgyro();
 void setAccelgyro(MPU6050 newAccelgyro);
 int16_t getAngleZ();
 void setAngleZ(int16_t newAngleZ);
+const CylinderPosition *getCylinderToCatchList() const;
 
 
 void botGoForward(int sendAddress, int speed);
@@ -77,7 +88,5 @@ void botStop(int sendAddress);
 void startFunnyActionTimer();
 
 void updateAngleZ();
-
-//TODO: add les fonctions de la pince
 
 };

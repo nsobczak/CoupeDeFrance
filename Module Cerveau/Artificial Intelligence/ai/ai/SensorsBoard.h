@@ -97,5 +97,41 @@ static bool checkForHindranceOnLeft();
 static bool checkForHindranceOnBack();
 static bool checkForHindrance();
 
+    static int getInfraredSensorFrontBottomRightValue();
+
+    static int getInfraredSensorFrontBottomLeftValue();
+
+    static int getInfraredSensorFrontBottomCenterValue();
+
+    static int getInfraredSensorFrontTopValue();
+
+    static int getInfraredSensorBackValue();
+
+    static int getUltrasonicFrontValue();
+
+    static int getUltrasonicRightValue();
+
+    static int getUltrasonicLeftValue();
+
+    static int getUltrasonicBackValue();
+
+    static void setInfraredSensorFrontBottomRightValue(int infraredSensorFrontBottomRightValue);
+
+    static void setInfraredSensorFrontBottomLeftValue(int infraredSensorFrontBottomLeftValue);
+
+    static void setInfraredSensorFrontBottomCenterValue(int infraredSensorFrontBottomCenterValue);
+
+    static void setInfraredSensorFrontTopValue(int infraredSensorFrontTopValue);
+
+    static void setInfraredSensorBackValue(int infraredSensorBackValue);
+
+    static void setUltrasonicFrontValue(int ultrasonicFrontValue);
+
+    static void setUltrasonicRightValue(int ultrasonicRightValue);
+
+    static void setUltrasonicLeftValue(int ultrasonicLeftValue);
+
+    static void setUltrasonicBackValue(int ultrasonicBackValue);
+
 
 };
