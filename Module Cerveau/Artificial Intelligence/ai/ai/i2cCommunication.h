@@ -26,12 +26,12 @@
 extern "C" {
 #endif
 
-    
+
 /* =============================================================================
  *      *** Definition des ordres ***
  * =============================================================================
  */
-     
+
 // _____________________________________________________________________________
 // # LEDs:
 // Eteint une led
@@ -42,7 +42,7 @@ void ledOn(int);
 
 // Allume une led si order = 1, eteint la led si order = 0
 void ledControl(int, int);
-   
+
 
 // _____________________________________________________________________________
 // # Ordres:
@@ -78,7 +78,6 @@ void i2csend3bytes(uint8_t, uint8_t, uint8_t, int);
 // Fonction qui est exécutée lorsque des données sont envoyées par le Maître.
 // Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
 void receiveEvent(int);
-
 // Fonction qui demande l'envoi d'une certaine variable à un esclave
 void i2creceive(int);
 

@@ -13,7 +13,6 @@
 #include "SensorsBoard.h"
 
 
-
 /* ======================================================================================================
  *      Constructor, getter, setter
  * ======================================================================================================
@@ -22,95 +21,96 @@ SensorsBoard::SensorsBoard()
 {
 }
 
-int SensorsBoard::getInfraredSensorFrontBottomRight() const
+int SensorsBoard::getInfraredSensorFrontBottomRight()
 {
-        return infraredSensorFrontBottomRight;
+        return infraredSensorFrontBottomRightValue;
 }
 
-int SensorsBoard::getInfraredSensorFrontBottomLeft() const
+int SensorsBoard::getInfraredSensorFrontBottomLeft()
 {
-        return infraredSensorFrontBottomLeft;
+        return infraredSensorFrontBottomLeftValue;
 }
 
-int SensorsBoard::getInfraredSensorFrontBottomCenter() const
+int SensorsBoard::getInfraredSensorFrontBottomCenter()
 {
-        return infraredSensorFrontBottomCenter;
+        return infraredSensorFrontBottomCenterValue;
 }
 
-int SensorsBoard::getInfraredSensorFrontTop() const
+int SensorsBoard::getInfraredSensorFrontTop()
 {
-        return infraredSensorFrontTop;
+        return infraredSensorFrontTopValue;
 }
 
-int SensorsBoard::getInfraredSensorBack() const
+int SensorsBoard::getInfraredSensorBack()
 {
-        return infraredSensorBack;
+        return infraredSensorBackValue;
 }
 
-int SensorsBoard::getUltrasonicFront() const
+int SensorsBoard::getUltrasonicFront()
 {
-        return ultrasonicFront;
+        return ultrasonicFrontValue;
 }
 
-int SensorsBoard::getUltrasonicRight() const
+int SensorsBoard::getUltrasonicRight()
 {
-        return ultrasonicRight;
+        return ultrasonicRightValue;
 }
 
-int SensorsBoard::getUltrasonicLeft() const
+int SensorsBoard::getUltrasonicLeft()
 {
-        return ultrasonicLeft;
+        return ultrasonicLeftValue;
 }
 
-int SensorsBoard::getUltrasonicBack() const
+int SensorsBoard::getUltrasonicBack()
 {
-        return ultrasonicBack;
+        return ultrasonicBackValue;
 }
 
 void SensorsBoard::setInfraredSensorFrontBottomRight(int infraredSensorFrontBottomRight)
 {
-        SensorsBoard::infraredSensorFrontBottomRight = infraredSensorFrontBottomRight;
+        SensorsBoard::infraredSensorFrontBottomRightValue = infraredSensorFrontBottomRight;
 }
 
 void SensorsBoard::setInfraredSensorFrontBottomLeft(int infraredSensorFrontBottomLeft)
 {
-        SensorsBoard::infraredSensorFrontBottomLeft = infraredSensorFrontBottomLeft;
+        SensorsBoard::infraredSensorFrontBottomLeftValue = infraredSensorFrontBottomLeft;
 }
 
 void SensorsBoard::setInfraredSensorFrontBottomCenter(int infraredSensorFrontBottomCenter)
 {
-        SensorsBoard::infraredSensorFrontBottomCenter = infraredSensorFrontBottomCenter;
+        SensorsBoard::infraredSensorFrontBottomCenterValue = infraredSensorFrontBottomCenter;
 }
 
 void SensorsBoard::setInfraredSensorFrontTop(int infraredSensorFrontTop)
 {
-        SensorsBoard::infraredSensorFrontTop = infraredSensorFrontTop;
+        SensorsBoard::infraredSensorFrontTopValue = infraredSensorFrontTop;
 }
 
 void SensorsBoard::setInfraredSensorBack(int infraredSensorBack)
 {
-        SensorsBoard::infraredSensorBack = infraredSensorBack;
+        SensorsBoard::infraredSensorBackValue = infraredSensorBack;
 }
 
 void SensorsBoard::setUltrasonicFront(int ultrasonicFront)
 {
-        SensorsBoard::ultrasonicFront = ultrasonicFront;
+        SensorsBoard::ultrasonicFrontValue = ultrasonicFront;
 }
 
 void SensorsBoard::setUltrasonicRight(int ultrasonicRight)
 {
-        SensorsBoard::ultrasonicRight = ultrasonicRight;
+        SensorsBoard::ultrasonicRightValue = ultrasonicRight;
 }
 
 void SensorsBoard::setUltrasonicLeft(int ultrasonicLeft)
 {
-        SensorsBoard::ultrasonicLeft = ultrasonicLeft;
+        SensorsBoard::ultrasonicLeftValue = ultrasonicLeft;
 }
 
 void SensorsBoard::setUltrasonicBack(int ultrasonicBack)
 {
-        SensorsBoard::ultrasonicBack = ultrasonicBack;
+        SensorsBoard::ultrasonicBackValue = ultrasonicBack;
 }
+
 
 /* ======================================================================================================
  *      Methods
@@ -121,33 +121,123 @@ void SensorsBoard::update()
 {
         //TODO: recevoir infos du module capteurs
 //    if i2c receive, switch, set le capteur qu'il faut
+        SensorsBoard::i2creceive3bytes(_SENSORSBOARD_RECEIVEADRESS_);
+
 }
 
 
+/**
+ * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
+ * \param int howMany
+ */
+void SensorsBoard::receiveEvent3bytes(int howMany)
+{
+        if (Wire.available() == 3)
+        {
+                //lecture de la variable
+                byte var = Wire.read();
+                //lecture des 2 octets suivants
+                byte x = Wire.read();
+                byte y = Wire.read();
+                //reconstitution de la valeur
+                byte bytesTab[2] = {x, y};
+                int value = recoverIntFrom2Bytes(bytesTab);
+
+                switch ( var )  // cf. les références des variables en haut du fichier
+                {
+                case 1:
+                        if (_DEBUG_) Serial.println("variable recue :");
+                        SensorsBoard::setInfraredSensorFrontBottomRight(value);
+                        break;
+                case 2:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setInfraredSensorFrontBottomLeft(value);
+                        break;
+                case 3:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setInfraredSensorFrontBottomCenter(value);
+                        break;
+                case 4:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setInfraredSensorFrontTop(value);
+                        break;
+                case 5:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setInfraredSensorBack(value);
+                        break;
+                case 6:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setUltrasonicFront(value);
+                        break;
+                case 7:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setUltrasonicRight(value);
+                        break;
+                case 8:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setUltrasonicLeft(value);
+                        break;
+                case 9:
+                        if (_DEBUG_) Serial.println("variable recue : ");
+                        SensorsBoard::setUltrasonicBack(value);
+                        break;
+                // case 10:
+                //         if (_DEBUG_) Serial.println("variable recue : ");
+                //         SensorsBoard::setInfraredSensorFrontBottomRight(value);
+                //         break;
+                default:
+                        if (_DEBUG_) Serial.println("variable recue inconnue");
+                }
+
+        }
+        // else de debug
+        else if (_DEBUG_)
+        {
+                Serial.println("Erreur : Pas 3 octets envoyes");
+        }
+}
+
+
+/**
+ * \fn void i2creceive3bytes
+ * \param int adresse
+ * \brief
+ */
+void SensorsBoard::i2creceive3bytes(int adresse)
+{
+        Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
+        Wire.onReceive(SensorsBoard::receiveEvent3bytes); // enregistrer l'événement (lorsqu'une demande arrive)
+        Wire.endTransmission(); // fin transmission
+}
+
+
+
+// === CHECK FUNCTIONS ===
+
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomLeft()
 {
-        if (this->infraredSensorFrontBottomLeft < _CYLINDER_DISTANCE_) return true;
+        if (SensorsBoard::infraredSensorFrontBottomLeftValue < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomCenter()
 {
-        if (this->infraredSensorFrontBottomCenter < _CYLINDER_DISTANCE_) return true;
+        if (SensorsBoard::infraredSensorFrontBottomCenterValue < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomRight()
 {
-        if (this->infraredSensorFrontBottomRight < _CYLINDER_DISTANCE_) return true;
+        if (SensorsBoard::infraredSensorFrontBottomRightValue < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 //return true if there is a cylinder
 bool SensorsBoard::checkForCylinder()
 {
-        if (this->checkForCylinderOnSensorFrontBottomLeft() ||
-            this->checkForCylinderOnSensorFrontBottomCenter()||
-            this->checkForCylinderOnSensorFrontBottomRight())
+        if (SensorsBoard::checkForCylinderOnSensorFrontBottomLeft() ||
+            SensorsBoard::checkForCylinderOnSensorFrontBottomCenter()||
+            SensorsBoard::checkForCylinderOnSensorFrontBottomRight())
                 return true;
         return false;
 }
@@ -155,35 +245,35 @@ bool SensorsBoard::checkForCylinder()
 
 bool SensorsBoard::checkForHindranceOnFront()
 {
-        if (this->infraredSensorFrontTop < _FOE_DISTANCE_ || this->ultrasonicFront < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::infraredSensorFrontTopValue < _FOE_DISTANCE_ || SensorsBoard::ultrasonicFrontValue < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnRight()
 {
-        if (this->ultrasonicRight < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::ultrasonicRightValue < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnLeft()
 {
-        if (this->ultrasonicLeft < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::ultrasonicLeftValue < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnBack()
 {
-        if (this->infraredSensorBack < _FOE_DISTANCE_ || this->ultrasonicBack < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::infraredSensorBackValue < _FOE_DISTANCE_ || SensorsBoard::ultrasonicBackValue < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 //return true if there is an hindrance
 bool SensorsBoard::checkForHindrance()
 {
-        if (this->checkForHindranceOnFront() ||
-            this->checkForHindranceOnRight() ||
-            this->checkForHindranceOnLeft() ||
-            this->checkForHindranceOnBack())
+        if (SensorsBoard::checkForHindranceOnFront() ||
+            SensorsBoard::checkForHindranceOnRight() ||
+            SensorsBoard::checkForHindranceOnLeft() ||
+            SensorsBoard::checkForHindranceOnBack())
                 return true;
         else return false;
 }

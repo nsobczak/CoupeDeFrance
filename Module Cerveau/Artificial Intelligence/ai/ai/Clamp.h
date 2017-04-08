@@ -13,7 +13,7 @@
 #include "Arduino.h"
 #include "i2cCommunication.h"
 
-#define _CLAMP_SENDADRESS_ 7
+#define _CLAMP_SENDADRESS_ 8
 
 #define _CLAMP_INITIALISATION_ 1
 #define _CLAMP_CATCH_ 2
