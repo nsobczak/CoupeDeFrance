@@ -104,9 +104,12 @@ void Bot::startFunnyActionTimer()
  */
 void Bot::updateAngleZ()
 {
+        //TODO: see if we need to initialize accelgyro in a different function that updateAngleZ
+        //TODO: see if endTransmission fou la merde ou pas
         Wire.begin();
         this->getAccelgyro().initialize();
         this->setAngleZ(this->getAccelgyro().getRotationZ());
+        Wire.endTransmission();
 }
 
 

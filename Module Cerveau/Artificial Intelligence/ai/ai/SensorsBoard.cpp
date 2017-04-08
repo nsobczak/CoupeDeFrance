@@ -146,44 +146,45 @@ void SensorsBoard::receiveEvent3bytes(int howMany)
                 switch ( var )  // cf. les références des variables en haut du fichier
                 {
                 case 1:
-                        if (_DEBUG_) Serial.println("variable recue :");
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomRight");
                         SensorsBoard::setInfraredSensorFrontBottomRight(value);
                         break;
                 case 2:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomLeft");
                         SensorsBoard::setInfraredSensorFrontBottomLeft(value);
                         break;
                 case 3:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomCenter");
                         SensorsBoard::setInfraredSensorFrontBottomCenter(value);
                         break;
                 case 4:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontTop");
                         SensorsBoard::setInfraredSensorFrontTop(value);
                         break;
                 case 5:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorBack");
                         SensorsBoard::setInfraredSensorBack(value);
                         break;
                 case 6:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : UltrasonicFront");
                         SensorsBoard::setUltrasonicFront(value);
                         break;
                 case 7:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : UltrasonicRight");
                         SensorsBoard::setUltrasonicRight(value);
                         break;
                 case 8:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : UltrasonicLeft");
                         SensorsBoard::setUltrasonicLeft(value);
                         break;
                 case 9:
-                        if (_DEBUG_) Serial.println("variable recue : ");
+                        if (_DEBUG_) Serial.println("variable recue : UltrasonicBack");
                         SensorsBoard::setUltrasonicBack(value);
                         break;
+                //TODO: uncomment if the last ultrasonic sensors works properly
                 // case 10:
-                //         if (_DEBUG_) Serial.println("variable recue : ");
-                //         SensorsBoard::setInfraredSensorFrontBottomRight(value);
+                //         if (_DEBUG_) Serial.println("variable recue : UltrasonicBack");
+                //         SensorsBoard::setUltrasonicBack(value);
                 //         break;
                 default:
                         if (_DEBUG_) Serial.println("variable recue inconnue");
@@ -205,9 +206,9 @@ void SensorsBoard::receiveEvent3bytes(int howMany)
  */
 void SensorsBoard::i2creceive3bytes(int adresse)
 {
-        Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
+        Wire.begin(adresse);
         Wire.onReceive(SensorsBoard::receiveEvent3bytes); // enregistrer l'événement (lorsqu'une demande arrive)
-        Wire.endTransmission(); // fin transmission
+        Wire.endTransmission();
 }
 
 
