@@ -36,6 +36,7 @@
 #define _NUMBER_OF_CYLINDERS_TO_CATCH_ 10 //TODO: replace by the right number of cylinders
 #define _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_ 8000//ms
 
+
 //TODO: replace by the right positions of cylinders
 const CylinderPosition cylinderToCatchList_1B[_NUMBER_OF_CYLINDERS_TO_CATCH_]={
         {1, 1.3, 124.34}, {2, 1, 1}, {3, 1, 1}, {4, 1, 1}, {5, 1, 1},
@@ -98,7 +99,9 @@ void startFunnyActionTimer();
 void updateAngleZ();
 
 bool turnBotInFrontOFCylinder();
+void catchCylinder();
 void findAndCatchCylinder();
+void releaseCylinderInBase();
 void build1BaseCylinder(float x_coord, float y_coord);
 void buildBase();
 

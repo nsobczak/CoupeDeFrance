@@ -192,6 +192,7 @@ bool Bot::turnBotInFrontOFCylinder()
 
         while (!inFrontOfCylinder && (time < _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_))
         {
+                //TODO: choose between those 2 functions
                 this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);
                 this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);
 
@@ -202,16 +203,25 @@ bool Bot::turnBotInFrontOFCylinder()
 }
 
 
-//TODO: fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors pui qui va attraper le cylindre
+void Bot::catchCylinder()
+{
+        unsigned long time = millis();
+        do {
+                this->botGoForward(_ASSERVISSMENT_SENDADRESS_, 200);
+                time = millis();
+        } while(this->getSensorsBoard().getInfraredSensorFrontBottomCenterValue() > _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_
+                && (time < 3000));
+        this->getClamp().catchCylinder();
+}
+
+
+//TODO: fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors puis qui va attraper le cylindre
 void Bot::findAndCatchCylinder()
 {
-
         if (this->getSensorsBoard().checkForCylinder())
         {
                 //cylindre présent à la bonne distance sur un des 3 capteurs
-                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter()) {
-                        this->getClamp().catchCylinder();
-                }
+                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter()) this->catchCylinder();
                 else{
                         if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                                 //tourner le robot vers la droite
@@ -221,14 +231,18 @@ void Bot::findAndCatchCylinder()
                                 //tourner le robot vers la gauche
                                 this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
                         }
-                        else{
-                                //tourner le robot de droite a gauche pour chercher le cylindre
-                                this->turnBotInFrontOFCylinder();
-                        }
-
+                        else this->turnBotInFrontOFCylinder();   //tourner le robot de droite a gauche pour chercher le cylindre
                 }
         }
+}
 
+
+//TODO: fonction qui va regarder où se trouve la base de manière précise avec les fonctions check bottom sensors puis qui va lacher le cylindre
+void Bot::releaseCylinderInBase()
+{
+        //TODO: check for base
+
+        this->getClamp().releaseCylinder();
 }
 
 
@@ -236,6 +250,8 @@ void Bot::findAndCatchCylinder()
 void Bot::build1BaseCylinder(float x_coord, float y_coord)
 {
         this->findAndCatchCylinder();
+        //TODO: go near theoretical base position
+        this->releaseCylinderInBase();
 }
 
 //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie

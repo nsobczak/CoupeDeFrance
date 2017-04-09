@@ -20,7 +20,9 @@
 #define _DEBUG_ true
 
 //TODO: changer les define pour les remplacer par la bonne disance
-#define _CYLINDER_DISTANCE_ 1.2 //voir la pince
+#define _CYLINDER_DISTANCE_ 10.0 //voir la pince
+#define _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_ 8.0 //voir la distance pince-cylindre
+#define _BASE_DISTANCE_ 30.0 //3cm
 #define _FOE_DISTANCE_ 10.0 //10cm par rapport au capteur
 
 /*Notes
@@ -59,27 +61,25 @@ public:
 
 SensorsBoard();
 
-static int getInfraredSensorFrontBottomRight();
-static int getInfraredSensorFrontBottomLeft();
-static int getInfraredSensorFrontBottomCenter();
-static int getInfraredSensorFrontTop();
-static int getInfraredSensorBack();
+static int getInfraredSensorFrontBottomRightValue();
+static int getInfraredSensorFrontBottomLeftValue();
+static int getInfraredSensorFrontBottomCenterValue();
+static int getInfraredSensorFrontTopValue();
+static int getInfraredSensorBackValue();
+static int getUltrasonicFrontValue();
+static int getUltrasonicRightValue();
+static int getUltrasonicLeftValue();
+static int getUltrasonicBackValue();
 
-static int getUltrasonicFront();
-static int getUltrasonicRight();
-static int getUltrasonicLeft();
-static int getUltrasonicBack();
-
-static void setInfraredSensorFrontBottomRight(int infraredSensorFrontBottomRight);
-static void setInfraredSensorFrontBottomLeft(int infraredSensorFrontBottomLeft);
-static void setInfraredSensorFrontBottomCenter(int infraredSensorFrontBottomCenter);
-static void setInfraredSensorFrontTop(int infraredSensorFrontTop);
-static void setInfraredSensorBack(int infraredSensorBack);
-
-static void setUltrasonicFront(int ultrasonicFront);
-static void setUltrasonicRight(int ultrasonicRight);
-static void setUltrasonicLeft(int ultrasonicLeft);
-static void setUltrasonicBack(int ultrasonicBack);
+static void setInfraredSensorFrontBottomRightValue(int infraredSensorFrontBottomRightValue);
+static void setInfraredSensorFrontBottomLeftValue(int infraredSensorFrontBottomLeftValue);
+static void setInfraredSensorFrontBottomCenterValue(int infraredSensorFrontBottomCenterValue);
+static void setInfraredSensorFrontTopValue(int infraredSensorFrontTopValue);
+static void setInfraredSensorBackValue(int infraredSensorBackValue);
+static void setUltrasonicFrontValue(int ultrasonicFrontValue);
+static void setUltrasonicRightValue(int ultrasonicRightValue);
+static void setUltrasonicLeftValue(int ultrasonicLeftValue);
+static void setUltrasonicBackValue(int ultrasonicBackValue);
 
 static void update();
 
@@ -91,47 +91,15 @@ static bool checkForCylinderOnSensorFrontBottomCenter();
 static bool checkForCylinderOnSensorFrontBottomRight();
 static bool checkForCylinder();
 
+static bool checkForBaseOnSensorFrontBottomLeft();
+static bool checkForBaseOnSensorFrontBottomCenter();
+static bool checkForBaseOnSensorFrontBottomRight();
+static bool checkForBase();
+
 static bool checkForHindranceOnFront();
 static bool checkForHindranceOnRight();
 static bool checkForHindranceOnLeft();
 static bool checkForHindranceOnBack();
 static bool checkForHindrance();
-
-    static int getInfraredSensorFrontBottomRightValue();
-
-    static int getInfraredSensorFrontBottomLeftValue();
-
-    static int getInfraredSensorFrontBottomCenterValue();
-
-    static int getInfraredSensorFrontTopValue();
-
-    static int getInfraredSensorBackValue();
-
-    static int getUltrasonicFrontValue();
-
-    static int getUltrasonicRightValue();
-
-    static int getUltrasonicLeftValue();
-
-    static int getUltrasonicBackValue();
-
-    static void setInfraredSensorFrontBottomRightValue(int infraredSensorFrontBottomRightValue);
-
-    static void setInfraredSensorFrontBottomLeftValue(int infraredSensorFrontBottomLeftValue);
-
-    static void setInfraredSensorFrontBottomCenterValue(int infraredSensorFrontBottomCenterValue);
-
-    static void setInfraredSensorFrontTopValue(int infraredSensorFrontTopValue);
-
-    static void setInfraredSensorBackValue(int infraredSensorBackValue);
-
-    static void setUltrasonicFrontValue(int ultrasonicFrontValue);
-
-    static void setUltrasonicRightValue(int ultrasonicRightValue);
-
-    static void setUltrasonicLeftValue(int ultrasonicLeftValue);
-
-    static void setUltrasonicBackValue(int ultrasonicBackValue);
-
 
 };
