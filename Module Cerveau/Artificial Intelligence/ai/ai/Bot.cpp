@@ -184,7 +184,69 @@ void Bot::updateAngleZ()
 
 // === CYLINDER ===
 
+//TODO
+bool Bot::turnBotInFrontOFCylinder()
+{
+        bool inFrontOfCylinder = false;
+        unsigned long time = millis();
+
+        while (!inFrontOfCylinder && (time < _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_))
+        {
+                this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);
+                this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);
+
+                inFrontOfCylinder = this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter();
+                time = millis();
+        }
+        return inFrontOfCylinder;
+}
+
 
 //TODO: fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors pui qui va attraper le cylindre
+void Bot::findAndCatchCylinder()
+{
+
+        if (this->getSensorsBoard().checkForCylinder())
+        {
+                //cylindre présent à la bonne distance sur un des 3 capteurs
+                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter()) {
+                        this->getClamp().catchCylinder();
+                }
+                else{
+                        if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
+                                //tourner le robot vers la droite
+                                this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                        }
+                        else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
+                                //tourner le robot vers la gauche
+                                this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                        }
+                        else{
+                                //tourner le robot de droite a gauche pour chercher le cylindre
+                                this->turnBotInFrontOFCylinder();
+                        }
+
+                }
+        }
+
+}
+
+
 //TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
+void Bot::build1BaseCylinder(float x_coord, float y_coord)
+{
+        this->findAndCatchCylinder();
+}
+
 //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
+void Bot::buildBase()
+{
+        float x_coord;
+        float y_coord;
+        for (int i = 0; i < _NUMBER_OF_CYLINDERS_TO_CATCH_; i++)
+        {
+                x_coord = cylinderToCatchList[i].cylinder_x;
+                y_coord = cylinderToCatchList[i].cylinder_y;
+                this->build1BaseCylinder(x_coord, y_coord);
+        }
+}

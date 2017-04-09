@@ -34,6 +34,7 @@
 #define _ASSERVISSMENT_BOTSTOP_ 5
 
 #define _NUMBER_OF_CYLINDERS_TO_CATCH_ 10 //TODO: replace by the right number of cylinders
+#define _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_ 8000//ms
 
 //TODO: replace by the right positions of cylinders
 const CylinderPosition cylinderToCatchList_1B[_NUMBER_OF_CYLINDERS_TO_CATCH_]={
@@ -95,5 +96,11 @@ void botStop(int sendAddress);
 void startFunnyActionTimer();
 
 void updateAngleZ();
+
+bool turnBotInFrontOFCylinder();
+void findAndCatchCylinder();
+void build1BaseCylinder(float x_coord, float y_coord);
+void buildBase();
+
 
 };
