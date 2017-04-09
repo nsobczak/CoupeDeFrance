@@ -184,20 +184,28 @@ void Bot::updateAngleZ()
 
 // === CYLINDER ===
 
-//TODO
 bool Bot::turnBotInFrontOFCylinder()
 {
         bool inFrontOfCylinder = false;
-        unsigned long time = millis();
+        unsigned long timer = millis();
 
-        while (!inFrontOfCylinder && (time < _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_))
+        while (!inFrontOfCylinder && (millis() - timer < _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_))
         {
-                //TODO: choose between those 2 functions
-                this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);
-                this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);
+                //TODO: on le fait tourner arbitrairement vers la droite
+                unsigned long timer2 = millis();
+                do {
+                        this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);
+                } while(millis() - timer2 < 3000); //TODO: see the right time
+                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
+                        //tourner le robot vers la droite
+                        this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                }
+                else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
+                        //tourner le robot vers la gauche
+                        this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                }
 
                 inFrontOfCylinder = this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter();
-                time = millis();
         }
         return inFrontOfCylinder;
 }
@@ -205,12 +213,11 @@ bool Bot::turnBotInFrontOFCylinder()
 
 void Bot::catchCylinder()
 {
-        unsigned long time = millis();
+        unsigned long timer = millis();
         do {
                 this->botGoForward(_ASSERVISSMENT_SENDADRESS_, 200);
-                time = millis();
         } while(this->getSensorsBoard().getInfraredSensorFrontBottomCenterValue() > _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_
-                && (time < 3000));
+                && (millis() - timer < 3000));
         this->getClamp().catchCylinder();
 }
 
@@ -253,6 +260,7 @@ void Bot::build1BaseCylinder(float x_coord, float y_coord)
         //TODO: go near theoretical base position
         this->releaseCylinderInBase();
 }
+
 
 //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
 void Bot::buildBase()
