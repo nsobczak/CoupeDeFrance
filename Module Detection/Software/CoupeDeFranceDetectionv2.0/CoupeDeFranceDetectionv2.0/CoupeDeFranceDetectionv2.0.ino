@@ -43,9 +43,9 @@ const int NUM_IR = 5; // Number of IR sensor
 //Trig
 int trigPin = 11;
 //echo
-const int echoPinFR = 10, echoPinB = 9, echoPinL = 8, echoPinR = 7, echoPinFL = 6;
-const int ultrasonic[] = {echoPinFR, echoPinFL, echoPinR, echoPinL, echoPinB}; //echoPinFR,
-const int NUM_ULTRASONIC = 5; // Number of ultrasonic sensor
+const int echoPinR = 10, echoPinB2 = 9, echoPinB1 = 8, echoPinL = 7, echoPinFL = 6;
+const int ultrasonic[] = {echoPinR, echoPinL, echoPinB1, echoPinB2}; //echoPinFL,
+const int NUM_ULTRASONIC = 4; // Number of ultrasonic sensor
 //Use Variable
 //int durationFR, durationFL, durationR, durationL, durationB,
 //      distanceCMFR, distanceCMFL, distanceCMR, distanceCML, distanceCMB;
@@ -68,7 +68,7 @@ void setup()
 {
         // === Setup Ultrasonic ===
         pinMode(trigPin, OUTPUT); //trig
-        pinMode(echoPinFR, INPUT); //echo
+        pinMode(echoPinR, INPUT); //echo
         // === Setup MUX ===
         pinMode(A,OUTPUT);
         pinMode(B,OUTPUT);
@@ -122,19 +122,19 @@ int getIRValue(SharpIR sharpIR){
 int getUltrasonicValue(int echoPin){
         int channel = 0;
         switch(echoPin) {
-        case echoPinB:
+        case echoPinB2:
                 channel = 0;
                 break;
-        case echoPinL:
+        case echoPinB1:
                 channel = 1;
                 break;
-        case echoPinR:
+        case echoPinL:
                 channel = 2;
                 break;
         case echoPinFL:
                 channel = 3;
                 break;
-        case echoPinFR:
+        case echoPinR:
                  channel = 4;
                  break;
         default:
