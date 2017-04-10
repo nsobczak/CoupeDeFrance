@@ -22,7 +22,8 @@
 #include "MPU6050.h"
 
 
-//TODO: replace by the right pin#define _ASSERVISSMENT_BOTTURN_ 2
+#define _PIN_TIRETTE_ 15
+//TODO: replace by the right pin
 #define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 13
 
 #define _ASSERVISSMENT_SENDADRESS_ 6
@@ -87,7 +88,7 @@ int16_t getAngleZ();
 void setAngleZ(int16_t newAngleZ);
 const CylinderPosition *getCylinderToCatchList() const;
 
-bool checkTiretteState();
+bool isTiretteTiree();
 
 void botGoForward(int sendAddress, int speed);
 void botGoBackward(int sendAddress, int speed);

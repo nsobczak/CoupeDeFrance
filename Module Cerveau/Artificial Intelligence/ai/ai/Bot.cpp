@@ -100,10 +100,10 @@ void Bot::setAngleZ(int16_t newAngleZ)
 
 // === BOT TIRETTE ===
 
-bool Bot::checkTiretteState()
+bool Bot::isTiretteTiree()
 {
-        //TODO: regarder l'état de la tirette
-        if (true) return true;
+        pinMode(_PIN_TIRETTE_, INPUT);
+        if (digitalRead(_PIN_TIRETTE_) == LOW) return true; //tirette à l'état bas => lance le robot
         else return false;
 }
 

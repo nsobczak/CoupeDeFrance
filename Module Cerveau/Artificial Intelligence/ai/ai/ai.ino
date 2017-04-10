@@ -23,6 +23,7 @@
 #define _DEBUG_ true
 
 Bot elPadre;
+bool epreuveFaite;
 
 
 /* ======================================================================================================
@@ -36,6 +37,7 @@ Bot elPadre;
 void setup()
 {
         Serial.begin(9600);
+        epreuveFaite = false;
 }
 
 
@@ -68,8 +70,9 @@ void loop()
 
 
         //Code final
-        // if (elPadre.checkTiretteState())
-        // {
-        //         elPadre.buildBase();
-        // }
+        if (!epreuveFaite && elPadre.isTiretteTiree())
+        {
+                elPadre.buildBase();
+                epreuveFaite = true;
+        }
 }

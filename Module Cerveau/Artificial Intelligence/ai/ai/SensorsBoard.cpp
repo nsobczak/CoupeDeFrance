@@ -7,10 +7,20 @@
  */
 //_______________________________________________________________________________________________________
 /* ======================================================================================================
- *      Include
+ *      Initialisation
  * ======================================================================================================
  */
 #include "SensorsBoard.h"
+
+int SensorsBoard::infraredSensorFrontBottomRightValue = 0;
+int SensorsBoard::infraredSensorFrontBottomLeftValue = 0;
+int SensorsBoard::infraredSensorFrontBottomCenterValue = 0;
+int SensorsBoard::infraredSensorFrontTopValue = 0;
+int SensorsBoard::infraredSensorBackValue = 0;
+int SensorsBoard::ultrasonicFrontValue = 0;
+int SensorsBoard::ultrasonicRightValue = 0;
+int SensorsBoard::ultrasonicLeftValue = 0;
+int SensorsBoard::ultrasonicBackValue = 0;
 
 
 /* ======================================================================================================
@@ -23,47 +33,47 @@ SensorsBoard::SensorsBoard()
 
 int SensorsBoard::getInfraredSensorFrontBottomRightValue()
 {
-        return infraredSensorFrontBottomRightValue;
+        return SensorsBoard::infraredSensorFrontBottomRightValue;
 }
 
 int SensorsBoard::getInfraredSensorFrontBottomLeftValue()
 {
-        return infraredSensorFrontBottomLeftValue;
+        return SensorsBoard::infraredSensorFrontBottomLeftValue;
 }
 
 int SensorsBoard::getInfraredSensorFrontBottomCenterValue()
 {
-        return infraredSensorFrontBottomCenterValue;
+        return SensorsBoard::infraredSensorFrontBottomCenterValue;
 }
 
 int SensorsBoard::getInfraredSensorFrontTopValue()
 {
-        return infraredSensorFrontTopValue;
+        return SensorsBoard::infraredSensorFrontTopValue;
 }
 
 int SensorsBoard::getInfraredSensorBackValue()
 {
-        return infraredSensorBackValue;
+        return SensorsBoard::infraredSensorBackValue;
 }
 
 int SensorsBoard::getUltrasonicFrontValue()
 {
-        return ultrasonicFrontValue;
+        return SensorsBoard::ultrasonicFrontValue;
 }
 
 int SensorsBoard::getUltrasonicRightValue()
 {
-        return ultrasonicRightValue;
+        return SensorsBoard::ultrasonicRightValue;
 }
 
 int SensorsBoard::getUltrasonicLeftValue()
 {
-        return ultrasonicLeftValue;
+        return SensorsBoard::ultrasonicLeftValue;
 }
 
 int SensorsBoard::getUltrasonicBackValue()
 {
-        return ultrasonicBackValue;
+        return SensorsBoard::ultrasonicBackValue;
 }
 
 
@@ -216,19 +226,19 @@ void SensorsBoard::updateAllSensorsValue()
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomLeft()
 {
-        if (SensorsBoard::infraredSensorFrontBottomLeftValue < _CYLINDER_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorFrontBottomLeftValue() < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomCenter()
 {
-        if (SensorsBoard::infraredSensorFrontBottomCenterValue < _CYLINDER_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorFrontBottomCenterValue() < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomRight()
 {
-        if (SensorsBoard::infraredSensorFrontBottomRightValue < _CYLINDER_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorFrontBottomRightValue() < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
@@ -247,19 +257,19 @@ bool SensorsBoard::checkForCylinder()
 
 bool SensorsBoard::checkForBaseOnSensorFrontBottomLeft()
 {
-        if (SensorsBoard::infraredSensorFrontBottomLeftValue < _BASE_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorFrontBottomLeftValue() < _BASE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForBaseOnSensorFrontBottomCenter()
 {
-        if (SensorsBoard::infraredSensorFrontBottomCenterValue < _BASE_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorFrontBottomCenterValue() < _BASE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForBaseOnSensorFrontBottomRight()
 {
-        if (SensorsBoard::infraredSensorFrontBottomRightValue < _BASE_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorFrontBottomRightValue() < _BASE_DISTANCE_) return true;
         else return false;
 }
 
@@ -277,25 +287,25 @@ bool SensorsBoard::checkForBase()
 
 bool SensorsBoard::checkForHindranceOnFront()
 {
-        if (SensorsBoard::infraredSensorFrontTopValue < _FOE_DISTANCE_ || SensorsBoard::ultrasonicFrontValue < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorFrontTopValue() < _FOE_DISTANCE_ || SensorsBoard::getUltrasonicFrontValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnRight()
 {
-        if (SensorsBoard::ultrasonicRightValue < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::getUltrasonicRightValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnLeft()
 {
-        if (SensorsBoard::ultrasonicLeftValue < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::getUltrasonicLeftValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnBack()
 {
-        if (SensorsBoard::infraredSensorBackValue < _FOE_DISTANCE_ || SensorsBoard::ultrasonicBackValue < _FOE_DISTANCE_) return true;
+        if (SensorsBoard::getInfraredSensorBackValue() < _FOE_DISTANCE_ || SensorsBoard::getUltrasonicBackValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
