@@ -19,22 +19,28 @@
 
 #define _DEBUG_ true
 
+#define _NUMBER_OF_SENSORS_ 9 // 5 ir + 4 us
+
 //TODO: changer les define pour les remplacer par la bonne disance
-#define _CYLINDER_DISTANCE_ 10.0 //voir la pince
+#define _CYLINDER_DISTANCE_ 14.0 //voir la pince
 #define _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_ 8.0 //voir la distance pince-cylindre
 #define _BASE_DISTANCE_ 30.0 //3cm
 #define _FOE_DISTANCE_ 10.0 //10cm par rapport au capteur
 
-/*Notes
-   1 => infraredSensorFrontBottomRightValue;
-   2 => infraredSensorFrontBottomLeftValue;
+/*Notes: tableau id i2c
+   {sharpBT, sharpFT, sharpFBR, sharpFBC, sharpFBL};
+   {echoPinR, echoPinL, echoPinB1, echoPinB2}
+
+   0 => infraredSensorBackValue;
+   1 => infraredSensorFrontTopValue;
+   2 => infraredSensorFrontBottomRightValue;
    3 => infraredSensorFrontBottomCenterValue;
-   4 => infraredSensorFrontTopValue;
-   5 => infraredSensorBackValue;
-   6 => ultrasonicFrontValue;
-   7 => ultrasonicRightValue;
-   8 => ultrasonicLeftValue;
-   9 => ultrasonicBackValue;
+   4 => infraredSensorFrontBottomLeftValue;
+
+   5 => ultrasonicRightValue;
+   6 => ultrasonicLeftValue;
+   7 => ultrasonicBack1Value;
+   8 => ultrasonicBack2Value;
  */
 
 /* ======================================================================================================
@@ -81,10 +87,9 @@ static void setUltrasonicRightValue(int ultrasonicRightValue);
 static void setUltrasonicLeftValue(int ultrasonicLeftValue);
 static void setUltrasonicBackValue(int ultrasonicBackValue);
 
-static void update();
-
 static void receiveEvent3bytes(int howMany);
 static void i2creceive3bytes(int adresse);
+static void updateAllSensorsValue();
 
 static bool checkForCylinderOnSensorFrontBottomLeft();
 static bool checkForCylinderOnSensorFrontBottomCenter();

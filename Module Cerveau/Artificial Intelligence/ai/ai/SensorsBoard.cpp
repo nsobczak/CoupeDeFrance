@@ -118,15 +118,6 @@ void SensorsBoard::setUltrasonicBackValue(int ultrasonicBackValue)
  * ======================================================================================================
  */
 
-void SensorsBoard::update()
-{
-        //TODO: recevoir infos du module capteurs
-//    if i2c receive, switch, set le capteur qu'il faut
-        SensorsBoard::i2creceive3bytes(_SENSORSBOARD_RECEIVEADRESS_);
-
-}
-
-
 /**
  * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
@@ -146,47 +137,42 @@ void SensorsBoard::receiveEvent3bytes(int howMany)
 
                 switch ( var )  // cf. les références des variables en haut du fichier
                 {
+                case 0:
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorBack");
+                        SensorsBoard::setInfraredSensorBackValue(value);
+                        break;
                 case 1:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomRight");
-                        SensorsBoard::setInfraredSensorFrontBottomRightValue(value);
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontTop");
+                        SensorsBoard::setInfraredSensorFrontTopValue(value);
                         break;
                 case 2:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomLeft");
-                        SensorsBoard::setInfraredSensorFrontBottomLeftValue(value);
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomRight");
+                        SensorsBoard::setInfraredSensorFrontBottomRightValue(value);
                         break;
                 case 3:
                         if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomCenter");
                         SensorsBoard::setInfraredSensorFrontBottomCenterValue(value);
                         break;
                 case 4:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontTop");
-                        SensorsBoard::setInfraredSensorFrontTopValue(value);
+                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomLeft");
+                        SensorsBoard::setInfraredSensorFrontBottomLeftValue(value);
                         break;
                 case 5:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorBack");
-                        SensorsBoard::setInfraredSensorBackValue(value);
-                        break;
-                case 6:
-                        if (_DEBUG_) Serial.println("variable recue : UltrasonicFront");
-                        SensorsBoard::setUltrasonicFrontValue(value);
-                        break;
-                case 7:
                         if (_DEBUG_) Serial.println("variable recue : UltrasonicRight");
                         SensorsBoard::setUltrasonicRightValue(value);
                         break;
-                case 8:
+                case 6:
                         if (_DEBUG_) Serial.println("variable recue : UltrasonicLeft");
                         SensorsBoard::setUltrasonicLeftValue(value);
                         break;
-                case 9:
-                        if (_DEBUG_) Serial.println("variable recue : UltrasonicBack");
+                case 7:
+                        if (_DEBUG_) Serial.println("variable recue : UltrasonicFront (back1)");
+                        SensorsBoard::setUltrasonicFrontValue(value);
+                        break;
+                case 8:
+                        if (_DEBUG_) Serial.println("variable recue : UltrasonicBack (back2)");
                         SensorsBoard::setUltrasonicBackValue(value);
                         break;
-                //TODO: uncomment if the last ultrasonic sensors works properly
-                // case 10:
-                //         if (_DEBUG_) Serial.println("variable recue : UltrasonicBack");
-                //         SensorsBoard::setUltrasonicBack(value);
-                //         break;
                 default:
                         if (_DEBUG_) Serial.println("variable recue inconnue");
                 }
@@ -210,6 +196,19 @@ void SensorsBoard::i2creceive3bytes(int adresse)
         Wire.begin(adresse);
         Wire.onReceive(SensorsBoard::receiveEvent3bytes); // enregistrer l'événement (lorsqu'une demande arrive)
         Wire.endTransmission();
+}
+
+
+/**
+ * \fn void SensorsBoard::update()
+ * \brief reception + maj infos du module capteurs
+ */
+void SensorsBoard::updateAllSensorsValue()
+{
+        for (int i = 0; i < _NUMBER_OF_SENSORS_; i++)
+        {
+                SensorsBoard::i2creceive3bytes(_SENSORSBOARD_RECEIVEADRESS_);
+        }
 }
 
 

@@ -195,7 +195,8 @@ bool Bot::turnBotInFrontOFCylinder()
                 unsigned long timer2 = millis();
                 do {
                         this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);
-                } while(millis() - timer2 < 3000); //TODO: see the right time
+                        // this->updateAngleZ();
+                } while(millis() - timer2 < 3000); //TODO: see the right time + include  && this->getAngleZ()
                 if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                         //tourner le robot vers la droite
                         this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
