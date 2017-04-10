@@ -21,6 +21,7 @@
  * ======================================================================================================
  */
 #define _DEBUG_ true
+
 Bot elPadre;
 
 
@@ -56,10 +57,19 @@ void loop()
          * si on détecte l'adversaire => manoeuvre dévitement
          * si on détecte un cylindre => on le ramasse
          */
-         elPadre.getClamp().initialisation();
+        //Tests
+        elPadre.getClamp().initialisation();
 
-        if (_DEBUG_) {
+        if (_DEBUG_)
+        {
                 Serial.println("=== _DEBUG_ ===");
                 // Serial.println();
         }
+
+
+        //Code final
+        // if (elPadre.checkTiretteState())
+        // {
+        //         elPadre.buildBase();
+        // }
 }

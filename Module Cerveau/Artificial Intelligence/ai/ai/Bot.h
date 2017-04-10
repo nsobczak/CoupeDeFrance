@@ -87,6 +87,7 @@ int16_t getAngleZ();
 void setAngleZ(int16_t newAngleZ);
 const CylinderPosition *getCylinderToCatchList() const;
 
+bool checkTiretteState();
 
 void botGoForward(int sendAddress, int speed);
 void botGoBackward(int sendAddress, int speed);
