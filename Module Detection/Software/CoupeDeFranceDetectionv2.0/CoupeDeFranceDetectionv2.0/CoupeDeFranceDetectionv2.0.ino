@@ -10,33 +10,33 @@
 
 
 /* ======================================================================================================
- *      Include
+ *      Initialisation
  * ======================================================================================================
  */
 #include <Arduino.h>
 //Librairie OF Infra RED :
 #include "SharpIR.h"
+#include "i2cCommunication.h"
 
-/* ======================================================================================================
- *      Initialisation
- * ======================================================================================================
- */
- #define _DEBUG_ true
- #define OWN_STD_ID 01 //avant = 23
- #define OWN_EXT_ID 1000
- #define ULTRASONIC_EXT_ID 1002
- #define IR_EXT_ID 1001
+#define _SENSORSBOARD_SENDADRESS_ 11
+
+
+#define _DEBUG_ false
+#define OWN_STD_ID 01 //avant = 23
+#define OWN_EXT_ID 1000
+#define ULTRASONIC_EXT_ID 1002
+#define IR_EXT_ID 1001
 
 
 /* === IR pins === */
 const int IRPinB = A6, IRPinL = A3, IRPinR = A2, IRPinFL = A1, IRPinFR = A0;
 const int NUM_IR_SAMPLES = 25;
-SharpIR sharpFR(IRPinFR, NUM_IR_SAMPLES, 93, 1080);
-SharpIR sharpFL(IRPinFL, NUM_IR_SAMPLES, 93, 1080);
-SharpIR sharpR(IRPinR, NUM_IR_SAMPLES, 93, 1080);
-SharpIR sharpL(IRPinL, NUM_IR_SAMPLES, 93, 1080);
-SharpIR sharpB(IRPinB, NUM_IR_SAMPLES, 93, 1080);
-SharpIR infrared[] = {sharpFR, sharpFL, sharpR, sharpL, sharpB};
+SharpIR sharpBT(IRPinFR, NUM_IR_SAMPLES, 93, 1080);
+SharpIR sharpFT(IRPinFL, NUM_IR_SAMPLES, 93, 1080);
+SharpIR sharpFBR(IRPinR, NUM_IR_SAMPLES, 93, 1080);
+SharpIR sharpFBC(IRPinL, NUM_IR_SAMPLES, 93, 1080);
+SharpIR sharpFBL(IRPinB, NUM_IR_SAMPLES, 93, 1080);
+SharpIR infrared[] = {sharpBT, sharpFT, sharpFBR, sharpFBC, sharpFBL};
 const int NUM_IR = 5; // Number of IR sensor
 
 /* === pin for UltraSound === */
@@ -82,25 +82,35 @@ void setup()
  * \brief fonction loop d'arduino : Takes readings (and sends via I2C)
  */
 void loop() {
-        int IRValue[NUM_IR];
+        int irValue[NUM_IR];
         int ultrasonicValue[NUM_ULTRASONIC];
         // long start = millis();
 
         for(int i = 0; i < NUM_IR; i++)
         {
-                IRValue[i] = getIRValue(infrared[i]);
+                irValue[i] = getIRValue(infrared[i]);
+                // conversion sur 2 octets de la valeur à envoyer
+                byte bytesTab[2];
+                intTo2Bytes(bytesTab, irValue[i]);
+                i2csend3bytes(i, bytesTab[0], bytesTab[1], _SENSORSBOARD_SENDADRESS_);
+                delay(100); //TODO: see if it's useful to have time to receive and update all value
         }
         for(int i = 0; i < NUM_ULTRASONIC; i++)
         {
                 ultrasonicValue[i] = getUltrasonicValue(ultrasonic[i]);
+                // conversion sur 2 octets de la valeur à envoyer
+                byte bytesTab[2];
+                intTo2Bytes(bytesTab, ultrasonicValue[i]);
+                i2csend3bytes(i + NUM_IR, bytesTab[0], bytesTab[1], _SENSORSBOARD_SENDADRESS_);
+                delay(100); //TODO: see if it's useful to have time to receive and update all value
         }
 
         if (_DEBUG_) {
                 Serial.println("=== IR values ===");
                 for(int i = 0; i < NUM_IR; i++)
                 {
-                        Serial.print("\tIRvalue = \t");
-                        Serial.println(IRValue[i]);
+                        Serial.print("\tirValue = \t");
+                        Serial.println(irValue[i]);
                 }
                 Serial.println("=== Ultrasonic values ===");
                 for(int i = 0; i < NUM_ULTRASONIC; i++)
@@ -110,7 +120,7 @@ void loop() {
                 }
         }
 
-        delay(700);
+        delay(300);
 }
 
 
@@ -135,8 +145,8 @@ int getUltrasonicValue(int echoPin){
                 channel = 3;
                 break;
         case echoPinR:
-                 channel = 4;
-                 break;
+                channel = 4;
+                break;
         default:
                 break;
         }
@@ -182,12 +192,12 @@ boolean setChannel(int channelNumber){
                 digitalWrite(A,HIGH);
                 digitalWrite(B,HIGH);
                 digitalWrite(C,LOW);
-               break;
-         case 4: //Front Right
-                 digitalWrite(A,LOW);
-                 digitalWrite(B,LOW);
-                 digitalWrite(C,HIGH);
-                 break;
+                break;
+        case 4:  //Front Right
+                digitalWrite(A,LOW);
+                digitalWrite(B,LOW);
+                digitalWrite(C,HIGH);
+                break;
         default:
                 break;
         }
