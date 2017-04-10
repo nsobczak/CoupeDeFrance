@@ -102,9 +102,9 @@ void Bot::setAngleZ(int16_t newAngleZ)
 
 bool Bot::checkTiretteState()
 {
-    //TODO: regarder l'état de la tirette
-    if (true) return true;
-    else return false;
+        //TODO: regarder l'état de la tirette
+        if (true) return true;
+        else return false;
 }
 
 // === BOT TRAVEL ===
@@ -275,16 +275,19 @@ void Bot::build1BaseCylinder(float x_coord, float y_coord)
 //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
 void Bot::buildBase()
 {
+        //TODO: regarder comment on peut passer le timer partout pour arrêter le robot si on est à la fin
         unsigned long timer = millis();
-        if (millis() - timer > 88000)
+
+        float x_coord;
+        float y_coord;
+        for (int i = 0; i < _NUMBER_OF_CYLINDERS_TO_CATCH_; i++)
         {
-                float x_coord;
-                float y_coord;
-                for (int i = 0; i < _NUMBER_OF_CYLINDERS_TO_CATCH_; i++)
+                if (millis() - timer < 70000) //TODO: on se donne 20" pour aller attraper et déplacer un robot
                 {
                         x_coord = cylinderToCatchList[i].cylinder_x;
                         y_coord = cylinderToCatchList[i].cylinder_y;
                         this->build1BaseCylinder(x_coord, y_coord);
                 }
         }
+        this->botStop(_ASSERVISSMENT_SENDADRESS_);
 }
