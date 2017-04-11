@@ -72,6 +72,7 @@ int initt=0;
 int descente_init=0;
 int rail_init=0;
 bool etat=true;
+bool test=false;
 
 Stepper motor_X(200, 54, 55);
 Stepper motor_Y(200, 60, 61);
@@ -103,7 +104,7 @@ void rail_interruption_gauche()
     Serial.println("STOP X GAUCHE");
     for(int i=0;i<100;i++){
       delayMicroseconds(500);
-      Serial.println("Capteur gauche");
+      Serial.println("Capteur gauche on");
     }
     rail_initialisation(-400);    
   }
@@ -115,7 +116,7 @@ void rail_interruption_droit()
    Serial.println("STOP X DROIT");
    for(int i=0;i<50;i++){
       delayMicroseconds(500);
-      Serial.println("Coucou du capteur droit");
+      Serial.println("Capteur droit on");
    }
    rail_initialisation(400);
 }
@@ -126,15 +127,13 @@ void rail_interruption_droit()
 
 
 
-void monter_descente_initialisation(int tour)// 800 sans cavalier = 1 Tour complet
+void monter_descente_initialisation(long tour)// 800 sans cavalier = 1 Tour complet
 {
-        delay(1000);
+        
         digitalWrite(Z_ENABLE_PIN,LOW);           
         digitalWrite(Z_DIR_PIN,LOW);
         motor_Z.step(tour);
-        Serial.println("Moteur Z en mouvement");
-          
-    
+        Serial.println("Moteur Z en mouvement");  
 }
 
 void interruption_descente_Z(){
@@ -145,8 +144,9 @@ void interruption_descente_Z(){
       delayMicroseconds(500);
       Serial.println("Butee descente Z actionnee");
     }
-    descente_init=1;
-    monter_descente_initialisation(-1600);   
+    Serial.println("Sortie Boucle");
+    isInt = 1;
+   
 }
 
 
@@ -185,15 +185,22 @@ void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temp
  * fonction nous permettant d'initialiser le mécanisme pince au démarrage du systeme
  */
 void initialisation_pince(bool etat){
-  while(etat!=false){
-     monter_descente_initialisation(10600);
+  
+     while(isInt == 0){
+      monter_descente_initialisation(400);
+     }
+     isInt = 0;
+     monter_descente_initialisation(-1600);
+
      Serial.println("Initialisation de l'axe z : done");
      //rail_initialisation(800);                            Comme on ne s'en sert pas je l'ai mis en commentaire
      //Serial.println("Initialisation de l'axe x : done");
+     //digitalWrite(Z_ENABLE_PIN,HIGH); 
      relacher_cylindre(170,120,1000);
      Serial.println("Initialisation de la pince : done");
-     etat=false;
-  }
+     Serial.println("Position pince en Z = 0");
+
+  
   Serial.println("Fin de l'initialisation de la pince");
 }
 
@@ -218,7 +225,7 @@ void capture_cylindre_pince (bool etat){
  */
 void relacher_cylindre_pince (bool etat){
   while(etat!=false){
-    monter_descente_initialisation(-10800);
+    monter_descente_initialisation(10800);
     Serial.println("Pince descend le cylindre");
     relacher_cylindre(80,120,1000); 
     Serial.println("Cylindre relacher");
@@ -312,7 +319,7 @@ void setup()
       pinMode(Z_DIR_PIN,OUTPUT);
       pinMode(Z_ENABLE_PIN, OUTPUT);               //Enable | Activé si la pin est à l'état "LOW" desactivé si elle est à l'état "HIGH" MOTEUR X
       pinMode(Z_MIN_PIN,INPUT);
-      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),interruption_descente_Z,LOW);
+      attachInterrupt(digitalPinToInterrupt(Z_MIN_PIN),interruption_descente_Z,FALLING);
       motor_Z.setSpeed(1000);
       servo_rotation.attach(4);                    
       servo_capture.attach(5);
@@ -329,27 +336,20 @@ void setup()
  * \brief fonction loop d'arduino
  */
 void loop() 
-{
+{ 
+  boolean Var = true;
+  Serial.print("Avant init");
   initialisation_pince(etat);
-  capture_cylindre_pince(etat);
-  relacher_cylindre_pince(etat);
-  etat=false;
-//    delay(500); 
-//    i2creceive2(_RECEIVEADRESS_);
-    
-//      if (demarrerMoteur == 1)
-//      {
-//        initialisation();
-//  
-//        // conversion sur 2 octets de la valeur à envoyer
-//        byte bytesTab[2];
-//        intTo2Bytes(bytesTab, finInitialisation);     
-//        // envoi une fois que l'initialisation est terminée
-//        i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_); 
-//        
-//        //finInitialisation = 0;
-//        demarrerMoteur = 0;
-//      }
+  while(Var == true){
+      motor_Z.step(0);
+  }
+
+  Serial.print("Apres init");
+   //digitalWrite(Z_ENABLE_PIN,HIGH);
+  
+
+
+
     
 }
 
