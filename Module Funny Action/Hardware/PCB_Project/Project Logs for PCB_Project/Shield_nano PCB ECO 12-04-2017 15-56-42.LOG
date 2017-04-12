@@ -1,0 +1,13 @@
+Added Component: Designator=LD?(LED0805)
+Added Component: Designator=LD?(LED0805)
+Added Component: Designator=R?(0805)
+Added Component: Designator=R?(0805)
+Added Pin To Net: NetName=GND Pin=LD?-K
+Added Pin To Net: NetName=GND Pin=LD?-K
+Added Pin To Net: NetName=VCC7V Pin=R?-2
+Added Pin To Net: NetName=VCC Pin=R?-2
+Added Pin To Net: NetName=NetLD?_A Pin=LD?-A
+Added Pin To Net: NetName=NetLD?_A Pin=R?-1
+Added Net: Name=NetLD?_A
+Added Member To Class: ClassName=Shield_nano Member=Component LD? comment
+Added Member To Class: ClassName=Shield_nano Member=Component R? RES

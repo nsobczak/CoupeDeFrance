@@ -1,0 +1,51 @@
+Added Component: Designator=*(Connector_Cosse)
+Added Component: Designator=*(Connector_Cosse)
+Added Component: Designator=*(Arduino Nano FootPrint)
+Added Component: Designator=JMP1(JMP2-100)
+Added Component: Designator=JMP2(JMP2-100)
+Added Component: Designator=JMP3(JMP2-100)
+Added Component: Designator=JMP4(JMP2-100)
+Added Component: Designator=JMP5(JMP2-100)
+Added Component: Designator=JMP6(JMP2-100)
+Added Component: Designator=JMP7(JMP2-100)
+Added Pin To Net: NetName=D2 Pin=*-5
+Added Pin To Net: NetName=D2 Pin=JMP1-2
+Added Net: Name=D2
+Added Pin To Net: NetName=D3 Pin=*-6
+Added Pin To Net: NetName=D3 Pin=JMP1-1
+Added Net: Name=D3
+Added Pin To Net: NetName=D4 Pin=JMP2-2
+Added Net: Name=D4
+Added Pin To Net: NetName=D5 Pin=JMP2-1
+Added Net: Name=D5
+Added Pin To Net: NetName=D6 Pin=JMP4-2
+Added Net: Name=D6
+Added Pin To Net: NetName=D7 Pin=JMP4-1
+Added Net: Name=D7
+Added Pin To Net: NetName=D8 Pin=JMP5-2
+Added Net: Name=D8
+Added Pin To Net: NetName=D9 Pin=JMP5-1
+Added Net: Name=D9
+Added Pin To Net: NetName=D10 Pin=JMP6-2
+Added Net: Name=D10
+Added Pin To Net: NetName=D11 Pin=JMP6-1
+Added Net: Name=D11
+Added Pin To Net: NetName=D12 Pin=JMP7-2
+Added Net: Name=D12
+Added Pin To Net: NetName=D13 Pin=JMP7-1
+Added Net: Name=D13
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-4
+Added Net: Name=GND
+Added Pin To Net: NetName=SCL Pin=*-24
+Added Pin To Net: NetName=SCL Pin=JMP3-2
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=*-23
+Added Pin To Net: NetName=SDA Pin=JMP3-1
+Added Net: Name=SDA
+Added Pin To Net: NetName=VCC Pin=*-1
+Added Pin To Net: NetName=VCC Pin=*-1
+Added Pin To Net: NetName=VCC Pin=*-30
+Added Net: Name=VCC
+Added Class: Name=Shield_nano

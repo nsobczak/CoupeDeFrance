@@ -1,0 +1,10 @@
+Change Component Designator: OldDesignator=LD? NewDesignator=LD1
+Change Component Designator: OldDesignator=LD? NewDesignator=LD2
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=R? NewDesignator=R2
+Change Net Name : Old Net Name=NetLD?_A New Net Name=NetLD1_A
+Added Pin To Net: NetName=NetLD2_A Pin=LD2-A
+Added Pin To Net: NetName=NetLD2_A Pin=R2-1
+Added Net: Name=NetLD2_A
+Added Member To Class: ClassName=Shield_nano Member=Component LD1 comment
+Added Member To Class: ClassName=Shield_nano Member=Component R1 RES

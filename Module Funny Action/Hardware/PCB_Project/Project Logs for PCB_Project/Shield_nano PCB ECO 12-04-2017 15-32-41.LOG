@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=D10 Pin=JMP6-2
+Change Component DesignItemId : Designator=JMP6 Old DesignItemId=JUMPER2 New DesignItemId=JUMPER3
+Change Component Footprint: Designator=JMP6 Old Footprint=JMP2-100 New Footprint=JMP3-100
+Change Component Comment : Designator=JMP6 Old Comment=JUMPER2 New Comment=JUMPER3
+Added Component: Designator=*(Connector_Cosse)
+Added Component: Designator=*(Connector_Cosse)
+Added Pin To Net: NetName=D10 Pin=JMP6-1
+Added Pin To Net: NetName=GND7V Pin=*-1
+Added Pin To Net: NetName=GND7V Pin=*-1
+Added Pin To Net: NetName=GND7V Pin=JMP6-3
+Added Net: Name=GND7V
+Added Pin To Net: NetName=VCC7V Pin=*-1
+Added Pin To Net: NetName=VCC7V Pin=*-1
+Added Pin To Net: NetName=VCC7V Pin=JMP6-2
+Added Net: Name=VCC7V
