@@ -15,11 +15,10 @@
 #include <math.h>
 
 #define _DEBUG_ true
+#define _TEST_SANS_I2C_ true
 
 // I2C
-#define _RECEIVEADRESS_ 10
-#define _SENDADRESS_ 11
-
+#define _CLAMP_RECEIVEADRESS_ 8
 
 // Shield - For RAMPS 1.4
 #define X_STEP_PIN         54
@@ -59,12 +58,11 @@
 #define TEMP_1_PIN          14   // ANALOG NUMBERING
 
 
-//_____________________________________________________________________________________________
-//_____________________________________________________________________________________________
+
 //Définition des variables globales
-int index;
-int demarrerMoteur;
-int finInitialisation;
+int etat_initialisation;
+int etat_capture_cylindre;
+int etat_relacher_cylindre;
 volatile byte state = LOW;
 
 int isInt = 0;
@@ -263,16 +261,16 @@ void receiveEvent2(int howMany)
                 switch ( var ) // cf. les références des variables en haut du fichier
                 {
                 case 0:
-                        if (_DEBUG_) Serial.println("variable recue : index");
-                        index = value;
+                        if (_DEBUG_) Serial.println("variable recue : etat_initialisation");
+                        etat_initialisation = value;
                         break;
                 case 1:
-                        if (_DEBUG_) Serial.println("variable recue : demarrerMoteur");
-                        demarrerMoteur = value;
+                        if (_DEBUG_) Serial.println("variable recue : etat_capture_cylindre");
+                        etat_capture_cylindre = value;
                         break;
                 case 2:
-                        if (_DEBUG_) Serial.println("variable recue : finInitialisation");
-                        finInitialisation = value;
+                        if (_DEBUG_) Serial.println("variable recue : etat_relacher_cylindre");
+                        etat_relacher_cylindre = value;
                         break;
                 default:
                         if (_DEBUG_) Serial.println("variable recue inconnue");
@@ -280,10 +278,7 @@ void receiveEvent2(int howMany)
 
         }
         // else de debug
-        else
-        {
-                if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
-        }
+        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
 }
 
 
@@ -321,8 +316,10 @@ void setup()
         motor_Z.setSpeed(1000);
         servo_rotation.attach(4);
         servo_capture.attach(5);
-        demarrerMoteur = 0;
-        finInitialisation = 0;
+
+        etat_initialisation = 0;
+        etat_capture_cylindre = 0;
+        etat_relacher_cylindre = 0;
 
         Serial.begin(9600);
 }
@@ -335,11 +332,28 @@ void setup()
  */
 void loop()
 {
-        boolean Var = true;
+        if (_TEST_SANS_I2C_) {
+                boolean Var = true;
+                initialisation_pince(etat);
+                capture_cylindre_pince(etat);
+                relacher_cylindre_pince(etat);
+                while(Var == true) motor_Z.step(0);
+                //digitalWrite(Z_ENABLE_PIN,HIGH);
+        }
+        else{
+                i2creceive2(_CLAMP_RECEIVEADRESS_);
+                if (etat_initialisation == 1) {
+                        initialisation_pince(etat);
+                        etat_initialisation = 0;
+                }
+                else if (etat_relacher_cylindre == 1) {
+                        relacher_cylindre_pince(etat);
+                        etat_relacher_cylindre = 0;
+                }
+                else if (etat_capture_cylindre == 1) {
+                        capture_cylindre_pince(etat);
+                        etat_capture_cylindre = 0;
+                }
+        }
 
-        initialisation_pince(etat);
-        capture_cylindre_pince(etat);
-        relacher_cylindre_pince(etat);
-        while(Var == true) motor_Z.step(0);
-        //digitalWrite(Z_ENABLE_PIN,HIGH);
 }
