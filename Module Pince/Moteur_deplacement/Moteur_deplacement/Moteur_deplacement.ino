@@ -82,6 +82,7 @@ Servo servo_rotation;
 /**
  * \fn void rail_initialisation
  * \param int tour
+ * \brief TODO: explain here what this function does
  */
 void rail_initialisation(int tour) // 800 sans cavalier = 1 Tour complet
 {
@@ -94,6 +95,7 @@ void rail_initialisation(int tour) // 800 sans cavalier = 1 Tour complet
 
 /**
  * \fn void void rail_interruption_gauche
+ * \brief TODO: explain here what this function does
  */
 void rail_interruption_gauche()
 {
@@ -109,6 +111,7 @@ void rail_interruption_gauche()
 
 /**
  * \fn void rail_interruption_droit
+ * \brief TODO: explain here what this function does
  */
 void rail_interruption_droit()
 {
@@ -129,6 +132,7 @@ void rail_interruption_droit()
 /**
  * \fn void monter_descente_initialisation
  * \param long tour
+ * \brief TODO: explain here what this function does
  */
 void monter_descente_initialisation(long tour) // 800 sans cavalier = 1 Tour complet
 {
@@ -141,6 +145,7 @@ void monter_descente_initialisation(long tour) // 800 sans cavalier = 1 Tour com
 
 /**
  * \fn void interruption_descente_Z
+ * \brief TODO: explain here what this function does
  */
 void interruption_descente_Z()
 {
@@ -329,6 +334,7 @@ void setup()
         servo_rotation.attach(4);
         servo_capture.attach(5);
 
+        // Initialiation de l'état des actions de possibles de la pince
         etat_initialisation = 0;
         etat_capture_cylindre = 0;
         etat_relacher_cylindre = 0;
@@ -339,7 +345,7 @@ void setup()
 
 /**
  * \fn void loop()
- * \brief fonction loop d'arduino
+ * \brief récéption des ordres du cerveau
  */
 void loop()
 {
