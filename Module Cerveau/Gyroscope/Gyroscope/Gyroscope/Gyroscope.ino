@@ -28,8 +28,10 @@ MPU6050 accelgyro_2(MPU6050_ADDRESS_AD0_HIGH);
 
 
 int16_t ax, ay, az;
-int16_t gx, gy, gz, gz_2;
-float AXoff, AYoff, AZoff, GXoff, GYoff, GZoff, roll, pitch, yaw;
+int16_t gx, gy, gz;
+float AXoff, AYoff, AZoff, GXoff, GYoff, GZoff;
+const int minVal = 265;
+const int maxVal = 402;
 
 #define LED_PIN 13
 bool blinkState = false;
@@ -41,16 +43,11 @@ void setup() {
         // join I2C bus (I2Cdev library doesn't do this automatically)
         Wire.begin();
 
-        // initialize serial communication
-        // (38400 chosen because it works as well at 8MHz as it does at 16MHz, but
-        // it's really up to you depending on your project)
         Serial.begin(9600);
 
         // initialize device
         Serial.println("Initializing I2C devices...");
         accelgyro_1.initialize();
-        accelgyro_1.setFullScaleGyroRange(0);
-        accelgyro_1.setFullScaleAccelRange(0);
         // accelgyro_2.initialize();
 
         // accelgyro_1.setXAccelOffset(17401.43);
@@ -68,85 +65,59 @@ void setup() {
         // configure Arduino LED for
         pinMode(LED_PIN, OUTPUT);
 
-        AXoff = 0;
-        AYoff = 0;
-        AZoff = 0;
-        GXoff = 0;
-        GYoff = 0;
-        GZoff = 0;
+        if (_CALCUL_OFFSET_)
+        {
+                AXoff = 0; AYoff = 0; AZoff = 0;
+                GXoff = 0; GYoff = 0; GZoff = 0;
+        }
 }
 
 
 void loop() {
         // read raw accel/gyro measurements from device
-        accelgyro_1.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-
-
-        // accelgyro_1.readNormalizeGyro();
+        // accelgyro_1.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
         // these methods (and a few others) are also available
-        // accelgyro_1.getAcceleration(&ax, &ay, &az);
+        accelgyro_1.getAcceleration(&ax, &ay, &az);
         // accelgyro_1.getRotation(&gx, &gy, &gz);
 
-        // gz_2 = accelgyro_2.getRotationZ();
-
-        if (_CALCUL_OFFSET_) {
+        if (_CALCUL_OFFSET_)
+        {
                 calibrateOffsets();
-                Serial.print("AXoff =\t");
-                Serial.println(AXoff);
-                Serial.print("AYoff =\t");
-                Serial.println(AYoff);
-                Serial.print("AZoff =\t");
-                Serial.println(AZoff);
-                Serial.print("GXoff =\t");
-                Serial.println(GXoff);
-                Serial.print("GYoff =\t");
-                Serial.println(GYoff);
-                Serial.print("GZoff =\t");
-                Serial.println(GZoff);
+                Serial.print("AXoff =\t"); Serial.println(AXoff);
+                Serial.print("AYoff =\t"); Serial.println(AYoff);
+                Serial.print("AZoff =\t"); Serial.println(AZoff);
+                Serial.print("GXoff =\t"); Serial.println(GXoff);
+                Serial.print("GYoff =\t"); Serial.println(GYoff);
+                Serial.print("GZoff =\t"); Serial.println(GZoff);
         }
 
 
+        // // === méthode 1 ===
+        // int xAng = map(ax, minVal,maxVal, -90, 90); //Re-maps AcX from one range to another.
+        // int yAng = map(ay, minVal,maxVal, -90, 90); //Re-maps AcY from one range to another.
+        // int zAng = map(az, minVal,maxVal, -90, 90); //Re-maps AcZ from one range to another.
+        //
+        // int x = RAD_TO_DEG * (atan2(-yAng, -zAng)+PI);
+        // int y = RAD_TO_DEG * (atan2(-xAng, -zAng)+PI);
+        // int z = RAD_TO_DEG * (atan2(-yAng, -xAng)+PI);
+        //
+        // Serial.print("AngleX= "); Serial.println(x);
+        // Serial.print("AngleY= "); Serial.println(y);
+        // Serial.print("AngleZ= "); Serial.println(z);
+        // Serial.println("   ===   ");
 
-        // display tab-separated accel/gyro x/y/z values
-        Serial.println("\nrotation =\t");
-        // Serial.print(ax); Serial.print("\t");
-        // Serial.print(ay); Serial.print("\t");
-        // Serial.print(az); Serial.print("\t");
-        // Serial.print(ax); Serial.print("\t");
-        // Serial.println(convertGyroValue(ax, 17401.43, 16384.0)); //16384 is just 32768/2 to get our 1G value
-        // Serial.print(ay); Serial.print("\t");
-        // Serial.println(convertGyroValue(ay, -113.11, 16384.0));
-        // Serial.print(az); Serial.print("\t");
-        // Serial.println(convertGyroValue(az, -2602.38 - 16384, 16384.0)); //z => remove 1G before dividing
-        // Serial.print(gx); Serial.print("\t");
-        // Serial.println(convertGyroValue(gx, 51.44, 131.07)); //131.07 is just 32768/250 to get us our 1deg/sec value
-        // Serial.print(gy); Serial.print("\t");
-        // Serial.println(convertGyroValue(gy, 350.57, 131.07));
-        // Serial.print(gz); Serial.print("\t");
-        // Serial.println(convertGyroValue(gz, 177.36, 131.07));
 
-        roll = atan2(gy, gz) * 180/PI;        //rotation en x
-        pitch = atan2(gx, sqrt(gy*gy + gz*gz)) * 180/PI; //rotation en y
+        // === méthode 2 ===
+        double arx = RAD_TO_DEG * atan(ax / sqrt(ay*ay + az*az));
+        double ary = RAD_TO_DEG * atan(ay / sqrt(ax*ax + az*az));
+        double arz = RAD_TO_DEG * atan(sqrt(ay*ay + ax*ax) / az);
 
-        //Ignore the gyro if our angular velocity does not meet our threshold
-        if (gz > 1 || gz < -1) {
-                gz /= 100;
-                yaw += gz;
-        }
+        Serial.print("AngleX2= "); Serial.println(arx);
+        Serial.print("AngleY2= "); Serial.println(ary);
+        Serial.print("AngleZ2= "); Serial.println(arz);
+        Serial.println("-----------------------------------------");
 
-        //Keep our angle between 0-359 degrees
-        if (yaw < 0)
-                yaw += 360;
-        else if (yaw > 359)
-                yaw -= 360;
-
-        Serial.print("roll = \t");
-        Serial.println(roll);
-        Serial.print("pitch = \t");
-        Serial.println(pitch);
-        Serial.print("yaw = \t");
-        Serial.println(yaw);
 
         // blink LED to indicate activity
         blinkState = !blinkState;
@@ -155,7 +126,9 @@ void loop() {
         delay(1000);
 }
 
-// offset :
+
+//_____________________________________________________________________________________________
+// offset récupéré par test, moyenne de 100 valeurs :
 // 1 -  41,52
 // 2 -  344,63
 // 3 -  174,90
@@ -200,5 +173,4 @@ void calibrateOffsets(void)
         Serial.print("\n\rGXoff:\t"); Serial.println((int)GXoff);
         Serial.print("\n\rGYoff:\t"); Serial.println((int)GYoff);
         Serial.print("\n\rGZoff:\t"); Serial.println((int)GZoff);
-
 }
