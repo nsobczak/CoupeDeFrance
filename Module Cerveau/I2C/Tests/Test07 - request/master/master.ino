@@ -3,7 +3,7 @@
  *    \brief Esclave du Test07 I2C
  *    \author Nicolas Sobczak
  *    \date decembre 2016
-*/
+ */
 
 #include <Wire.h>
 #include "i2cCommunication.h"
@@ -58,8 +58,13 @@ void loop()
   Serial.print(" = ");  
   Serial.println(recoveredValue);
   
+  Serial.print("assigning another value : ");  
+  recoveredValue = 6;
+  Serial.print(var);
+  Serial.print(" = ");  
+  Serial.println(recoveredValue);
   
-  Serial.println();  
- 
+  Serial.println("__________________");  
+  delay(1000);
 }
 
