@@ -17,10 +17,10 @@
 #define _DEBUG_ true
 #define _TEST_SANS_I2C_ true
 
-// I2C
+//=== I2C ===
 #define _CLAMP_RECEIVEADRESS_ 8
 
-// Shield - For RAMPS 1.4
+//=== Shield - For RAMPS 1.4 ===
 #define X_STEP_PIN         54
 #define X_DIR_PIN          55
 #define X_ENABLE_PIN       38
@@ -57,9 +57,7 @@
 #define TEMP_0_PIN          13   // ANALOG NUMBERING
 #define TEMP_1_PIN          14   // ANALOG NUMBERING
 
-
-
-//Définition des variables globales
+//=== Variables globales ===
 int etat_initialisation;
 int etat_capture_cylindre;
 int etat_relacher_cylindre;
@@ -69,8 +67,6 @@ int isInt = 0;
 int initt=0;
 int descente_init=0;
 int rail_init=0;
-bool etat=true;
-bool test=false;
 
 Stepper motor_X(200, 54, 55);
 Stepper motor_Y(200, 60, 61);
@@ -83,6 +79,10 @@ Servo servo_rotation;
 //____________________________________________________________________________________________________
 // Déplacement du rail
 
+/**
+ * \fn void rail_initialisation
+ * \param int tour
+ */
 void rail_initialisation(int tour) // 800 sans cavalier = 1 Tour complet
 {
         delay(1000);
@@ -92,6 +92,9 @@ void rail_initialisation(int tour) // 800 sans cavalier = 1 Tour complet
 }
 
 
+/**
+ * \fn void void rail_interruption_gauche
+ */
 void rail_interruption_gauche()
 {
         digitalWrite(X_ENABLE_PIN,HIGH);
@@ -104,6 +107,9 @@ void rail_interruption_gauche()
 }
 
 
+/**
+ * \fn void rail_interruption_droit
+ */
 void rail_interruption_droit()
 {
         digitalWrite(X_ENABLE_PIN,HIGH);
@@ -116,19 +122,27 @@ void rail_interruption_droit()
 }
 
 
-//____________________________________________________________________________________________________
-//____________________________________________________________________________________________________
-// Déplacement du vis sans fin
 
+//____________________________________________________________________________________________________
+//____________________________________________________________________________________________________
+// Déplacement de la vis sans fin
+
+/**
+ * \fn void monter_descente_initialisation
+ * \param long tour
+ */
 void monter_descente_initialisation(long tour) // 800 sans cavalier = 1 Tour complet
 {
-
-        digitalWrite(Z_ENABLE_PIN,LOW);
-        digitalWrite(Z_DIR_PIN,LOW);
+        digitalWrite(Z_ENABLE_PIN, LOW);
+        digitalWrite(Z_DIR_PIN, LOW);
         motor_Z.step(tour);
         if (_DEBUG_) Serial.println("Moteur Z en mouvement");
 }
 
+
+/**
+ * \fn void interruption_descente_Z
+ */
 void interruption_descente_Z()
 {
         digitalWrite(Z_ENABLE_PIN,HIGH);
@@ -142,6 +156,7 @@ void interruption_descente_Z()
 }
 
 
+
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
 // Gestion de la pince
@@ -149,7 +164,7 @@ void interruption_descente_Z()
 /**
  * \fn void attraper_cylindre
  * \param int angle_fermeture, int angle_rotation_droite, int temps
- * \brief, Fn qui permet d'attraper et de retourner verticalement le cylindre
+ * \brief fonction qui permet d'attraper et de retourner verticalement le cylindre
  */
 void attraper_cylindre(int angle_fermeture, int angle_rotation_droite, int temps)
 {
@@ -157,13 +172,13 @@ void attraper_cylindre(int angle_fermeture, int angle_rotation_droite, int temps
         delay(temps);
         servo_rotation.write(angle_rotation_droite);                   // rotation de la pince vers la droite (20)
         delay(temps);
-
 }
+
 
 /**
  * \fn void relacher_cylindre
  * \param int angle_ouverture, int angle_rotation_initial, int temps
- * \brief, fonction qui permet de relacher le cylindre après sa capture, la pince revient à son état inital (ouverte)
+ * \brief fonction qui permet de relacher le cylindre après sa capture, la pince revient à son état inital (ouverte)
  */
 
 void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temps)
@@ -175,23 +190,22 @@ void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temp
 }
 
 
+
 //____________________________________________________________________________________________________
 //___________________________________________________________________________________________________
 //3 fonctions permettant de piloter la pince
 /**
- * fonction nous permettant d'initialiser le mécanisme pince au démarrage du systeme
+ * \fn void initialisation_pince()
+ * \brief Fonction nous permettant d'initialiser le mécanisme pince au démarrage du systeme
  */
-void initialisation_pince(bool etat)
+void initialisation_pince()
 {
-
-        while(isInt == 0) {
-                monter_descente_initialisation(400);
-        }
+        while(isInt == 0) monter_descente_initialisation(400);
         isInt = 0;
         monter_descente_initialisation(-1600);
 
         if (_DEBUG_) Serial.println("Initialisation de l'axe z : done");
-        //rail_initialisation(800);                            Comme on ne s'en sert pas je l'ai mis en commentaire
+        //rail_initialisation(800);                            //Comme on ne s'en sert pas je l'ai mis en commentaire
         //Serial.println("Initialisation de l'axe x : done");
         //digitalWrite(Z_ENABLE_PIN,HIGH);
         relacher_cylindre(170,120,1000);
@@ -203,39 +217,40 @@ void initialisation_pince(bool etat)
         }
 }
 
+
 /**
- * fonction permettant la capture du cylindre
+ * \fn void capture_cylindre_pince()
+ * \brief Fonction permettant la capture du cylindre
  */
-void capture_cylindre_pince (bool etat)
+void capture_cylindre_pince()
 {
-        while(etat!=false) {
-                attraper_cylindre(170,60,1000);
-                if (_DEBUG_) Serial.println("Cylindre attrape");
-                monter_descente_initialisation(-10800);
-                if (_DEBUG_) Serial.println("Pince monte le cylindre");
-                attraper_cylindre(80,60,1000);
-                if (_DEBUG_) Serial.println("Cylindre a l'horizontal");
-                etat=false;
-        }
+        attraper_cylindre(170,60,1000);
+        if (_DEBUG_) Serial.println("Cylindre attrape");
+        monter_descente_initialisation(-10800);
+        if (_DEBUG_) Serial.println("Pince monte le cylindre");
+        attraper_cylindre(80,60,1000);
+        if (_DEBUG_) Serial.println("Cylindre a l'horizontal");
         if (_DEBUG_) Serial.println("Fin de la capture du cylindre");
 }
 
+
 /**
- * Fonction permettant de relacher le cylindre
+ * \fn void relacher_cylindre_pince()
+ * \brief Fonction permettant de relacher le cylindre
  */
-void relacher_cylindre_pince (bool etat)
+void relacher_cylindre_pince()
 {
-        while(etat!=false) {
-                monter_descente_initialisation(10800);
-                if (_DEBUG_) Serial.println("Pince descend le cylindre");
-                relacher_cylindre(80,120,1000);
-                if (_DEBUG_) Serial.println("Cylindre relacher");
-                etat=false;
-                relacher_cylindre(170,120,1000);
-                if (_DEBUG_) Serial.println("Pince a son état initial");
-        }
+        monter_descente_initialisation(10800);
+        if (_DEBUG_) Serial.println("Pince descend le cylindre");
+        relacher_cylindre(80,120,1000);
+        if (_DEBUG_) Serial.println("Cylindre relacher");
+        delay(1000);
+        relacher_cylindre(170,120,1000);
+        if (_DEBUG_) Serial.println("Pince a son état initial");
         if (_DEBUG_) Serial.println("Fin du relachement du cylindre");
 }
+
+
 
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
@@ -294,6 +309,7 @@ void i2creceive2(int adresse)
 }
 
 
+
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
 /**
@@ -324,6 +340,8 @@ void setup()
         Serial.begin(9600);
 }
 
+
+
 //____________________________________________________________________________________________________
 //____________________________________________________________________________________________________
 /**
@@ -332,28 +350,29 @@ void setup()
  */
 void loop()
 {
-        if (_TEST_SANS_I2C_) {
+        if (_TEST_SANS_I2C_)
+        {
                 boolean Var = true;
-                initialisation_pince(etat);
-                capture_cylindre_pince(etat);
-                relacher_cylindre_pince(etat);
+                initialisation_pince();
+                capture_cylindre_pince();
+                relacher_cylindre_pince();
                 while(Var == true) motor_Z.step(0);
                 //digitalWrite(Z_ENABLE_PIN,HIGH);
         }
-        else{
+        else
+        {
                 i2creceive2(_CLAMP_RECEIVEADRESS_);
                 if (etat_initialisation == 1) {
-                        initialisation_pince(etat);
+                        initialisation_pince();
                         etat_initialisation = 0;
                 }
                 else if (etat_relacher_cylindre == 1) {
-                        relacher_cylindre_pince(etat);
+                        relacher_cylindre_pince();
                         etat_relacher_cylindre = 0;
                 }
                 else if (etat_capture_cylindre == 1) {
-                        capture_cylindre_pince(etat);
+                        capture_cylindre_pince();
                         etat_capture_cylindre = 0;
                 }
         }
-
 }
