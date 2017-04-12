@@ -21,6 +21,7 @@
  * ======================================================================================================
  */
 #define _DEBUG_ true
+#define _TEST_CLAMP_ false
 
 Bot elPadre;
 bool epreuveFaite;
@@ -59,8 +60,19 @@ void loop()
          * si on détecte l'adversaire => manoeuvre dévitement
          * si on détecte un cylindre => on le ramasse
          */
-        //Tests
-        elPadre.getClamp().initialisation();
+        if (_TEST_CLAMP_)
+        {
+                //Test pince
+                if (_DEBUG_) Serial.println("initialisation");
+                elPadre.getClamp().initialisation();
+                delay(9000); //pour laisser le temps à l'action de se réaliser
+                if (_DEBUG_) Serial.println("catch");
+                elPadre.getClamp().catchCylinder();
+                delay(6500); //pour laisser le temps à l'action de se réaliser
+                if (_DEBUG_) Serial.println("release");
+                elPadre.getClamp().releaseCylinder();
+                delay(8000); //pour laisser le temps à l'action de se réaliser
+        }
 
         if (_DEBUG_)
         {
@@ -75,4 +87,6 @@ void loop()
                 elPadre.buildBase();
                 epreuveFaite = true;
         }
+
+        delay(3000);
 }

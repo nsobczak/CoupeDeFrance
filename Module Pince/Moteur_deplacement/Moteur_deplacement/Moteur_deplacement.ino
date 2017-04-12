@@ -15,7 +15,7 @@
 #include <math.h>
 
 #define _DEBUG_ true
-#define _TEST_SANS_I2C_ true
+#define _TEST_SANS_I2C_ false
 
 //=== I2C ===
 #define _CLAMP_RECEIVEADRESS_ 8
@@ -124,7 +124,6 @@ void rail_interruption_droit()
 
 
 //____________________________________________________________________________________________________
-//____________________________________________________________________________________________________
 // Déplacement de la vis sans fin
 
 /**
@@ -158,7 +157,6 @@ void interruption_descente_Z()
 
 
 //____________________________________________________________________________________________________
-//____________________________________________________________________________________________________
 // Gestion de la pince
 
 /**
@@ -191,7 +189,6 @@ void relacher_cylindre(int angle_ouverture, int angle_rotation_initial, int temp
 
 
 
-//____________________________________________________________________________________________________
 //___________________________________________________________________________________________________
 //3 fonctions permettant de piloter la pince
 /**
@@ -253,7 +250,6 @@ void relacher_cylindre_pince()
 
 
 //____________________________________________________________________________________________________
-//____________________________________________________________________________________________________
 // Reception I2C
 
 /**
@@ -275,15 +271,15 @@ void receiveEvent2(int howMany)
 
                 switch ( var ) // cf. les références des variables en haut du fichier
                 {
-                case 0:
+                case 1:
                         if (_DEBUG_) Serial.println("variable recue : etat_initialisation");
                         etat_initialisation = value;
                         break;
-                case 1:
+                case 2:
                         if (_DEBUG_) Serial.println("variable recue : etat_capture_cylindre");
                         etat_capture_cylindre = value;
                         break;
-                case 2:
+                case 3:
                         if (_DEBUG_) Serial.println("variable recue : etat_relacher_cylindre");
                         etat_relacher_cylindre = value;
                         break;
@@ -341,9 +337,6 @@ void setup()
 }
 
 
-
-//____________________________________________________________________________________________________
-//____________________________________________________________________________________________________
 /**
  * \fn void loop()
  * \brief fonction loop d'arduino
@@ -361,6 +354,7 @@ void loop()
         }
         else
         {
+                if (_DEBUG_) Serial.println("en attente reception i2c");
                 i2creceive2(_CLAMP_RECEIVEADRESS_);
                 if (etat_initialisation == 1) {
                         initialisation_pince();
