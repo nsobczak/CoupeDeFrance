@@ -19,10 +19,10 @@
 #include "i2cCommunication.h"
 #include <Wire.h>
 
+#define _DEBUG_ true
+
 #define _SENSORSBOARD_SENDADRESS_ 11
 
-
-#define _DEBUG_ false
 #define OWN_STD_ID 01 //avant = 23
 #define OWN_EXT_ID 1000
 #define ULTRASONIC_EXT_ID 1002

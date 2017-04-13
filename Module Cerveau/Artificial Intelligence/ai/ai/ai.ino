@@ -22,7 +22,7 @@
  */
 #define _DEBUG_ true
 #define _TEST_CLAMP_ false
-#define _TEST_SENSORS_ true
+#define _TEST_SENSORS_ false
 
 
 Bot elPadre;
@@ -76,7 +76,7 @@ void loop()
                 delay(6500); //pour laisser le temps à l'action de se réaliser
                 if (_DEBUG_) Serial.println("release");
                 elPadre.getClamp().releaseCylinder();
-                delay(8000); //pour laisser le temps à l'action de se réaliser
+                delay(8500); //pour laisser le temps à l'action de se réaliser
         }
 
         if (_TEST_SENSORS_)
@@ -103,8 +103,8 @@ void loop()
                         Serial.println(elPadre.getSensorsBoard().getUltrasonicLeftValue());
                         Serial.print("\t getUltrasonicRightValue : \t");
                         Serial.println(elPadre.getSensorsBoard().getUltrasonicRightValue());
+                        delay(500);
                 }
-                delay(1000);
         }
 
         if (_DEBUG_)
@@ -121,5 +121,5 @@ void loop()
                 epreuveFaite = true;
         }
 
-        delay(3000);
+        delay(1000);
 }
