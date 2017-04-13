@@ -22,6 +22,8 @@
  */
 #define _DEBUG_ true
 #define _TEST_CLAMP_ false
+#define _TEST_SENSORS_ true
+
 
 Bot elPadre;
 bool epreuveFaite;
@@ -37,8 +39,10 @@ bool epreuveFaite;
  */
 void setup()
 {
-        Serial.begin(9600);
         epreuveFaite = false;
+        if (_DEBUG_) Wire.begin();
+
+        Serial.begin(9600);
 }
 
 
@@ -63,6 +67,7 @@ void loop()
         if (_TEST_CLAMP_)
         {
                 //Test pince
+                if (_DEBUG_) Serial.println("\n===_TEST_CLAMP_===");
                 if (_DEBUG_) Serial.println("initialisation");
                 elPadre.getClamp().initialisation();
                 delay(9000); //pour laisser le temps à l'action de se réaliser
@@ -72,6 +77,34 @@ void loop()
                 if (_DEBUG_) Serial.println("release");
                 elPadre.getClamp().releaseCylinder();
                 delay(8000); //pour laisser le temps à l'action de se réaliser
+        }
+
+        if (_TEST_SENSORS_)
+        {
+                if (_DEBUG_) Serial.println("\n===_TEST_SENSORS_===");
+                elPadre.getSensorsBoard().updateAllSensorsValue();
+                if (_DEBUG_)
+                {
+                        Serial.print("\t getInfraredSensorBackValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getInfraredSensorBackValue());
+                        Serial.print("\t getInfraredSensorFrontBottomCenterValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getInfraredSensorFrontBottomCenterValue());
+                        Serial.print("\t getInfraredSensorFrontBottomLeftValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getInfraredSensorFrontBottomLeftValue());
+                        Serial.print("\t getInfraredSensorFrontBottomRightValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getInfraredSensorFrontBottomRightValue());
+                        Serial.print("\t getInfraredSensorFrontTopValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getInfraredSensorFrontTopValue());
+                        Serial.print("\t getUltrasonicBackValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getUltrasonicBackValue());
+                        Serial.print("\t getUltrasonicFrontValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getUltrasonicFrontValue());
+                        Serial.print("\t getUltrasonicLeftValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getUltrasonicLeftValue());
+                        Serial.print("\t getUltrasonicRightValue : \t");
+                        Serial.println(elPadre.getSensorsBoard().getUltrasonicRightValue());
+                }
+                delay(1000);
         }
 
         if (_DEBUG_)

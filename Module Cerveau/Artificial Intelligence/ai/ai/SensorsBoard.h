@@ -15,9 +15,9 @@
 #include <Wire.h>
 #include "i2cCommunication.h"
 
-#define _SENSORSBOARD_RECEIVEADRESS_ 11
+#define _DEBUG_ false
 
-#define _DEBUG_ true
+#define _SENSORSBOARD_RECEIVEADRESS_ 11
 
 #define _NUMBER_OF_SENSORS_ 9 // 5 ir + 4 us
 
@@ -72,6 +72,7 @@ static int getInfraredSensorFrontBottomLeftValue();
 static int getInfraredSensorFrontBottomCenterValue();
 static int getInfraredSensorFrontTopValue();
 static int getInfraredSensorBackValue();
+
 static int getUltrasonicFrontValue();
 static int getUltrasonicRightValue();
 static int getUltrasonicLeftValue();
@@ -82,29 +83,33 @@ static void setInfraredSensorFrontBottomLeftValue(int infraredSensorFrontBottomL
 static void setInfraredSensorFrontBottomCenterValue(int infraredSensorFrontBottomCenterValue);
 static void setInfraredSensorFrontTopValue(int infraredSensorFrontTopValue);
 static void setInfraredSensorBackValue(int infraredSensorBackValue);
+
 static void setUltrasonicFrontValue(int ultrasonicFrontValue);
 static void setUltrasonicRightValue(int ultrasonicRightValue);
 static void setUltrasonicLeftValue(int ultrasonicLeftValue);
 static void setUltrasonicBackValue(int ultrasonicBackValue);
 
-static void receiveEvent3bytes(int howMany);
-static void i2creceive3bytes(int adresse);
-static void updateAllSensorsValue();
 
-static bool checkForCylinderOnSensorFrontBottomLeft();
-static bool checkForCylinderOnSensorFrontBottomCenter();
-static bool checkForCylinderOnSensorFrontBottomRight();
-static bool checkForCylinder();
+void receive3bytes();
+void updateAllSensorsValue();
 
-static bool checkForBaseOnSensorFrontBottomLeft();
-static bool checkForBaseOnSensorFrontBottomCenter();
-static bool checkForBaseOnSensorFrontBottomRight();
-static bool checkForBase();
+bool checkForCylinderOnSensorFrontBottomLeft();
+bool checkForCylinderOnSensorFrontBottomCenter();
+bool checkForCylinderOnSensorFrontBottomRight();
+bool checkForCylinder();
 
-static bool checkForHindranceOnFront();
-static bool checkForHindranceOnRight();
-static bool checkForHindranceOnLeft();
-static bool checkForHindranceOnBack();
-static bool checkForHindrance();
+bool checkForBaseOnSensorFrontBottomLeft();
+bool checkForBaseOnSensorFrontBottomCenter();
+bool checkForBaseOnSensorFrontBottomRight();
+bool checkForBase();
+
+bool checkForHindranceOnFront();
+bool checkForHindranceOnRight();
+bool checkForHindranceOnLeft();
+bool checkForHindranceOnBack();
+bool checkForHindrance();
+
+
+
 
 };

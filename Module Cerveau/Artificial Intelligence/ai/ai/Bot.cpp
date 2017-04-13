@@ -38,15 +38,18 @@ Bot::Bot(int newColorNumber, int newStrategyNumber)
 }
 
 
-Clamp Bot::getClamp(){
+Clamp Bot::getClamp()
+{
         return this->clamp;
 }
-void Bot::setClamp(Clamp newClamp){
+void Bot::setClamp(Clamp newClamp)
+{
         this->clamp = newClamp;
 }
 
-SensorsBoard Bot::getSensorsBoard(){
-        return this->sensorsBoard;
+SensorsBoard Bot::getSensorsBoard()
+{
+        return Bot::sensorsBoard;
 }
 void Bot::setSensorsBoard(SensorsBoard newSensorsBoard){
         this->sensorsBoard = newSensorsBoard;
@@ -67,7 +70,8 @@ const CylinderPosition *Bot::getCylinderToCatchList() const
 }
 
 
-int Bot::getColorNumber(){
+int Bot::getColorNumber()
+{
         return this->colorNumber;
 }
 void Bot::setColorNumber(int newColorNumber){
@@ -75,7 +79,8 @@ void Bot::setColorNumber(int newColorNumber){
         this->colorNumber = newColorNumber;
 }
 
-int Bot::getStrategyNumber(){
+int Bot::getStrategyNumber()
+{
         return this->strategyNumber;
 }
 void Bot::setStrategyNumber(int newStrategyNumber){
@@ -103,7 +108,7 @@ void Bot::setAngleZ(int16_t newAngleZ)
 bool Bot::isTiretteTiree()
 {
         pinMode(_PIN_TIRETTE_, INPUT);
-        if (digitalRead(_PIN_TIRETTE_) == LOW) return true; //tirette à l'état bas => lance le robot
+        if (digitalRead(_PIN_TIRETTE_) == LOW) return true;  //tirette à l'état bas => lance le robot
         else return false;
 }
 

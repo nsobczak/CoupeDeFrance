@@ -1,7 +1,7 @@
 /**
  *    \file CoupeDeFranceDetection.ino
  *    \brief code de la carte cateurs
- *    \author Arthur D.
+ *    \author Arthur D. & Nicolas Sobczak
  *    \date Mars 2017
  *  This version of code sends messages with only data from the IR sensors.
  *  During final testing, the ultrasonic sensors were found to be too inconsistent.
@@ -17,6 +17,7 @@
 //Librairie OF Infra RED :
 #include "SharpIR.h"
 #include "i2cCommunication.h"
+#include <Wire.h>
 
 #define _SENSORSBOARD_SENDADRESS_ 11
 
@@ -55,77 +56,101 @@ int A=2;
 int B=3;
 int C=12;
 
+int irValue[NUM_IR];
+int ultrasonicValue[NUM_ULTRASONIC];
+int variableSent = 0;
+
 
 /* ======================================================================================================
  *      Fonctions
  * ======================================================================================================
  */
+
 /**
- * \fn void setup()
- * \brief fonction setup d'arduino
+ * \fn void requestEvent()
+ * \brief function that executes whenever data is requested by master this function is registered as an event, see setup()
  */
-void setup()
+void requestEvent()
 {
-        // === Setup Ultrasonic ===
-        pinMode(trigPin, OUTPUT); //trig
-        pinMode(echoPinR, INPUT); //echo
-        // === Setup MUX ===
-        pinMode(A,OUTPUT);
-        pinMode(B,OUTPUT);
-        pinMode(C,OUTPUT);
+        /*Notes: tableau id i2c
+           {sharpBT, sharpFT, sharpFBR, sharpFBC, sharpFBL};
+           {echoPinR, echoPinL, echoPinB1, echoPinB2}
 
-        Serial.begin(9600);
-}
+           0 => infraredSensorBackValue;
+           1 => infraredSensorFrontTopValue;
+           2 => infraredSensorFrontBottomRightValue;
+           3 => infraredSensorFrontBottomCenterValue;
+           4 => infraredSensorFrontBottomLeftValue;
 
-/**
- * \fn void loop()
- * \brief fonction loop d'arduino : Takes readings (and sends via I2C)
- */
-void loop() {
-        int irValue[NUM_IR];
-        int ultrasonicValue[NUM_ULTRASONIC];
-        // long start = millis();
+           5 => ultrasonicRightValue;
+           6 => ultrasonicLeftValue;
+           7 => ultrasonicBack1Value;
+           8 => ultrasonicBack2Value;
+         */
+        if ( variableSent > 8) variableSent = 0;
+        Serial.println("request received");
+        byte bytesTab[2];
+        byte data[3];
 
-        for(int i = 0; i < NUM_IR; i++)
-        {
-                irValue[i] = getIRValue(infrared[i]);
-                // conversion sur 2 octets de la valeur à envoyer
-                byte bytesTab[2];
-                intTo2Bytes(bytesTab, irValue[i]);
-                i2csend3bytes(i, bytesTab[0], bytesTab[1], _SENSORSBOARD_SENDADRESS_);
-                delay(100); //TODO: see if it's useful to have time to receive and update all value
+        switch (variableSent) {
+        case 0 ... 4:
+                intTo2Bytes(bytesTab, irValue[variableSent]); // conversion sur 2 octets de la valeur à envoyer
+                data[0] = variableSent;
+                data[1] = bytesTab[0];
+                data[2] = bytesTab[1];
+                Wire.write(data, 3);
+                break;
+        case 5 ... 8:
+                intTo2Bytes(bytesTab, ultrasonicValue[variableSent - NUM_IR]); // conversion sur 2 octets de la valeur à envoyer
+                data[0] = variableSent;
+                data[1] = bytesTab[0];
+                data[2] = bytesTab[1];
+                Wire.write(data, 3);
+                break;
+        default:
+                if (_DEBUG_) Serial.println("resquestEvent: variable recue incinnue");
+                break;
         }
-        for(int i = 0; i < NUM_ULTRASONIC; i++)
-        {
-                ultrasonicValue[i] = getUltrasonicValue(ultrasonic[i]);
-                // conversion sur 2 octets de la valeur à envoyer
-                byte bytesTab[2];
-                intTo2Bytes(bytesTab, ultrasonicValue[i]);
-                i2csend3bytes(i + NUM_IR, bytesTab[0], bytesTab[1], _SENSORSBOARD_SENDADRESS_);
-                delay(100); //TODO: see if it's useful to have time to receive and update all value
-        }
-
-        if (_DEBUG_) {
-                Serial.println("=== IR values ===");
-                for(int i = 0; i < NUM_IR; i++)
-                {
-                        Serial.print("\tirValue = \t");
-                        Serial.println(irValue[i]);
-                }
-                Serial.println("=== Ultrasonic values ===");
-                for(int i = 0; i < NUM_ULTRASONIC; i++)
-                {
-                        Serial.print("\tUltrasonic value = \t");
-                        Serial.println(ultrasonicValue[i]);
-                }
-        }
-
-        delay(300);
+        variableSent++;
 }
 
 
 int getIRValue(SharpIR sharpIR){
         return sharpIR.distance();
+}
+
+
+boolean setChannel(int channelNumber){
+        //Set MUX
+        switch(channelNumber) {
+        case 0: //Back
+                digitalWrite(A,LOW);
+                digitalWrite(B,LOW);
+                digitalWrite(C,LOW);
+                break;
+        case 1: //Left
+                digitalWrite(A,HIGH);
+                digitalWrite(B,LOW);
+                digitalWrite(C,LOW);
+                break;
+        case 2: //Right
+                digitalWrite(A,LOW);
+                digitalWrite(B,HIGH);
+                digitalWrite(C,LOW);
+                break;
+        case 3: //Front Left
+                digitalWrite(A,HIGH);
+                digitalWrite(B,HIGH);
+                digitalWrite(C,LOW);
+                break;
+        case 4:  //Front Right
+                digitalWrite(A,LOW);
+                digitalWrite(B,LOW);
+                digitalWrite(C,HIGH);
+                break;
+        default:
+                break;
+        }
 }
 
 
@@ -170,35 +195,52 @@ int getUltrasonicValue(int echoPin){
         return pulseIn(echoPin, HIGH, 15000)/58.2;
 }
 
-boolean setChannel(int channelNumber){
-        //Set MUX
-        switch(channelNumber) {
-        case 0: //Back
-                digitalWrite(A,LOW);
-                digitalWrite(B,LOW);
-                digitalWrite(C,LOW);
-                break;
-        case 1: //Left
-                digitalWrite(A,HIGH);
-                digitalWrite(B,LOW);
-                digitalWrite(C,LOW);
-                break;
-        case 2: //Right
-                digitalWrite(A,LOW);
-                digitalWrite(B,HIGH);
-                digitalWrite(C,LOW);
-                break;
-        case 3: //Front Left
-                digitalWrite(A,HIGH);
-                digitalWrite(B,HIGH);
-                digitalWrite(C,LOW);
-                break;
-        case 4:  //Front Right
-                digitalWrite(A,LOW);
-                digitalWrite(B,LOW);
-                digitalWrite(C,HIGH);
-                break;
-        default:
-                break;
+
+//_____________________________________________________________________________________________________________
+/**
+ * \fn void setup()
+ * \brief fonction setup d'arduino
+ */
+void setup()
+{
+        // === Setup Ultrasonic ===
+        pinMode(trigPin, OUTPUT); //trig
+        pinMode(echoPinR, INPUT); //echo
+        // === Setup MUX ===
+        pinMode(A,OUTPUT);
+        pinMode(B,OUTPUT);
+        pinMode(C,OUTPUT);
+
+        Wire.begin(_SENSORSBOARD_SENDADRESS_); // join i2c bus with address #8
+        Wire.onRequest(requestEvent); // register event
+
+        Serial.begin(9600);
+}
+
+/**
+ * \fn void loop()
+ * \brief fonction loop d'arduino : Takes readings (and sends via I2C)
+ */
+void loop() {
+        // long start = millis();
+
+        for(int i = 0; i < NUM_IR; i++) irValue[i] = getIRValue(infrared[i]);
+        for(int i = 0; i < NUM_ULTRASONIC; i++) ultrasonicValue[i] = getUltrasonicValue(ultrasonic[i]);
+
+        if (_DEBUG_) {
+                Serial.println("=== IR values ===");
+                for(int i = 0; i < NUM_IR; i++)
+                {
+                        Serial.print("\tirValue = \t");
+                        Serial.println(irValue[i]);
+                }
+                Serial.println("=== Ultrasonic values ===");
+                for(int i = 0; i < NUM_ULTRASONIC; i++)
+                {
+                        Serial.print("\tUltrasonic value = \t");
+                        Serial.println(ultrasonicValue[i]);
+                }
         }
+
+        delay(300);
 }

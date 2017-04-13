@@ -33,47 +33,47 @@ SensorsBoard::SensorsBoard()
 
 int SensorsBoard::getInfraredSensorFrontBottomRightValue()
 {
-        return SensorsBoard::infraredSensorFrontBottomRightValue;
+        return infraredSensorFrontBottomRightValue;
 }
 
 int SensorsBoard::getInfraredSensorFrontBottomLeftValue()
 {
-        return SensorsBoard::infraredSensorFrontBottomLeftValue;
+        return infraredSensorFrontBottomLeftValue;
 }
 
 int SensorsBoard::getInfraredSensorFrontBottomCenterValue()
 {
-        return SensorsBoard::infraredSensorFrontBottomCenterValue;
+        return infraredSensorFrontBottomCenterValue;
 }
 
 int SensorsBoard::getInfraredSensorFrontTopValue()
 {
-        return SensorsBoard::infraredSensorFrontTopValue;
+        return infraredSensorFrontTopValue;
 }
 
 int SensorsBoard::getInfraredSensorBackValue()
 {
-        return SensorsBoard::infraredSensorBackValue;
+        return infraredSensorBackValue;
 }
 
 int SensorsBoard::getUltrasonicFrontValue()
 {
-        return SensorsBoard::ultrasonicFrontValue;
+        return ultrasonicFrontValue;
 }
 
 int SensorsBoard::getUltrasonicRightValue()
 {
-        return SensorsBoard::ultrasonicRightValue;
+        return ultrasonicRightValue;
 }
 
 int SensorsBoard::getUltrasonicLeftValue()
 {
-        return SensorsBoard::ultrasonicLeftValue;
+        return ultrasonicLeftValue;
 }
 
 int SensorsBoard::getUltrasonicBackValue()
 {
-        return SensorsBoard::ultrasonicBackValue;
+        return ultrasonicBackValue;
 }
 
 
@@ -132,8 +132,9 @@ void SensorsBoard::setUltrasonicBackValue(int ultrasonicBackValue)
  * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
  */
-void SensorsBoard::receiveEvent3bytes(int howMany)
+void SensorsBoard::receive3bytes()
 {
+        if (_DEBUG_) {Serial.print("Wire.available(): "); Serial.println(Wire.available()); }
         if (Wire.available() == 3)
         {
                 //lecture de la variable
@@ -149,39 +150,39 @@ void SensorsBoard::receiveEvent3bytes(int howMany)
                 {
                 case 0:
                         if (_DEBUG_) Serial.println("variable recue : InfraredSensorBack");
-                        SensorsBoard::setInfraredSensorBackValue(value);
+                        this->setInfraredSensorBackValue(value);
                         break;
                 case 1:
                         if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontTop");
-                        SensorsBoard::setInfraredSensorFrontTopValue(value);
+                        this->setInfraredSensorFrontTopValue(value);
                         break;
                 case 2:
                         if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomRight");
-                        SensorsBoard::setInfraredSensorFrontBottomRightValue(value);
+                        this->setInfraredSensorFrontBottomRightValue(value);
                         break;
                 case 3:
                         if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomCenter");
-                        SensorsBoard::setInfraredSensorFrontBottomCenterValue(value);
+                        this->setInfraredSensorFrontBottomCenterValue(value);
                         break;
                 case 4:
                         if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomLeft");
-                        SensorsBoard::setInfraredSensorFrontBottomLeftValue(value);
+                        this->setInfraredSensorFrontBottomLeftValue(value);
                         break;
                 case 5:
                         if (_DEBUG_) Serial.println("variable recue : UltrasonicRight");
-                        SensorsBoard::setUltrasonicRightValue(value);
+                        this->setUltrasonicRightValue(value);
                         break;
                 case 6:
                         if (_DEBUG_) Serial.println("variable recue : UltrasonicLeft");
-                        SensorsBoard::setUltrasonicLeftValue(value);
+                        this->setUltrasonicLeftValue(value);
                         break;
                 case 7:
                         if (_DEBUG_) Serial.println("variable recue : UltrasonicFront (back1)");
-                        SensorsBoard::setUltrasonicFrontValue(value);
+                        this->setUltrasonicFrontValue(value);
                         break;
                 case 8:
                         if (_DEBUG_) Serial.println("variable recue : UltrasonicBack (back2)");
-                        SensorsBoard::setUltrasonicBackValue(value);
+                        this->setUltrasonicBackValue(value);
                         break;
                 default:
                         if (_DEBUG_) Serial.println("variable recue inconnue");
@@ -197,19 +198,6 @@ void SensorsBoard::receiveEvent3bytes(int howMany)
 
 
 /**
- * \fn void i2creceive3bytes
- * \param int adresse
- * \brief
- */
-void SensorsBoard::i2creceive3bytes(int adresse)
-{
-        Wire.begin(adresse);
-        Wire.onReceive(SensorsBoard::receiveEvent3bytes); // enregistrer l'événement (lorsqu'une demande arrive)
-        Wire.endTransmission();
-}
-
-
-/**
  * \fn void SensorsBoard::update()
  * \brief reception + maj infos du module capteurs
  */
@@ -217,7 +205,8 @@ void SensorsBoard::updateAllSensorsValue()
 {
         for (int i = 0; i < _NUMBER_OF_SENSORS_; i++)
         {
-                SensorsBoard::i2creceive3bytes(_SENSORSBOARD_RECEIVEADRESS_);
+                Wire.requestFrom(_SENSORSBOARD_RECEIVEADRESS_, 3);
+                this->receive3bytes();
         }
 }
 
@@ -226,28 +215,28 @@ void SensorsBoard::updateAllSensorsValue()
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomLeft()
 {
-        if (SensorsBoard::getInfraredSensorFrontBottomLeftValue() < _CYLINDER_DISTANCE_) return true;
+        if ( this->getInfraredSensorFrontBottomLeftValue() < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomCenter()
 {
-        if (SensorsBoard::getInfraredSensorFrontBottomCenterValue() < _CYLINDER_DISTANCE_) return true;
+        if ( this->getInfraredSensorFrontBottomCenterValue() < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForCylinderOnSensorFrontBottomRight()
 {
-        if (SensorsBoard::getInfraredSensorFrontBottomRightValue() < _CYLINDER_DISTANCE_) return true;
+        if ( this->getInfraredSensorFrontBottomRightValue() < _CYLINDER_DISTANCE_) return true;
         else return false;
 }
 
 //return true if there is a cylinder
 bool SensorsBoard::checkForCylinder()
 {
-        if (SensorsBoard::checkForCylinderOnSensorFrontBottomLeft() ||
-            SensorsBoard::checkForCylinderOnSensorFrontBottomCenter()||
-            SensorsBoard::checkForCylinderOnSensorFrontBottomRight())
+        if ( this->checkForCylinderOnSensorFrontBottomLeft() ||
+             this->checkForCylinderOnSensorFrontBottomCenter()||
+             this->checkForCylinderOnSensorFrontBottomRight())
                 return true;
         return false;
 }
@@ -257,27 +246,27 @@ bool SensorsBoard::checkForCylinder()
 
 bool SensorsBoard::checkForBaseOnSensorFrontBottomLeft()
 {
-        if (SensorsBoard::getInfraredSensorFrontBottomLeftValue() < _BASE_DISTANCE_) return true;
+        if ( this->getInfraredSensorFrontBottomLeftValue() < _BASE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForBaseOnSensorFrontBottomCenter()
 {
-        if (SensorsBoard::getInfraredSensorFrontBottomCenterValue() < _BASE_DISTANCE_) return true;
+        if ( this->getInfraredSensorFrontBottomCenterValue() < _BASE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForBaseOnSensorFrontBottomRight()
 {
-        if (SensorsBoard::getInfraredSensorFrontBottomRightValue() < _BASE_DISTANCE_) return true;
+        if ( this->getInfraredSensorFrontBottomRightValue() < _BASE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForBase()
 {
-        if (SensorsBoard::checkForBaseOnSensorFrontBottomLeft() ||
-            SensorsBoard::checkForBaseOnSensorFrontBottomCenter()||
-            SensorsBoard::checkForBaseOnSensorFrontBottomRight())
+        if ( this->checkForBaseOnSensorFrontBottomLeft() ||
+             this->checkForBaseOnSensorFrontBottomCenter()||
+             this->checkForBaseOnSensorFrontBottomRight())
                 return true;
         return false;
 }
@@ -287,35 +276,35 @@ bool SensorsBoard::checkForBase()
 
 bool SensorsBoard::checkForHindranceOnFront()
 {
-        if (SensorsBoard::getInfraredSensorFrontTopValue() < _FOE_DISTANCE_ || SensorsBoard::getUltrasonicFrontValue() < _FOE_DISTANCE_) return true;
+        if ( this->getInfraredSensorFrontTopValue() < _FOE_DISTANCE_ ||  this->getUltrasonicFrontValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnRight()
 {
-        if (SensorsBoard::getUltrasonicRightValue() < _FOE_DISTANCE_) return true;
+        if ( this->getUltrasonicRightValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnLeft()
 {
-        if (SensorsBoard::getUltrasonicLeftValue() < _FOE_DISTANCE_) return true;
+        if ( this->getUltrasonicLeftValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 bool SensorsBoard::checkForHindranceOnBack()
 {
-        if (SensorsBoard::getInfraredSensorBackValue() < _FOE_DISTANCE_ || SensorsBoard::getUltrasonicBackValue() < _FOE_DISTANCE_) return true;
+        if ( this->getInfraredSensorBackValue() < _FOE_DISTANCE_ ||  this->getUltrasonicBackValue() < _FOE_DISTANCE_) return true;
         else return false;
 }
 
 //return true if there is an hindrance
 bool SensorsBoard::checkForHindrance()
 {
-        if (SensorsBoard::checkForHindranceOnFront() ||
-            SensorsBoard::checkForHindranceOnRight() ||
-            SensorsBoard::checkForHindranceOnLeft() ||
-            SensorsBoard::checkForHindranceOnBack())
+        if ( this->checkForHindranceOnFront() ||
+             this->checkForHindranceOnRight() ||
+             this->checkForHindranceOnLeft() ||
+             this->checkForHindranceOnBack())
                 return true;
         else return false;
 }
