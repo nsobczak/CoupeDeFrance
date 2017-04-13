@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z',['z',['../slave__1_8cpp.html#a14f94e529dff0b8bfba8e16fbe9755d6',1,'slave_1.cpp']]]
+  ['x',['x',['../struct_position.html#a9abbe738bad177de91fe4774099c1260',1,'Position']]]
 ];

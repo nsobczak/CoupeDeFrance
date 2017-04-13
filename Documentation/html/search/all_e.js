@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['odometrie',['Odometrie',['../class_odometrie.html',1,'Odometrie'],['../class_odometrie.html#a1a0cbea2f7eda59fa2ae96236056b024',1,'Odometrie::Odometrie()']]],
-  ['odometrie_2ecpp',['odometrie.cpp',['../odometrie_8cpp.html',1,'']]],
-  ['odometrie_2eh',['odometrie.h',['../odometrie_8h.html',1,'']]],
-  ['ordernumber',['orderNumber',['../i2c_communication_8cpp.html#aa8146639e060d6c423e63301c0b54b20',1,'orderNumber(uint8_t order):&#160;i2cCommunication.cpp'],['../i2c_communication_8h.html#a94201be24d7adb6b945db4d1acdea014',1,'orderNumber(uint8_t):&#160;i2cCommunication.cpp']]]
+  ['notes',['notes',['../md__design_pr_xC3_xA9sentation.html',1,'']]],
+  ['notes_20de_20communication',['Notes de communication',['../md__module__cerveau__artificial__intelligence_notes_communication.html',1,'']]],
+  ['nd',['ND',['../struct_tick.html#a788ee9eb9f9b0d6f234cb86f8fa100dd',1,'Tick']]],
+  ['newlib_5fstubs_2ecpp',['newlib_stubs.cpp',['../newlib__stubs_8cpp.html',1,'']]],
+  ['neworderangle',['newOrderAngle',['../class_asservissement.html#ab025d475e1daec59e2656fa505ce726d',1,'Asservissement::newOrderAngle(Position destination, double theta_order)'],['../class_asservissement.html#ab025d475e1daec59e2656fa505ce726d',1,'Asservissement::newOrderAngle(Position destination, double theta_order)']]],
+  ['ng',['NG',['../struct_tick.html#a60a0aa37b32f1f280febe76bd67081bf',1,'Tick']]],
+  ['nmi_5fhandler',['NMI_Handler',['../stm32__it_8cpp.html#a6ad7a5e3ee69cb6db6a6b9111ba898bc',1,'stm32_it.cpp']]],
+  ['notes_5fcommunication_2emd',['notes_communication.md',['../notes__communication_8md.html',1,'']]],
+  ['number',['number',['../application_8cpp.html#af55204cda26299fa64ea04d58cc4d6dc',1,'application.cpp']]]
 ];

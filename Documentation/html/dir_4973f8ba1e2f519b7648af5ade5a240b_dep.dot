@@ -1,0 +1,10 @@
+digraph "Module Detection" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_4973f8ba1e2f519b7648af5ade5a240b {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_4973f8ba1e2f519b7648af5ade5a240b.html"];
+    dir_4973f8ba1e2f519b7648af5ade5a240b [shape=plaintext label="Module Detection"];
+    dir_6428482268d06d1081d00a42a6178567 [shape=box label="Software" color="red" fillcolor="white" style="filled" URL="dir_6428482268d06d1081d00a42a6178567.html"];
+  }
+}

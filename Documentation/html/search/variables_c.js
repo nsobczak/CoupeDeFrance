@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['rb_5fselect_5fstrat',['rb_select_strat',['../_bot_menu_8cpp.html#a7061e6a209c61c081d2ce187646d2c32',1,'rb_select_strat():&#160;BotMenu.cpp'],['../_bot_menu_initial_8cpp.html#a7061e6a209c61c081d2ce187646d2c32',1,'rb_select_strat():&#160;BotMenuInitial.cpp']]],
-  ['recoveredvaluei2c',['recoveredValueI2C',['../_bot_menu_8cpp.html#a5573b803a0f52328d0bd3bfc3c4ed214',1,'BotMenu.cpp']]]
+  ['nd',['ND',['../struct_tick.html#a788ee9eb9f9b0d6f234cb86f8fa100dd',1,'Tick']]],
+  ['ng',['NG',['../struct_tick.html#a60a0aa37b32f1f280febe76bd67081bf',1,'Tick']]],
+  ['number',['number',['../application_8cpp.html#af55204cda26299fa64ea04d58cc4d6dc',1,'application.cpp']]]
 ];

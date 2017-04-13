@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['pid',['PID',['../class_p_i_d.html#a0311b6f7de348499ce24e53ba353514a',1,'PID::PID()'],['../class_p_i_d.html#ad10969b52a5c2c78775fee51de5a595c',1,'PID::PID(double kP, double kI, double kD, double periode)']]]
+  ['odometrie',['Odometrie',['../class_odometrie.html#a1a0cbea2f7eda59fa2ae96236056b024',1,'Odometrie::Odometrie()'],['../class_odometrie.html#a1a0cbea2f7eda59fa2ae96236056b024',1,'Odometrie::Odometrie()']]],
+  ['operator_20delete',['operator delete',['../newlib__stubs_8cpp.html#a86107594327f3a001230df9802cd4422',1,'newlib_stubs.cpp']]],
+  ['operator_20delete_5b_5d',['operator delete[]',['../newlib__stubs_8cpp.html#aaa8d8403dca7d813a59dd1f07728349d',1,'newlib_stubs.cpp']]],
+  ['operator_20new',['operator new',['../newlib__stubs_8cpp.html#a205ed048fdf5259c2e8e0cb60ee8f719',1,'newlib_stubs.cpp']]],
+  ['operator_20new_5b_5d',['operator new[]',['../newlib__stubs_8cpp.html#a63ce4f64887b9307317aee5baae6b18f',1,'newlib_stubs.cpp']]],
+  ['ordernumber',['orderNumber',['../_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8cpp.html#aa8146639e060d6c423e63301c0b54b20',1,'orderNumber(uint8_t order):&#160;i2cCommunication.cpp'],['../_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#a94201be24d7adb6b945db4d1acdea014',1,'orderNumber(uint8_t):&#160;i2cCommunication.cpp'],['../_module_01_cerveau_2_i2_c_2i2c_communication_2i2c_communication_8cpp.html#aa8146639e060d6c423e63301c0b54b20',1,'orderNumber(uint8_t order):&#160;i2cCommunication.cpp'],['../_module_01_cerveau_2_i2_c_2i2c_communication_2i2c_communication_8h.html#a94201be24d7adb6b945db4d1acdea014',1,'orderNumber(uint8_t):&#160;i2cCommunication.cpp'],['../_module_01_detection_2_software_2_coupe_de_france_detectionv2_80_2_coupe_de_france_detectionv2_80_2i2c_communication_8cpp.html#aa8146639e060d6c423e63301c0b54b20',1,'orderNumber(uint8_t order):&#160;i2cCommunication.cpp'],['../_module_01_detection_2_software_2_coupe_de_france_detectionv2_80_2_coupe_de_france_detectionv2_80_2i2c_communication_8h.html#a94201be24d7adb6b945db4d1acdea014',1,'orderNumber(uint8_t):&#160;i2cCommunication.cpp']]]
 ];

@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['virtual_5fcom_5fport_5fdata_5fsetup',['Virtual_Com_Port_Data_Setup',['../usb__prop_8cpp.html#aa5c6e6e6ca951494268a27b6f4e703df',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fget_5finterface_5fsetting',['Virtual_Com_Port_Get_Interface_Setting',['../usb__prop_8cpp.html#a848e09325564bdfb3919f6c16a65f9d9',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fgetconfigdescriptor',['Virtual_Com_Port_GetConfigDescriptor',['../usb__prop_8cpp.html#a1cb24dd5e56ced382da0a66916b16346',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fgetdevicedescriptor',['Virtual_Com_Port_GetDeviceDescriptor',['../usb__prop_8cpp.html#aae7c2a6be217e15175115e944027c544',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fgetlinecoding',['Virtual_Com_Port_GetLineCoding',['../usb__prop_8cpp.html#a9937e9617962a85eb68a6ddbe3c6ea53',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fgetstringdescriptor',['Virtual_Com_Port_GetStringDescriptor',['../usb__prop_8cpp.html#a1c9bb2f7ecb23f27eda51e03588031b1',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5finit',['Virtual_Com_Port_init',['../usb__prop_8cpp.html#a3892ae1ca068330dfb277ce5d70bca84',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fnodata_5fsetup',['Virtual_Com_Port_NoData_Setup',['../usb__prop_8cpp.html#a47603225b531a6727aa546c9f4db91aa',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5freset',['Virtual_Com_Port_Reset',['../usb__prop_8cpp.html#a98878c4a9f45937a72c8308e0a0bf21a',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fsetconfiguration',['Virtual_Com_Port_SetConfiguration',['../usb__prop_8cpp.html#a44fa53775981913766f1c3f42d805bcf',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fsetdeviceaddress',['Virtual_Com_Port_SetDeviceAddress',['../usb__prop_8cpp.html#a50b04f21d08dbb31f79cdc8d0986f53f',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fsetlinecoding',['Virtual_Com_Port_SetLineCoding',['../usb__prop_8cpp.html#ab3c32a78c5bf73c096e934b8cd88a918',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fstatus_5fin',['Virtual_Com_Port_Status_In',['../usb__prop_8cpp.html#a10db988115b9078230882ad0f17e55c6',1,'usb_prop.cpp']]],
+  ['virtual_5fcom_5fport_5fstatus_5fout',['Virtual_Com_Port_Status_Out',['../usb__prop_8cpp.html#a68c427e9760b3f1df66bcd9f9436aedb',1,'usb_prop.cpp']]],
+  ['vitesse_5fmoteur',['vitesse_moteur',['../_moteur__deplacement_8cpp.html#a8ce06033b21ea8798be86b81dfcccaa6',1,'Moteur_deplacement.cpp']]],
+  ['vitesse_5fmoteur_5frail',['vitesse_moteur_rail',['../_moteur__deplacement_8cpp.html#a5e87c3355b20be3a32d5f2a301a0636a',1,'Moteur_deplacement.cpp']]]
+];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vitesse',['Vitesse',['../struct_vitesse.html',1,'']]]
+  ['odometrie',['Odometrie',['../class_odometrie.html',1,'']]]
 ];

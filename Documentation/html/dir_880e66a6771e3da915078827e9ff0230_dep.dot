@@ -1,0 +1,13 @@
+digraph "Module Cerveau/Artificial Intelligence/ai/CLion_folders" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_4f5946da87f9062811815b61ffc694d3 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="ai" fontname="Helvetica", fontsize="10", URL="dir_4f5946da87f9062811815b61ffc694d3.html"]
+  subgraph clusterdir_880e66a6771e3da915078827e9ff0230 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_880e66a6771e3da915078827e9ff0230.html"];
+    dir_880e66a6771e3da915078827e9ff0230 [shape=plaintext label="CLion_folders"];
+    dir_d87b3d9d0520f2dfa2a54b2a203ad9bf [shape=box label="cmake-build-debug" color="red" fillcolor="white" style="filled" URL="dir_d87b3d9d0520f2dfa2a54b2a203ad9bf.html"];
+  }
+  }
+}

@@ -1,0 +1,13 @@
+digraph "Module Detection/Software" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_4973f8ba1e2f519b7648af5ade5a240b {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Module Detection" fontname="Helvetica", fontsize="10", URL="dir_4973f8ba1e2f519b7648af5ade5a240b.html"]
+  subgraph clusterdir_6428482268d06d1081d00a42a6178567 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_6428482268d06d1081d00a42a6178567.html"];
+    dir_6428482268d06d1081d00a42a6178567 [shape=plaintext label="Software"];
+    dir_5926def5425b48b63315f05fea0c77c6 [shape=box label="CoupeDeFranceDetectionv2.0" color="red" fillcolor="white" style="filled" URL="dir_5926def5425b48b63315f05fea0c77c6.html"];
+  }
+  }
+}

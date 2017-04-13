@@ -1,7 +1,7 @@
 var files =
 [
-    [ "Asservissement", "dir_7a03f0cf74435d330a91fe8b2050da22.html", "dir_7a03f0cf74435d330a91fe8b2050da22" ],
-    [ "Ecran", "dir_239d87ce9101b63f8d944565a49246da.html", "dir_239d87ce9101b63f8d944565a49246da" ],
-    [ "I2C", "dir_0492bf3f11d1d3b6bad554bc08778e95.html", "dir_0492bf3f11d1d3b6bad554bc08778e95" ],
-    [ "Pince", "dir_843351d2ceac4964634397346ce679f6.html", "dir_843351d2ceac4964634397346ce679f6" ]
+    [ "Module Cerveau", "dir_65323f7225c5ff5ad4bd06d4f2501b1b.html", "dir_65323f7225c5ff5ad4bd06d4f2501b1b" ],
+    [ "Module Detection", "dir_4973f8ba1e2f519b7648af5ade5a240b.html", "dir_4973f8ba1e2f519b7648af5ade5a240b" ],
+    [ "Module Moteur", "dir_1eaef2d265c41e371de2bc5a3dd6ea7b.html", "dir_1eaef2d265c41e371de2bc5a3dd6ea7b" ],
+    [ "Module Pince", "dir_fd60a67f6770609c6ee5ce563ca509a4.html", "dir_fd60a67f6770609c6ee5ce563ca509a4" ]
 ];

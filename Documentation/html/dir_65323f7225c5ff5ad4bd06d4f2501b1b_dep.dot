@@ -1,0 +1,13 @@
+digraph "Module Cerveau" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_65323f7225c5ff5ad4bd06d4f2501b1b {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_65323f7225c5ff5ad4bd06d4f2501b1b.html"];
+    dir_65323f7225c5ff5ad4bd06d4f2501b1b [shape=plaintext label="Module Cerveau"];
+    dir_89994ad9d93a0db5eea5a2bb0e2e09a4 [shape=box label="Artificial Intelligence" color="red" fillcolor="white" style="filled" URL="dir_89994ad9d93a0db5eea5a2bb0e2e09a4.html"];
+    dir_3ec0e10da9815b580528be7821f001de [shape=box label="Ecran" color="red" fillcolor="white" style="filled" URL="dir_3ec0e10da9815b580528be7821f001de.html"];
+    dir_feadfc95ae9f5de82716cc949c76fb66 [shape=box label="Gyroscope" color="red" fillcolor="white" style="filled" URL="dir_feadfc95ae9f5de82716cc949c76fb66.html"];
+    dir_d54d14543ffb2026c54fba82978d70e8 [shape=box label="I2C" color="red" fillcolor="white" style="filled" URL="dir_d54d14543ffb2026c54fba82978d70e8.html"];
+  }
+}

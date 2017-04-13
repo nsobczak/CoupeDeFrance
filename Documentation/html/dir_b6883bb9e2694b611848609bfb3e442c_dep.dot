@@ -1,0 +1,9 @@
+digraph "Module Cerveau/Gyroscope/MPU6050/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_2d1f23b58b8263e9463c4ee55a9c6070 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="MPU6050" fontname="Helvetica", fontsize="10", URL="dir_2d1f23b58b8263e9463c4ee55a9c6070.html"]
+  dir_b6883bb9e2694b611848609bfb3e442c [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_b6883bb9e2694b611848609bfb3e442c.html"];
+  }
+}

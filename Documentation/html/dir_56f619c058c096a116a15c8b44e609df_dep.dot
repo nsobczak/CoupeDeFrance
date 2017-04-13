@@ -1,0 +1,14 @@
+digraph "Module Moteur/Software/Asservissement/ReadArduinoSerial/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_60fbfe5ff2ed64e0134f4f90cb7e4d06 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="ReadArduinoSerial" fontname="Helvetica", fontsize="10", URL="dir_60fbfe5ff2ed64e0134f4f90cb7e4d06.html"]
+  subgraph clusterdir_56f619c058c096a116a15c8b44e609df {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_56f619c058c096a116a15c8b44e609df.html"];
+    dir_56f619c058c096a116a15c8b44e609df [shape=plaintext label="src"];
+    dir_4df52709a00833ad7bb6159553dfd189 [shape=box label="read" color="black" fillcolor="white" style="filled" URL="dir_4df52709a00833ad7bb6159553dfd189.html"];
+    dir_2042472526ba47f12ae39bf5e8c1e1ee [shape=box label="send" color="black" fillcolor="white" style="filled" URL="dir_2042472526ba47f12ae39bf5e8c1e1ee.html"];
+  }
+  }
+}

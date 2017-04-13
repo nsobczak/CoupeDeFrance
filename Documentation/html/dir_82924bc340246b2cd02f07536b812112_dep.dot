@@ -1,0 +1,13 @@
+digraph "Module Cerveau/I2C/i2cCommunication/Documentation/html" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_53deca6e302611044c9de41dcd50ed12 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Documentation" fontname="Helvetica", fontsize="10", URL="dir_53deca6e302611044c9de41dcd50ed12.html"]
+  subgraph clusterdir_82924bc340246b2cd02f07536b812112 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_82924bc340246b2cd02f07536b812112.html"];
+    dir_82924bc340246b2cd02f07536b812112 [shape=plaintext label="html"];
+    dir_5114723d31932041c084c8d65f3f25fa [shape=box label="search" color="black" fillcolor="white" style="filled" URL="dir_5114723d31932041c084c8d65f3f25fa.html"];
+  }
+  }
+}

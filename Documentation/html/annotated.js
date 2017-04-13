@@ -1,0 +1,25 @@
+var annotated =
+[
+    [ "read", "namespaceread.html", "namespaceread" ],
+    [ "send", "namespacesend.html", "namespacesend" ],
+    [ "Adafruit_GFX", "class_adafruit___g_f_x.html", "class_adafruit___g_f_x" ],
+    [ "Adafruit_SSD1306", "class_adafruit___s_s_d1306.html", "class_adafruit___s_s_d1306" ],
+    [ "Asservissement", "class_asservissement.html", "class_asservissement" ],
+    [ "Bot", "class_bot.html", "class_bot" ],
+    [ "Clamp", "class_clamp.html", "class_clamp" ],
+    [ "CylinderPosition", "struct_cylinder_position.html", "struct_cylinder_position" ],
+    [ "Ecran", "class_ecran.html", "class_ecran" ],
+    [ "I2Cdev", "class_i2_cdev.html", "class_i2_cdev" ],
+    [ "ITG3200", "class_i_t_g3200.html", "class_i_t_g3200" ],
+    [ "M2tk", "class_m2tk.html", "class_m2tk" ],
+    [ "Moteur", "class_moteur.html", "class_moteur" ],
+    [ "MPU6050", "class_m_p_u6050.html", "class_m_p_u6050" ],
+    [ "Odometrie", "class_odometrie.html", "class_odometrie" ],
+    [ "PID", "class_p_i_d.html", "class_p_i_d" ],
+    [ "PidCoeff", "struct_pid_coeff.html", "struct_pid_coeff" ],
+    [ "Position", "struct_position.html", "struct_position" ],
+    [ "SensorsBoard", "class_sensors_board.html", "class_sensors_board" ],
+    [ "SharpIR", "class_sharp_i_r.html", "class_sharp_i_r" ],
+    [ "Tick", "struct_tick.html", "struct_tick" ],
+    [ "Vitesse", "struct_vitesse.html", "struct_vitesse" ]
+];

@@ -1,0 +1,9 @@
+digraph "Module Cerveau/Gyroscope/Gyroscope/Gyroscope" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_2cc39fb8b8b60c1e2938a7c4668c2ea1 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Gyroscope" fontname="Helvetica", fontsize="10", URL="dir_2cc39fb8b8b60c1e2938a7c4668c2ea1.html"]
+  dir_71fe2ca5480c60c4814a8f2287e4b10b [shape=box, label="Gyroscope", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_71fe2ca5480c60c4814a8f2287e4b10b.html"];
+  }
+}

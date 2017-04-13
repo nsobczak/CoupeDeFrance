@@ -1,0 +1,13 @@
+digraph "Module Cerveau/Artificial Intelligence" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_65323f7225c5ff5ad4bd06d4f2501b1b {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Module Cerveau" fontname="Helvetica", fontsize="10", URL="dir_65323f7225c5ff5ad4bd06d4f2501b1b.html"]
+  subgraph clusterdir_89994ad9d93a0db5eea5a2bb0e2e09a4 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_89994ad9d93a0db5eea5a2bb0e2e09a4.html"];
+    dir_89994ad9d93a0db5eea5a2bb0e2e09a4 [shape=plaintext label="Artificial Intelligence"];
+    dir_4f5946da87f9062811815b61ffc694d3 [shape=box label="ai" color="red" fillcolor="white" style="filled" URL="dir_4f5946da87f9062811815b61ffc694d3.html"];
+  }
+  }
+}

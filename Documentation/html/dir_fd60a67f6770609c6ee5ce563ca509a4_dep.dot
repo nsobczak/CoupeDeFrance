@@ -1,0 +1,6 @@
+digraph "Module Pince" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  dir_fd60a67f6770609c6ee5ce563ca509a4 [shape=box, label="Module Pince", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_fd60a67f6770609c6ee5ce563ca509a4.html"];
+}

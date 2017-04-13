@@ -1,0 +1,13 @@
+digraph "Module Cerveau/Ecran" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_65323f7225c5ff5ad4bd06d4f2501b1b {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Module Cerveau" fontname="Helvetica", fontsize="10", URL="dir_65323f7225c5ff5ad4bd06d4f2501b1b.html"]
+  subgraph clusterdir_3ec0e10da9815b580528be7821f001de {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_3ec0e10da9815b580528be7821f001de.html"];
+    dir_3ec0e10da9815b580528be7821f001de [shape=plaintext label="Ecran"];
+    dir_0ce8c19ba405707b88678fb4659eb315 [shape=box label="Ecran_test" color="black" fillcolor="white" style="filled" URL="dir_0ce8c19ba405707b88678fb4659eb315.html"];
+  }
+  }
+}

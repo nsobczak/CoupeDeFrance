@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['slave_5f1_2ecpp',['slave_1.cpp',['../slave__1_8cpp.html',1,'']]],
-  ['structures_2ecpp',['structures.cpp',['../structures_8cpp.html',1,'']]],
-  ['structures_2eh',['structures.h',['../structures_8h.html',1,'']]]
+  ['newlib_5fstubs_2ecpp',['newlib_stubs.cpp',['../newlib__stubs_8cpp.html',1,'']]],
+  ['notes_5fcommunication_2emd',['notes_communication.md',['../notes__communication_8md.html',1,'']]]
 ];

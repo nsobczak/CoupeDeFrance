@@ -1,0 +1,14 @@
+digraph "Module Moteur/Software/Asservissement/Archives" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_6c9639399f875dbf2ecd251f38cb1726 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Asservissement" fontname="Helvetica", fontsize="10", URL="dir_6c9639399f875dbf2ecd251f38cb1726.html"]
+  subgraph clusterdir_ce2f751b0bed4011827d5471fa0cdc60 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_ce2f751b0bed4011827d5471fa0cdc60.html"];
+    dir_ce2f751b0bed4011827d5471fa0cdc60 [shape=plaintext label="Archives"];
+    dir_502269267ceac9fdfeed2460c474748f [shape=box label="CodeOriginal" color="black" fillcolor="white" style="filled" URL="dir_502269267ceac9fdfeed2460c474748f.html"];
+    dir_615298f1086cdeef33fa3097e274cddf [shape=box label="monMain" color="red" fillcolor="white" style="filled" URL="dir_615298f1086cdeef33fa3097e274cddf.html"];
+  }
+  }
+}

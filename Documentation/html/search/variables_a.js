@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['nd',['ND',['../struct_tick.html#a788ee9eb9f9b0d6f234cb86f8fa100dd',1,'Tick']]],
-  ['ng',['NG',['../struct_tick.html#a60a0aa37b32f1f280febe76bd67081bf',1,'Tick']]],
-  ['num_5f1',['num_1',['../_bot_menu_8cpp.html#afb12d19e8a40713b7c3312cd5949b03e',1,'BotMenu.cpp']]],
-  ['num_5f2',['num_2',['../_bot_menu_8cpp.html#a0d0c3bb87808484ffdcea6484accbecb',1,'BotMenu.cpp']]]
+  ['l',['L',['../jquery_8js.html#a38ee4c0b5f4fe2a18d0c783af540d253',1,'jquery.js']]],
+  ['linecoding',['linecoding',['../main_8cpp.html#a8fcbfa4ea787548f9826e5f4c8692e55',1,'linecoding():&#160;usb_prop.cpp'],['../usb__prop_8cpp.html#a8fcbfa4ea787548f9826e5f4c8692e55',1,'linecoding():&#160;usb_prop.cpp']]]
 ];

@@ -1,0 +1,9 @@
+digraph "Module Moteur/Software/Asservissement/Asservissement/Asservissement_vitesse_2.4/Asservissement_vitesse_2.4" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_5e2791eb1f58290527dd26059753918e {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Asservissement_vitesse_2.4" fontname="Helvetica", fontsize="10", URL="dir_5e2791eb1f58290527dd26059753918e.html"]
+  dir_a0c51c3f831298ea61156dd6040f7c8c [shape=box, label="Asservissement_vitesse_2.4", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_a0c51c3f831298ea61156dd6040f7c8c.html"];
+  }
+}

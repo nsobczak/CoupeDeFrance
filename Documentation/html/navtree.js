@@ -1,3 +1,82 @@
+var NAVTREE =
+[
+  [ "Coupe de France", "index.html", [
+    [ "Construction Plateau", "md__construction__plateau__r_e_a_d_m_e.html", null ],
+    [ "notes", "md__design_pr_xC3_xA9sentation.html", null ],
+    [ "Documentation", "md__documentation__r_e_a_d_m_e.html", null ],
+    [ "Remarques", "md__documentation__r_e_m_a_r_q_u_e_s__b_u_g__r_e_a_d_m_e.html", null ],
+    [ "LICENSE", "md__l_i_c_e_n_s_e.html", null ],
+    [ "Module alim", "md__module__alimentation__carte_d_alimentation__r_e_a_d_m_e.html", null ],
+    [ "Module Alimentation", "md__module__alimentation__r_e_a_d_m_e.html", null ],
+    [ "Calcul de la position réelle du robot", "md__module__cerveau__artificial__intelligence_calcul_position_reelle_robot.html", null ],
+    [ "Notes de communication", "md__module__cerveau__artificial__intelligence_notes_communication.html", null ],
+    [ "artificial Intelligence", "md__module__cerveau__artificial__intelligence__r_e_a_d_m_e.html", null ],
+    [ "Bot AI Story", "md__module__cerveau__artificial__intelligence__story.html", null ],
+    [ "Pin map de l'écran de controle", "md__module__cerveau__ecran__pin_map.html", null ],
+    [ "Ecran", "md__module__cerveau__ecran__r_e_a_d_m_e.html", null ],
+    [ "Gyroscope/Accelerometre", "md__module__cerveau__gyroscope__r_e_a_d_m_e.html", null ],
+    [ "I2C", "md__module__cerveau__i2_c__r_e_a_d_m_e.html", null ],
+    [ "Module cerveau", "md__module__cerveau__r_e_a_d_m_e.html", null ],
+    [ "Hardware", "md__module__detection__hardware__r_e_a_d_m_e.html", null ],
+    [ "Module Détection", "md__module__detection__r_e_a_d_m_e.html", null ],
+    [ "Module moteur", "md__module__moteur__r_e_a_d_m_e.html", null ],
+    [ "Archives", "md__module__moteur__software__asservissement__archives__r_e_a_d_m_e.html", null ],
+    [ "Asservissment", "md__module__moteur__software__asservissement__asservissement__r_e_a_d_m_e.html", null ],
+    [ "Récupération codeuse", "md__module__moteur__software__asservissement__caract_xC3_xA9risation_des_moteurs__r_xC3_xA9cup_x5a9e5a23db3fa44b784bc94a9868ed50.html", null ],
+    [ "Pin Map Shield Moteur", "md__module__moteur__software__asservissement__pin_map_drivers.html", null ],
+    [ "ReadArduinoSerial", "md__module__moteur__software__asservissement__read_arduino_serial__r_e_a_d_m_e.html", null ],
+    [ "Asservissment", "md__module__moteur__software__asservissement__r_e_a_d_m_e.html", null ],
+    [ "Tests", "md__module__moteur__software__asservissement__tests__r_e_a_d_m_e.html", null ],
+    [ "TODO", "md__module__moteur__software__asservissement__tests__test__i2_c__t_o_d_o.html", null ],
+    [ "Pince", "md__module__pince__r_e_a_d_m_e.html", null ],
+    [ "Média", "md__m_xC3_xA9dia__r_e_a_d_m_e.html", null ],
+    [ "Présentation 1er semestre", "md__pr_xC3_xA9sentations__pr_xC3_xA9sentation_1er_semestre__r_e_a_d_m_e.html", null ],
+    [ "Présentation", "md__pr_xC3_xA9sentations__r_e_a_d_m_e.html", null ],
+    [ "Coupe de France de robotique", "md__r_e_a_d_m_e.html", null ],
+    [ "SolidWorks", "md__solid_works__r_e_a_d_m_e.html", null ],
+    [ "Namespaces", null, [
+      [ "Namespace List", "namespaces.html", "namespaces" ]
+    ] ],
+    [ "Classes", null, [
+      [ "Class List", "annotated.html", "annotated" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
+    ] ],
+    [ "Files", null, [
+      [ "File List", "files.html", "files" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", "globals_dup" ],
+        [ "Functions", "globals_func.html", "globals_func" ],
+        [ "Variables", "globals_vars.html", null ],
+        [ "Macros", "globals_defs.html", "globals_defs" ]
+      ] ]
+    ] ]
+  ] ]
+];
+
+var NAVTREEINDEX =
+[
+"_adafruit___g_f_x_8cpp.html",
+"_artificial_01_intelligence_2ai_2ai_2_m_p_u6050_8h.html#a95960b2c82d00341b6174272e2fb3e07",
+"_bot_menu_initial_8cpp.html#a7fe8da54d2d835c526eab6691aa0a1be",
+"_gyroscope_2_gyroscope_2_gyroscope_2_m_p_u6050_8h.html#a5704a7815c0fa6dcbfd4666a70e89d90",
+"_gyroscope_2_m_p_u6050_2src_2_m_p_u6050_8h.html#a21646cdd13cd4d72bc18ec615774e9c5",
+"_gyroscope_2_m_p_u6050_2src_2_m_p_u6050_8h.html#aece25806948f2455a1e2c1895b4583b0",
+"application_8cpp.html#a9d8a9bcf852ae03d69849dc39150c9f1",
+"class_m_p_u6050.html#a1ac1a70c4d207c93359b43e743d34839",
+"class_m_p_u6050.html#a66da5bc38aa82404117d1ef5306c951a",
+"class_m_p_u6050.html#ab4151353f433c533246d938fc3b78458",
+"classsend_1_1_data_sender.html",
+"md__module__cerveau__artificial__intelligence__story.html"
+];
+
+var SYNCONMSG = 'click to disable panel synchronisation';
+var SYNCOFFMSG = 'click to enable panel synchronisation';
 var navTreeSubIndices = new Array();
 
 function getData(varName)
@@ -105,7 +184,7 @@ function createIndent(o,domNode,node,level)
     node.expandToggle.onclick = function() {
       if (node.expanded) {
         $(node.getChildrenUL()).slideUp("fast");
-        node.plus_img.src = node.relpath+"arrowright.png";
+        node.plus_img.src = node.relpath+"ftv2pnode.png";
         node.expanded = false;
       } else {
         expandNode(o, node, false, false);
@@ -113,7 +192,7 @@ function createIndent(o,domNode,node,level)
     }
     node.expandToggle.appendChild(imgNode);
     domNode.appendChild(node.expandToggle);
-    imgNode.src = node.relpath+"arrowright.png";
+    imgNode.src = node.relpath+"ftv2pnode.png";
   } else {
     var span = document.createElement("span");
     span.style.display = 'inline-block';
@@ -269,9 +348,9 @@ function expandNode(o, node, imm, showRoot)
         $(node.getChildrenUL()).slideDown("fast");
       }
       if (node.isLast) {
-        node.plus_img.src = node.relpath+"arrowdown.png";
+        node.plus_img.src = node.relpath+"ftv2mlastnode.png";
       } else {
-        node.plus_img.src = node.relpath+"arrowdown.png";
+        node.plus_img.src = node.relpath+"ftv2mnode.png";
       }
       node.expanded = true;
     }
@@ -341,7 +420,11 @@ function showNode(o, node, index, hash)
         getNode(o, node);
       }
       $(node.getChildrenUL()).css({'display':'block'});
-      node.plus_img.src = node.relpath+"arrowdown.png";
+      if (node.isLast) {
+        node.plus_img.src = node.relpath+"ftv2mlastnode.png";
+      } else {
+        node.plus_img.src = node.relpath+"ftv2mnode.png";
+      }
       node.expanded = true;
       var n = node.children[o.breadcrumbs[index]];
       if (index+1<o.breadcrumbs.length) {
@@ -479,7 +562,7 @@ function initNavTree(toroot,relpath)
   o.node.expanded = false;
   o.node.isLast = true;
   o.node.plus_img = document.createElement("img");
-  o.node.plus_img.src = relpath+"arrowright.png";
+  o.node.plus_img.src = relpath+"ftv2pnode.png";
   o.node.plus_img.width = 16;
   o.node.plus_img.height = 22;
 
