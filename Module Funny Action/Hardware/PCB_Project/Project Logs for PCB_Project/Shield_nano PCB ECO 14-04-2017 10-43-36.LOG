@@ -1,0 +1,24 @@
+Removed Pin From Net: NetName=D3 Pin=JMP1-1
+Removed Pin From Net: NetName=D2 Pin=JMP1-2
+Added Component: Designator=J1(AMP_2)
+Added Component: Designator=R3(0805)
+Added Component: Designator=R4(0805)
+Added Pin To Net: NetName=D2 Pin=R3-1
+Added Pin To Net: NetName=D2 Pin=R4-2
+Added Pin To Net: NetName=D11 Pin=*-14
+Added Pin To Net: NetName=D11 Pin=JMP1-2
+Added Net: Name=D11
+Added Pin To Net: NetName=D12 Pin=*-15
+Added Pin To Net: NetName=D12 Pin=JMP1-1
+Added Net: Name=D12
+Added Pin To Net: NetName=J+ Pin=J1-1
+Added Pin To Net: NetName=J+ Pin=R3-2
+Added Net: Name=J+
+Added Pin To Net: NetName=J- Pin=J1-2
+Added Pin To Net: NetName=J- Pin=R4-1
+Added Net: Name=J-
+Added Member To Class: ClassName=Shield_nano Member=Component J1 comment
+Added Member To Class: ClassName=Shield_nano Member=Component LD2 comment
+Added Member To Class: ClassName=Shield_nano Member=Component R2 RES
+Added Member To Class: ClassName=Shield_nano Member=Component R3 RES
+Added Member To Class: ClassName=Shield_nano Member=Component R4 RES

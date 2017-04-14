@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=SDA Pin=JMP3-1
+Removed Pin From Net: NetName=SCL Pin=JMP3-2
+Removed Member From Class: ClassName=Shield_nano Member=JMP3
+Added Component: Designator=J2(AMP_2)
+Added Pin To Net: NetName=SCL Pin=J2-1
+Added Pin To Net: NetName=SDA Pin=J2-2
+Added Member To Class: ClassName=Shield_nano Member=Component J2 comment
