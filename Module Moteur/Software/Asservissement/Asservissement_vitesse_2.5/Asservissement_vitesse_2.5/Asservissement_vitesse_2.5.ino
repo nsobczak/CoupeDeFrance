@@ -21,7 +21,7 @@
 #define _TEST_SANS_I2C_ false
 
 //=== I2C ===
-#define _ASSERVISSMENT_RECEIVEADRESS_ 6
+#define _ASSERVISSEMENT_SENDRECEIVEADRESS_ 6
 
 #define _ASSERVISSMENT_BOTGOFORWARD_ 1
 #define _ASSERVISSMENT_BOTGOBACKWARD_ 2
@@ -44,6 +44,7 @@ int variableSent = 10;
 #define diametreRoueCodeuse 0.05228 // 52,28mm
 #define nombreTicksPour1TourDeRoue 1250
 
+const int _MAX_PWM_ = 255;
 const float _PI_ = 3.14159;
 const float perimetreRoueCodeuse = diametreRoueCodeuse*_PI_;
 
@@ -71,8 +72,6 @@ int cmdPrecedenteGauche = 0;
 float consigneDistance;
 int somme_ordre_tick_codeuse_L = 0;
 int somme_ordre_tick_codeuse_R = 0;
-
-//Deplacement
 byte order = 5;
 int ordre_termine = 1;
 
@@ -136,7 +135,7 @@ void asservissementReceiveEvent(int howMany)
         if (Wire.available() == 5)
         {
                 //lecture de la variable
-                byte order = Wire.read();
+                byte var = Wire.read();
                 //lecture des 2 octets suivants
                 byte distanceIntPart = Wire.read();
                 byte distanceIntDecPart = Wire.read();
@@ -150,25 +149,12 @@ void asservissementReceiveEvent(int howMany)
                 speedIntDecPart *= _SPEED_PRECISION_;
                 consigneVitesseMoteur = (float)speedIntPart + (float)speedIntDecPart;
 
-                ordre_termine = 0;
-                switch ( order ) // cf. les références des variables en haut du fichier
+                switch ( var ) // cf. les références des variables en haut du fichier
                 {
-                case 1:
-                        if (_DEBUG_) Serial.println("ordre recu : _ASSERVISSMENT_BOTGOFORWARD_");
-                        break;
-                case 2:
-                        if (_DEBUG_) Serial.println("ordre recu : _ASSERVISSMENT_BOTGOBACKWARD_");
-                        break;
-                case 3:
-                        if (_DEBUG_) Serial.println("ordre recu : _ASSERVISSMENT_BOTTURNRIGHT_");
-                        break;
-                case 4:
-                        if (_DEBUG_) Serial.println("ordre recu : _ASSERVISSMENT_BOTTURNLEFT_");
-                        break;
-                case 5:
-                        if (_DEBUG_) Serial.println("ordre recu : _ASSERVISSMENT_BOTSTOP_");
-                        consigneVitesseMoteur = 0;
-                        robotStop();
+                case 1 ... 5:
+                        if (_DEBUG_) Serial.println("ordre recu");
+                        ordre_termine = 0;
+                        order = var;
                         break;
                 default:
                         if (_DEBUG_) Serial.println("variable recue inconnue");
@@ -183,9 +169,9 @@ void asservissementReceiveEvent(int howMany)
  * \fn void loop()
  * \brief fonction loop d'arduino
  */
-void asservissementI2CReceive(int adresse)
+void asservissementI2CReceive()
 {
-        Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
+        // Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
         Wire.onReceive(asservissementReceiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
         Wire.endTransmission(); // fin transmission
 }
@@ -265,6 +251,102 @@ void printDouble(double val, unsigned int precision)
 }
 
 
+//______________________________________________________________________________
+int bornCommand(int command)
+{
+        if(command < 0) command = 0;
+        else if (command > _MAX_PWM_) command = _MAX_PWM_;
+        return command;
+}
+
+
+void executeOrder(int order, int cmdMoteurGauche, int cmdMoteurDroite)
+{
+        switch ( order ) // cf. les références des variables en haut du fichier
+        {
+        case 1:
+                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTGOFORWARD_");
+                robotGoStraightAhead(_MAX_PWM_ - cmdMoteurGauche, _MAX_PWM_ - cmdMoteurDroite);
+                break;
+        case 2:
+                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTGOBACKWARD_");
+                robotGoBack(_MAX_PWM_ - cmdMoteurGauche, _MAX_PWM_ - cmdMoteurDroite);
+                break;
+        case 3:
+                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTTURNRIGHT_");
+                robotTurnAroundFrontRight(_MAX_PWM_ - cmdMoteurGauche);
+                break;
+        case 4:
+                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTTURNLEFT_");
+                robotTurnAroundFrontLeft(_MAX_PWM_ - cmdMoteurDroite);
+                break;
+        case 5:
+                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTSTOP_");
+                consigneVitesseMoteur = 0;
+                robotStop();
+                ordre_termine = 1;
+                break;
+        default:
+                if (_DEBUG_) Serial.println("variable recue inconnue");
+                ordre_termine = 1;
+                break;
+        }
+}
+
+
+void asservissementVitesse()
+{
+        double vitesseReelleGauche = calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_);
+        double vitesseReelleDroite = calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_);
+
+        //calcul erreur pour la correction proportionnelle
+        float erreurGauche = consigneVitesseMoteur - (float)vitesseReelleGauche;
+        float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
+        erreurPrecedenteGauche = erreurGauche;
+        erreurPrecedenteDroite = erreurDroite;
+        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L);
+        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite;
+        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
+
+        cmdMoteurDroite = bornCommand(cmdMoteurDroite);
+        cmdMoteurGauche = bornCommand(cmdMoteurGauche);
+        cmdPrecedenteDroite = _MAX_PWM_ - cmdMoteurDroite;
+        cmdPrecedenteGauche = _MAX_PWM_ - cmdMoteurGauche;
+
+        if (_TEST_SANS_I2C_) robotGoBack(_MAX_PWM_ - cmdMoteurGauche, _MAX_PWM_ - cmdMoteurDroite);
+        else {
+                if(ordre_termine == 1)
+                {
+                        ordre_termine = 0;
+                        somme_ordre_tick_codeuse_R = 0;
+                        somme_ordre_tick_codeuse_L = 0;
+                }
+                else
+                {
+                        somme_ordre_tick_codeuse_R += tick_codeuse_R;
+                        somme_ordre_tick_codeuse_L += tick_codeuse_L;
+                }
+                executeOrder(order, cmdMoteurGauche, cmdMoteurDroite);
+        }
+
+        if (_DEBUG_) {
+                // Serial.print("\t tick_codeuse_L : \t");
+                // Serial.println(tick_codeuse_L);
+
+                // TODO: ne pas oublier de changer l'encodeur L ou R
+                // Serial.print("\t consignePWM : \t " );
+                // Serial.println(cmdMoteurDroit);
+                // Serial.print("\t consigneVitesseMoteur : \t");
+                Serial.println(consigneVitesseMoteur);
+                // Serial.print("\t calculVitesse : \t " );
+                printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
+        }
+
+        tick_codeuse_R = 0;
+        tick_codeuse_L = 0;
+}
+
+
 //_____________________________________________________________________________________________________________
 /**
  * \fn void setup()
@@ -297,14 +379,14 @@ void setup()
            25% = 191
            0% = 255
          */
-        analogWrite(_MOTOR_L_, 255);
-        analogWrite(_MOTOR_R_, 255);
+        analogWrite(_MOTOR_L_, _MAX_PWM_);
+        analogWrite(_MOTOR_R_, _MAX_PWM_);
         robotStop();
 
         if (_TEST_SANS_I2C_) {
                 testStart = millis();
         }else{
-                Wire.begin(_ASSERVISSMENT_RECEIVEADRESS_);
+                Wire.begin(_ASSERVISSEMENT_SENDRECEIVEADRESS_);
                 Wire.onRequest(asservissementRequestEvent); //
         }
         timer.setInterval(_PERIODE_ASSERVISSEMENT_, asservissementVitesse);  // Interruption pour calcul du PID et asservissement
@@ -336,88 +418,6 @@ void loop()
         else
         {
                 timer.run();
-                asservissementI2CReceive(_ASSERVISSMENT_RECEIVEADRESS_);
+                if (ordre_termine == 1) asservissementI2CReceive();
         }
-}
-
-//______________________________________________________________________________
-int bornCommand(int command)
-{
-        if(command < 0) command = 0;
-        else if (command > 255) command = 255;
-        return command;
-}
-
-void executeOrder(int order, int cmdMoteurGauche, int cmdMoteurDroite)
-{
-        switch ( order ) // cf. les références des variables en haut du fichier
-        {
-        case 1:
-                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTGOFORWARD_");
-                robotGoStraightAhead(255 - cmdMoteurGauche, 255 - cmdMoteurDroite);
-                break;
-        case 2:
-                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTGOBACKWARD_");
-                robotGoBack(255 - cmdMoteurGauche, 255 - cmdMoteurDroite);
-                break;
-        case 3:
-                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTTURNRIGHT_");
-                robotTurnAroundFrontRight(255 - cmdMoteurGauche);
-                break;
-        case 4:
-                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTTURNLEFT_");
-                robotTurnAroundFrontLeft(255 - cmdMoteurDroite);
-                break;
-        case 5:
-                if (_DEBUG_) Serial.println("ordre execute : _ASSERVISSMENT_BOTSTOP_");
-                consigneVitesseMoteur = 0;
-                robotStop();
-                break;
-        default:
-                if (_DEBUG_) Serial.println("variable recue inconnue");
-                ordre_termine = 1;
-        }
-}
-
-
-void asservissementVitesse()
-{
-        double vitesseReelleGauche = calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_);
-        double vitesseReelleDroite = calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_);
-
-        //calcul erreur pour la correction proportionnelle
-        float erreurGauche = consigneVitesseMoteur - (float)vitesseReelleGauche;
-        float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
-        erreurPrecedenteGauche = erreurGauche;
-        erreurPrecedenteDroite = erreurDroite;
-        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L);
-        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite;
-        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
-
-        cmdMoteurDroite = bornCommand(cmdMoteurDroite);
-        cmdMoteurGauche = bornCommand(cmdMoteurGauche);
-        cmdPrecedenteDroite = 255 - cmdMoteurDroite;
-        cmdPrecedenteGauche = 255 - cmdMoteurGauche;
-
-        if (_TEST_SANS_I2C_) robotGoBack(255 - cmdMoteurGauche, 255 - cmdMoteurDroite);
-        else executeOrder(order, cmdMoteurGauche, cmdMoteurDroite);
-
-        if (_DEBUG_) {
-                // Serial.print("\t tick_codeuse_L : \t");
-                // Serial.println(tick_codeuse_L);
-
-                // TODO: ne pas oublier de changer l'encodeur L ou R
-                // Serial.print("\t consignePWM : \t " );
-                // Serial.println(cmdMoteurDroit);
-                // Serial.print("\t consigneVitesseMoteur : \t");
-                Serial.println(consigneVitesseMoteur);
-                // Serial.print("\t calculVitesse : \t " );
-                printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
-        }
-
-        somme_ordre_tick_codeuse_R += tick_codeuse_R;
-        somme_ordre_tick_codeuse_L += tick_codeuse_L;
-
-        tick_codeuse_R = 0;
-        tick_codeuse_L = 0;
 }
