@@ -190,7 +190,7 @@ void Bot::catchCylinder()
 {
         unsigned long timer = millis();
         do {
-                this->getAsservissement().botGoForward(_SLOW_SPEED_);
+                this->getAsservissement().botGoForward(0.01, _SLOW_SPEED_); //TODO: check 0.01
         } while(this->getSensorsBoard().getInfraredSensorFrontBottomCenterValue() > _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_
                 && (millis() - timer < 3000));
         this->getClamp().catchCylinder();

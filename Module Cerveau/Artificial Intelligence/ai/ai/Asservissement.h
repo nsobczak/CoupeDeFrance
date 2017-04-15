@@ -23,7 +23,9 @@
  #define _ASSERVISSMENT_BOTSTOP_ 5
 
 
- #define _PRECISION_ 1000
+ #define _SPEED_PRECISION_ 100
+   #define _DISTANCE_PRECISION_ 100
+
 
 /* ======================================================================================================
  *      Class
@@ -36,8 +38,8 @@ private:
 public:
 Asservissement();
 
-void botGoForward(double speed);
-void botGoBackward(double speed);
+void botGoForward(double distance, double speed);
+void botGoBackward(double distance, double speed);
 void botTurnAroundRight(double speed);
 void botTurnAroundLeft(double speed);
 void botStop();

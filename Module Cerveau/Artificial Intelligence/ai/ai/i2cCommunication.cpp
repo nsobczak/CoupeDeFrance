@@ -7,7 +7,7 @@
  *    \brief Bibliothèque de communication i2c
  *	  \author Nicolas SOBCZAK
  *    \date Octobre 2016
-*/
+ */
 
 
 /* ======================================================================================================
@@ -32,8 +32,8 @@
  */
 void ledOff(int pin)
 {
-  pinMode(pin, OUTPUT);
-  digitalWrite(pin, LOW);
+        pinMode(pin, OUTPUT);
+        digitalWrite(pin, LOW);
 }
 
 
@@ -44,8 +44,8 @@ void ledOff(int pin)
  */
 void ledOn(int pin)
 {
-  pinMode(pin, OUTPUT);
-  digitalWrite(pin, HIGH);
+        pinMode(pin, OUTPUT);
+        digitalWrite(pin, HIGH);
 }
 
 
@@ -57,14 +57,14 @@ void ledOn(int pin)
  */
 void ledControl(int pin, int order)
 {
-  if (order==0)
-  {
-    ledOff(pin);
-  }
-  if (order==1)
-  {
-    ledOn(pin);
-  }
+        if (order==0)
+        {
+                ledOff(pin);
+        }
+        if (order==1)
+        {
+                ledOn(pin);
+        }
 }
 
 
@@ -76,8 +76,8 @@ void ledControl(int pin, int order)
  */
 void byteReceived(byte octet)
 {
-  Serial.print("ReceivedByte: ");
-  Serial.println(octet);   // Afficher la valeur numérique
+        Serial.print("ReceivedByte: ");
+        Serial.println(octet); // Afficher la valeur numérique
 }
 
 
@@ -88,30 +88,30 @@ void byteReceived(byte octet)
  */
 void orderNumber(uint8_t order)
 {
-  Serial.print("ReceivedOrder: ");
-  Serial.println(order);   // Afficher la valeur numérique
-  switch (order)
-  {
-    case 0:
-    {
-      int pin = 12;
-      ledControl(pin, order);              // Allume ou éteint la led
-      break;
-    }
-    case 1:
-    {
-      int pin = 12;
-      ledControl(pin, order);              // Allume ou éteint la led
-      break;
-    }
-    default:
-    {
-      Serial.println("Ordre non renseigne");
-      // if nothing else matches, do the default
-      // default is optional
-    }
-    break;
-  }
+        Serial.print("ReceivedOrder: ");
+        Serial.println(order); // Afficher la valeur numérique
+        switch (order)
+        {
+        case 0:
+        {
+                int pin = 12;
+                ledControl(pin, order);    // Allume ou éteint la led
+                break;
+        }
+        case 1:
+        {
+                int pin = 12;
+                ledControl(pin, order);    // Allume ou éteint la led
+                break;
+        }
+        default:
+        {
+                Serial.println("Ordre non renseigne");
+                // if nothing else matches, do the default
+                // default is optional
+        }
+        break;
+        }
 }
 
 
@@ -122,20 +122,20 @@ void orderNumber(uint8_t order)
  */
 void changeData(byte data[], int correspondance[], int numberOfVariables)
 {
-  byte value[2];    // tableau pour stocker la variable
+        byte value[2]; // tableau pour stocker la variable
 
-  //Changement de l'indice du tableau correspondance
-  int variable = data[0] + 1;
-  if (variable == numberOfVariables)
-  {
-    variable = 0;
-  }
-  intTo2Bytes(value, correspondance[variable]);
+        //Changement de l'indice du tableau correspondance
+        int variable = data[0] + 1;
+        if (variable == numberOfVariables)
+        {
+                variable = 0;
+        }
+        intTo2Bytes(value, correspondance[variable]);
 
-  // Write the value of variables to the array
-  data[0] = variable;
-  data[1] = value[0];
-  data[2] = value[1];
+        // Write the value of variables to the array
+        data[0] = variable;
+        data[1] = value[0];
+        data[2] = value[1];
 }
 
 
@@ -149,13 +149,13 @@ void changeData(byte data[], int correspondance[], int numberOfVariables)
  */
 void receiveEvent(int howMany)
 {
-  while(1 < Wire.available()) // Lire tous les octets sauf le dernier => utile si on a écrit qqch devant le numéro de l'ordre mais il vaut mieux ne pas le faire pour éviter les pb
-  {
-    char c = Wire.read();     // lecture de l'octet/byte comme caractère
-    Serial.print(c);          // afficher le caractère
-  }
-  byte x = Wire.read();       // lecture de l'octet/byte ignoré comme un entier
-  orderNumber(x);			  // lecture de l'ordre à executer
+        while(1 < Wire.available()) // Lire tous les octets sauf le dernier => utile si on a écrit qqch devant le numéro de l'ordre mais il vaut mieux ne pas le faire pour éviter les pb
+        {
+                char c = Wire.read(); // lecture de l'octet/byte comme caractère
+                Serial.print(c); // afficher le caractère
+        }
+        byte x = Wire.read(); // lecture de l'octet/byte ignoré comme un entier
+        orderNumber(x); // lecture de l'ordre à executer
 }
 
 
@@ -166,9 +166,9 @@ void receiveEvent(int howMany)
  */
 void i2creceive(int adresse)
 {
-  Wire.begin(adresse);          // Joindre le Bus I2C avec adresse
-  Wire.onReceive(receiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
-  Wire.endTransmission();    		// fin transmission
+        Wire.begin(adresse);    // Joindre le Bus I2C avec adresse
+        Wire.onReceive(receiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
+        Wire.endTransmission(); // fin transmission
 }
 
 
@@ -183,15 +183,15 @@ void i2creceive(int adresse)
  */
 void i2csend(uint8_t order, int adresse)
 {
-  Wire.begin(); 					// joindre le bus i2c (adresse est optionnelle pour un maître)
-  Wire.beginTransmission(adresse);  // Commencer transmission vers l'esclave  #4
-  //Wire.write("order: ");        	// Envoi de 5 octets (5 bytes)
-  Wire.write(order);             	// envoi d'un byte/octet (valeur numérique)
-  Serial.print("Envoi via i2c de : ");
-  Serial.print(order);
-  Serial.print(" a l'adresse : ");
-  Serial.println(adresse);
-  Wire.endTransmission();    		// fin transmission
+        Wire.begin();     // joindre le bus i2c (adresse est optionnelle pour un maître)
+        Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave  #4
+        //Wire.write("order: ");          // Envoi de 5 octets (5 bytes)
+        Wire.write(order);        // envoi d'un byte/octet (valeur numérique)
+        Serial.print("Envoi via i2c de : ");
+        Serial.print(order);
+        Serial.print(" a l'adresse : ");
+        Serial.println(adresse);
+        Wire.endTransmission(); // fin transmission
 }
 
 
@@ -203,21 +203,41 @@ void i2csend(uint8_t order, int adresse)
  */
 void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
 {
-  Wire.begin(); 					// joindre le bus i2c (adresse est optionnelle pour un maître)
-  Wire.beginTransmission(adresse);  // Commencer transmission vers l'esclave  #4
-  Wire.write(byte1);             	// envoi d'un byte/octet (valeur numérique)
-  Wire.write(byte2);
-  Wire.write(byte3);
-  Serial.print("Envoi via i2c de : ");
-  Serial.print(byte1);
-  Serial.print(", ");
-  Serial.print(byte2);
-  Serial.print(" et ");
-  Serial.print(byte3);
-  Serial.print(" a l'adresse ");
-  Serial.println(adresse);
-  Wire.endTransmission();    		// fin transmission
+        Wire.begin();     // joindre le bus i2c (adresse est optionnelle pour un maître)
+        Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave
+        Wire.write(byte1);        // envoi d'un byte/octet (valeur numérique)
+        Wire.write(byte2);
+        Wire.write(byte3);
+        // Serial.print("Envoi via i2c de : ");
+        // Serial.print(byte1);
+        // Serial.print(", ");
+        // Serial.print(byte2);
+        // Serial.print(" et ");
+        // Serial.print(byte3);
+        // Serial.print(" a l'adresse ");
+        // Serial.println(adresse);
+        Wire.endTransmission(); // fin transmission
 }
+
+
+/**
+ * \fn void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
+ * \brief fonction d'envoi de 3 octets via l'i2c avec initialisation de l'I2C
+ * \param 3 uint8_t byte1, 2 et 3: octets a envoyer,
+ * \param int adresse sur laquelle envoyer les donnees
+ */
+void i2csend5bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, int adresse)
+{
+        Wire.begin();     // joindre le bus i2c (adresse est optionnelle pour un maître)
+        Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave
+        Wire.write(byte1);        // envoi d'un byte/octet (valeur numérique)
+        Wire.write(byte2);
+        Wire.write(byte3);
+        Wire.write(byte4);
+        Wire.write(byte5);
+        Wire.endTransmission(); // fin transmission
+}
+
 
 
 //_____________________________________________________________________________________________
@@ -231,26 +251,26 @@ void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
  */
 byte* i2crequest(int adresse, int nbBytes, int variable, int numberOfVariables)
 {
-	byte* dataI2C = new byte[nbBytes];
+        byte* dataI2C = new byte[nbBytes];
 
-	do
-	{
-		// request 3 bytes from slave device on adress adresse
-		Wire.requestFrom(adresse, nbBytes);
+        do
+        {
+                // request 3 bytes from slave device on adress adresse
+                Wire.requestFrom(adresse, nbBytes);
 
-		while (Wire.available())         //check if data is available
-	  	{
-		    for(byte i = 0; i < nbBytes; i++)
-		    {
-		      dataI2C[i] = Wire.read();       // it assigne the data to the array
-		    }
-	  	}
+                while (Wire.available()) //check if data is available
+                {
+                        for(byte i = 0; i < nbBytes; i++)
+                        {
+                                dataI2C[i] = Wire.read(); // it assigne the data to the array
+                        }
+                }
 
-	  	delay(100);
+                delay(100);
 
-	} while ((dataI2C[0] != variable) && (dataI2C[0] < numberOfVariables - 1));
+        } while ((dataI2C[0] != variable) && (dataI2C[0] < numberOfVariables - 1));
 
-	return dataI2C;
+        return dataI2C;
 }
 
 
@@ -263,12 +283,12 @@ byte* i2crequest(int adresse, int nbBytes, int variable, int numberOfVariables)
  */
 byte getLowByte(int n)
 {
-  byte result;
+        byte result;
 
-  result = n%256;
-  result = byte(result);
+        result = n%256;
+        result = byte(result);
 
-  return result;
+        return result;
 }
 
 
@@ -279,12 +299,12 @@ byte getLowByte(int n)
  */
 byte getHighByte(int n)
 {
-  byte result;
+        byte result;
 
-  result = n/256;
-  result = byte(result);
+        result = n/256;
+        result = byte(result);
 
-  return result;
+        return result;
 }
 
 
@@ -296,13 +316,13 @@ byte getHighByte(int n)
  */
 void intTo2Bytes(byte bytesTab[], int n)
 {
-  Serial.println("high byte.low byte : ");
+        Serial.println("high byte.low byte : ");
 
-  bytesTab[0] = getHighByte(n);
-  bytesTab[1] = getLowByte(n);
-  Serial.print(bytesTab[0], HEX);
-  Serial.print(".");
-  Serial.println(bytesTab[1], HEX);
+        bytesTab[0] = getHighByte(n);
+        bytesTab[1] = getLowByte(n);
+        Serial.print(bytesTab[0], HEX);
+        Serial.print(".");
+        Serial.println(bytesTab[1], HEX);
 }
 
 
@@ -314,12 +334,12 @@ void intTo2Bytes(byte bytesTab[], int n)
  */
 int recoverIntFrom2Bytes(byte bytesTab[])
 {
-  int result;
+        int result;
 
-  result = bytesTab[0]*256;
-  result += bytesTab[1];
+        result = bytesTab[0]*256;
+        result += bytesTab[1];
 
-  return result;
+        return result;
 }
 
 

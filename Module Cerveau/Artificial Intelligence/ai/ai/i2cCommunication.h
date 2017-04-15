@@ -20,9 +20,9 @@
 
 
 #ifndef I2CCOMMUNICATION_H
-#define	I2CCOMMUNICATION_H
+#define I2CCOMMUNICATION_H
 
-#ifdef	__cplusplus
+#ifdef  __cplusplus
 extern "C" {
 #endif
 
@@ -70,6 +70,8 @@ void i2csend(uint8_t, int);
 
 // Fonction d'envoi de 3 octets via l'i2c avec initialisation
 void i2csend3bytes(uint8_t, uint8_t, uint8_t, int);
+// Fonction d'envoi de 5 octets via l'i2c avec initialisation
+void i2csend5bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, int adresse);
 
 
 // _____________________________________________________________________________
@@ -107,8 +109,8 @@ int recoverIntFrom2Bytes(byte[]);
 
 // =============================================================================
 // =============================================================================
-#ifdef	__cplusplus
+#ifdef  __cplusplus
 }
 #endif
 
-#endif	/* I2CCOMMUNICATION_H */
+#endif  /* I2CCOMMUNICATION_H */

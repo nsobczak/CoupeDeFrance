@@ -27,7 +27,8 @@
 #define _ASSERVISSMENT_BOTTURNLEFT_ 4
 #define _ASSERVISSMENT_BOTSTOP_ 5
 
-#define _PRECISION_ 1000
+#define _SPEED_PRECISION_ 100
+#define _DISTANCE_PRECISION_ 100
 
 //=== ENCODEUR ===
 #define _ENDODER_0_PinA_L_ 13   //encodeur gauche A
@@ -46,10 +47,12 @@ const float perimetreRoueCodeuse = diametreRoueCodeuse*Pi;
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 
+//=== ASSERVISSEMENT ===
 SimpleTimer timer;
 unsigned long _PERIODE_ASSERVISSEMENT_ = 20;
 unsigned long testStart;
 
+// Vitesse
 float consigneVitesseMoteur;
 float erreurPrecedenteGauche = 0;
 float erreurPrecedenteDroite = 0;
@@ -59,6 +62,12 @@ long r0 = 1170734.2; //coeff qui marche bien : 1829979.4;
 long r1 = 3659851.5; //coeff qui marche bien : 21525987.0;
 int cmdPrecedenteDroite = 0;
 int cmdPrecedenteGauche = 0;
+
+// Position
+float consigneDistance;
+int somme_ordre_tick_codeuse_L = 0;
+int somme_ordre_tick_codeuse_R = 0;
+int ordre_termine = 1;
 
 
 /* ======================================================================================================
@@ -73,8 +82,9 @@ int cmdPrecedenteGauche = 0;
 void requestEvent()
 {
         /*Notes: tableau id i2c
-           10 => tick_codeuse_L;
-           11 => tick_codeuse_R;
+           10 => ordre_termine;
+           11 => tick_codeuse_L;
+           12 => tick_codeuse_R;
          */
         // if ( variableSent > 8) variableSent = 0;
         // Serial.println("request received");
@@ -109,17 +119,24 @@ void requestEvent()
  */
 void receiveEvent(int howMany)
 {
-        if (Wire.available() == 3)
+        if (Wire.available() == 5)
         {
                 //lecture de la variable
                 byte order = Wire.read();
                 //lecture des 2 octets suivants
+                byte distanceIntPart = Wire.read();
+                byte distanceIntDecPart = Wire.read();
+                //reconstitution de la valeur
+                distanceIntDecPart *= _DISTANCE_PRECISION_;
+                consigneDistance = (float)distanceIntPart + (float)distanceIntDecPart;
+                //lecture des 2 octets suivants
                 byte speedIntPart = Wire.read();
                 byte speedIntDecPart = Wire.read();
                 //reconstitution de la valeur
-                speedIntDecPart *= _PRECISION_;
+                speedIntDecPart *= _SPEED_PRECISION_;
                 consigneVitesseMoteur = (float)speedIntPart + (float)speedIntDecPart;
 
+                ordre_termine = 0;
                 switch ( order ) // cf. les références des variables en haut du fichier
                 {
                 case 1:
@@ -141,6 +158,7 @@ void receiveEvent(int howMany)
                         break;
                 default:
                         if (_DEBUG_) Serial.println("variable recue inconnue");
+                        ordre_termine = 1;
                 }
         }
         else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
@@ -333,6 +351,9 @@ void asservissementVitesse()
                 // Serial.print("\t calculVitesse : \t " );
                 printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
         }
+
+        somme_ordre_tick_codeuse_R += tick_codeuse_R;
+        somme_ordre_tick_codeuse_L += tick_codeuse_L;
 
         tick_codeuse_R = 0;
         tick_codeuse_L = 0;
