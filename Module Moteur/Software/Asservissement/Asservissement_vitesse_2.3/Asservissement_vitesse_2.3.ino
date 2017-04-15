@@ -11,6 +11,7 @@
  * ======================================================================================================
  */
 #include <Arduino.h>
+#include <SimpleTimer.h>  
 #include "botDirection.h"
 
 
@@ -41,13 +42,9 @@ unsigned long testStart;
 float consigneVitesseMoteur;
 float erreurPrecedenteGauche = 0;
 float erreurPrecedenteDroite = 0;
-int kp = 0;
-long r0 = 852916.06;//1829979.4;//1170734.2;//coef qui marche bien : 1829979.4;
-long r1 = 2056114.36;//21525987.0;//3659851.5;//coef qui marche bien : 21525987.0;
-
-long r0Gauche = 781839.72;//1829979.4;//1779762.8;
-long r1Gauche = 1884771.4;//21525987.0;//21463751.3;
-
+int kp = -50;
+long r0 = 1170734.2; //coef qui marche bien : 1829979.4;
+long r1 = 3659851.5; //coef qui marche bien : 21525987.0;
 int cmdPrecedenteDroite = 0;
 int cmdPrecedenteGauche = 0;
 
@@ -99,6 +96,8 @@ void setup()
         consigneVitesseMoteur = 0.3;
         testDuration = millis();
         testStart = millis();
+
+        timer.setInterval(1000/frequence_echantillonnage, asservissement);  // Interruption pour calcul du PID et asservissement
 }
 
 
@@ -129,21 +128,18 @@ void loop()
                         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
                         erreurPrecedenteGauche = erreurGauche;
                         erreurPrecedenteDroite = erreurDroite;
-                        int CorrectionVitesse = kp*(vitesseReelleDroite-vitesseReelleGauche); 
-                        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite + CorrectionVitesse; 
-                        int cmdMoteurGauche = r0Gauche * erreurGauche + r1Gauche * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse   ;
-                        
+                        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L);
+                        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite;
+                        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
+
                         if(cmdMoteurDroite < 0) cmdMoteurDroite = 0;
                         else if (cmdMoteurDroite > 255) cmdMoteurDroite = 255;
                         if(cmdMoteurGauche < 0) cmdMoteurGauche = 0;
                         else if (cmdMoteurGauche > 255) cmdMoteurGauche = 255;
-                        
                         cmdPrecedenteDroite = 255-cmdMoteurDroite;
                         cmdPrecedenteGauche = 255-cmdMoteurGauche;
 
-
-
-                         robotGoBack(255-cmdMoteurGauche, 255-cmdMoteurDroite);
+                        robotGoBack(255-cmdMoteurGauche, 255-cmdMoteurDroite);
                         //robotTurnAroundFrontLeft(255-cmdMoteurGauche);
                         if (_DEBUG_) {
                                 // Serial.print("\t testDuration : \t " );
@@ -153,7 +149,7 @@ void loop()
                                 // Serial.print("\t testDuration : \t");
                                 Serial.println(testDuration);
 
-                                // TODO: ne pas oublier de change l'encoder L ou R
+                                // TODO: ne pas oublier de changer l'encodeur L ou R
                                 // Serial.print("\t consignePWM : \t " );
                                 // Serial.println(cmdMoteurDroit);
                                 // Serial.print("\t consigneVitesseMoteur : \t");
@@ -181,7 +177,6 @@ void loop()
 void compteur_tick_R()
 {
         tick_codeuse_R++; // On incrémente le nombre de tick de la codeuse
-        
 }
 
 
@@ -233,5 +228,3 @@ void printDouble( double val, unsigned int precision){
 
         Serial.println(frac,DEC);
 }
-
-

@@ -42,18 +42,13 @@ unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 unsigned long testDuration;
 unsigned long testStart;
 float consigneMoteur = 1;
-float sommeErreurGauche = 0;
-float sommeErreurDroite = 0;
-float erreurPrecedenteGauche = 0;
-float erreurPrecedenteDroite = 0;
+float sommeErreur = 0;
+float erreurPrecedente = 0;
 float consignePWMR;
 float consignePWML;
-float kpGauche = 0;
-float kiGauche = 0;
-float kdGauche = 0;
-float kpDroit = 1;
-float kiDroit = 0;
-float kdDroit = 0;
+float kp = 0;
+float ki = 0;
+float kd = 0;
 
 
 /* ======================================================================================================
@@ -79,7 +74,7 @@ void setup()
         pinMode(encoder0PinA_R, INPUT);
         pinMode(encoder0PinB_R, INPUT);
 
-        attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
+        //attachInterrupt(encoder0PinA_R, compteur_tick_R, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
        
         attachInterrupt(encoder0PinA_L, compteur_tick_L, CHANGE);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
 
@@ -103,7 +98,7 @@ void setup()
         analogWrite(MotorR,255);
 
         consignePWML = calculConsignePWMMotorL(consigneMoteur);
-        consignePWMR = calculConsignePWMMotorR(consigneMoteur);
+        consignePWMR = calculConsignePWM(consigneMoteur);
         testDuration = millis();
         testStart = millis();
         
@@ -119,54 +114,41 @@ void loop()
         
         //fréquence de mesure de 50Hz
         if (millis() - testDuration >= 20) {
-                //Attente de 5" avant le début
+                //Attente de 2" avant le début
                 if ((millis() - testStart > 5000) && (millis() - testStart < 15000)) {
 
                         //Moteur droit
-                        //double vitesseReelGauche = calculVitesse(tick_codeuse_L, millis() - testDuration);
-                        double vitesseReelDroite = calculVitesse(tick_codeuse_R, millis() - testDuration);
-                        float erreurDroite = consigneMoteur - vitesseReelDroite;
-                        //float erreurGauche = consigneMoteur - vitesseReelGauche;
-                        //sommeErreurGauche += erreurGauche;
-                        sommeErreurDroite += erreurDroite;
-                        //float deltaErreurGauche = erreurGauche - erreurPrecedenteGauche;
-                        float deltaErreurDroite = erreurDroite - erreurPrecedenteDroite;
-                        //erreurPrecedenteGauche = erreurGauche;
-                        erreurPrecedenteDroite = erreurDroite;
+                        double vitesseReel = calculVitesse(tick_codeuse_L, millis() - testDuration);
+                        float erreur = consigneMoteur - vitesseReel;
+                        sommeErreur += erreur;
+                        float deltaErreur = erreur - erreurPrecedente;
+                        erreurPrecedente = erreur;
 
-                        int cmdMoteurDroit = kpDroit*erreurDroite+kiDroit*sommeErreurDroite+kdDroit*deltaErreurDroite + consignePWMR;
-                        //int cmdMoteurGauche = kpGauche*erreurGauche+kiGauche*sommeErreurGauche+kdGauche*deltaErreurGauche + consignePWML;
-                        if(cmdMoteurDroit<0){
-                          cmdMoteurDroit = 0;
+                        int cmd = kp*erreur+ki*sommeErreur+kd*deltaErreur + consignePWMR;
+                        if(cmd<0){
+                          cmd =0;
                         }
-                        else if(cmdMoteurDroit>255){
-                          cmdMoteurDroit = 255;
+                        else if(cmd>255){
+                          cmd = 255;
                         }
-
-                        /*if(cmdMoteurGauche<0){
-                          cmdMoteurGauche =0;
-                        }
-                        else if(cmdMoteurGauche>255){
-                          cmdMoteurGauche = 255;
-                        }*/
                         
                         digitalWrite(IN1MotorR, LOW);
                         digitalWrite(IN2MotorR, HIGH);
                         digitalWrite(IN1MotorL, LOW);
-                        digitalWrite(IN2MotorL, LOW);
-                        analogWrite(MotorL,255);
-                        analogWrite(MotorR,cmdMoteurDroit);
+                        digitalWrite(IN2MotorL, HIGH);
+                        analogWrite(MotorL,consignePWML);
+                        analogWrite(MotorR,consignePWMR);
                         //Serial.print("\t testDuration : \t " );
-                        Serial.println(millis() - testDuration);
+                        //Serial.println(millis() - testDuration);
                         // //Serial.print("\t tick_codeuse_L : \t");
                         // Serial.println(tick_codeuse_L);
                         // // Serial.print("\t testDuration : \t");
-                         //Serial.println(testDuration);
+                         Serial.println(testDuration);
                         // ne pas oublier de change l'encoder L ou R
                         //Serial.print("\t consignePWM : \t " );
                         //Serial.println(consignePWM);
                         //Serial.print("\t calculVitesse : \t " );
-                        printDouble(calculVitesse(tick_codeuse_R, millis() - testDuration), 1000000);
+                        printDouble(calculVitesse(tick_codeuse_L, millis() - testDuration), 1000000);
                         //printDouble(calculVitesse(tick_codeuse_L, millis() - testDuration), 1000000);                         
                 }
                 else if (millis() > 15000) {
@@ -174,8 +156,8 @@ void loop()
                 }
                 testDuration = millis();
                 // Decommenter pour le moteur droit
-                tick_codeuse_R = 0;
-                //tick_codeuse_L = 0;
+                //tick_codeuse_R = 0;
+                tick_codeuse_L = 0;
         }
 }
 
@@ -219,7 +201,7 @@ double calculVitesse(unsigned int tick_codeuse, unsigned long duration)
  * \param double y, y > 1,5056
  * \return x
  */
-float calculConsignePWMMotorR(float consigne_vitesse_moteur)
+float calculConsignePWM(float consigne_vitesse_moteur)
 {
         if(consigne_vitesse_moteur < 0) consigne_vitesse_moteur = 0.0;
         else if(consigne_vitesse_moteur > 1.421) consigne_vitesse_moteur = 1.421;

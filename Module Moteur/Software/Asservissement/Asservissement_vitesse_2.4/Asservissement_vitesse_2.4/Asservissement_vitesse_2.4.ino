@@ -1,9 +1,9 @@
 /**
- *    \file caraterisationVitesseMoteur.ino
- *    \brief test des drivers, test des encodeurs
+ *    \file asservissement_vitesse_2.4.ino
+ *    \brief code d'asservissement
  *
  *    \author Arthur Duytschaever et Nicolas Sobczak
- *    \date Février 2017
+ *    \date Mars 2017
  */
 //_______________________________________________________________________________________________________
 /* ======================================================================================================
