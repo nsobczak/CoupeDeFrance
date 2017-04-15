@@ -37,6 +37,14 @@ Bot::Bot(int newColorNumber, int newStrategyNumber)
         }
 }
 
+Asservissement Bot::getAsservissement()
+{
+        return this->asservissement;
+}
+void Bot::setAsservissement(Asservissement newAsservissement)
+{
+        this->asservissement = newAsservissement;
+}
 
 Clamp Bot::getClamp()
 {
@@ -49,11 +57,13 @@ void Bot::setClamp(Clamp newClamp)
 
 SensorsBoard Bot::getSensorsBoard()
 {
-        return Bot::sensorsBoard;
+        return this->sensorsBoard;
 }
-void Bot::setSensorsBoard(SensorsBoard newSensorsBoard){
+void Bot::setSensorsBoard(SensorsBoard newSensorsBoard)
+{
         this->sensorsBoard = newSensorsBoard;
 }
+
 
 MPU6050 Bot::getAccelgyro()
 {
@@ -114,59 +124,10 @@ bool Bot::isTiretteTiree()
 
 // === BOT TRAVEL ===
 
-/* \fn void Bot::botGoForward
- * \param int sendAddress, int speed
- * \brief fonction qui déplace le robot vers l'avant
- */
-void Bot::botGoForward(int sendAddress, int speed)
+void Bot::goToPosition(int xAxis, int yAxis)
 {
-        //TODO: I2C - envoyer info de déplacer le robot au module asservissement
-        // conversion sur 2 octets de la valeur à envoyer
-        byte bytesTab[2];
-        intTo2Bytes(bytesTab, speed);
-        i2csend3bytes(_ASSERVISSMENT_BOTGOFORWARD_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
+        //TODO: déplacer le robot à une position donnée
 }
-
-/* \fn void Bot::botGoBackward
- * \param int sendAddress, int speed
- * \brief fonction qui déplace le robot vers l'arrière
- */
-void Bot::botGoBackward(int sendAddress, int speed)
-{
-        //TODO: I2C - envoyer info de déplacer le robot au module asservissement
-        // conversion sur 2 octets de la valeur à envoyer
-        byte bytesTab[2];
-        intTo2Bytes(bytesTab, speed);
-        i2csend3bytes(_ASSERVISSMENT_BOTGOBACKWARD_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
-}
-
-void Bot::botTurnAroundRight(int sendAddress, int speed)
-{
-        //TODO: I2C - envoyer info de tourner le robot vers la droite au module asservissement
-        // conversion sur 2 octets de la valeur à envoyer
-        byte bytesTab[2];
-        intTo2Bytes(bytesTab, speed);
-        i2csend3bytes(_ASSERVISSMENT_BOTTURNRIGHT_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
-}
-
-void Bot::botTurnAroundLeft(int sendAddress, int speed)
-{
-        //TODO: I2C - envoyer info de tourner le robot vers la gauche au module asservissement
-        // conversion sur 2 octets de la valeur à envoyer
-        byte bytesTab[2];
-        intTo2Bytes(bytesTab, speed);
-        i2csend3bytes(_ASSERVISSMENT_BOTTURNLEFT_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
-}
-
-void Bot::botStop(int sendAddress)
-{
-        //TODO: I2C - envoyer info d'arrêter le robot au module asservissement
-        // conversion sur 2 octets de la valeur à envoyer
-        byte bytesTab[2];
-        intTo2Bytes(bytesTab, 1);
-        i2csend3bytes(_ASSERVISSMENT_BOTSTOP_, bytesTab[0], bytesTab[1], _ASSERVISSMENT_SENDADRESS_);
-}
-
 
 // === FUNNY ACTION ===
 
@@ -175,7 +136,6 @@ void Bot::botStop(int sendAddress)
  */
 void Bot::startFunnyActionTimer()
 {
-        //TODO: write etat haut dans le pin de la nano, puis le remettre à bas
         analogWrite(_PIN_ARDUINO_NANO_FUNNY_ACTION_, HIGH);
 }
 
@@ -208,16 +168,16 @@ bool Bot::turnBotInFrontOFCylinder()
                 //TODO: on le fait tourner arbitrairement vers la droite
                 unsigned long timer2 = millis();
                 do {
-                        this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);
+                        this->getAsservissement().botTurnAroundRight(_SLOW_SPEED_); //TODO: replace by the right speed
                         // this->updateAngleZ();
                 } while(millis() - timer2 < 3000); //TODO: see the right time + include  && this->getAngleZ()
                 if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                         //tourner le robot vers la droite
-                        this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundRight(_SLOW_SPEED_); //TODO: replace by the right speed
                 }
                 else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
                         //tourner le robot vers la gauche
-                        this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundLeft(_SLOW_SPEED_);   //TODO: replace by the right speed
                 }
 
                 inFrontOfCylinder = this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter();
@@ -230,7 +190,7 @@ void Bot::catchCylinder()
 {
         unsigned long timer = millis();
         do {
-                this->botGoForward(_ASSERVISSMENT_SENDADRESS_, 200);
+                this->getAsservissement().botGoForward(_SLOW_SPEED_);
         } while(this->getSensorsBoard().getInfraredSensorFrontBottomCenterValue() > _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_
                 && (millis() - timer < 3000));
         this->getClamp().catchCylinder();
@@ -247,11 +207,11 @@ void Bot::findAndCatchCylinder()
                 else{
                         if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                                 //tourner le robot vers la droite
-                                this->botTurnAroundRight(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                                this->getAsservissement().botTurnAroundRight(_SLOW_SPEED_);  //TODO: replace by the right speed
                         }
                         else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
                                 //tourner le robot vers la gauche
-                                this->botTurnAroundLeft(_ASSERVISSMENT_SENDADRESS_, 200);  //TODO: replace by the right speed
+                                this->getAsservissement().botTurnAroundLeft(_SLOW_SPEED_);  //TODO: replace by the right speed
                         }
                         else this->turnBotInFrontOFCylinder();   //tourner le robot de droite a gauche pour chercher le cylindre
                 }
@@ -294,5 +254,5 @@ void Bot::buildBase()
                         this->build1BaseCylinder(x_coord, y_coord);
                 }
         }
-        this->botStop(_ASSERVISSMENT_SENDADRESS_);
+        this->getAsservissement().botStop();
 }

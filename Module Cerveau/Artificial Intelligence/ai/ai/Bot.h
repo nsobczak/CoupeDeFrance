@@ -7,13 +7,15 @@
  */
 //_______________________________________________________________________________________________________
 /* ======================================================================================================
- *      Include
+ *      Initialisation
  * ======================================================================================================
  */
 #include <cstdint>
 #include "Arduino.h"
 #include "i2cCommunication.h"
 #include "moonBoard.h"
+
+#include "Asservissement.h"
 
 #include "Clamp.h"
 
@@ -22,20 +24,16 @@
 #include "MPU6050.h"
 
 
+#define _PIN_BOUTON_ARRET_URGENCE_ 16 //état haut quand il est appuyé
 #define _PIN_TIRETTE_ 15
-//TODO: replace by the right pin
-#define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 13
-
-#define _ASSERVISSMENT_SENDADRESS_ 6
-
-#define _ASSERVISSMENT_BOTGOFORWARD_ 1
-#define _ASSERVISSMENT_BOTGOBACKWARD_ 2
-#define _ASSERVISSMENT_BOTTURNRIGHT_ 3
-#define _ASSERVISSMENT_BOTTURNLEFT_ 4
-#define _ASSERVISSMENT_BOTSTOP_ 5
+#define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 33
 
 #define _NUMBER_OF_CYLINDERS_TO_CATCH_ 10 //TODO: replace by the right number of cylinders
 #define _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_ 8000 //ms
+
+#define _SLOW_SPEED_ 0.4
+#define _MEDIUM_SPEED_ 0.8
+#define _FAST_SPEED_ 1.2
 
 
 //TODO: replace by the right positions of cylinders
@@ -57,6 +55,7 @@ class Bot
 {
 private:
 
+Asservissement asservissement;
 Clamp clamp;
 SensorsBoard sensorsBoard;
 MPU6050 accelgyro;
@@ -72,6 +71,9 @@ public:
 Bot();
 Bot(int newColorNumber, int newStrategyNumber);
 
+
+Asservissement getAsservissement();
+void setAsservissement(Asservissement newAsservissement);
 Clamp getClamp();
 void setClamp(Clamp newClamp);
 SensorsBoard getSensorsBoard();
@@ -90,11 +92,7 @@ const CylinderPosition *getCylinderToCatchList() const;
 
 bool isTiretteTiree();
 
-void botGoForward(int sendAddress, int speed);
-void botGoBackward(int sendAddress, int speed);
-void botTurnAroundRight(int sendAddress, int speed);
-void botTurnAroundLeft(int sendAddress, int speed);
-void botStop(int sendAddress);
+void goToPosition(int xAxis, int yAxis);
 
 void startFunnyActionTimer();
 
