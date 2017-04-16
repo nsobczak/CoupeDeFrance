@@ -190,10 +190,7 @@ void SensorsBoard::receive3bytes()
 
         }
         // else de debug
-        else if (_DEBUG_)
-        {
-                Serial.println("Erreur : Pas 3 octets envoyes");
-        }
+        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
 }
 
 
