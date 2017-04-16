@@ -72,6 +72,8 @@ int cmdPrecedenteGauche = 0;
 float consigneDistance;
 int somme_ordre_tick_codeuse_L = 0;
 int somme_ordre_tick_codeuse_R = 0;
+int somme_ordre_tick_codeuse_L_to_be_sent = somme_ordre_tick_codeuse_L;
+int somme_ordre_tick_codeuse_R_to_be_sent = somme_ordre_tick_codeuse_R;
 byte order = 5;
 int ordre_termine = 1;
 
@@ -81,103 +83,6 @@ int ordre_termine = 1;
  * ======================================================================================================
  */
 
-/**
- * \fn void requestEvent()
- * \brief function that executes whenever data is requested by master this function is registered as an event, see setup()
- */
-void asservissementRequestEvent()
-{
-        /*Notes: tableau id i2c
-           10 => ordre_termine;
-           11 => somme_ordre_tick_codeuse_L;
-           12 => somme_ordre_tick_codeuse_R;
-         */
-        if ( variableSent > 12) variableSent = 10;
-        if (_DEBUG_) Serial.println("request received");
-        byte bytesTab[2];
-        byte data[3];
-
-        switch (variableSent) {
-        case 10:
-                intTo2Bytes(bytesTab, ordre_termine);  // conversion sur 2 octets de la valeur à envoyer
-                data[0] = variableSent;
-                data[1] = bytesTab[0];
-                data[2] = bytesTab[1];
-                Wire.write(data, 3);
-                break;
-        case 11:
-                intTo2Bytes(bytesTab, somme_ordre_tick_codeuse_L);  // conversion sur 2 octets de la valeur à envoyer
-                data[0] = variableSent;
-                data[1] = bytesTab[0];
-                data[2] = bytesTab[1];
-                Wire.write(data, 3);
-                break;
-        case 12:
-                intTo2Bytes(bytesTab, somme_ordre_tick_codeuse_R);  // conversion sur 2 octets de la valeur à envoyer
-                data[0] = variableSent;
-                data[1] = bytesTab[0];
-                data[2] = bytesTab[1];
-                Wire.write(data, 3);
-                break;
-        default:
-                if (_DEBUG_) Serial.println("resquestEvent: variable recue inconnue");
-                break;
-        }
-        variableSent++;
-}
-
-/**
- * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
- * \param int howMany
- */
-void asservissementReceiveEvent(int howMany)
-{
-        if (Wire.available() == 5)
-        {
-                //lecture de la variable
-                byte var = Wire.read();
-                //lecture des 2 octets suivants
-                byte distanceIntPart = Wire.read();
-                byte distanceIntDecPart = Wire.read();
-                //reconstitution de la valeur
-                distanceIntDecPart *= _DISTANCE_PRECISION_;
-                consigneDistance = (float)distanceIntPart + (float)distanceIntDecPart;
-                //lecture des 2 octets suivants
-                byte speedIntPart = Wire.read();
-                byte speedIntDecPart = Wire.read();
-                //reconstitution de la valeur
-                speedIntDecPart *= _SPEED_PRECISION_;
-                consigneVitesseMoteur = (float)speedIntPart + (float)speedIntDecPart;
-
-                switch ( var ) // cf. les références des variables en haut du fichier
-                {
-                case 1 ... 5:
-                        if (_DEBUG_) Serial.println("ordre recu");
-                        ordre_termine = 0;
-                        order = var;
-                        break;
-                default:
-                        if (_DEBUG_) Serial.println("variable recue inconnue");
-                        ordre_termine = 1;
-                }
-        }
-        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
-}
-
-
-/**
- * \fn void loop()
- * \brief fonction loop d'arduino
- */
-void asservissementI2CReceive()
-{
-        // Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
-        Wire.onReceive(asservissementReceiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
-        Wire.endTransmission(); // fin transmission
-}
-
-
-//____________________________________________________________________________________________________
 /**
  * \fn void compteur_tick_R()
  * \brief Interruption sur tick de la codeuse right
@@ -202,12 +107,12 @@ void compteur_tick_L()
  * \fn calculDistance
  * \param unsigned int tick_codeuse
  * \brief calcule la distance parcourue à partir d'un nombre de ticks
- * \return double distance parcourue
+ * \return float distance parcourue en metre
  */
-double calculDistance(unsigned int tick_codeuse)
+float calculDistance(unsigned int tick_codeuse)
 {
         double nombre_tours = (double) tick_codeuse / (double) nombreTicksPour1TourDeRoue;
-        return (double)perimetreRoueCodeuse * nombre_tours;
+        return perimetreRoueCodeuse * (float)nombre_tours;
 }
 
 /**
@@ -252,6 +157,11 @@ void printDouble(double val, unsigned int precision)
 
 
 //______________________________________________________________________________
+/**
+ * \fn bornCommand
+ * \param int command
+ * \brief function that keeps a pwm command between 0 and 255
+ */
 int bornCommand(int command)
 {
         if(command < 0) command = 0;
@@ -260,6 +170,11 @@ int bornCommand(int command)
 }
 
 
+/**
+ * \fn executeOrder
+ * \param int order, int cmdMoteurGauche, int cmdMoteurDroite
+ * \brief function that execute a botDirection order from the boolean "order"
+ */
 void executeOrder(int order, int cmdMoteurGauche, int cmdMoteurDroite)
 {
         switch ( order ) // cf. les références des variables en haut du fichier
@@ -294,12 +209,42 @@ void executeOrder(int order, int cmdMoteurGauche, int cmdMoteurDroite)
 }
 
 
+/**
+ * \fn handleOrder
+ * \param int cmdMoteurGauche, int cmdMoteurDroite
+ * \brief function that handles running and not running orders, also handles the "ordre_termine" boolean
+ */
+void handleOrder(int cmdMoteurGauche, int cmdMoteurDroite)
+{
+        if(ordre_termine == 1)
+        {
+                ordre_termine = 0;
+                somme_ordre_tick_codeuse_R = 0;
+                somme_ordre_tick_codeuse_L = 0;
+        }
+        else
+        {
+                somme_ordre_tick_codeuse_R += tick_codeuse_R;
+                somme_ordre_tick_codeuse_L += tick_codeuse_L;
+                somme_ordre_tick_codeuse_L_to_be_sent = somme_ordre_tick_codeuse_L;
+                somme_ordre_tick_codeuse_R_to_be_sent = somme_ordre_tick_codeuse_R;
+        }
+        executeOrder(order, cmdMoteurGauche, cmdMoteurDroite);
+        if (calculDistance(somme_ordre_tick_codeuse_L) >= consigneDistance ||
+            calculDistance(somme_ordre_tick_codeuse_R) >= consigneDistance ) ordre_termine = 1;
+}
+
+
+/**
+ * \fn asservissementVitesse
+ * \brief function that does the asservissment work
+ */
 void asservissementVitesse()
 {
+        // = Calcul erreur pour la correction proportionnelle=
         double vitesseReelleGauche = calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_);
         double vitesseReelleDroite = calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_);
 
-        //calcul erreur pour la correction proportionnelle
         float erreurGauche = consigneVitesseMoteur - (float)vitesseReelleGauche;
         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
         erreurPrecedenteGauche = erreurGauche;
@@ -313,22 +258,11 @@ void asservissementVitesse()
         cmdPrecedenteDroite = _MAX_PWM_ - cmdMoteurDroite;
         cmdPrecedenteGauche = _MAX_PWM_ - cmdMoteurGauche;
 
+        // = Ordre =
         if (_TEST_SANS_I2C_) robotGoBack(_MAX_PWM_ - cmdMoteurGauche, _MAX_PWM_ - cmdMoteurDroite);
-        else {
-                if(ordre_termine == 1)
-                {
-                        ordre_termine = 0;
-                        somme_ordre_tick_codeuse_R = 0;
-                        somme_ordre_tick_codeuse_L = 0;
-                }
-                else
-                {
-                        somme_ordre_tick_codeuse_R += tick_codeuse_R;
-                        somme_ordre_tick_codeuse_L += tick_codeuse_L;
-                }
-                executeOrder(order, cmdMoteurGauche, cmdMoteurDroite);
-        }
+        else handleOrder(cmdMoteurGauche, cmdMoteurDroite);
 
+        // = Debug =
         if (_DEBUG_) {
                 // Serial.print("\t tick_codeuse_L : \t");
                 // Serial.println(tick_codeuse_L);
@@ -348,6 +282,104 @@ void asservissementVitesse()
 
 
 //_____________________________________________________________________________________________________________
+/**
+ * \fn void requestEvent()
+ * \brief function executed whenever data is requested by master this function is registered as an event, see setup()
+ */
+void asservissementRequestEvent()
+{
+        /*Notes: tableau id i2c
+           10 => ordre_termine;
+           11 => somme_ordre_tick_codeuse_L;
+           12 => somme_ordre_tick_codeuse_R;
+         */
+        if ( variableSent > 12) variableSent = 10;
+        if (_DEBUG_) Serial.println("request received");
+        byte bytesTab[2];
+        byte data[3];
+
+        switch (variableSent) {
+        case 10:
+                intTo2Bytes(bytesTab, ordre_termine);  // conversion sur 2 octets de la valeur à envoyer
+                data[0] = variableSent;
+                data[1] = bytesTab[0];
+                data[2] = bytesTab[1];
+                Wire.write(data, 3);
+                break;
+        case 11:
+                intTo2Bytes(bytesTab, somme_ordre_tick_codeuse_L_to_be_sent);  // conversion sur 2 octets de la valeur à envoyer
+                data[0] = variableSent;
+                data[1] = bytesTab[0];
+                data[2] = bytesTab[1];
+                Wire.write(data, 3);
+                break;
+        case 12:
+                intTo2Bytes(bytesTab, somme_ordre_tick_codeuse_R_to_be_sent);  // conversion sur 2 octets de la valeur à envoyer
+                data[0] = variableSent;
+                data[1] = bytesTab[0];
+                data[2] = bytesTab[1];
+                Wire.write(data, 3);
+                break;
+        default:
+                if (_DEBUG_) Serial.println("resquestEvent: variable recue inconnue");
+                break;
+        }
+        variableSent++;
+}
+
+/**
+ * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
+ * \param int howMany
+ * \brief function called by the asservissementI2CReceive function
+ */
+void asservissementReceiveEvent(int howMany)
+{
+        if (Wire.available() == 5)
+        {
+                //lecture de la variable
+                byte var = Wire.read();
+                //lecture des 2 octets suivants
+                byte distanceIntPart = Wire.read();
+                byte distanceIntDecPart = Wire.read();
+                //reconstitution de la valeur
+                distanceIntDecPart *= _DISTANCE_PRECISION_;
+                consigneDistance = (float)distanceIntPart + (float)distanceIntDecPart;
+                //lecture des 2 octets suivants
+                byte speedIntPart = Wire.read();
+                byte speedIntDecPart = Wire.read();
+                //reconstitution de la valeur
+                speedIntDecPart *= _SPEED_PRECISION_;
+                consigneVitesseMoteur = (float)speedIntPart + (float)speedIntDecPart;
+
+                switch ( var ) // cf. les références des variables en haut du fichier
+                {
+                case 1 ... 5:
+                        if (_DEBUG_) Serial.println("ordre recu");
+                        ordre_termine = 0;
+                        order = var;
+                        break;
+                default:
+                        if (_DEBUG_) Serial.println("variable recue inconnue");
+                        ordre_termine = 1;
+                }
+        }
+        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
+}
+
+
+/**
+ * \fn void asservissementI2CReceive()
+ * \brief function to execute when we want to receive order from the artificial intelligence
+ */
+void asservissementI2CReceive()
+{
+        // Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
+        Wire.onReceive(asservissementReceiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
+        Wire.endTransmission(); // fin transmission
+}
+
+
+//____________________________________________________________________________________________________
 /**
  * \fn void setup()
  * \brief fonction setup d'arduino
@@ -410,7 +442,6 @@ void loop()
                         // else if ((millis() - testStart >= 15000) && (millis() - testStart < 17500)) consigneVitesseMoteur = 0.5;
                         // else if ((millis() - testStart >= 17500) && (millis() - testStart < 22500)) consigneVitesseMoteur = 0.5;
                         // else if ((millis() - testStart >= 22500) && (millis() - testStart < 25000)) consigneVitesseMoteur = 0.5;
-
                         timer.run();
                 }
                 else robotStop();
