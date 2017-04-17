@@ -220,16 +220,18 @@ float Asservissement::calculDistance1Roue(unsigned int tick_codeuse)
 }
 
 
-float Asservissement::computeAverageDistance()
+void Asservissement::computeAverageDistance()
 {
-        return ( this->calculDistance1Roue(this->getTick_codeuse_l()) + this->calculDistance1Roue(this->getTick_codeuse_r()) )/2;
+        this->setDistanceParcourue(this->calculDistance1Roue(this->getTick_codeuse_l()) + this->calculDistance1Roue(this->getTick_codeuse_r()) /2);
 }
 
 
-float Asservissement::computeAngle(unsigned int tick_l, unsigned int tick_r)
+void Asservissement::computeRotationAngle()
 {
-        //TODO
-        return 0;
+        unsigned int ticks;
+        if (this->getTick_codeuse_l() > this->getTick_codeuse_r()) ticks = this->getTick_codeuse_l();
+        else ticks = this->getTick_codeuse_r();
+        this->setAngleEffectue(ticks / _VOIE_ROUES_);
 }
 
 
@@ -243,7 +245,7 @@ void Asservissement::handleOrderEnd()
 {
         if (this->isOrderFinished())
         {
-                this->setDistanceParcourue(this->computeAverageDistance());
-                this->setAngleEffectue(this->computeAngle(this->getTick_codeuse_l(), this->getTick_codeuse_r()));
+                this->computeAverageDistance();
+                this->computeRotationAngle();
         }
 }
