@@ -69,8 +69,8 @@ void setY_position(float y_position);
 
 void botGoForward(double distance, double speed);
 void botGoBackward(double distance, double speed);
-void botTurnAroundRight(double speed);
-void botTurnAroundLeft(double speed);
+void botTurnAroundRight(double angle, double speed);
+void botTurnAroundLeft(double angle, double speed);
 void botStop();
 
 void receive3bytesAndUpdate();

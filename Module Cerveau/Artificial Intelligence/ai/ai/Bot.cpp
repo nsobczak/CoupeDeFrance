@@ -168,16 +168,16 @@ bool Bot::turnBotInFrontOFCylinder()
                 //TODO: on le fait tourner arbitrairement vers la droite
                 unsigned long timer2 = millis();
                 do {
-                        this->getAsservissement().botTurnAroundRight(_SLOW_SPEED_); //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundRight(20, _SLOW_SPEED_); //TODO: replace by the right speed
                         // this->updateAngleZ();
                 } while(millis() - timer2 < 3000); //TODO: see the right time + include  && this->getAngleZ()
                 if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                         //tourner le robot vers la droite
-                        this->getAsservissement().botTurnAroundRight(_SLOW_SPEED_); //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundRight(20, _SLOW_SPEED_); //TODO: replace by the right speed
                 }
                 else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
                         //tourner le robot vers la gauche
-                        this->getAsservissement().botTurnAroundLeft(_SLOW_SPEED_);   //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundLeft(20, _SLOW_SPEED_);   //TODO: replace by the right speed
                 }
 
                 inFrontOfCylinder = this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter();
@@ -207,11 +207,11 @@ void Bot::findAndCatchCylinder()
                 else{
                         if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                                 //tourner le robot vers la droite
-                                this->getAsservissement().botTurnAroundRight(_SLOW_SPEED_);  //TODO: replace by the right speed
+                                this->getAsservissement().botTurnAroundRight(20, _SLOW_SPEED_);  //TODO: replace by the right speed
                         }
                         else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
                                 //tourner le robot vers la gauche
-                                this->getAsservissement().botTurnAroundLeft(_SLOW_SPEED_);  //TODO: replace by the right speed
+                                this->getAsservissement().botTurnAroundLeft(20, _SLOW_SPEED_);  //TODO: replace by the right speed
                         }
                         else this->turnBotInFrontOFCylinder();   //tourner le robot de droite a gauche pour chercher le cylindre
                 }

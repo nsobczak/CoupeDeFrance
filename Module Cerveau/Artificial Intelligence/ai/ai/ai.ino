@@ -23,6 +23,7 @@
 #define _DEBUG_ true
 #define _TEST_CLAMP_ false
 #define _TEST_SENSORS_ false
+#define _TEST_ASSERVISSEMENT_ true
 
 
 Bot elPadre;
@@ -105,6 +106,15 @@ void loop()
                         Serial.println(elPadre.getSensorsBoard().getUltrasonicRightValue());
                         delay(500);
                 }
+        }
+
+        if (_TEST_ASSERVISSEMENT_)
+        {
+                if (_DEBUG_) Serial.println("=== _ASSERVISSEMENT_ ===");
+                elPadre.getAsservissement().botGoForward(0.4, 0.5);
+                elPadre.getAsservissement().botStop();
+                elPadre.getAsservissement().botTurnAroundRight(90, 0.3);
+                elPadre.getAsservissement().botGoForward(0.2, 0.5);
         }
 
         if (_DEBUG_)

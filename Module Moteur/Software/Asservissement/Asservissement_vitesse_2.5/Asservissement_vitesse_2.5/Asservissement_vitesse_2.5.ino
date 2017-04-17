@@ -47,6 +47,7 @@ int variableSent = 10;
 const int _MAX_PWM_ = 255;
 const float _PI_ = 3.14159;
 const float perimetreRoueCodeuse = diametreRoueCodeuse*_PI_;
+const float _VOIE_ROUES_ = 0.3; //en metre, ecart entre les roues d'un même essieu //TODO: replace by the right measure
 
 //=== VARIABLES ===
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
@@ -70,6 +71,7 @@ int cmdPrecedenteGauche = 0;
 
 // Position
 float consigneDistance;
+float consigneAngle;
 int somme_ordre_tick_codeuse_L = 0;
 int somme_ordre_tick_codeuse_R = 0;
 int somme_ordre_tick_codeuse_L_to_be_sent = somme_ordre_tick_codeuse_L;
@@ -114,6 +116,19 @@ float calculDistance(unsigned int tick_codeuse)
         double nombre_tours = (double) tick_codeuse / (double) nombreTicksPour1TourDeRoue;
         return perimetreRoueCodeuse * (float)nombre_tours;
 }
+
+
+/**
+ * \fn calculDistanceFromAngle
+ * \param float angle
+ * \brief calcule la distance à parcourir à pour effectuer un angle donné
+ * \return float distance à parcourir en metre
+ */
+float calculDistanceFromAngle(float angle)
+{
+        return _VOIE_ROUES_*angle;
+}
+
 
 /**
  * \fn calculVitesse
@@ -343,6 +358,7 @@ void asservissementReceiveEvent(int howMany)
                 byte distanceIntDecPart = Wire.read();
                 //reconstitution de la valeur
                 distanceIntDecPart *= _DISTANCE_PRECISION_;
+                // ========= // float consigne = (float)distanceIntPart + (float)distanceIntDecPart;
                 consigneDistance = (float)distanceIntPart + (float)distanceIntDecPart;
                 //lecture des 2 octets suivants
                 byte speedIntPart = Wire.read();
@@ -354,6 +370,8 @@ void asservissementReceiveEvent(int howMany)
                 switch ( var ) // cf. les références des variables en haut du fichier
                 {
                 case 1 ... 5:
+                        // if (var == 1 || var == 2) consigneDistance = consigne;
+                        // else if (var == 3 || var == 4) consigneAngle = consigne; //TODO: FINIR
                         if (_DEBUG_) Serial.println("ordre recu");
                         ordre_termine = 0;
                         order = var;
