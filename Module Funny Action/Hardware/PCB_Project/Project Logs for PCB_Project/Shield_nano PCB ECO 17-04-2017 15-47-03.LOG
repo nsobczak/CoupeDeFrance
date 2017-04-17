@@ -1,0 +1,3 @@
+Added Component: Designator=JMP1(JMP2-100)
+Added Pin To Net: NetName=D3 Pin=JMP1-2
+Added Member To Class: ClassName=Shield_nano Member=Component JMP1 JUMPER2
