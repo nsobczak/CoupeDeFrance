@@ -256,6 +256,8 @@ void handleOrder(int cmdMoteurGauche, int cmdMoteurDroite)
  */
 void asservissementVitesse()
 {
+        // if (!_TEST_SANS_I2C_) if (ordre_termine == 1) asservissementI2CReceive();
+
         // = Calcul erreur pour la correction proportionnelle=
         double vitesseReelleGauche = calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_);
         double vitesseReelleDroite = calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_);
@@ -286,9 +288,9 @@ void asservissementVitesse()
                 // Serial.print("\t consignePWM : \t " );
                 // Serial.println(cmdMoteurDroit);
                 // Serial.print("\t consigneVitesseMoteur : \t");
-                Serial.println(consigneVitesseMoteur);
+                // Serial.println(consigneVitesseMoteur);
                 // Serial.print("\t calculVitesse : \t " );
-                printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
+                // printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
         }
 
         tick_codeuse_R = 0;
@@ -349,39 +351,42 @@ void asservissementRequestEvent()
  */
 void asservissementReceiveEvent(int howMany)
 {
-        if (Wire.available() == 5)
+        if (ordre_termine == 1)
         {
-                //lecture de la variable
-                byte var = Wire.read();
-                //lecture des 2 octets suivants
-                byte distanceIntPart = Wire.read();
-                byte distanceIntDecPart = Wire.read();
-                //reconstitution de la valeur
-                distanceIntDecPart *= _DISTANCE_PRECISION_;
-                // ========= // float consigne = (float)distanceIntPart + (float)distanceIntDecPart;
-                consigneDistance = (float)distanceIntPart + (float)distanceIntDecPart;
-                //lecture des 2 octets suivants
-                byte speedIntPart = Wire.read();
-                byte speedIntDecPart = Wire.read();
-                //reconstitution de la valeur
-                speedIntDecPart *= _SPEED_PRECISION_;
-                consigneVitesseMoteur = (float)speedIntPart + (float)speedIntDecPart;
-
-                switch ( var ) // cf. les références des variables en haut du fichier
+                if (Wire.available() == 5)
                 {
-                case 1 ... 5:
-                        // if (var == 1 || var == 2) consigneDistance = consigne;
-                        // else if (var == 3 || var == 4) consigneAngle = consigne; //TODO: FINIR
-                        if (_DEBUG_) Serial.println("ordre recu");
-                        ordre_termine = 0;
-                        order = var;
-                        break;
-                default:
-                        if (_DEBUG_) Serial.println("variable recue inconnue");
-                        ordre_termine = 1;
+                        //lecture de la variable
+                        byte var = Wire.read();
+                        //lecture des 2 octets suivants
+                        byte distanceIntPart = Wire.read();
+                        byte distanceIntDecPart = Wire.read();
+                        //reconstitution de la valeur
+                        distanceIntDecPart *= _DISTANCE_PRECISION_;
+                        // ========= // float consigne = (float)distanceIntPart + (float)distanceIntDecPart;
+                        consigneDistance = (float)distanceIntPart + (float)distanceIntDecPart;
+                        //lecture des 2 octets suivants
+                        byte speedIntPart = Wire.read();
+                        byte speedIntDecPart = Wire.read();
+                        //reconstitution de la valeur
+                        speedIntDecPart *= _SPEED_PRECISION_;
+                        consigneVitesseMoteur = (float)speedIntPart + (float)speedIntDecPart;
+
+                        switch ( var ) // cf. les références des variables en haut du fichier
+                        {
+                        case 1 ... 5:
+                                // if (var == 1 || var == 2) consigneDistance = consigne;
+                                // else if (var == 3 || var == 4) consigneAngle = consigne; //TODO: FINIR
+                                if (_DEBUG_) Serial.println("ordre recu");
+                                ordre_termine = 0;
+                                order = var;
+                                break;
+                        default:
+                                if (_DEBUG_) Serial.println("variable recue inconnue");
+                                ordre_termine = 1;
+                        }
                 }
+                else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
         }
-        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
 }
 
 
@@ -389,12 +394,12 @@ void asservissementReceiveEvent(int howMany)
  * \fn void asservissementI2CReceive()
  * \brief function to execute when we want to receive order from the artificial intelligence
  */
-void asservissementI2CReceive()
-{
-        // Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
-        Wire.onReceive(asservissementReceiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
-        Wire.endTransmission(); // fin transmission
-}
+// void asservissementI2CReceive()
+// {
+//         // Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
+//         // Wire.onReceive(asservissementReceiveEvent);
+//         Wire.endTransmission(); // fin transmission
+// }
 
 
 //____________________________________________________________________________________________________
@@ -438,6 +443,7 @@ void setup()
         }else{
                 Wire.begin(_ASSERVISSEMENT_SENDRECEIVEADRESS_);
                 Wire.onRequest(asservissementRequestEvent); //
+                Wire.onReceive(asservissementReceiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
         }
         timer.setInterval(_PERIODE_ASSERVISSEMENT_, asservissementVitesse);  // Interruption pour calcul du PID et asservissement
 }
@@ -467,6 +473,6 @@ void loop()
         else
         {
                 timer.run();
-                if (ordre_termine == 1) asservissementI2CReceive();
+                // if (ordre_termine == 1) asservissementI2CReceive();
         }
 }

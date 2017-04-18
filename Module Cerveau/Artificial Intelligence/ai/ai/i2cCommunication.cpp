@@ -228,8 +228,9 @@ void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
  */
 void i2csend5bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, int adresse)
 {
-        Wire.begin();     // joindre le bus i2c (adresse est optionnelle pour un maître)
+        // Wire.begin();     // joindre le bus i2c (adresse est optionnelle pour un maître)
         Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave
+        Serial.println("Send5bytes");
         Wire.write(byte1);        // envoi d'un byte/octet (valeur numérique)
         Wire.write(byte2);
         Wire.write(byte3);

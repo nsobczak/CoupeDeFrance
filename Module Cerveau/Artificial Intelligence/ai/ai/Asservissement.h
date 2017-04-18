@@ -52,8 +52,8 @@ float y_position;
 
 public:
 Asservissement();
-bool getOrderFinished();
-void setOrderFinished(bool state);
+int getOrderFinished();
+void setOrderFinished(int state);
 unsigned int getTick_codeuse_l();
 void setTick_codeuse_l(unsigned int ticks);
 unsigned int getTick_codeuse_r();

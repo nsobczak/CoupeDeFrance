@@ -111,10 +111,45 @@ void loop()
         if (_TEST_ASSERVISSEMENT_)
         {
                 if (_DEBUG_) Serial.println("=== _ASSERVISSEMENT_ ===");
-                elPadre.getAsservissement().botGoForward(0.4, 0.5);
-                elPadre.getAsservissement().botStop();
-                elPadre.getAsservissement().botTurnAroundRight(90, 0.3);
-                elPadre.getAsservissement().botGoForward(0.2, 0.5);
+                do
+                {
+                  if (_DEBUG_) Serial.println("botGoForward(0.4, 0.5);");
+                        elPadre.getAsservissement().botGoForward(0.4, 0.5);
+                        elPadre.getAsservissement().isOrderFinished();
+                        delay(5);
+                } while(elPadre.getAsservissement().getOrderFinished() != 1);
+                elPadre.getAsservissement().handleOrderEnd();
+
+                do
+                {
+                  if (_DEBUG_) Serial.println("botStop();");
+                        elPadre.getAsservissement().botStop();
+                        elPadre.getAsservissement().isOrderFinished();
+                } while(elPadre.getAsservissement().getOrderFinished() != 1);
+                elPadre.getAsservissement().handleOrderEnd();
+
+                do
+                {
+                  if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
+                        elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.3);
+                        elPadre.getAsservissement().isOrderFinished();
+                } while(elPadre.getAsservissement().getOrderFinished() != 1);
+                elPadre.getAsservissement().handleOrderEnd();
+
+                do
+                {
+                  if (_DEBUG_) Serial.println("botGoForward(0.2, 0.5);");
+                        elPadre.getAsservissement().botGoForward(0.2, 0.5);
+                        elPadre.getAsservissement().isOrderFinished();
+                } while(elPadre.getAsservissement().getOrderFinished() != 1);
+                elPadre.getAsservissement().handleOrderEnd();
+
+                do
+                {
+                        elPadre.getAsservissement().botStop();
+                        elPadre.getAsservissement().isOrderFinished();
+                } while(elPadre.getAsservissement().getOrderFinished() != 1);
+                elPadre.getAsservissement().handleOrderEnd();
         }
 
         if (_DEBUG_)

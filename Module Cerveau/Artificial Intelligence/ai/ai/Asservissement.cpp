@@ -22,11 +22,11 @@ Asservissement::Asservissement()
 {
 }
 
-bool Asservissement::getOrderFinished()
+int Asservissement::getOrderFinished()
 {
         return this->orderFinished;
 }
-void Asservissement::setOrderFinished(bool state)
+void Asservissement::setOrderFinished(int state)
 {
         this->orderFinished = state;
 }
@@ -96,6 +96,7 @@ void Asservissement::setY_position(float y_position)
  */
 void Asservissement::botGoForward(double distance, double speed)
 {
+        this->setOrderFinished(0);
         //TODO: I2C - envoyer info de déplacer le robot au module asservissement
         int distanceIntPart = (int)distance;
         double distanceDoubleDecPart = (distance - distanceIntPart)*_DISTANCE_PRECISION_;
@@ -114,6 +115,7 @@ void Asservissement::botGoForward(double distance, double speed)
  */
 void Asservissement::botGoBackward(double distance, double speed)
 {
+        this->setOrderFinished(0);
         //TODO: I2C - envoyer info de déplacer le robot au module asservissement
         int distanceIntPart = (int)distance;
         double distanceDoubleDecPart = (distance - distanceIntPart)*_DISTANCE_PRECISION_;
@@ -128,6 +130,7 @@ void Asservissement::botGoBackward(double distance, double speed)
 
 void Asservissement::botTurnAroundRight(double angle, double speed)
 {
+        this->setOrderFinished(0);
         //TODO: I2C - envoyer info de tourner le robot vers la droite au module asservissement
         int angleIntPart = (int)angle;
         double angleDoubleDecPart = (angle - angleIntPart)*_DISTANCE_PRECISION_;
@@ -142,6 +145,7 @@ void Asservissement::botTurnAroundRight(double angle, double speed)
 
 void Asservissement::botTurnAroundLeft(double angle, double speed)
 {
+        this->setOrderFinished(0);
         //TODO: I2C - envoyer info de tourner le robot vers la gauche au module asservissement
         int angleIntPart = (int)angle;
         double angleDoubleDecPart = (angle - angleIntPart)*_DISTANCE_PRECISION_;
@@ -161,7 +165,6 @@ void Asservissement::botStop()
         byte bytesTab[2];
         intTo2Bytes(bytesTab, 1);
         i2csend5bytes(_ASSERVISSMENT_BOTSTOP_, bytesTab[0], bytesTab[1], 0, 0, _ASSERVISSMENT_SENDADRESS_);
-
 }
 
 
@@ -242,7 +245,8 @@ void Asservissement::computeRotationAngle()
         unsigned int ticks;
         if (this->getTick_codeuse_l() > this->getTick_codeuse_r()) ticks = this->getTick_codeuse_l();
         else ticks = this->getTick_codeuse_r();
-        this->setAngleEffectue(ticks / _VOIE_ROUES_);
+        this->setAngleEffectue(ticks / _VOIE_ROUES_); //en rad
+        if (_DEBUG_) {Serial.print("angle (rad)= "); Serial.println(this->getAngleEffectue()); }
 }
 
 
@@ -256,6 +260,7 @@ void Asservissement::handleOrderEnd()
 {
         if (this->isOrderFinished())
         {
+                if (_DEBUG_) Serial.println("orderFinished");
                 this->computeAverageDistance();
                 this->computeRotationAngle();
         }

@@ -316,13 +316,13 @@ byte getHighByte(int n)
  */
 void intTo2Bytes(byte bytesTab[], int n)
 {
-        Serial.println("high byte.low byte : ");
+        // Serial.println("high byte.low byte : ");
 
         bytesTab[0] = getHighByte(n);
         bytesTab[1] = getLowByte(n);
-        Serial.print(bytesTab[0], HEX);
-        Serial.print(".");
-        Serial.println(bytesTab[1], HEX);
+        // Serial.print(bytesTab[0], HEX);
+        // Serial.print(".");
+        // Serial.println(bytesTab[1], HEX);
 }
 
 
