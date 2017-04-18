@@ -87,30 +87,22 @@ void testAsservissement()
         {
                 if (_DEBUG_) Serial.println("botGoForward(0.4, 0.5);");
                 elPadre.getAsservissement().botGoForward(0.4, 0.5);
-                delay(1000);
-
-                // if (_DEBUG_ ) {Serial.print("getOrderFinished()\t=\t"); Serial.println(elPadre.getAsservissement().getOrderFinished());}
-                // if (_DEBUG_ && elPadre.getAsservissement().getOrderFinished() == 1) Serial.println("\n\n\tordre termine\n\n");
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleOrderEnd();
 
         do
         {
                 if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
-                elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.3);
+                elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.4);
                 elPadre.getAsservissement().isOrderFinished();
-                // if (_DEBUG_ ) {Serial.print("getOrderFinished()\t=\t"); Serial.println(elPadre.getAsservissement().getOrderFinished());}
-                // if (_DEBUG_ && elPadre.getAsservissement().getOrderFinished() == 1) Serial.println("\n\n\tordre termine\n\n");
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleOrderEnd();
 
         do
         {
                 if (_DEBUG_) Serial.println("botGoBackward(0.2, 0.5);");
-                elPadre.getAsservissement().botGoBackward(0.2, 0.5);
+                elPadre.getAsservissement().botGoBackward(0.3, 0.25);
                 elPadre.getAsservissement().isOrderFinished();
-                // if (_DEBUG_ ) {Serial.print("getOrderFinished()\t=\t"); Serial.println(elPadre.getAsservissement().getOrderFinished());}
-                // if (_DEBUG_ && elPadre.getAsservissement().getOrderFinished() == 1) Serial.println("\n\n\tordre termine\n\n");
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleOrderEnd();
 }

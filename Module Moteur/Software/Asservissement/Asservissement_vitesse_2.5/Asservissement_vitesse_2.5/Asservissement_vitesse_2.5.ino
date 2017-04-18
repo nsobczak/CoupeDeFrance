@@ -47,7 +47,7 @@ int variableSent = 10;
 const int _MAX_PWM_ = 255;
 const float _PI_ = 3.14159;
 const float perimetreRoueCodeuse = diametreRoueCodeuse*_PI_;
-const float _VOIE_ROUES_ = 0.3; //en metre, ecart entre les roues d'un même essieu //TODO: replace by the right measure
+const float _VOIE_ROUES_ = 0.2575; //en metre, ecart entre les roues d'un même essieu
 
 //=== VARIABLES ===
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
@@ -244,9 +244,18 @@ void handleOrder(int cmdMoteurGauche, int cmdMoteurDroite)
                 somme_ordre_tick_codeuse_R_to_be_sent = somme_ordre_tick_codeuse_R;
         }
         executeOrder(order, cmdMoteurGauche, cmdMoteurDroite);
-        // if (_DEBUG_) Serial.println(calculDistance(somme_ordre_tick_codeuse_L)); Serial.println(calculDistance(somme_ordre_tick_codeuse_R));
-        if (calculDistance(somme_ordre_tick_codeuse_L) >= consigneDistance ||
-            calculDistance(somme_ordre_tick_codeuse_R) >= consigneDistance ) {ordre_termine = 1; if (_DEBUG_) Serial.println("\t \t \n\nordre termine\n\n"); }
+        if (order == 3 || order == 4)
+        {
+                if (calculDistanceFromAngle(somme_ordre_tick_codeuse_L) >= consigneDistance ||
+                    calculDistanceFromAngle(somme_ordre_tick_codeuse_R) >= consigneDistance )
+                {ordre_termine = 1; if (_DEBUG_) Serial.println("\t \t \n\nordre termine\n\n"); }
+        }
+        else
+        {
+                if (calculDistance(somme_ordre_tick_codeuse_L) >= consigneDistance ||
+                    calculDistance(somme_ordre_tick_codeuse_R) >= consigneDistance )
+                {ordre_termine = 1; if (_DEBUG_) Serial.println("\t \t \n\nordre termine\n\n"); }
+        }
 }
 
 
@@ -256,8 +265,6 @@ void handleOrder(int cmdMoteurGauche, int cmdMoteurDroite)
  */
 void asservissementVitesse()
 {
-        // if (!_TEST_SANS_I2C_) if (ordre_termine == 1) asservissementI2CReceive();
-
         // = Calcul erreur pour la correction proportionnelle=
         double vitesseReelleGauche = calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_);
         double vitesseReelleDroite = calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_);
@@ -370,6 +377,7 @@ void asservissementReceiveEvent(int howMany)
                         switch ( var ) // cf. les références des variables en haut du fichier
                         {
                         case 1 ... 5:
+                                if (var == 3 || var == 4) consigneDistance = calculDistanceFromAngle(consigneDistance);
                                 if (_DEBUG_) {Serial.println("ordre recu");
                                               Serial.print("consigneDistance = "); Serial.println(consigneDistance); }
                                 ordre_termine = 0;
@@ -383,18 +391,6 @@ void asservissementReceiveEvent(int howMany)
                 else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
         }
 }
-
-
-/**
- * \fn void asservissementI2CReceive()
- * \brief function to execute when we want to receive order from the artificial intelligence
- */
-// void asservissementI2CReceive()
-// {
-//         // Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
-//         // Wire.onReceive(asservissementReceiveEvent);
-//         Wire.endTransmission(); // fin transmission
-// }
 
 
 //____________________________________________________________________________________________________
@@ -465,9 +461,5 @@ void loop()
                 }
                 else robotStop();
         }
-        else
-        {
-                timer.run();
-                // if (ordre_termine == 1) asservissementI2CReceive();
-        }
+        else timer.run();
 }

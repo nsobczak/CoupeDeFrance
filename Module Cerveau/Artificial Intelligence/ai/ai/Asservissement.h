@@ -32,7 +32,7 @@
 const float _DIAMETRE_ROUE_CODEUSE_ = 0.05228; // 52,28mm
 const int _NOMBRE_TICK_1_TOUR_ROUE_ = 1250;
 const float _PERIMETRE_ROUE_CODEUSE_ = _DIAMETRE_ROUE_CODEUSE_*PI;
-const float _VOIE_ROUES_ = 0.3; //en metre, ecart entre les roues d'un même essieu //TODO: replace by the right measure
+const float _VOIE_ROUES_ = 0.2575; //en metre, ecart entre les roues d'un même essieu
 
 /* ======================================================================================================
  *      Class
