@@ -22,11 +22,11 @@ Asservissement::Asservissement()
 {
 }
 
-int Asservissement::getOrderFinished()
+bool Asservissement::getOrderFinished()
 {
         return this->orderFinished;
 }
-void Asservissement::setOrderFinished(int state)
+void Asservissement::setOrderFinished(bool state)
 {
         this->orderFinished = state;
 }
@@ -191,8 +191,10 @@ void Asservissement::receive3bytesAndUpdate()
                 switch ( var ) // cf. les références des variables en haut du fichier
                 {
                 case 10:
-                        if (_DEBUG_) Serial.println("variable recue : ordre_termine");
-                        this->setOrderFinished(value);
+                        if (_DEBUG_) {Serial.println("variable recue : ordre_termine");
+                                      Serial.print("value\t"); Serial.println(value); }
+                        if (value == 1) this->setOrderFinished(true);
+                        else this->setOrderFinished(false);
                         break;
                 case 11:
                         if (_DEBUG_) Serial.println("variable recue : somme_ordre_tick_codeuse_L");
@@ -217,7 +219,9 @@ bool Asservissement::isOrderFinished()
         {
                 Wire.requestFrom(_ASSERVISSMENT_SENDADRESS_, 3);
                 this->receive3bytesAndUpdate();
+                delay(5);
         }
+        if (_DEBUG_)  {Serial.print("this->getOrderFinished()\t =\t "); Serial.println(this->getOrderFinished()); }
         return this->getOrderFinished();
 }
 
@@ -258,6 +262,7 @@ void Asservissement::computePosition()
 
 void Asservissement::handleOrderEnd()
 {
+        if (_DEBUG_) Serial.println("handleOrderEnd");
         if (this->isOrderFinished())
         {
                 if (_DEBUG_) Serial.println("orderFinished");

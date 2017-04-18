@@ -14,7 +14,7 @@
 #include <Wire.h>
 #include "i2cCommunication.h"
 
-#define _DEBUG_ false
+#define _DEBUG_ true
 
 #define _ASSERVISSMENT_SENDADRESS_ 6
 
@@ -52,8 +52,8 @@ float y_position;
 
 public:
 Asservissement();
-int getOrderFinished();
-void setOrderFinished(int state);
+bool getOrderFinished();
+void setOrderFinished(bool state);
 unsigned int getTick_codeuse_l();
 void setTick_codeuse_l(unsigned int ticks);
 unsigned int getTick_codeuse_r();
