@@ -245,8 +245,9 @@ void handleOrder(int cmdMoteurGauche, int cmdMoteurDroite)
                 somme_ordre_tick_codeuse_R_to_be_sent = somme_ordre_tick_codeuse_R;
         }
         executeOrder(order, cmdMoteurGauche, cmdMoteurDroite);
+        if (_DEBUG_) Serial.println(calculDistance(somme_ordre_tick_codeuse_L)); Serial.println(calculDistance(somme_ordre_tick_codeuse_R));
         if (calculDistance(somme_ordre_tick_codeuse_L) >= consigneDistance ||
-            calculDistance(somme_ordre_tick_codeuse_R) >= consigneDistance ) ordre_termine = 1;
+            calculDistance(somme_ordre_tick_codeuse_R) >= consigneDistance ) {ordre_termine = 1; if (_DEBUG_) Serial.println("\t \t \n\nordre termine\n\n"); }
 }
 
 
@@ -344,6 +345,8 @@ void asservissementRequestEvent()
         variableSent++;
 }
 
+
+
 /**
  * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
@@ -357,26 +360,22 @@ void asservissementReceiveEvent(int howMany)
                 {
                         //lecture de la variable
                         byte var = Wire.read();
-                        //lecture des 2 octets suivants
+                        //lecture des 2 octets suivants + reconstitution de la valeur
                         byte distanceIntPart = Wire.read();
                         byte distanceIntDecPart = Wire.read();
-                        //reconstitution de la valeur
-                        distanceIntDecPart *= _DISTANCE_PRECISION_;
-                        // ========= // float consigne = (float)distanceIntPart + (float)distanceIntDecPart;
-                        consigneDistance = (float)distanceIntPart + (float)distanceIntDecPart;
-                        //lecture des 2 octets suivants
+                        consigneDistance  = recoverFloatFrom2Bytes(distanceIntPart, distanceIntDecPart, _DISTANCE_PRECISION_);
+                        //lecture des 2 octets suivants + reconstitution de la valeur
                         byte speedIntPart = Wire.read();
                         byte speedIntDecPart = Wire.read();
-                        //reconstitution de la valeur
-                        speedIntDecPart *= _SPEED_PRECISION_;
-                        consigneVitesseMoteur = (float)speedIntPart + (float)speedIntDecPart;
+                        consigneVitesseMoteur = recoverFloatFrom2Bytes(speedIntPart, speedIntDecPart, _SPEED_PRECISION_);
 
                         switch ( var ) // cf. les références des variables en haut du fichier
                         {
                         case 1 ... 5:
                                 // if (var == 1 || var == 2) consigneDistance = consigne;
                                 // else if (var == 3 || var == 4) consigneAngle = consigne; //TODO: FINIR
-                                if (_DEBUG_) Serial.println("ordre recu");
+                                if (_DEBUG_) {Serial.println("ordre recu");
+                                              Serial.print("consigneDistance = "); Serial.println(consigneDistance); }
                                 ordre_termine = 0;
                                 order = var;
                                 break;
@@ -442,8 +441,8 @@ void setup()
                 testStart = millis();
         }else{
                 Wire.begin(_ASSERVISSEMENT_SENDRECEIVEADRESS_);
-                Wire.onRequest(asservissementRequestEvent); //
-                Wire.onReceive(asservissementReceiveEvent); // enregistrer l'événement (lorsqu'une demande arrive)
+                // Wire.onRequest(asservissementRequestEvent);
+                Wire.onReceive(asservissementReceiveEvent);
         }
         timer.setInterval(_PERIODE_ASSERVISSEMENT_, asservissementVitesse);  // Interruption pour calcul du PID et asservissement
 }

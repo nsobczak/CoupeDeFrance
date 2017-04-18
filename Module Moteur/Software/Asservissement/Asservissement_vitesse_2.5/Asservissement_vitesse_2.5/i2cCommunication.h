@@ -100,11 +100,14 @@ byte getLowByte(int);
 // Fonction qui convertit un entier en 2 bytes - high ici
 byte getHighByte(int n);
 
-// Fonction qui affiche les 2 bytes d'un nombre entier convertit en binaire
+// Fonction qui affiche les 2 bytes d'un nombre entier converti en binaire
 void intTo2Bytes(byte[], int);
 
-// Fonction qui affiche un entier ayant ete convertit en 2 bytes binaire
+// Fonction qui affiche un entier ayant ete converti en 2 bytes binaires
 int recoverIntFrom2Bytes(byte[]);
+
+// Fonction qui affiche un float ayant ete converti en 2 bytes binaires
+float recoverFloatFrom2Bytes(byte byte1_intPart, byte byte2_decPart, int precision);
 
 
 // =============================================================================

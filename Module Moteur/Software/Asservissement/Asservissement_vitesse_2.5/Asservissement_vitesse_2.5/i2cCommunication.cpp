@@ -342,6 +342,14 @@ int recoverIntFrom2Bytes(byte bytesTab[])
         return result;
 }
 
+float recoverFloatFrom2Bytes(byte byte1_intPart, byte byte2_decPart, int precision)
+{
+        float float_byte1_intPart = (float) byte1_intPart;
+        float float_byte2_decPart = (float) byte2_decPart;
+        float floatDecPart = float_byte2_decPart/precision;
+        return float_byte1_intPart + floatDecPart;
+}
+
 
 //_____________________________________________________________________________________________
 //_____________________________________________________________________________________________
