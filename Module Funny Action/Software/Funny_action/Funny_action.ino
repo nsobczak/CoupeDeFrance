@@ -1,7 +1,7 @@
 #include <Servo.h>
 #include <Arduino.h>
 
-unsigned long interval=92000L; //Au bout de 90s, lancement funny action
+unsigned long interval=12000L; //Au bout de 90s, lancement funny action
 const int PIN_D2=2; //Pin pour le bouton arret d'urgence, arret funny action si = HIGH
 const int PIN_D3=3; //Pin pour la lancé de la funny action, ordre venant de la carte mère : HIGH
 const int PIN_D5=5; // Pin test sortant un état HIGH
@@ -30,20 +30,21 @@ myMillis MM;
 
 void  servoMoteur()
 {
-      servo.write(60);  // angle à corriger
+      servo.write(60);  
       Serial.println("Fusee lancee");
 }
 
 void setup() {
   
       pinMode(PIN_D2,INPUT);
-      pinMode(PIN_D5,OUTPUT);
-      pinMode(PIN_D6,OUTPUT);
+//      pinMode(PIN_D5,OUTPUT);//Pin test
+//      pinMode(PIN_D6,OUTPUT);//Pin test
       attachInterrupt(digitalPinToInterrupt(PIN_D3),interruption,HIGH);   
       Serial.begin(9600);
-      servo.attach(10);
-      digitalWrite(PIN_D5,HIGH);
-      digitalWrite(PIN_D6,HIGH);
+      servo.attach(10); // Servo moteur sur la PIN 10
+//      digitalWrite(PIN_D5,HIGH); //Pin test
+//      digitalWrite(PIN_D6,HIGH); //Pin test
+      servo.write(160);
       
 }
 
@@ -63,7 +64,9 @@ void loop() {
             Serial.println(MM.get());
             if(MM.get()>=interval){
                     servoMoteur();  
-                    flag=true;     
+                    flag=true;
+                    delay(2000);
+                    servo.write(160);     
             }
   }
    
