@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 /**
  *    \file BotMenu.cpp
  *    \brief Code d'affichage de l'écran
@@ -7,6 +5,8 @@
  *    \date octobre 2016
  */
 //____________________________________________________________________________________________________
+#include <Arduino.h>
+
 // Ecran
 #include "U8glib.h"
 #include "M2tk.h"
@@ -14,7 +14,7 @@
 #include "utility/mas.h"
 
 // setup u8g object
-U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14
+U8GLIB_ST7920_128X64_1X u8g(53, 52, 13);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14
 
 // I2C
 #include <Wire.h>
@@ -58,9 +58,9 @@ int finInitialisationMoteur = 0;
  *   const int encoderMoins = 52;
  *   const int encoderPlus = 50;
  */
-uint8_t uiKeyUpPin = 50;
-uint8_t uiKeyDownPin = 52;
-uint8_t uiKeySelectPin = 2;
+uint8_t uiKeyUpPin = 12;
+uint8_t uiKeyDownPin = 11;
+uint8_t uiKeySelectPin = 8;
 uint8_t uiKeyExitPin = 0;
 
 
