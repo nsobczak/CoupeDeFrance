@@ -67,23 +67,33 @@ void Asservissement::setAngleEffectue(float angle)
         this->angleEffectue = angle;
 }
 
-float Asservissement::getX_position() const
+float Asservissement::getX_position()
 {
         return x_position;
 }
 void Asservissement::setX_position(float x_position)
 {
-        Asservissement::x_position = x_position;
+        this->x_position = x_position;
 }
 
-float Asservissement::getY_position() const
+float Asservissement::getY_position()
 {
         return y_position;
 }
 void Asservissement::setY_position(float y_position)
 {
-        Asservissement::y_position = y_position;
+        this->y_position = y_position;
 }
+
+float Asservissement::getAngle_position()
+{
+        return angle_position;
+}
+void Asservissement::setAngle_position(float angle_position)
+{
+        this->angle_position = angle_position;
+}
+
 
 /* ======================================================================================================
  *      Methods
@@ -219,7 +229,7 @@ bool Asservissement::isOrderFinished()
         {
                 Wire.requestFrom(_ASSERVISSMENT_SENDADRESS_, 3);
                 this->receive3bytesAndUpdate();
-                delay(5);
+                // delay(5);
         }
         if (_DEBUG_)  {Serial.print("this->getOrderFinished()\t =\t "); Serial.println(this->getOrderFinished()); }
         return this->getOrderFinished();
@@ -240,15 +250,13 @@ float Asservissement::calculDistance1Roue(unsigned int tick_codeuse)
 
 void Asservissement::computeAverageDistance()
 {
-        this->setDistanceParcourue(this->calculDistance1Roue(this->getTick_codeuse_l()) + this->calculDistance1Roue(this->getTick_codeuse_r()) /2);
+        this->setDistanceParcourue( (this->calculDistance1Roue(this->getTick_codeuse_l()) + this->calculDistance1Roue(this->getTick_codeuse_r())) /2);
 }
 
 
 void Asservissement::computeRotationAngle()
 {
-        unsigned int ticks;
-        if (this->getTick_codeuse_l() > this->getTick_codeuse_r()) ticks = this->getTick_codeuse_l();
-        else ticks = this->getTick_codeuse_r();
+        unsigned int ticks = max(this->getTick_codeuse_l(), this->getTick_codeuse_r());
         this->setAngleEffectue(ticks / _VOIE_ROUES_); //en rad
         if (_DEBUG_) {Serial.print("angle (rad)= "); Serial.println(this->getAngleEffectue()); }
 }
@@ -256,17 +264,35 @@ void Asservissement::computeRotationAngle()
 
 void Asservissement::computePosition()
 {
-        //TODO
+        this->setAngle_position(this->getAngle_position() + this->getAngleEffectue());
+        this->setX_position(this->getX_position() + cos(this->getAngle_position())*this->getDistanceParcourue());
+        this->setY_position(this->getY_position() + sin(this->getAngle_position())*this->getDistanceParcourue());
+        this->setAngleEffectue(0);
+        this->setDistanceParcourue(0);
 }
 
 
-void Asservissement::handleOrderEnd()
+void Asservissement::handleRotationOrderEnd()
 {
-        if (_DEBUG_) Serial.println("handleOrderEnd");
-        if (this->isOrderFinished())
+        if (_DEBUG_) Serial.println("handleRotationOrderEnd");
+        if (_DEBUG_) { Serial.print("this->getOrderFinished()\t=\t"); Serial.println(this->getOrderFinished()); }
+        if (this->getOrderFinished() == 1) //this->isOrderFinished())
         {
-                if (_DEBUG_) Serial.println("orderFinished");
-                this->computeAverageDistance();
+                if (_DEBUG_) Serial.println("orderFinished + compute");
                 this->computeRotationAngle();
+                this->computePosition();
+        }
+}
+
+
+void Asservissement::handleStraightOrderEnd()
+{
+        if (_DEBUG_) Serial.println("handleStraightOrderEnd");
+        if (_DEBUG_) { Serial.print("this->getOrderFinished()\t=\t"); Serial.println(this->getOrderFinished()); }
+        if (this->getOrderFinished() == 1) //this->isOrderFinished())
+        {
+                if (_DEBUG_) Serial.println("orderFinished + compute");
+                this->computeAverageDistance();
+                this->computePosition();
         }
 }

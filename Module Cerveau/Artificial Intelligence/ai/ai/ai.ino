@@ -25,6 +25,12 @@
 #define _TEST_SENSORS_ false
 #define _TEST_ASSERVISSEMENT_ true
 
+//TODO: replace by the right values
+const float _BLUE_X_START_POSITION_ = 0.4;
+const float _YELLOW_X_START_POSITION_ = 2.4;
+const float _Y_START_POSITION_ = 0.2;
+const float _BLUE_START_ANGLE_ = 0;
+const float _YELLOW_START_ANGLE_ = PI;
 
 Bot elPadre;
 bool epreuveFaite;
@@ -88,23 +94,41 @@ void testAsservissement()
                 if (_DEBUG_) Serial.println("botGoForward(0.4, 0.5);");
                 elPadre.getAsservissement().botGoForward(0.4, 0.5);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
-        elPadre.getAsservissement().handleOrderEnd();
+        elPadre.getAsservissement().handleStraightOrderEnd();
 
         do
         {
                 if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
-                elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.4);
-                elPadre.getAsservissement().isOrderFinished();
+                elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.3);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
-        elPadre.getAsservissement().handleOrderEnd();
+        elPadre.getAsservissement().handleRotationOrderEnd();
 
         do
         {
-                if (_DEBUG_) Serial.println("botGoBackward(0.2, 0.5);");
-                elPadre.getAsservissement().botGoBackward(0.3, 0.25);
-                elPadre.getAsservissement().isOrderFinished();
+                if (_DEBUG_) Serial.println("botGoBackward(0.2, 0.25);");
+                elPadre.getAsservissement().botGoBackward(0.2, 0.25);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
-        elPadre.getAsservissement().handleOrderEnd();
+        elPadre.getAsservissement().handleStraightOrderEnd();
+}
+
+
+/**
+ * \fn void initializePosition()
+ * \brief initialiser la position avec les bonnes distances: 1 = bleu, 2 = jaune
+ */
+void initializePosition()
+{
+        if (elPadre.getColorNumber() == 1) //blue
+        {
+                elPadre.getAsservissement().setX_position(_BLUE_X_START_POSITION_);
+                elPadre.getAsservissement().setAngle_position(_BLUE_START_ANGLE_);
+        }
+        else // yellow
+        {
+                elPadre.getAsservissement().setX_position(_YELLOW_X_START_POSITION_);
+                elPadre.getAsservissement().setAngle_position(_YELLOW_START_ANGLE_);
+        }
+        elPadre.getAsservissement().setY_position(_Y_START_POSITION_);
 }
 
 
@@ -116,7 +140,8 @@ void testAsservissement()
 void setup()
 {
         epreuveFaite = false;
-        if (_DEBUG_) Wire.begin();
+        initializePosition();
+        Wire.begin();
 
         Serial.begin(115200);
 }

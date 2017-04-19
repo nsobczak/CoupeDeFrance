@@ -48,6 +48,7 @@ float distanceParcourue;
 float angleEffectue;
 float x_position;
 float y_position;
+float angle_position;
 
 
 public:
@@ -62,10 +63,12 @@ float getDistanceParcourue();
 void setDistanceParcourue(float distance);
 float getAngleEffectue();
 void setAngleEffectue(float angle);
-float getX_position() const;
-float getY_position() const;
+float getX_position();
 void setX_position(float x_position);
+float getY_position();
 void setY_position(float y_position);
+float getAngle_position();
+void setAngle_position(float angle_position);
 
 void botGoForward(double distance, double speed);
 void botGoBackward(double distance, double speed);
@@ -79,7 +82,8 @@ float calculDistance1Roue(unsigned int tick_codeuse);
 void computeAverageDistance();
 void computeRotationAngle();
 void computePosition();
-void handleOrderEnd();
+void handleRotationOrderEnd();
+void handleStraightOrderEnd();
 
 
 };
