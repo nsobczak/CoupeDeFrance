@@ -23,7 +23,8 @@
 #define _DEBUG_ true
 #define _TEST_CLAMP_ false
 #define _TEST_SENSORS_ false
-#define _TEST_ASSERVISSEMENT_ true
+#define _TEST_ASSERVISSEMENT_ false
+#define _TEST_FUNNY_ACTION_ true
 
 //TODO: replace by the right values
 const float _BLUE_X_START_POSITION_ = 0.4;
@@ -112,6 +113,14 @@ void testAsservissement()
 }
 
 
+void testFunnyAction()
+{
+        if (_DEBUG_) Serial.println("=== _TEST_FUNNY_ACTION_ ===");
+        elPadre.startFunnyActionTimer();
+}
+
+
+//_______________________________________________________________________________________________________
 /**
  * \fn void initializePosition()
  * \brief initialiser la position avec les bonnes distances: 1 = bleu, 2 = jaune
@@ -170,6 +179,8 @@ void loop()
         if (_TEST_SENSORS_) testSensors();
 
         if (_TEST_ASSERVISSEMENT_) testAsservissement();
+
+        if (_TEST_FUNNY_ACTION_) testFunnyAction();
 
         if (_DEBUG_) { Serial.println("=== _DEBUG_ ==="); }
 
