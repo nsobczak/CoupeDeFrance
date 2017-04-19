@@ -126,7 +126,7 @@ bool Bot::isTiretteTiree()
 
 void Bot::goToPosition(int xAxis, int yAxis)
 {
-        //TODO: déplacer le robot à une position donnée
+        //TODO: déplacer le robot à une position donnée par rapport à la position actuelle
 }
 
 // === FUNNY ACTION ===
@@ -148,11 +148,11 @@ void Bot::startFunnyActionTimer()
 void Bot::updateAngleZ()
 {
         //TODO: see if we need to initialize accelgyro in a different function that updateAngleZ
-        //TODO: see if endTransmission fou la merde ou pas
-        Wire.begin();
+        //TODO: see if endTransmission fout la merde ou pas
+        // Wire.begin();
         this->getAccelgyro().initialize();
         this->setAngleZ(this->getAccelgyro().getRotationZ());
-        Wire.endTransmission();
+        // Wire.endTransmission();
 }
 
 

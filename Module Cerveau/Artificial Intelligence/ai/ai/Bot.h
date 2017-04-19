@@ -28,22 +28,34 @@
 #define _PIN_TIRETTE_ 15
 #define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 33
 
-#define _NUMBER_OF_CYLINDERS_TO_CATCH_ 10 //TODO: replace by the right number of cylinders
+#define _NUMBER_OF_CYLINDERS_TO_CATCH_ 6 //TODO: replace by the right number of cylinders
+#define _NUMBER_OF_MOON_BASES_ 2 //TODO: replace by the right number of cylinders
 #define _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_ 8000 //ms
 
-#define _SLOW_SPEED_ 0.4
-#define _MEDIUM_SPEED_ 0.8
-#define _FAST_SPEED_ 1.2
+#define _SLOW_SPEED_ 0.35
+#define _MEDIUM_SPEED_ 0.7
+#define _FAST_SPEED_ 1.0
 
 
-//TODO: replace by the right positions of cylinders
+// === Cylinders ===
 const CylinderPosition cylinderToCatchList_1B[_NUMBER_OF_CYLINDERS_TO_CATCH_]={
-        {1, 1.3, 124.34}, {2, 1, 1}, {3, 1, 1}, {4, 1, 1}, {5, 1, 1},
-        {6, 1, 1}, {7, 1, 1},{8, 1, 1}, {9, 1, 1}, {10, 1, 1}
+        {1, 0.200, _Y_LIMIT_ - 0.600}, {2, 1.150, _Y_LIMIT_ - 0.0315}, {3, 1.150, _Y_LIMIT_ - 0.0315},
+        {4, 1.150, _Y_LIMIT_ - 0.0315}, {5, 1.150, _Y_LIMIT_ - 0.0315}, {6, 0.800, _Y_LIMIT_ - 1.850}
 };
 const CylinderPosition cylinderToCatchList_2Y[_NUMBER_OF_CYLINDERS_TO_CATCH_]={
-        {1, 1.3, 124.34}, {2, 1, 1}, {3, 1, 1}, {4, 1, 1}, {5, 1, 1},
-        {6, 1, 1}, {7, 1, 1},{8, 1, 1}, {9, 1, 1}, {10, 1, 1}
+        {1, 2.800, _Y_LIMIT_ - 0.600}, {2, 1.850, _Y_LIMIT_ - 0.0315}, {3, 1.850, _Y_LIMIT_ - 0.0315},
+        {4, 1.850, _Y_LIMIT_ - 0.0315}, {5, 1.850, _Y_LIMIT_ - 0.0315}, {6, 2.200, _Y_LIMIT_ - 1.850}
+};
+
+// === Moon Bases ===
+const MoonBase moonBases_1B[_NUMBER_OF_MOON_BASES_]={
+        {1, 0, _Y_LIMIT_ - 0.700, 0.080, _Y_LIMIT_ - 0.700, 0.080, _Y_LIMIT_ - 1.150, 0, _Y_LIMIT_ - 1.150},
+        {2, 0, _Y_LIMIT_, 1.070, _Y_LIMIT_, 1.070, _Y_LIMIT_ - 0.360, 0, _Y_LIMIT_ - 0.360}
+};
+
+const MoonBase moonBases_2Y[_NUMBER_OF_MOON_BASES_]={
+        {1, 0, _Y_LIMIT_, 1.070, _Y_LIMIT_, 1.070, _Y_LIMIT_ - 0.360, 0, _Y_LIMIT_ - 0.360},
+        {2, 2.920, _Y_LIMIT_ - 0.700, _X_LIMIT_, _Y_LIMIT_ - 0.700, _X_LIMIT_, _Y_LIMIT_ - 1.150, 2.920, _Y_LIMIT_ - 1.150},
 };
 
 
@@ -71,19 +83,16 @@ public:
 Bot();
 Bot(int newColorNumber, int newStrategyNumber);
 
-
 Asservissement getAsservissement();
 void setAsservissement(Asservissement newAsservissement);
 Clamp getClamp();
 void setClamp(Clamp newClamp);
 SensorsBoard getSensorsBoard();
 void setSensorsBoard(SensorsBoard newSensorsBoard);
-
 int getColorNumber();
 void setColorNumber(int newColorNumber);
 int getStrategyNumber();
 void setStrategyNumber(int newStrategyNumber);
-
 MPU6050 getAccelgyro();
 void setAccelgyro(MPU6050 newAccelgyro);
 int16_t getAngleZ();
