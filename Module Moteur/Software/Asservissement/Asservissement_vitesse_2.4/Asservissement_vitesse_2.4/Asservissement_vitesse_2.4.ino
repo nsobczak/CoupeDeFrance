@@ -43,10 +43,16 @@ unsigned long testStart;
 float consigneVitesseMoteur;
 float erreurPrecedenteGauche = 0;
 float erreurPrecedenteDroite = 0;
-//TODO: update kp, r0, r1 values
-int kp = 1;
-long r0 = 1170734.2; //coeff qui marche bien : 1829979.4;
-long r1 = 3659851.5; //coeff qui marche bien : 21525987.0;
+
+
+int kp = 0;
+long r0 = 7248.58;//1972402.54;//852916.06;//1829979.4;//1170734.2;//coef qui marche bien : 1829979.4;
+long r1 = 15802.78;//5196324.01;//2056114.36;//21525987.0;//3659851.5;//coef qui marche bien : 21525987.0;
+
+
+long r0Gauche = 7383.38;//2005266.03;//781839.72;//1829979.4;//1779762.8;
+long r1Gauche = 16097.06;//5282932.44;//1884771.4;//21525987.0;//21463751.3;
+
 int cmdPrecedenteDroite = 0;
 int cmdPrecedenteGauche = 0;
 
@@ -65,6 +71,7 @@ unsigned int sommeTickL = 0;
  */
 void setup()
 {
+
         Serial.begin(115200);     // Initialisation port COM
         pinMode(_MOTOR_R_,OUTPUT);
         pinMode(_MOTOR_L_,OUTPUT);
@@ -130,11 +137,11 @@ void asservissement()
         //calcul erreur pour la correction proportionnelle
         float erreurGauche = consigneVitesseMoteur - (float)vitesseReelleGauche;
         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
+        int CorrectionVitesse = kp*(vitesseReelleDroite-vitesseReelleGauche);
+        int cmdMoteurDroite = r0 * erreurDroite - (r0 - r1/50) * erreurPrecedenteDroite + cmdPrecedenteDroite;
+        int cmdMoteurGauche = r0Gauche * erreurGauche - (r0Gauche - r1Gauche/50) * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
         erreurPrecedenteGauche = erreurGauche;
         erreurPrecedenteDroite = erreurDroite;
-        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L);
-        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite;
-        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
 
         if(cmdMoteurDroite < 0) cmdMoteurDroite = 0;
         else if (cmdMoteurDroite > 255) cmdMoteurDroite = 255;
@@ -143,7 +150,7 @@ void asservissement()
         cmdPrecedenteDroite = 255 - cmdMoteurDroite;
         cmdPrecedenteGauche = 255 - cmdMoteurGauche;
 
-        robotGoBack(255 - cmdMoteurGauche, 255 - cmdMoteurDroite);
+      robotGoBack(255 - cmdMoteurGauche, 255 - cmdMoteurDroite);
         //robotTurnAroundFrontLeft(255-cmdMoteurGauche);
         if (_DEBUG_) {
                 // Serial.print("\t tick_codeuse_L : \t");
@@ -156,6 +163,7 @@ void asservissement()
                 Serial.println(consigneVitesseMoteur);
                 // Serial.print("\t calculVitesse : \t " );
                 printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
+                printDouble(calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_), 1000000);
         }
 
         tick_codeuse_R = 0;

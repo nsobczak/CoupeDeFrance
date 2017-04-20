@@ -1,3 +1,4 @@
+
 /**
  *    \file BotMenu.cpp
  *    \brief Code d'affichage de l'écran
@@ -8,8 +9,8 @@
 #include <Arduino.h>
 
 // Ecran
-#include "U8glib.h"
-#include "M2tk.h"
+#include <U8glib.h>
+#include <M2tk.h>
 #include "utility/m2ghu8g.h"
 #include "utility/mas.h"
 
@@ -29,7 +30,7 @@ U8GLIB_ST7920_128X64_1X u8g(53, 52, 13);  // SPI Com: SCK = en = 13, MOSI = rw =
 #define _SENDADRESS_02_ 10
 #define _RECEIVEADRESS_02_ 11
 //Communication avec la due
-#define _SENDADRESS_03_ 12
+#define _SENDADRESS_03_ 12 
 #define _RECEIVEADRESS_03_ 13
 
 
@@ -58,8 +59,8 @@ int finInitialisationMoteur = 0;
  *   const int encoderMoins = 52;
  *   const int encoderPlus = 50;
  */
-uint8_t uiKeyUpPin = 12;
-uint8_t uiKeyDownPin = 11;
+uint8_t uiKeyUpPin = 11;
+uint8_t uiKeyDownPin = 10;
 uint8_t uiKeySelectPin = 8;
 uint8_t uiKeyExitPin = 0;
 

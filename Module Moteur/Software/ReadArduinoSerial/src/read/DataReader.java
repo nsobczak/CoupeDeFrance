@@ -55,7 +55,7 @@ public class DataReader implements SerialPortEventListener {
             "COM7", "COM8",
             "COM9", "COM10",
             "COM11", "COM12",
-            "COM13", "COM14",// Windows
+            "COM13", "COM18",// Windows
     };
 
     /**

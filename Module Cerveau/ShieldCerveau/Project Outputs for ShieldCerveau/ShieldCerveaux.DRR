@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: ShieldCerveaux.PCBDOC   07/04/2017  13:20:29
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : ShieldCerveaux.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        28mil (0.7112mm)         Round          60               26.19 Inch (665.16 mm)
+T2        30mil (0.762mm)          Round          16               3.85 Inch (97.69 mm)
+T3        36mil (0.9144mm)         Round          20               2.53 Inch (64.17 mm)
+T4        40mil (1.016mm)          Round          103              21.85 Inch (554.98 mm)
+T5        52mil (1.3208mm)         Round          8                3.92 Inch (99.66 mm)
+T6        52.01mil (1.32105mm)     Round          4                0.62 Inch (15.77 mm)
+T7        125.98mil (3.19989mm)    Round          4                6.66 Inch (169.11 mm)
+T8        126mil (3.2004mm)        Round          6                8.78 Inch (223.06 mm)
+---------------------------------------------------------------------------
+Totals                                            221              74.39 Inch (1889.61 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

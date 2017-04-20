@@ -1,0 +1,30 @@
+-I/home/nicolas/.platformio/packages/framework-arduinosam/cores/arduino_sam
+-I/home/nicolas/.platformio/packages/framework-arduinosam/system/arduino_sam/libsam
+-I/home/nicolas/.platformio/packages/framework-arduinosam/system/arduino_sam/CMSIS/CMSIS/Include
+-I/home/nicolas/.platformio/packages/framework-arduinosam/system/arduino_sam/CMSIS/Device/ATMEL
+-I/home/nicolas/.platformio/packages/framework-arduinosam/variants/arduino_due_x
+-I/media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Moteur/Software/Asservissement/Asservissement vitesse 2.2/src
+-I/home/nicolas/.platformio/lib/M2tklib
+-I/home/nicolas/.platformio/lib/M2tklib/utility
+-I/home/nicolas/.platformio/lib/SdFat/src
+-I/home/nicolas/.platformio/lib/U8glib
+-I/home/nicolas/.platformio/lib/U8glib/utility
+-I/home/nicolas/.platformio/lib/i2cCommunication
+-I/home/nicolas/.platformio/packages/framework-arduinosam/libraries/__cores__/arduino_sam/HID/src
+-I/home/nicolas/.platformio/packages/framework-arduinosam/libraries/__cores__/arduino_sam/SPI/src
+-I/home/nicolas/.platformio/packages/framework-arduinosam/libraries/__cores__/arduino_sam/Wire/src
+-I/home/nicolas/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include
+-I/home/nicolas/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/4.8.4/include-fixed
+-I/home/nicolas/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/4.8.4/include
+-DF_CPU=84000000L
+-DUSBCON
+-DPLATFORMIO=30201
+-D__SAM3X8E__
+-DARDUINO_ARCH_SAM
+-DARDUINO_SAM_DUE
+-DARDUINO=10611
+-DUSB_VID=0x2341
+-DUSB_PID=0x003E
+-DUSB_PRODUCT="Arduino Due"
+-DUSB_MANUFACTURER="Arduino"
+-Dprintf=iprintf

@@ -78,7 +78,7 @@ void robotTurnAround(int pwm, int direction)
             digitalWrite(_IN2_MOTOR_R_, LOW);
             digitalWrite(_IN1_MOTOR_L_, LOW);
             digitalWrite(_IN2_MOTOR_L_, LOW);
-            analogWrite(_MOTOR_L_, 255);
+            analogWrite(_MOTOR_L_, 255);  
             analogWrite(_MOTOR_R_, pwm);
             break;
         case -1:

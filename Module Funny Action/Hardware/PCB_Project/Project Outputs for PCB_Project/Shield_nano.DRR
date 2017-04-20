@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: Shield_nano.PCBDOC   13/04/2017  14:00:57
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : Shield_nano.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        28mil (0.7112mm)         Round          4                0.31 Inch (7.95 mm)
+T2        39.37mil (1mm)           Round          4                3.36 Inch (85.44 mm)
+T3        40mil (1.016mm)          Round          11               1.00 Inch (25.38 mm)
+T4        40.94mil (1.03988mm)     Round          30               3.90 Inch (99.06 mm)
+T5        52mil (1.3208mm)         Round          2                0.20 Inch (5.08 mm)
+T6        52.01mil (1.32105mm)     Round          8                4.40 Inch (111.64 mm)
+T7        118.11mil (2.99999mm)    Round          3                1.34 Inch (34.03 mm)
+---------------------------------------------------------------------------
+Totals                                            62               14.51 Inch (368.57 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00
