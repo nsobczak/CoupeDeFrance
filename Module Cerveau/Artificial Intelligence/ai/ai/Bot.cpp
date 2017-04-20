@@ -113,6 +113,14 @@ void Bot::setAngleZ(int16_t newAngleZ)
  * ======================================================================================================
  */
 
+// === BOT EMERGENCY STOP BUTTON ===
+
+bool Bot::isEmergencyStopButtonOn()
+{
+        return digitalRead(_PIN_BOUTON_ARRET_URGENCE_);
+}
+
+
 // === BOT TIRETTE ===
 
 bool Bot::isTiretteTiree()
@@ -174,24 +182,20 @@ void Bot::catchCylinder()
 }
 
 
-//TODO: fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors puis qui va attraper le cylindre
-void Bot::findAndCatchCylinder()
+//fonction qui va regarder où se trouve le cylindre de manière précise avec les fonctions check bottom sensors
+void Bot::findCylinder()
 {
-        if (this->getSensorsBoard().checkForCylinder())
+        if (this->getSensorsBoard().checkForCylinder() && !this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter())
         {
-                //cylindre présent à la bonne distance sur un des 3 capteurs
-                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter()) this->catchCylinder();
-                else{
-                        if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
-                                //tourner le robot vers la droite
-                                this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_);  //TODO: replace by the right speed
-                        }
-                        else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
-                                //tourner le robot vers la gauche
-                                this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);  //TODO: replace by the right speed
-                        }
-                        else this->turnBotInFrontOFCylinder();   //tourner le robot de droite a gauche pour chercher le cylindre
+                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
+                        //tourner le robot vers la droite
+                        this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_);          //TODO: replace by the right speed
                 }
+                else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
+                        //tourner le robot vers la gauche
+                        this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);          //TODO: replace by the right speed
+                }
+                else this->turnBotInFrontOFCylinder();           //tourner le robot de droite a gauche pour chercher le cylindre
         }
 }
 
@@ -212,6 +216,13 @@ void Bot::findMoonBase()
                                 && (millis() - timer < _TEMPS_RECHERCHE_BASE_MAXIMUM_));
                 }
         }
+}
+
+
+void Bot::findAndCatchCylinder()
+{
+        this->findCylinder();
+        this->catchCylinder();
 }
 
 

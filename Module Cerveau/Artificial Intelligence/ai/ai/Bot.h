@@ -100,14 +100,17 @@ int16_t getAngleZ();
 void setAngleZ(int16_t newAngleZ);
 const CylinderPosition *getCylinderToCatchList() const;
 
+bool isEmergencyStopButtonOn();
+
 bool isTiretteTiree();
 
 void startFunnyActionTimer();
 
 bool turnBotInFrontOFCylinder();
 void catchCylinder();
-void findAndCatchCylinder();
+void findCylinder();
 void findMoonBase();
+void findAndCatchCylinder();
 void releaseCylinderInBase();
 void build1BaseCylinder(float x_coord, float y_coord);
 void buildBase();
