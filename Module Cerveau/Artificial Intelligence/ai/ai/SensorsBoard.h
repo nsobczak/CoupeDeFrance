@@ -23,7 +23,7 @@
 //TODO: changer les define pour les remplacer par la bonne disance
 #define _CYLINDER_DISTANCE_ 14.0 //voir la pince
 #define _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_ 8.0 //voir la distance pince-cylindre
-#define _BASE_DISTANCE_ 30.0 //3cm
+#define _BASE_DISTANCE_ 8.5 //3cm
 #define _FOE_DISTANCE_ 10.0 //10cm par rapport au capteur
 
 /*Notes: tableau id i2c

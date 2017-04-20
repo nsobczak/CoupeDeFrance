@@ -196,11 +196,29 @@ void Bot::findAndCatchCylinder()
 }
 
 
-//TODO: fonction qui va regarder où se trouve la base de manière précise avec les fonctions check bottom sensors puis qui va lacher le cylindre
+void Bot::findMoonBase()
+{
+        unsigned long timer = millis();
+        if (this->getSensorsBoard().checkForBase())
+        {
+                //cylindre présent à la bonne distance sur un des 3 capteurs
+                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter()) this->catchCylinder();
+                else{
+                        do {  //faire avancer le robot vers l'avant
+                                this->getAsservissement().botGoForward(0.05, _SLOW_SPEED_); //TODO: replace by the right speed
+                        } while((!this->getSensorsBoard().checkForBaseOnSensorFrontBottomCenter() ||
+                                 !this->getSensorsBoard().checkForBaseOnSensorFrontBottomLeft() ||
+                                 !this->getSensorsBoard().checkForBaseOnSensorFrontBottomRight())
+                                && (millis() - timer < _TEMPS_RECHERCHE_BASE_MAXIMUM_));
+                }
+        }
+}
+
+
+//fonction qui va regarder où se trouve la base de manière précise avec les fonctions check bottom sensors puis qui va lacher le cylindre
 void Bot::releaseCylinderInBase()
 {
-        //TODO: check for base
-
+        this->findMoonBase();
         this->getClamp().releaseCylinder();
 }
 
@@ -250,7 +268,7 @@ void Bot::releaseCylinderInBase()
         }
         this->getAsservissement().botStop();
    }
-*/
+ */
 
 
 // === BOT TRAVEL ===

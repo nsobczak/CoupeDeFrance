@@ -29,7 +29,8 @@
 #define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 33
 
 #define _NUMBER_OF_CYLINDERS_TO_CATCH_ 6 //TODO: replace by the right number of cylinders
-#define _NUMBER_OF_MOON_BASES_ 2 //TODO: replace by the right number of cylinders
+#define _NUMBER_OF_MOON_BASES_ 2         //TODO: replace by the right number of cylinders
+#define _TEMPS_RECHERCHE_BASE_MAXIMUM_ 3000 //ms
 #define _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_ 8000 //ms
 
 #define _SLOW_SPEED_ 0.35
@@ -106,6 +107,7 @@ void startFunnyActionTimer();
 bool turnBotInFrontOFCylinder();
 void catchCylinder();
 void findAndCatchCylinder();
+void findMoonBase();
 void releaseCylinderInBase();
 void build1BaseCylinder(float x_coord, float y_coord);
 void buildBase();
