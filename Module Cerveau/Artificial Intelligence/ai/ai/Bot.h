@@ -101,11 +101,7 @@ const CylinderPosition *getCylinderToCatchList() const;
 
 bool isTiretteTiree();
 
-void goToPosition(int xAxis, int yAxis);
-
 void startFunnyActionTimer();
-
-void updateAngleZ();
 
 bool turnBotInFrontOFCylinder();
 void catchCylinder();
@@ -113,6 +109,10 @@ void findAndCatchCylinder();
 void releaseCylinderInBase();
 void build1BaseCylinder(float x_coord, float y_coord);
 void buildBase();
+
+void goToPosition(int xAxis, int yAxis);
+
+void updateAngleZ();
 
 
 };

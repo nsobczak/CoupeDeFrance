@@ -11,6 +11,7 @@
 #define _X_LIMIT_ 3.0
 #define _Y_LIMIT_ 2.0
 
+//coordonnées d'un cylindre
 struct CylinderPosition
 {
         int cylinder_id;
@@ -22,6 +23,7 @@ struct CylinderPosition
         }
 };
 
+//4 coins qui décrivent un rectangle
 struct MoonBase
 {
         int moonBase_id;

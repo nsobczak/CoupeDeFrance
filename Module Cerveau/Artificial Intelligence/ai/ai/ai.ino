@@ -188,7 +188,7 @@ void loop()
         //Code final
         if (!epreuveFaite && elPadre.isTiretteTiree())
         {
-                elPadre.buildBase();
+                // elPadre.buildBase();
                 epreuveFaite = true;
         }
 

@@ -122,13 +122,6 @@ bool Bot::isTiretteTiree()
         else return false;
 }
 
-// === BOT TRAVEL ===
-
-void Bot::goToPosition(int xAxis, int yAxis)
-{
-        //TODO: déplacer le robot à une position donnée par rapport à la position actuelle
-}
-
 // === FUNNY ACTION ===
 
 /* \fn void Bot::startFunnyActionTimer
@@ -137,22 +130,6 @@ void Bot::goToPosition(int xAxis, int yAxis)
 void Bot::startFunnyActionTimer()
 {
         analogWrite(_PIN_ARDUINO_NANO_FUNNY_ACTION_, HIGH);
-}
-
-
-// === ANGLE ===
-
-/* \fn void Bot::updateAngleZ()
- * \brief fonction qui récupère l'angle à partir du gyroscope et qui actualise la variable du robot correspondante
- */
-void Bot::updateAngleZ()
-{
-        //TODO: see if we need to initialize accelgyro in a different function that updateAngleZ
-        //TODO: see if endTransmission fout la merde ou pas
-        // Wire.begin();
-        this->getAccelgyro().initialize();
-        this->setAngleZ(this->getAccelgyro().getRotationZ());
-        // Wire.endTransmission();
 }
 
 
@@ -168,16 +145,16 @@ bool Bot::turnBotInFrontOFCylinder()
                 //TODO: on le fait tourner arbitrairement vers la droite
                 unsigned long timer2 = millis();
                 do {
-                        this->getAsservissement().botTurnAroundRight(20, _SLOW_SPEED_); //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_); //TODO: replace by the right speed
                         // this->updateAngleZ();
                 } while(millis() - timer2 < 3000); //TODO: see the right time + include  && this->getAngleZ()
                 if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                         //tourner le robot vers la droite
-                        this->getAsservissement().botTurnAroundRight(20, _SLOW_SPEED_); //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_); //TODO: replace by the right speed
                 }
                 else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
                         //tourner le robot vers la gauche
-                        this->getAsservissement().botTurnAroundLeft(20, _SLOW_SPEED_);   //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);   //TODO: replace by the right speed
                 }
 
                 inFrontOfCylinder = this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter();
@@ -207,11 +184,11 @@ void Bot::findAndCatchCylinder()
                 else{
                         if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
                                 //tourner le robot vers la droite
-                                this->getAsservissement().botTurnAroundRight(20, _SLOW_SPEED_);  //TODO: replace by the right speed
+                                this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_);  //TODO: replace by the right speed
                         }
                         else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
                                 //tourner le robot vers la gauche
-                                this->getAsservissement().botTurnAroundLeft(20, _SLOW_SPEED_);  //TODO: replace by the right speed
+                                this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);  //TODO: replace by the right speed
                         }
                         else this->turnBotInFrontOFCylinder();   //tourner le robot de droite a gauche pour chercher le cylindre
                 }
@@ -228,18 +205,35 @@ void Bot::releaseCylinderInBase()
 }
 
 
-//TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
-void Bot::build1BaseCylinder(float x_coord, float y_coord)
-{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//__________________________________________________________________________________
+/*
+   //TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
+   void Bot::build1BaseCylinder(float x_coord, float y_coord)
+   {
         this->findAndCatchCylinder();
         //TODO: go near theoretical base position
         this->releaseCylinderInBase();
-}
+   }
 
 
-//TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
-void Bot::buildBase()
-{
+   //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
+   void Bot::buildBase()
+   {
         //TODO: regarder comment on peut passer le timer partout pour arrêter le robot si on est à la fin
         unsigned long timer = millis();
 
@@ -255,4 +249,29 @@ void Bot::buildBase()
                 }
         }
         this->getAsservissement().botStop();
-}
+   }
+*/
+
+
+// === BOT TRAVEL ===
+
+// void Bot::goToPosition(int xAxis, int yAxis)
+// {
+//         //TODO: déplacer le robot à une position donnée par rapport à la position actuelle
+// }
+
+
+// === ANGLE ===
+
+/* \fn void Bot::updateAngleZ()
+ * \brief fonction qui récupère l'angle à partir du gyroscope et qui actualise la variable du robot correspondante
+ */
+// void Bot::updateAngleZ()
+// {
+//         //TODO: see if we need to initialize accelgyro in a different function that updateAngleZ
+//         //TODO: see if endTransmission fout la merde ou pas
+//         // Wire.begin();
+//         this->getAccelgyro().initialize();
+//         this->setAngleZ(this->getAccelgyro().getRotationZ());
+//         // Wire.endTransmission();
+// }
