@@ -24,7 +24,7 @@
 #define _TEST_CLAMP_ false
 #define _TEST_SENSORS_ false
 #define _TEST_ASSERVISSEMENT_ false
-#define _TEST_FUNNY_ACTION_ true
+#define _TEST_FUNNY_ACTION_ false
 
 //TODO: replace by the right values
 const float _BLUE_X_START_POSITION_ = 0.4;
@@ -87,29 +87,52 @@ void testSensors()
 }
 
 
-void testAsservissement()
+void testAsservissement_goStraightAhead()
 {
-        if (_DEBUG_) Serial.println("=== _ASSERVISSEMENT_ ===");
         do
         {
                 if (_DEBUG_) Serial.println("botGoForward(0.4, 0.5);");
                 elPadre.getAsservissement().botGoForward(0.4, 0.5);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleStraightOrderEnd();
+}
 
-        do
-        {
-                if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
-                elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.3);
-        } while(elPadre.getAsservissement().isOrderFinished() != 1);
-        elPadre.getAsservissement().handleRotationOrderEnd();
-
+void testAsservissement_goBackward()
+{
         do
         {
                 if (_DEBUG_) Serial.println("botGoBackward(0.2, 0.25);");
                 elPadre.getAsservissement().botGoBackward(0.2, 0.25);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleStraightOrderEnd();
+}
+
+void testAsservissement_turnAroundRight()
+{
+        do
+        {
+                if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
+                elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.3);
+        } while(elPadre.getAsservissement().isOrderFinished() != 1);
+        elPadre.getAsservissement().handleRotationOrderEnd();
+}
+
+void testAsservissement_turnAroundLeft()
+{
+        do
+        {
+                if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
+                elPadre.getAsservissement().botTurnAroundLeft(PI/2, 0.3);
+        } while(elPadre.getAsservissement().isOrderFinished() != 1);
+        elPadre.getAsservissement().handleRotationOrderEnd();
+}
+
+void testAsservissement()
+{
+        if (_DEBUG_) Serial.println("=== _ASSERVISSEMENT_ ===");
+        testAsservissement_goStraightAhead();
+        testAsservissement_turnAroundRight();
+        testAsservissement_goBackward();
 }
 
 

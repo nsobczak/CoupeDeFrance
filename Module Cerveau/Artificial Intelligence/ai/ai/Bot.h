@@ -101,6 +101,7 @@ void setAngleZ(int16_t newAngleZ);
 const CylinderPosition *getCylinderToCatchList() const;
 
 bool isEmergencyStopButtonOn();
+void handleEmergencyStopButton();
 
 bool isTiretteTiree();
 

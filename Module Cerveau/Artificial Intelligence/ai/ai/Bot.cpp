@@ -115,14 +115,35 @@ void Bot::setAngleZ(int16_t newAngleZ)
 
 // === BOT EMERGENCY STOP BUTTON ===
 
+/**
+ * \fn bool Bot::isEmergencyStopButtonOn
+ * \brief fonction qui regarde si la tirette est tirée ou pas
+ * \return true si le bouton est enclenché
+ */
 bool Bot::isEmergencyStopButtonOn()
 {
-        return digitalRead(_PIN_BOUTON_ARRET_URGENCE_);
+        pinMode(_PIN_BOUTON_ARRET_URGENCE_, INPUT);
+        if (digitalRead(_PIN_BOUTON_ARRET_URGENCE_) == HIGH) return true;
+        else return false;
+}
+
+/**
+ * \fn void Bot::handleEmergencyStopButton
+ * \brief fonction qui fige le robot dans une boucle infini si le bouton d'arrêt d'urgence est enclenché
+ */
+void Bot::handleEmergencyStopButton()
+{
+        while (this->isEmergencyStopButtonOn()) delay(2000);
 }
 
 
 // === BOT TIRETTE ===
 
+/**
+ * \fn bool Bot::isTiretteTiree
+ * \brief fonction qui regarde si la tirette est tirée ou pas
+ * \return true si la tirette est tirée
+ */
 bool Bot::isTiretteTiree()
 {
         pinMode(_PIN_TIRETTE_, INPUT);
@@ -130,9 +151,11 @@ bool Bot::isTiretteTiree()
         else return false;
 }
 
+
 // === FUNNY ACTION ===
 
-/* \fn void Bot::startFunnyActionTimer
+/**
+ * \fn void Bot::startFunnyActionTimer
  * \brief fonction qui lance la funny action
  */
 void Bot::startFunnyActionTimer()
@@ -149,22 +172,26 @@ bool Bot::turnBotInFrontOFCylinder()
         unsigned long timer = millis();
 
         while (!inFrontOfCylinder && (millis() - timer < _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_))
-        {
-                //TODO: on le fait tourner arbitrairement vers la droite
+        {                //TODO: on le fait tourner arbitrairement vers la droite
                 unsigned long timer2 = millis();
                 do {
-                        this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_); //TODO: replace by the right speed
-                        // this->updateAngleZ();
-                } while(millis() - timer2 < 3000); //TODO: see the right time + include  && this->getAngleZ()
-                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
-                        //tourner le robot vers la droite
-                        this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_); //TODO: replace by the right speed
+                        this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_);         //TODO: replace by the right speed
+                } while((this->getAsservissement().isOrderFinished() != 1) && (millis() - timer2 < 3000));         //TODO: see the right time
+                this->getAsservissement().handleRotationOrderEnd();
+                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight())
+                {
+                        do {         //tourner le robot vers la droite
+                                this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_);
+                        } while((this->getAsservissement().isOrderFinished() != 1));
+                        this->getAsservissement().handleRotationOrderEnd();
                 }
-                else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
-                        //tourner le robot vers la gauche
-                        this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);   //TODO: replace by the right speed
+                else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft())
+                {
+                        do {         //tourner le robot vers la gauche
+                                this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);
+                        } while((this->getAsservissement().isOrderFinished() != 1));
+                        this->getAsservissement().handleRotationOrderEnd();
                 }
-
                 inFrontOfCylinder = this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter();
         }
         return inFrontOfCylinder;
@@ -178,6 +205,7 @@ void Bot::catchCylinder()
                 this->getAsservissement().botGoForward(0.01, _SLOW_SPEED_); //TODO: check 0.01
         } while(this->getSensorsBoard().getInfraredSensorFrontBottomCenterValue() > _DISTANCE_WHERE_CYLINDER_IS_READY_TO_BE_CAUGHT_
                 && (millis() - timer < 3000));
+        this->handleEmergencyStopButton();
         this->getClamp().catchCylinder();
 }
 
@@ -187,13 +215,19 @@ void Bot::findCylinder()
 {
         if (this->getSensorsBoard().checkForCylinder() && !this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter())
         {
-                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight()) {
-                        //tourner le robot vers la droite
-                        this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_);          //TODO: replace by the right speed
+                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomRight())
+                {
+                        do { //tourner le robot vers la droite
+                                this->getAsservissement().botTurnAroundRight(PI/12, _SLOW_SPEED_);
+                        } while((this->getAsservissement().isOrderFinished() != 1));
+                        this->getAsservissement().handleRotationOrderEnd();
                 }
-                else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft()) {
-                        //tourner le robot vers la gauche
-                        this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);          //TODO: replace by the right speed
+                else if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomLeft())
+                {
+                        do { //tourner le robot vers la gauche
+                                this->getAsservissement().botTurnAroundLeft(PI/12, _SLOW_SPEED_);
+                        } while((this->getAsservissement().isOrderFinished() != 1));
+                        this->getAsservissement().handleRotationOrderEnd();
                 }
                 else this->turnBotInFrontOFCylinder();           //tourner le robot de droite a gauche pour chercher le cylindre
         }
@@ -203,18 +237,15 @@ void Bot::findCylinder()
 void Bot::findMoonBase()
 {
         unsigned long timer = millis();
-        if (this->getSensorsBoard().checkForBase())
+        if (this->getSensorsBoard().checkForBase() &&
+            !this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter()) //cylindre présent à la bonne distance sur un des 3 capteurs
         {
-                //cylindre présent à la bonne distance sur un des 3 capteurs
-                if (this->getSensorsBoard().checkForCylinderOnSensorFrontBottomCenter()) this->catchCylinder();
-                else{
-                        do {  //faire avancer le robot vers l'avant
-                                this->getAsservissement().botGoForward(0.05, _SLOW_SPEED_); //TODO: replace by the right speed
-                        } while((!this->getSensorsBoard().checkForBaseOnSensorFrontBottomCenter() ||
-                                 !this->getSensorsBoard().checkForBaseOnSensorFrontBottomLeft() ||
-                                 !this->getSensorsBoard().checkForBaseOnSensorFrontBottomRight())
-                                && (millis() - timer < _TEMPS_RECHERCHE_BASE_MAXIMUM_));
-                }
+                do {          //faire avancer le robot vers l'avant
+                        this->getAsservissement().botGoForward(0.05, _SLOW_SPEED_);         //TODO: replace by the right speed
+                } while((!this->getSensorsBoard().checkForBaseOnSensorFrontBottomCenter() ||
+                         !this->getSensorsBoard().checkForBaseOnSensorFrontBottomLeft() ||
+                         !this->getSensorsBoard().checkForBaseOnSensorFrontBottomRight())
+                        && (millis() - timer < _TEMPS_RECHERCHE_BASE_MAXIMUM_));
         }
 }
 
@@ -230,6 +261,7 @@ void Bot::findAndCatchCylinder()
 void Bot::releaseCylinderInBase()
 {
         this->findMoonBase();
+        this->handleEmergencyStopButton();
         this->getClamp().releaseCylinder();
 }
 
