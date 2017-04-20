@@ -113,12 +113,13 @@ void findCylinder();
 void findMoonBase();
 void findAndCatchCylinder();
 void releaseCylinderInBase();
-void build1BaseCylinder(float x_coord, float y_coord);
-void buildBase();
 
-void goToPosition(int xAxis, int yAxis);
 
-void updateAngleZ();
-
+// void build1BaseCylinder(float x_coord, float y_coord);
+// void buildBase();
+//
+// void goToPosition(int xAxis, int yAxis);
+//
+// void updateAngleZ();
 
 };

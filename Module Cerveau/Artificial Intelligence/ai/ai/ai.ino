@@ -42,19 +42,34 @@ bool epreuveFaite;
  * ======================================================================================================
  */
 
+void testClampInitialisation()
+{
+        if (_DEBUG_) Serial.println("initialisation");
+        elPadre.getClamp().initialisation();
+        delay(9000); //pour laisser le temps à l'action de se réaliser
+}
+
+void testClampCatch()
+{
+        if (_DEBUG_) Serial.println("catch");
+        elPadre.getClamp().catchCylinder();
+        delay(6500); //pour laisser le temps à l'action de se réaliser
+}
+
+void testClampRelease()
+{
+        if (_DEBUG_) Serial.println("release");
+        elPadre.getClamp().releaseCylinder();
+        delay(8500); //pour laisser le temps à l'action de se réaliser
+}
+
 void testClamp()
 {
         //Test pince
         if (_DEBUG_) Serial.println("\n===_TEST_CLAMP_===");
-        if (_DEBUG_) Serial.println("initialisation");
-        elPadre.getClamp().initialisation();
-        delay(9000); //pour laisser le temps à l'action de se réaliser
-        if (_DEBUG_) Serial.println("catch");
-        elPadre.getClamp().catchCylinder();
-        delay(6500); //pour laisser le temps à l'action de se réaliser
-        if (_DEBUG_) Serial.println("release");
-        elPadre.getClamp().releaseCylinder();
-        delay(8500); //pour laisser le temps à l'action de se réaliser
+        testClampInitialisation();
+        testClampCatch();
+        testClampRelease();
 }
 
 

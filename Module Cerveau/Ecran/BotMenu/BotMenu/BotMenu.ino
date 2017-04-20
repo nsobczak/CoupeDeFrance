@@ -21,17 +21,8 @@ U8GLIB_ST7920_128X64_1X u8g(53, 52, 13);  // SPI Com: SCK = en = 13, MOSI = rw =
 #include <Wire.h>
 #include "i2cCommunication.h"
 
-
-//___________________________________________________________________________________________________
-//Communication avec la uno
-#define _SENDADRESS_01_ 8
-#define _RECEIVEADRESS_01_ 9
-//Communication avec la pince
-#define _SENDADRESS_02_ 10
-#define _RECEIVEADRESS_02_ 11
-//Communication avec la due
-#define _SENDADRESS_03_ 12 
-#define _RECEIVEADRESS_03_ 13
+#define _SENDADRESS_ 12
+#define _RECEIVEADRESS_ 13
 
 
 //____________________________________________________________________________________________________
@@ -40,12 +31,18 @@ U8GLIB_ST7920_128X64_1X u8g(53, 52, 13);  // SPI Com: SCK = en = 13, MOSI = rw =
 int finInitialisationMoteur = 0;
 
 /*Tableau de correspondance des variables
-   0 => demarrerMoteurRobot
-   1 => finInitialisationMoteur
-   2 =>
-   3 =>
-   4 =>
-   5 =>
+   0 => demarrerRobot
+   1 => testMoteur ligne droite vers l'avant
+   2 => testMoteur ligne droite vers l'arrière
+   3 => testMoteur rotation vers la gauche
+   4 => testMoteur rotation vers la droite
+   5 => testMoteur programme test
+   6 => testPince initialisation
+   7 => testPince catch
+   8 => testPince release
+   9 => testPince programme test
+   10 => testSensors
+   11 => testFunnyAction
  */
 
 
@@ -84,30 +81,11 @@ void fn_start_robot(m2_el_fnarg_p fnarg)
 {
         Serial.print("Start robot avec la strategie ");
         Serial.println(rb_select_strat + 1);
-        /*
-           switch ( rb_select_strat )
-           {
-           case 0:
-              Serial.println("switch case 0");
-              break;
-           case 1:
-              Serial.println("switch case 1");
-              break;
-           case 2:
-              Serial.println("switch case 2");
-              break;
-           case 3:
-              Serial.println("switch case 3");
-              break;
-           default:
-              Serial.println("switch case non prevu");
-           }
-         */
         // conversion sur 2 octets de la valeur à envoyer
         byte bytesTab[2];
         intTo2Bytes(bytesTab, rb_select_strat + 1);
         // envoi
-        i2csend3bytes(0, bytesTab[0], bytesTab[1], _SENDADRESS_03_); // Envoi de rb_select_strat (0 dans le tableau de correspondance)
+        i2csend3bytes(0, bytesTab[0], bytesTab[1], _SENDADRESS_); // Envoi de rb_select_strat (0 dans le tableau de correspondance)
 
 }
 
@@ -166,7 +144,7 @@ void fn_num_zero(m2_el_fnarg_p fnarg) {
  */
 void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
         // request 3 bytes from slave device on adress 9
-        dataI2C = i2crequest(_RECEIVEADRESS_01_, 3, num_1, 6);
+        dataI2C = i2crequest(_RECEIVEADRESS_, 3, num_1, 6);
 
         valueI2C[0] = dataI2C [1];
         valueI2C[1] = dataI2C [2];
@@ -191,7 +169,7 @@ void fn_num_go_pince(m2_el_fnarg_p fnarg) {
         byte bytesTab[2];
         intTo2Bytes(bytesTab, 1);
         // envoi
-        i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_02_);
+        i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_);
         /* // attente reception fin initialisation
            while (finInitialisationMoteur == 0)
            {
@@ -220,21 +198,30 @@ M2_ROOT(el_num_goto_top, "f4", " back ", &top_el_expandable_menu);
 
 M2_LIST(num_list_1) = {
         &el_num_label1, &el_num_1,
-        //&el_num_label2, &el_num_2,
         &el_num_zero, &el_num_go_i2c,
         &el_num_goto_top
 };
-
 M2_GRIDLIST(el_num_menu_grid, "c2", num_list_1);
 M2_ALIGN(el_top_num_menu, "-1|1W64H64", &el_num_menu_grid);
 
 M2_LIST(num_list_2) = {
         &el_num_goto_top, &el_num_go_pince
 };
-
 M2_GRIDLIST(el_num_menu_grid_2, "c2", num_list_2);
 M2_ALIGN(el_top_num_menu_2, "-1|1W64H64", &el_num_menu_grid_2);
 
+
+M2_LIST(num_list_3) = {
+        &el_num_goto_top, &el_num_go_pince
+};
+M2_GRIDLIST(el_num_menu_grid_3, "c2", num_list_3);
+M2_ALIGN(el_top_num_menu_3, "-1|1W64H64", &el_num_menu_grid_3);
+
+M2_LIST(num_list_4) = {
+        &el_num_goto_top, &el_num_go_pince
+};
+M2_GRIDLIST(el_num_menu_grid_4, "c2", num_list_4);
+M2_ALIGN(el_top_num_menu_4, "-1|1W64H64", &el_num_menu_grid_4);
 
 //____________________________________________________________________________________________________
 /*=== multi selection ===*/
@@ -279,69 +266,6 @@ M2_LIST(muse_list) = {
 };
 M2_VLIST(el_muse_vlist, "c2", muse_list);
 M2_ALIGN(top_el_muse, "-1|1W64H64", &el_muse_vlist);
-
-
-//____________________________________________________________________________________________________
-/*=== combo examples  ===*/
-
-uint8_t select_coord = 0;
-uint8_t select_priority = 0;
-
-
-void fn_ok(m2_el_fnarg_p fnarg) {
-        /* accept selection */
-        m2_SetRoot(&top_el_expandable_menu);
-}
-
-
-void fn_cancel(m2_el_fnarg_p fnarg) {
-        /* discard selection */
-        m2_SetRoot(&top_el_expandable_menu);
-}
-
-
-const char *fn_idx_to_color(uint8_t idx)
-{
-        switch(idx)
-        {
-        case 0: return "a";
-        case 1: return "b";
-        case 2: return "c";
-        }
-        return "";
-}
-
-
-const char *fn_idx_to_priority(uint8_t idx)
-{
-        switch(idx)
-        {
-        case 0: return "lowest";
-        case 1: return "low";
-        case 2: return "medium";
-        case 3: return "high";
-        case 4: return "highest";
-        }
-        return "";
-}
-
-
-M2_LABEL(el_label1, NULL, "Init:");
-M2_COMBO(el_combo1, NULL, &select_coord, 2, fn_idx_to_color);
-
-M2_LABEL(el_label2, NULL, "Priority: ");
-M2_COMBO(el_combo2, "v1", &select_priority, 5, fn_idx_to_priority);
-
-M2_BUTTON(el_cancel, "f4", "cancel", fn_cancel);
-M2_BUTTON(el_ok, "f4", "ok", fn_ok);
-
-M2_LIST(list_combo) = {
-        &el_label1, &el_combo1,
-        &el_label2, &el_combo2,
-        &el_cancel, &el_ok
-};
-M2_GRIDLIST(el_combo_grid, "c2", list_combo);
-M2_ALIGN(el_top_combo, "-1|1W64H64", &el_combo_grid);
 
 
 //____________________________________________________________________________________________________
@@ -400,85 +324,18 @@ M2_ALIGN(el_top_num_menu_debug_02, "-1|1W64H64", &el_num_list_debug_02);
 
 
 //____________________________________________________________________________________________________
-/*=== File selection dialog ===*/
-
-/* defines the number of additional buttons at the beginning of the STRLIST lines */
-#define FS_EXTRA_MENUES 1
-
-/* helper variables for the strlist element */
-uint8_t fs_m2tk_first = 0;
-uint8_t fs_m2tk_cnt = 0;
-
-const char *fs_strlist_getstr(uint8_t idx, uint8_t msg)  {
-        if (msg == M2_STRLIST_MSG_GET_STR)  {
-                /* Check for the extra button: Return string for this extra button */
-                if ( idx == 0 )
-                        return "..";
-                /* Not the extra button: Return file/directory name */
-                mas_GetDirEntry(idx - FS_EXTRA_MENUES);
-                return mas_GetFilename();
-        } else if ( msg == M2_STRLIST_MSG_GET_EXTENDED_STR ) {
-                /* Check for the extra button: Return icon for this extra button */
-                if ( idx == 0 )
-                        return "a";  /* arrow left of the m2icon font */
-                /* Not the extra button: Return file or directory icon */
-                mas_GetDirEntry(idx - FS_EXTRA_MENUES);
-                if ( mas_IsDir() )
-                        return "A";  /* folder icon of the m2icon font */
-                return "B"; /* file icon of the m2icon font */
-        } else if ( msg == M2_STRLIST_MSG_SELECT ) {
-                /* Check for the extra button: Execute button action */
-                if ( idx == 0 ) {
-                        if ( mas_GetPath()[0] == '\0' )
-                                m2_SetRoot(&top_el_expandable_menu);
-                        else {
-                                mas_ChDirUp();
-                                m2_SetRoot(m2_GetRoot()); /* reset menu to first element, send NEW_DIALOG and force recount */
-                        }
-                        /* Not the extra button: Goto subdir or return (with selected file) */
-                } else {
-                        mas_GetDirEntry(idx - FS_EXTRA_MENUES);
-                        if ( mas_IsDir() ) {
-                                mas_ChDir(mas_GetFilename());
-                                m2_SetRoot(m2_GetRoot()); /* reset menu to first element, send NEW_DIALOG and force recount */
-                        } else {
-                                /* File has been selected. Here: Show the file to the user, but here, we just jump back to the main menu */
-                                m2_SetRoot(&top_el_expandable_menu);
-                        }
-                }
-        } else if ( msg == M2_STRLIST_MSG_NEW_DIALOG ) {
-                /* (re-) calculate number of entries, limit no of entries to 250 */
-                if ( mas_GetDirEntryCnt() < 250-FS_EXTRA_MENUES )
-                        fs_m2tk_cnt = mas_GetDirEntryCnt()+FS_EXTRA_MENUES;
-                else
-                        fs_m2tk_cnt = 250;
-        }
-        return NULL;
-}
-
-M2_STRLIST(el_fs_strlist, "l5F3e15W49", &fs_m2tk_first, &fs_m2tk_cnt, fs_strlist_getstr);
-M2_SPACE(el_fs_space, "W1h1");
-M2_VSB(el_fs_strlist_vsb, "l5W4r1", &fs_m2tk_first, &fs_m2tk_cnt);
-M2_LIST(list_fs_strlist) = { &el_fs_strlist, &el_fs_space, &el_fs_strlist_vsb };
-M2_HLIST(el_fs_hlist, NULL, list_fs_strlist);
-M2_ALIGN(el_top_fs, "-1|1W64H64", &el_fs_hlist);
-
-
-//____________________________________________________________________________________________________
 // Left entry: Menu name. Submenus must have a '.' at the beginning
 // Right entry: Reference to the target dialog box (In this example all menus call the toplevel element again
 m2_menu_entry m2_2lmenu_data[] =
 {
         { "Epreuve", NULL },
         { ". Strategie", &el_rb_grid },
-        { ". Initialisation", &top_el_expandable_menu },
         { "Tests robots", NULL },
         { ". Test I2C", &el_top_num_menu },
         { ". Test Pince", &el_top_num_menu_2},
+        { ". Test Capteurs", &el_top_num_menu_3},
         { ". Test Moteur", &top_el_muse},
-        { "Tests ecran", NULL },
-        { ". Combo", &el_top_combo},
-        { ". File Select", &el_top_fs },
+        { ". Test Funny Action", &el_top_num_menu_4},
         { "Debug ", NULL },
         { ". Debug Moteur", &el_top_num_menu_debug_01},
         { ". Debug Autre", &el_top_num_menu_debug_02},
@@ -541,10 +398,7 @@ void receiveEvent2(int howMany)
 
         }
         // else de debug
-        else
-        {
-                Serial.println("Erreur : Pas 3 octets envoyes");
-        }
+        else Serial.println("Erreur : Pas 3 octets envoyes");
 }
 
 
@@ -616,16 +470,16 @@ void setup(void) {
  * \fn void loop()
  * \brief Fonction loop d'arduino
  */
-void loop() {
-
+void loop()
+{
         // menu management
         m2.checkKey();
-        if ( m2.handleKey() != 0 ) {
+        if ( m2.handleKey() != 0 )
+        {
                 u8g.firstPage();
                 do {
                         m2.checkKey();
                         draw();
                 } while( u8g.nextPage() );
         }
-
 }
