@@ -55,17 +55,31 @@ unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
 
 //=== ASSERVISSEMENT ===
 SimpleTimer timer;
-unsigned long _PERIODE_ASSERVISSEMENT_ = 20;
+unsigned int FREQUENCE_ECHANTILLIONNAGE = 50; // en Hz
+unsigned long _PERIODE_ASSERVISSEMENT_ = (1000/FREQUENCE_ECHANTILLIONNAGE); // en ms !
 unsigned long testStart;
 
 // Vitesse
 float consigneVitesseMoteur;
 float erreurPrecedenteGauche = 0;
 float erreurPrecedenteDroite = 0;
+
 //TODO: update kp, r0, r1 values
-int kp = 1;
-long r0 = 1170734.2; //coeff qui marche bien : 1829979.4;
-long r1 = 3659851.5; //coeff qui marche bien : 21525987.0;
+
+// correction proportionnelle sur la vitesse pour realiser une ligne droite
+ 
+int kp = 0;
+
+// coef correcteur PI moteur droit
+
+long R0_MOTOR_RIGHT = 1170734.2; //coeff qui marche bien : 1829979.4;
+long R1_MOTOR_RIGHT = 3659851.5; //coeff qui marche bien : 21525987.0;
+
+// coef correcteur PI moteur gauche
+
+long R0_MOTOR_LEFT = 1170734.2;
+long R1_MOTOR_LEFT = 3659851.5;
+
 int cmdPrecedenteDroite = 0;
 int cmdPrecedenteGauche = 0;
 
@@ -271,16 +285,22 @@ void asservissementVitesse()
 
         float erreurGauche = consigneVitesseMoteur - (float)vitesseReelleGauche;
         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
-        erreurPrecedenteGauche = erreurGauche;
-        erreurPrecedenteDroite = erreurDroite;
+
+        
         int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L);
-        int cmdMoteurDroite = r0 * erreurDroite + r1 * erreurPrecedenteDroite + cmdPrecedenteDroite;
-        int cmdMoteurGauche = r0 * erreurGauche + r1 * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
+        
+        int cmdMoteurDroite = R0_MOTOR_RIGHT * erreurDroite - (R0_MOTOR_RIGHT - R1_MOTOR_RIGHT/FREQUENCE_ECHANTILLIONNAGE) * erreurPrecedenteDroite + cmdPrecedenteDroite;
+        int cmdMoteurGauche = R0_MOTOR_LEFT * erreurGauche + (R0_MOTOR_LEFT - R1_MOTOR_LEFT/FREQUENCE_ECHANTILLIONNAGE) * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
 
         cmdMoteurDroite = bornCommand(cmdMoteurDroite);
         cmdMoteurGauche = bornCommand(cmdMoteurGauche);
+
+        erreurPrecedenteGauche = erreurGauche;
+        erreurPrecedenteDroite = erreurDroite;
+
         cmdPrecedenteDroite = _MAX_PWM_ - cmdMoteurDroite;
         cmdPrecedenteGauche = _MAX_PWM_ - cmdMoteurGauche;
+        
 
         // = Ordre =
         if (_TEST_SANS_I2C_) robotGoBack(_MAX_PWM_ - cmdMoteurGauche, _MAX_PWM_ - cmdMoteurDroite);
