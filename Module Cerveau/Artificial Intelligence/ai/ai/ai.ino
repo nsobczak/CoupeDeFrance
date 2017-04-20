@@ -10,21 +10,25 @@
  */
 
 /* ======================================================================================================
- *      Include
+ *      Initialisation
  * ======================================================================================================
  */
 #include <Arduino.h>
 #include "Bot.h"
 
-/* ======================================================================================================
- *      Initialisation
- * ======================================================================================================
- */
 #define _DEBUG_ true
+
+// I2C
+#include <Wire.h>
+#include "i2cCommunication.h"
+
+#define _RECEIVEADRESS_ 13
+
 #define _TEST_CLAMP_ false
 #define _TEST_SENSORS_ false
 #define _TEST_ASSERVISSEMENT_ false
 #define _TEST_FUNNY_ACTION_ false
+
 
 //TODO: replace by the right values
 const float _BLUE_X_START_POSITION_ = 0.4;
@@ -35,6 +39,19 @@ const float _YELLOW_START_ANGLE_ = PI;
 
 Bot elPadre;
 bool epreuveFaite;
+
+int varStartBot = 0;
+int varTestMotorStraightAhead = 0;
+int varTestMotorBackward = 0;
+int varTestMotorLeftRotation = 0;
+int varTestMotorRightRotation = 0;
+int varTestMotorGlobal = 0;
+int varTestClampInitialisation = 0;
+int varTestClampCatch = 0;
+int varTestClampRelease = 0;
+int varTestClampGlobal = 0;
+int varTestSensors = 0;
+int varTestFunnyAction = 0;
 
 
 /* ======================================================================================================
@@ -176,6 +193,97 @@ void initializePosition()
                 elPadre.getAsservissement().setAngle_position(_YELLOW_START_ANGLE_);
         }
         elPadre.getAsservissement().setY_position(_Y_START_POSITION_);
+}
+
+
+//____________________________________________________________________________________________________
+// Reception I2C
+
+/**
+ * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
+ * \param int howMany
+ */
+void receiveEventAI(int howMany)
+{
+        if (Wire.available() == 3)
+        {
+                //lecture de la variable
+                byte var = Wire.read();
+                //lecture des 2 octets suivants
+                byte x = Wire.read();
+                byte y = Wire.read();
+                //reconstitution de la valeur
+                byte bytesTab[2] = {x, y};
+                int value = recoverIntFrom2Bytes(bytesTab);
+
+                switch ( var ) // cf. les références des variables en haut du fichier
+                {
+                case 0:
+                        if (_DEBUG_) Serial.println("variable recue : varStartBot");
+                        varStartBot = value;
+                        break;
+                case 1:
+                        if (_DEBUG_) Serial.println("variable recue : varTestMotorStraightAhead");
+                        varTestMotorStraightAhead = value;
+                        break;
+                case 2:
+                        if (_DEBUG_) Serial.println("variable recue : varTestMotorBackward");
+                        varTestMotorBackward = value;
+                        break;
+                case 3:
+                        if (_DEBUG_) Serial.println("variable recue : varTestMotorLeftRotation");
+                        varTestMotorLeftRotation = value;
+                        break;
+                case 4:
+                        if (_DEBUG_) Serial.println("variable recue : varTestMotorRightRotation");
+                        varTestMotorRightRotation = value;
+                        break;
+                case 5:
+                        if (_DEBUG_) Serial.println("variable recue : varTestMotorGlobal");
+                        varTestMotorGlobal = value;
+                        break;
+                case 6:
+                        if (_DEBUG_) Serial.println("variable recue : varTestClampInitialisation");
+                        varTestClampInitialisation = value;
+                        break;
+                case 7:
+                        if (_DEBUG_) Serial.println("variable recue : varTestClampCatch");
+                        varTestClampCatch = value;
+                        break;
+                case 8:
+                        if (_DEBUG_) Serial.println("variable recue : varTestClampRelease");
+                        varTestClampRelease = value;
+                        break;
+                case 9:
+                        if (_DEBUG_) Serial.println("variable recue : varTestClampGlobal");
+                        varTestClampGlobal = value;
+                        break;
+                case 10:
+                        if (_DEBUG_) Serial.println("variable recue : varTestSensors");
+                        varTestSensors = value;
+                        break;
+                case 11:
+                        if (_DEBUG_) Serial.println("variable recue : varTestFunnyAction");
+                        varTestFunnyAction = value;
+                        break;
+                default:
+                        if (_DEBUG_) Serial.println("variable recue inconnue");
+                }
+
+        }
+        // else de debug
+        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
+}
+
+/**
+ * \fn void loop()
+ * \brief fonction loop d'arduino
+ */
+void i2creceiveAI(int adresse)
+{
+        Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
+        Wire.onReceive(receiveEventAI); // enregistrer l'événement (lorsqu'une demande arrive)
+        Wire.endTransmission(); // fin transmission
 }
 
 
