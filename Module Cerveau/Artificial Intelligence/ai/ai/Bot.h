@@ -26,7 +26,7 @@
 
 #define _PIN_BOUTON_ARRET_URGENCE_ 16 //état haut quand il est appuyé
 #define _PIN_TIRETTE_ 15
-#define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 33
+#define _PIN_ARDUINO_NANO_FUNNY_ACTION_ 24
 
 #define _NUMBER_OF_CYLINDERS_TO_CATCH_ 6 //TODO: replace by the right number of cylinders
 #define _NUMBER_OF_MOON_BASES_ 2         //TODO: replace by the right number of cylinders

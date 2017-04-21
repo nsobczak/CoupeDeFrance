@@ -17,6 +17,7 @@
 #include "Bot.h"
 
 #define _DEBUG_ true
+#define _TEST_SANS_I2C_ true
 
 // I2C
 #include <Wire.h>
@@ -26,7 +27,7 @@
 
 #define _TEST_CLAMP_ false
 #define _TEST_SENSORS_ false
-#define _TEST_ASSERVISSEMENT_ false
+#define _TEST_ASSERVISSEMENT_ true
 #define _TEST_FUNNY_ACTION_ false
 
 
@@ -40,6 +41,7 @@ const float _YELLOW_START_ANGLE_ = PI;
 Bot elPadre;
 bool epreuveFaite;
 
+// Ecran
 int varStartBot = 0;
 int varTestMotorStraightAhead = 0;
 int varTestMotorBackward = 0;
@@ -58,7 +60,10 @@ int varTestFunnyAction = 0;
  *      Fonctions
  * ======================================================================================================
  */
-
+/**
+ * \fn void testClampInitialisation()
+ * \brief test d'initialisation de la pince
+ */
 void testClampInitialisation()
 {
         if (_DEBUG_) Serial.println("initialisation");
@@ -66,6 +71,10 @@ void testClampInitialisation()
         delay(9000); //pour laisser le temps à l'action de se réaliser
 }
 
+/**
+ * \fn void testClampCatch()
+ * \brief test de la prise de cylindre de la pince
+ */
 void testClampCatch()
 {
         if (_DEBUG_) Serial.println("catch");
@@ -73,6 +82,10 @@ void testClampCatch()
         delay(6500); //pour laisser le temps à l'action de se réaliser
 }
 
+/**
+ * \fn void testClampRelease()
+ * \brief test du lachage de cylindre de la pince
+ */
 void testClampRelease()
 {
         if (_DEBUG_) Serial.println("release");
@@ -80,6 +93,10 @@ void testClampRelease()
         delay(8500); //pour laisser le temps à l'action de se réaliser
 }
 
+/**
+ * \fn void testClampRelease()
+ * \brief test global de la pince: initialisation + attraper + relacher
+ */
 void testClamp()
 {
         //Test pince
@@ -90,6 +107,10 @@ void testClamp()
 }
 
 
+/**
+ * \fn void testSensors()
+ * \brief test de la réception de la valeur des capteurs
+ */
 void testSensors()
 {
         if (_DEBUG_) Serial.println("\n===_TEST_SENSORS_===");
@@ -119,6 +140,10 @@ void testSensors()
 }
 
 
+/**
+ * \fn void testAsservissement_goStraightAhead()
+ * \brief test de l'asservissement: ligne droite vers l'avant
+ */
 void testAsservissement_goStraightAhead()
 {
         do
@@ -129,6 +154,10 @@ void testAsservissement_goStraightAhead()
         elPadre.getAsservissement().handleStraightOrderEnd();
 }
 
+/**
+ * \fn void testAsservissement_goStraightAhead()
+ * \brief test de l'asservissement: ligne droite vers l'arrière
+ */
 void testAsservissement_goBackward()
 {
         do
@@ -139,6 +168,10 @@ void testAsservissement_goBackward()
         elPadre.getAsservissement().handleStraightOrderEnd();
 }
 
+/**
+ * \fn void testAsservissement_turnAroundRight()
+ * \brief test de l'asservissement: rotation vers la droite
+ */
 void testAsservissement_turnAroundRight()
 {
         do
@@ -149,6 +182,10 @@ void testAsservissement_turnAroundRight()
         elPadre.getAsservissement().handleRotationOrderEnd();
 }
 
+/**
+ * \fn void testAsservissement_turnAroundLeft()
+ * \brief test de l'asservissement: rotation vers la gauche
+ */
 void testAsservissement_turnAroundLeft()
 {
         do
@@ -159,6 +196,10 @@ void testAsservissement_turnAroundLeft()
         elPadre.getAsservissement().handleRotationOrderEnd();
 }
 
+/**
+ * \fn void testAsservissement()
+ * \brief test global de l'asservissement
+ */
 void testAsservissement()
 {
         if (_DEBUG_) Serial.println("=== _ASSERVISSEMENT_ ===");
@@ -168,6 +209,10 @@ void testAsservissement()
 }
 
 
+/**
+ * \fn void testFunnyAction()
+ * \brief test de lancement de la funny action
+ */
 void testFunnyAction()
 {
         if (_DEBUG_) Serial.println("=== _TEST_FUNNY_ACTION_ ===");
@@ -196,9 +241,22 @@ void initializePosition()
 }
 
 
+/**
+ * \fn void startBotIfTiretteTiree()
+ * \brief fonction qui lance la routine d'épreuve du robot si la tirette est tiree
+ */
+void startBotIfTiretteTiree() {
+        //Code final
+        if (!epreuveFaite && elPadre.isTiretteTiree())
+        {
+                // elPadre.buildBase();
+                epreuveFaite = true;
+        }
+}
+
+
 //____________________________________________________________________________________________________
 // Reception I2C
-
 /**
  * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
  * \param int howMany
@@ -275,9 +333,11 @@ void receiveEventAI(int howMany)
         else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
 }
 
+
 /**
- * \fn void loop()
- * \brief fonction loop d'arduino
+ * \fn void i2creceiveAI()
+ * \param int adresse de réception de l'I2C
+ * \brief fonction de réception I2C
  */
 void i2creceiveAI(int adresse)
 {
@@ -286,6 +346,36 @@ void i2creceiveAI(int adresse)
         Wire.endTransmission(); // fin transmission
 }
 
+
+/**
+ * \fn void receiveVarFromScreen()
+ * \brief fonction qui déclenche le bon test suivant la variable reçue depuis l'écran
+ */
+void receiveVarFromScreen()
+{
+        if (varStartBot == 0 && varTestMotorStraightAhead == 0 &&
+            varTestMotorBackward == 0 && varTestMotorLeftRotation == 0 &&
+            varTestMotorRightRotation == 0 && varTestMotorGlobal == 0 &&
+            varTestClampInitialisation == 0 && varTestClampCatch == 0 &&
+            varTestClampRelease == 0 && varTestClampGlobal == 0 &&
+            varTestSensors == 0 && varTestFunnyAction == 0)
+                i2creceiveAI(_RECEIVEADRESS_);
+        else
+        {
+                if (varStartBot == 1) {startBotIfTiretteTiree(); varStartBot = 0; }
+                else if (varTestMotorStraightAhead == 1) {testAsservissement_goStraightAhead(); varTestMotorStraightAhead = 0; }
+                else if (varTestMotorBackward == 1) {testAsservissement_goBackward(); varTestMotorBackward = 0; }
+                else if (varTestMotorLeftRotation == 1) {testAsservissement_turnAroundLeft(); varTestMotorLeftRotation = 0; }
+                else if (varTestMotorRightRotation == 1) {testAsservissement_turnAroundRight(); varTestMotorRightRotation = 0; }
+                else if (varTestMotorGlobal == 1) {testAsservissement(); varTestMotorGlobal = 0; }
+                else if (varTestClampInitialisation == 1) {testClampInitialisation(); varTestClampInitialisation = 0; }
+                else if (varTestClampCatch == 1) {testClampCatch(); varTestClampCatch = 0; }
+                else if (varTestClampRelease == 1) {testClampRelease(); varTestClampRelease = 0; }
+                else if (varTestClampGlobal == 1) {testClamp(); varTestClampGlobal = 0; }
+                else if (varTestSensors == 1) {testSensors(); varTestSensors = 0; }
+                else if (varTestFunnyAction == 1) {testFunnyAction(); varTestFunnyAction = 0; }
+        }
+}
 
 //_______________________________________________________________________________________________________
 /**
@@ -320,23 +410,21 @@ void loop()
          * si on détecte l'adversaire => manoeuvre dévitement
          * si on détecte un cylindre => on le ramasse
          */
-        if (_TEST_CLAMP_) testClamp();
-
-        if (_TEST_SENSORS_) testSensors();
-
-        if (_TEST_ASSERVISSEMENT_) testAsservissement();
-
-        if (_TEST_FUNNY_ACTION_) testFunnyAction();
-
-        if (_DEBUG_) { Serial.println("=== _DEBUG_ ==="); }
-
-
-        //Code final
-        if (!epreuveFaite && elPadre.isTiretteTiree())
+        if (_TEST_SANS_I2C_)
         {
-                // elPadre.buildBase();
-                epreuveFaite = true;
+                if (_TEST_CLAMP_) testClamp();
+
+                if (_TEST_SENSORS_) testSensors();
+
+                if (_TEST_ASSERVISSEMENT_) testAsservissement();
+
+                if (_TEST_FUNNY_ACTION_) testFunnyAction();
+
+                if (_DEBUG_) { Serial.println("=== _DEBUG_ ==="); }
+
+                startBotIfTiretteTiree();
         }
+        else receiveVarFromScreen();
 
         delay(1000);
 }
