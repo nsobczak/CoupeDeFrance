@@ -25,10 +25,11 @@
 
 #define _RECEIVEADRESS_ 13
 
+// Sans I2C
 #define _TEST_CLAMP_ false
 #define _TEST_SENSORS_ false
-#define _TEST_ASSERVISSEMENT_ true
-#define _TEST_FUNNY_ACTION_ false
+#define _TEST_ASSERVISSEMENT_ false
+#define _TEST_FUNNY_ACTION_ true
 
 
 //TODO: replace by the right values
@@ -249,6 +250,7 @@ void startBotIfTiretteTiree() {
         //Code final
         if (!epreuveFaite && elPadre.isTiretteTiree())
         {
+                Wire.begin();
                 // elPadre.buildBase();
                 epreuveFaite = true;
         }

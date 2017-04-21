@@ -160,7 +160,8 @@ bool Bot::isTiretteTiree()
  */
 void Bot::startFunnyActionTimer()
 {
-        analogWrite(_PIN_ARDUINO_NANO_FUNNY_ACTION_, HIGH);
+        pinMode(_PIN_ARDUINO_NANO_FUNNY_ACTION_, OUTPUT);
+        digitalWrite(_PIN_ARDUINO_NANO_FUNNY_ACTION_, HIGH);
 }
 
 
