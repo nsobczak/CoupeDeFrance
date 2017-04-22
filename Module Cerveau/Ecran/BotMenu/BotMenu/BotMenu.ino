@@ -419,25 +419,44 @@ void fn_debug_update(m2_el_fnarg_p fnarg)
 
 M2_BUTTON(el_debug_update, "f4", "MAJ", fn_debug_update);
 
-M2_LIST(num_list_debug_01) = {
+
+// === Capteurs Infrarouges ===
+
+M2_LIST(num_list_debug_capteurs_ir) = {
         &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
         &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
         &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
         &el_num_goto_top, &el_debug_update
 };
 
-M2_GRIDLIST(el_num_list_debug_01, "c4", num_list_debug_01);
-M2_ALIGN(el_top_num_menu_debug_01, "-1|1W64H64", &el_num_list_debug_01);
+M2_GRIDLIST(el_num_list_debug_capteurs_ir, "c4", num_list_debug_capteurs_ir);
+M2_ALIGN(el_top_num_menu_debug_capteurs_ir, "-1|1W64H64", &el_num_list_debug_capteurs_ir);
 
-M2_LIST(num_list_debug_02) = {
+
+// === Capteurs Ultrasonores ===
+
+M2_LIST(num_list_debug_capteurs_us) = {
         &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
         &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
         &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
         &el_num_goto_top, &el_debug_update
 };
 
-M2_GRIDLIST(el_num_list_debug_02, "c4", num_list_debug_02);
-M2_ALIGN(el_top_num_menu_debug_02, "-1|1W64H64", &el_num_list_debug_02);
+M2_GRIDLIST(el_num_list_debug_capteurs_us, "c4", num_list_debug_capteurs_us);
+M2_ALIGN(el_top_num_menu_debug_capteurs_us, "-1|1W64H64", &el_num_list_debug_capteurs_us);
+
+
+// === Position ===
+
+M2_LIST(num_list_debug_position) = {
+        &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
+        &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
+        &el_num_label_debug_01, &el_num_debug_01, &el_num_label_debug_02, &el_num_debug_02,
+        &el_num_goto_top, &el_debug_update
+};
+
+M2_GRIDLIST(el_num_list_debug_position, "c4", num_list_debug_position);
+M2_ALIGN(el_top_num_menu_debug_position, "-1|1W64H64", &el_num_list_debug_position);
 
 
 //____________________________________________________________________________________________________
@@ -454,8 +473,9 @@ m2_menu_entry m2_2lmenu_data[] =
         { ". Test Fun Action", &el_top_num_menu_FunnyAction},
         // { ". Test I2C", &el_top_num_menu },
         { "Debug ", NULL },
-        { ". Debug Moteur", &el_top_num_menu_debug_01},
-        { ". Debug Autre", &el_top_num_menu_debug_02},
+        { ". Capteurs IR", &el_top_num_menu_debug_capteurs_ir},
+        { ". Capteurs US", &el_top_num_menu_debug_capteurs_us},
+        { ". Position", &el_top_num_menu_debug_position},
         //{ "Top", &top_el_expandable_menu },
         { NULL, NULL },
 };
@@ -469,7 +489,6 @@ uint8_t m2_2lmenu_cnt;
 // Option l4 = four visible lines
 // Option e15 = first column has a width of 15 pixel
 // Option W43 = second column has a width of 43/64 of the display width
-
 M2_2LMENU(el_2lmenu,"l4F3e15W43",&m2_2lmenu_first,&m2_2lmenu_cnt, m2_2lmenu_data,65,102,'\0');
 M2_SPACE(el_space, "W1h1");
 M2_VSB(el_vsb, "l4W2r1", &m2_2lmenu_first, &m2_2lmenu_cnt);
@@ -477,59 +496,7 @@ M2_LIST(list_2lmenu) = { &el_2lmenu, &el_space, &el_vsb };
 M2_HLIST(el_hlist, NULL, list_2lmenu);
 M2_ALIGN(top_el_expandable_menu, "-1|1W64H64", &el_hlist);
 
-// m2 object and constructor
 M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
-//M2tk m2(&top_el_expandable_menu, m2_es_arduino_rotary_encoder, m2_eh_4bs, m2_gh_u8g_ffs);
-//M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_arduino_serial);
-
-
-//____________________________________________________________________________________________________
-//____________________________________________________________________________________________________
-// Reception I2C
-/**
- * \fn void receiveEvent(int howMany - fonction qui est exécutée lorsque des données sont envoyées par le Maître. Cette fonction est enregistrée comme un événement ("event" en anglais), voir la fonction setup()
- * \param int howMany
- */
-void receiveEvent2(int howMany)
-{
-        if (Wire.available() == 3)
-        {
-                //lecture de la variable
-                byte var = Wire.read();
-                //lecture des 2 octets suivants
-                byte x = Wire.read();
-                byte y = Wire.read();
-                //reconstitution de la valeur
-                byte bytesTab[2] = {x, y};
-                int value = recoverIntFrom2Bytes(bytesTab);
-
-                switch ( var ) // cf. les références des variables en haut du fichier
-                {
-                case 1:
-                        Serial.println("variable recue : finInitialisationMoteur");
-                        break;
-                default:
-                        Serial.println("variable recue inconnue");
-                }
-
-        }
-        // else de debug
-        else Serial.println("Erreur : Pas 3 octets envoyes");
-}
-
-
-/**
- * \fn void i2creceive(int adresse) - fonction de lecture de données reçues via l'i2c
- * \param int adresse sur laquelle recevoir les donnees
- */
-void i2creceive2(int adresse)
-{
-        //Serial.println("start i2creceive2");
-        Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
-        Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
-        Wire.endTransmission(); // fin transmission
-        //Serial.println("end i2creceive2");
-}
 
 
 //____________________________________________________________________________________________________
