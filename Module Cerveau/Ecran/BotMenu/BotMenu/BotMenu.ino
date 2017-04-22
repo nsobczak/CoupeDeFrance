@@ -15,20 +15,33 @@
 #include "utility/mas.h"
 
 // setup u8g object
-U8GLIB_ST7920_128X64_1X u8g(53, 52, 13);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14
+U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14  //(53, 52, 13);
+
+#define _DEBUG_ true
 
 // I2C
 #include <Wire.h>
 #include "i2cCommunication.h"
 
-#define _SENDADRESS_ 12
-#define _RECEIVEADRESS_ 13
+#define _RECEIVEADRESS_ 12
+#define _SENDADRESS_ 13
 
 
 //____________________________________________________________________________________________________
 //=================================================
 // Variables globales
-int finInitialisationMoteur = 0;
+int varStartBot = 0;
+int varTestMotorStraightAhead = 0;
+int varTestMotorBackward = 0;
+int varTestMotorLeftRotation = 0;
+int varTestMotorRightRotation = 0;
+int varTestMotorGlobal = 0;
+int varTestClampInitialisation = 0;
+int varTestClampCatch = 0;
+int varTestClampRelease = 0;
+int varTestClampGlobal = 0;
+int varTestSensors = 0;
+int varTestFunnyAction = 0;
 
 /*Tableau de correspondance des variables
    0 => demarrerRobot
@@ -56,10 +69,14 @@ int finInitialisationMoteur = 0;
  *   const int encoderMoins = 52;
  *   const int encoderPlus = 50;
  */
-uint8_t uiKeyUpPin = 11;
-uint8_t uiKeyDownPin = 10;
-uint8_t uiKeySelectPin = 8;
+uint8_t uiKeyUpPin = 50;
+uint8_t uiKeyDownPin = 52;
+uint8_t uiKeySelectPin = 2;
 uint8_t uiKeyExitPin = 0;
+
+// uint8_t uiKeyUpPin = 11;
+// uint8_t uiKeyDownPin = 10;
+// uint8_t uiKeySelectPin = 8;
 
 
 //____________________________________________________________________________________________________
@@ -69,7 +86,7 @@ M2_EXTERN_ALIGN(top_el_expandable_menu);
 
 
 //____________________________________________________________________________________________________
-/*=== radio button selection  ===*/
+/*=== strategie  ===*/
 uint8_t rb_select_strat = 0;
 
 /**
@@ -79,8 +96,10 @@ uint8_t rb_select_strat = 0;
  */
 void fn_start_robot(m2_el_fnarg_p fnarg)
 {
-        Serial.print("Start robot avec la strategie ");
-        Serial.println(rb_select_strat + 1);
+        if (_DEBUG_) {
+                Serial.print("Start robot avec la strategie ");
+                Serial.println(rb_select_strat + 1);
+        }
         // conversion sur 2 octets de la valeur à envoyer
         byte bytesTab[2];
         intTo2Bytes(bytesTab, rb_select_strat + 1);
@@ -90,16 +109,16 @@ void fn_start_robot(m2_el_fnarg_p fnarg)
 }
 
 
-M2_LABEL(el_rb_label1, NULL, "strategie 1");
+M2_LABEL(el_rb_label1, NULL, "blue safe");
 M2_RADIO(el_rb_radio1, "v0", &rb_select_strat);
 
-M2_LABEL(el_rb_label2, NULL, "strategie 2");
+M2_LABEL(el_rb_label2, NULL, "yellow safe");
 M2_RADIO(el_rb_radio2, "v1", &rb_select_strat);
 
-M2_LABEL(el_rb_label3, NULL, "strategie 3");
+M2_LABEL(el_rb_label3, NULL, "blue risky");
 M2_RADIO(el_rb_radio3, "v2", &rb_select_strat);
 
-M2_LABEL(el_rb_label4, NULL, "strategie 4");
+M2_LABEL(el_rb_label4, NULL, "yellow risky");
 M2_RADIO(el_rb_radio4, "v3", &rb_select_strat);
 
 M2_ROOT(el_rb_goto_top, NULL, " Back ", &top_el_expandable_menu);
@@ -117,7 +136,7 @@ M2_ALIGN(el_top_rb, "-1|1W64H64", &el_rb_grid);
 
 
 //____________________________________________________________________________________________________
-/*=== Ecran de tests : number entry ===*/
+/*=== Ecran de tests ===*/
 
 uint32_t num_1 = 0;
 uint32_t num_2 = 0;
@@ -137,23 +156,182 @@ void fn_num_zero(m2_el_fnarg_p fnarg) {
 }
 
 
+// === I2C ===
 /**
  * \fn void fn_num_go_i2c(m2_el_fnarg_p fnarg)
  * \brief Fonction de test i2c
  * \param m2_el_fnarg_p fnarg
  */
-void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
-        // request 3 bytes from slave device on adress 9
-        dataI2C = i2crequest(_RECEIVEADRESS_, 3, num_1, 6);
+// void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
+//         // request 3 bytes from slave device on adress 9
+//         dataI2C = i2crequest(_RECEIVEADRESS_, 3, num_1, 6);
+//
+//         valueI2C[0] = dataI2C [1];
+//         valueI2C[1] = dataI2C [2];
+//         recoveredValueI2C = recoverIntFrom2Bytes(valueI2C);
+//         if (_DEBUG_) {
+//                 Serial.print("\nrecovery : ");
+//                 Serial.print(num_1);
+//                 Serial.print(" = ");
+//                 Serial.println(recoveredValueI2C);
+//                 Serial.println();
+//         }
+// }
 
-        valueI2C[0] = dataI2C [1];
-        valueI2C[1] = dataI2C [2];
-        recoveredValueI2C = recoverIntFrom2Bytes(valueI2C);
-        Serial.print("\nrecovery : ");
-        Serial.print(num_1);
-        Serial.print(" = ");
-        Serial.println(recoveredValueI2C);
-        Serial.println();
+M2_BUTTON(el_num_zero, "f4", " zero ", fn_num_zero);
+// M2_BUTTON(el_num_go_i2c, "f4", " I2C test ", fn_num_go_i2c);
+M2_ROOT(el_num_goto_top, "f4", " back ", &top_el_expandable_menu);
+
+M2_LABEL(el_num_label1, NULL, "Variable:");
+M2_U32NUM(el_num_1, "c3", &num_1);
+
+// M2_LIST(num_list_I2C) = {
+//         &el_num_label1, &el_num_1,
+//         &el_num_zero, &el_num_go_i2c,
+//         &el_num_goto_top
+// };
+// M2_GRIDLIST(el_num_menu_grid_I2C, "c2", num_list_I2C);
+// M2_ALIGN(el_top_num_menu, "-1|1W64H64", &el_num_menu_grid_I2C);
+
+
+// === Asservissement ===
+/**
+ * \fn void fn_num_go_asservissement_straightAhead(m2_el_fnarg_p fnarg)
+ * \brief
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_asservissement_straightAhead(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("straightAhead");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(6, bytesTab[0], bytesTab[1], _SENDADRESS_);
+}
+
+/**
+ * \fn void fn_num_go_asservissement_straightBackward(m2_el_fnarg_p fnarg)
+ * \brief
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_asservissement_straightBackward(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("straightBackward");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(6, bytesTab[0], bytesTab[1], _SENDADRESS_);
+}
+
+/**
+ * \fn void fn_num_go_asservissement_turnLeft(m2_el_fnarg_p fnarg)
+ * \brief
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_asservissement_turnLeft(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("turnLeft");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(6, bytesTab[0], bytesTab[1], _SENDADRESS_);
+}
+
+/**
+ * \fn void fn_num_go_asservissement_turnRight(m2_el_fnarg_p fnarg)
+ * \brief
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_asservissement_turnRight(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("turnRight");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(6, bytesTab[0], bytesTab[1], _SENDADRESS_);
+}
+
+/**
+ * \fn void fn_num_go_asservissement_global(m2_el_fnarg_p fnarg)
+ * \brief
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_asservissement_global(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("turnRight");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(6, bytesTab[0], bytesTab[1], _SENDADRESS_);
+}
+
+
+M2_BUTTON(el_num_go_asservissement_straightAhead, "f4", "ahead", fn_num_go_asservissement_straightAhead);
+M2_BUTTON(el_num_go_asservissement_straightBackward, "f4", "backward", fn_num_go_asservissement_straightBackward);
+M2_BUTTON(el_num_go_asservissement_turnLeft, "f4", "left", fn_num_go_asservissement_turnLeft);
+M2_BUTTON(el_num_go_asservissement_turnRight, "f4", "right", fn_num_go_asservissement_turnRight);
+M2_BUTTON(el_num_go_asservissement_global, "f4", " global ", fn_num_go_asservissement_global);
+
+M2_LIST(num_list_asservissement) = {
+        &el_num_go_asservissement_straightAhead, &el_num_go_asservissement_straightBackward,
+        &el_num_go_asservissement_turnLeft, &el_num_go_asservissement_turnRight,
+        &el_num_go_asservissement_global,  &el_num_goto_top
+};
+M2_GRIDLIST(el_num_menu_grid_asservissement, "c2", num_list_asservissement);
+M2_ALIGN(el_top_num_menu_Asservissment, "-1|1W64H64", &el_num_menu_grid_asservissement);
+
+
+// === Pince ===
+/**
+ * \fn void fn_num_go_pince_initialisation(m2_el_fnarg_p fnarg)
+ * \brief Fonction de test de la pince avec l'i2c
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_pince_initialisation(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("initialisation de la pince");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(6, bytesTab[0], bytesTab[1], _SENDADRESS_);
+}
+
+
+/**
+ * \fn void fn_num_go_pince_catch(m2_el_fnarg_p fnarg)
+ * \brief Fonction de test de la pince avec l'i2c
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_pince_catch(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("pince catch");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(7, bytesTab[0], bytesTab[1], _SENDADRESS_);
+}
+
+
+/**
+ * \fn void fn_num_go_pince_release(m2_el_fnarg_p fnarg)
+ * \brief Fonction de test de la pince avec l'i2c
+ * \param m2_el_fnarg_p fnarg
+ */
+void fn_num_go_pince_release(m2_el_fnarg_p fnarg) {
+        // démarrage de la pince
+        if (_DEBUG_) Serial.println("pince release");
+        // conversion sur 2 octets de la valeur à envoyer
+        byte bytesTab[2];
+        intTo2Bytes(bytesTab, 1);
+        // envoi
+        i2csend3bytes(8, bytesTab[0], bytesTab[1], _SENDADRESS_);
 }
 
 
@@ -164,108 +342,47 @@ void fn_num_go_i2c(m2_el_fnarg_p fnarg) {
  */
 void fn_num_go_pince(m2_el_fnarg_p fnarg) {
         // démarrage de la pince
-        Serial.println("demarrage de la pince");
+        if (_DEBUG_) Serial.println("demarrage de la pince");
         // conversion sur 2 octets de la valeur à envoyer
         byte bytesTab[2];
         intTo2Bytes(bytesTab, 1);
         // envoi
-        i2csend3bytes(1, bytesTab[0], bytesTab[1], _SENDADRESS_);
-        /* // attente reception fin initialisation
-           while (finInitialisationMoteur == 0)
-           {
-           i2creceive2(_RECEIVEADRESS_02_);
-           }
-           finInitialisationMoteur = 0;
-         */
+        i2csend3bytes(9, bytesTab[0], bytesTab[1], _SENDADRESS_);
 }
 
+M2_BUTTON(el_num_go_pince_init, "f4", "init", fn_num_go_pince);
+M2_BUTTON(el_num_go_pince_catch, "f4", "catch", fn_num_go_pince);
+M2_BUTTON(el_num_go_pince_release, "f4", "release", fn_num_go_pince);
+M2_BUTTON(el_num_go_pince, "f4", "global", fn_num_go_pince);
 
-/*
-   M2_LABEL(el_num_label1, NULL, "Variable");
-   M2_U8NUM(el_num_1, NULL, 0, 255, &u8num);
- */
-M2_LABEL(el_num_label1, NULL, "Variable:");
-M2_U32NUM(el_num_1, "c3", &num_1);
-
-/*
-   M2_LABEL(el_num_label2, NULL, "Valeur:");
-   M2_U32NUM(el_num_2, "c5", &num_2);
- */
-M2_BUTTON(el_num_zero, "f4", " zero ", fn_num_zero);
-M2_BUTTON(el_num_go_i2c, "f4", " I2C test ", fn_num_go_i2c);
-M2_BUTTON(el_num_go_pince, "f4", " I2C pince ", fn_num_go_pince);
-M2_ROOT(el_num_goto_top, "f4", " back ", &top_el_expandable_menu);
-
-M2_LIST(num_list_1) = {
-        &el_num_label1, &el_num_1,
-        &el_num_zero, &el_num_go_i2c,
+M2_LIST(num_list_clamp) = {
+        &el_num_go_pince_init, &el_num_go_pince_catch,
+        &el_num_go_pince_release, &el_num_go_pince,
         &el_num_goto_top
 };
-M2_GRIDLIST(el_num_menu_grid, "c2", num_list_1);
-M2_ALIGN(el_top_num_menu, "-1|1W64H64", &el_num_menu_grid);
+M2_GRIDLIST(el_num_menu_grid_clamp, "c2", num_list_clamp);
+M2_ALIGN(el_top_num_menu_Clamp, "-1|1W64H64", &el_num_menu_grid_clamp);
 
-M2_LIST(num_list_2) = {
-        &el_num_goto_top, &el_num_go_pince
+
+// === Capteurs ===
+M2_BUTTON(el_num_go_sensors, "f4", " read sensors ", fn_num_go_pince);
+M2_LIST(num_list_sensors) = {
+        &el_num_go_sensors,
+        &el_num_goto_top
 };
-M2_GRIDLIST(el_num_menu_grid_2, "c2", num_list_2);
-M2_ALIGN(el_top_num_menu_2, "-1|1W64H64", &el_num_menu_grid_2);
+M2_GRIDLIST(el_num_menu_grid_sensors, "1", num_list_sensors);
+M2_ALIGN(el_top_num_menu_Sensors, "-1|1W64H64", &el_num_menu_grid_sensors);
 
 
-M2_LIST(num_list_3) = {
-        &el_num_goto_top, &el_num_go_pince
+// === Funny Action ===
+
+M2_BUTTON(el_num_go_funny_action, "f4", " launch funny action ", fn_num_go_pince);
+M2_LIST(num_list_funny_action) = {
+        &el_num_go_funny_action,
+        &el_num_goto_top
 };
-M2_GRIDLIST(el_num_menu_grid_3, "c2", num_list_3);
-M2_ALIGN(el_top_num_menu_3, "-1|1W64H64", &el_num_menu_grid_3);
-
-M2_LIST(num_list_4) = {
-        &el_num_goto_top, &el_num_go_pince
-};
-M2_GRIDLIST(el_num_menu_grid_4, "c2", num_list_4);
-M2_ALIGN(el_top_num_menu_4, "-1|1W64H64", &el_num_menu_grid_4);
-
-//____________________________________________________________________________________________________
-/*=== multi selection ===*/
-
-#define MULTI_SELECT_CNT 3
-const char *multi_select_strings[MULTI_SELECT_CNT] = { "value01", "value02", "value03" };
-uint8_t multi_select_status[MULTI_SELECT_CNT] = { 0, 0, 0};
-
-uint8_t el_muse_first = 0;
-uint8_t el_muse_cnt = MULTI_SELECT_CNT;
-
-const char *el_muse_strlist_cb(uint8_t idx, uint8_t msg) {
-        const char *s = "";
-        if ( msg == M2_STRLIST_MSG_SELECT ) {
-                if ( multi_select_status[idx] == 0 ) {
-                        multi_select_status[idx] = 1;
-                }
-                else {
-                        multi_select_status[idx] = 0;
-                }
-        }
-        if ( msg == M2_STRLIST_MSG_GET_STR ) {
-                s = multi_select_strings[idx];
-        }
-        if ( msg == M2_STRLIST_MSG_GET_EXTENDED_STR ) {
-                if ( multi_select_status[idx] == 0 ) {
-                        s = " ";
-                }
-                else {
-                        s = "*";
-                }
-        }
-        return s;
-}
-
-M2_STRLIST(el_muse_strlist, "l3F0E10W46", &el_muse_first, &el_muse_cnt, el_muse_strlist_cb);
-M2_ROOT(el_muse_goto_top, "f4", "Goto Top Menu", &top_el_expandable_menu);
-
-M2_LIST(muse_list) = {
-        &el_muse_strlist,
-        &el_muse_goto_top,
-};
-M2_VLIST(el_muse_vlist, "c2", muse_list);
-M2_ALIGN(top_el_muse, "-1|1W64H64", &el_muse_vlist);
+M2_GRIDLIST(el_num_menu_grid_funny_action, "c1", num_list_funny_action);
+M2_ALIGN(el_top_num_menu_FunnyAction, "-1|1W64H64", &el_num_menu_grid_funny_action);
 
 
 //____________________________________________________________________________________________________
@@ -331,11 +448,11 @@ m2_menu_entry m2_2lmenu_data[] =
         { "Epreuve", NULL },
         { ". Strategie", &el_rb_grid },
         { "Tests robots", NULL },
-        { ". Test I2C", &el_top_num_menu },
-        { ". Test Pince", &el_top_num_menu_2},
-        { ". Test Capteurs", &el_top_num_menu_3},
-        { ". Test Moteur", &top_el_muse},
-        { ". Test Funny Action", &el_top_num_menu_4},
+        { ". Test Asserv", &el_top_num_menu_Asservissment},
+        { ". Test Pince", &el_top_num_menu_Clamp},
+        { ". Test Capteurs", &el_top_num_menu_Sensors},
+        { ". Test Fun Action", &el_top_num_menu_FunnyAction},
+        // { ". Test I2C", &el_top_num_menu },
         { "Debug ", NULL },
         { ". Debug Moteur", &el_top_num_menu_debug_01},
         { ". Debug Autre", &el_top_num_menu_debug_02},
@@ -390,7 +507,6 @@ void receiveEvent2(int howMany)
                 {
                 case 1:
                         Serial.println("variable recue : finInitialisationMoteur");
-                        finInitialisationMoteur = value;
                         break;
                 default:
                         Serial.println("variable recue inconnue");
@@ -432,7 +548,7 @@ void draw(void) {
 
 /**
  * \fn void setup()
- * \brief Fonction setup d'arduino
+ * \brief Fonction setup d'arduino: initialisation de l'encodeur
  */
 void setup(void) {
         // Connect u8glib with m2tklib
@@ -450,12 +566,6 @@ void setup(void) {
         m2.setPin(M2_KEY_NEXT, uiKeyDownPin);
         m2.setPin(M2_KEY_EXIT, uiKeyExitPin);
 
-        /*
-           m2.setPin(M2_KEY_SELECT, 7);
-           m2.setPin(M2_KEY_ROT_ENC_A, 3);
-           m2.setPin(M2_KEY_ROT_ENC_B, 4);
-         */
-
         /* mass storage init: simulation environment */
         mas_Init(mas_device_sim, 0);
 
@@ -468,7 +578,7 @@ void setup(void) {
 
 /**
  * \fn void loop()
- * \brief Fonction loop d'arduino
+ * \brief Fonction loop d'arduino: rafraichissement de l'écran
  */
 void loop()
 {
