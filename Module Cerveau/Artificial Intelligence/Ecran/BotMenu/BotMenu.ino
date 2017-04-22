@@ -1,4 +1,3 @@
-
 /**
  *    \file BotMenu.cpp
  *    \brief Code d'affichage de l'écran
@@ -25,38 +24,6 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 
 #define _RECEIVEADRESS_ 12
 #define _SENDADRESS_ 13
-
-
-//____________________________________________________________________________________________________
-//=================================================
-// Variables globales
-int varStartBot = 0;
-int varTestMotorStraightAhead = 0;
-int varTestMotorBackward = 0;
-int varTestMotorLeftRotation = 0;
-int varTestMotorRightRotation = 0;
-int varTestMotorGlobal = 0;
-int varTestClampInitialisation = 0;
-int varTestClampCatch = 0;
-int varTestClampRelease = 0;
-int varTestClampGlobal = 0;
-int varTestSensors = 0;
-int varTestFunnyAction = 0;
-
-/*Tableau de correspondance des variables
-   0 => demarrerRobot
-   1 => testMoteur ligne droite vers l'avant
-   2 => testMoteur ligne droite vers l'arrière
-   3 => testMoteur rotation vers la gauche
-   4 => testMoteur rotation vers la droite
-   5 => testMoteur programme test
-   6 => testPince initialisation
-   7 => testPince catch
-   8 => testPince release
-   9 => testPince programme test
-   10 => testSensors
-   11 => testFunnyAction
- */
 
 
 //____________________________________________________________________________________________________

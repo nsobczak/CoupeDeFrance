@@ -1,5 +1,3 @@
-#include <U8glib.h>
-
 /**
  *    \file Ecran_test.cpp
  *    \brief Code d'affichage de l'écran
@@ -14,7 +12,7 @@
  */
 #include "logoCrysteo.h"
 #include "Ecran.h"
-//#include "U8glib.h"
+#include "U8glib.h"
 
 
 /* ======================================================================================================
