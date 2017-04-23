@@ -40,12 +40,12 @@
 
 // === Cylinders ===
 const CylinderPosition cylinderToCatchList_1B[_NUMBER_OF_CYLINDERS_TO_CATCH_]={
-        {1, 0.200, _Y_LIMIT_ - 0.600}, {2, 1.150, _Y_LIMIT_ - 0.0315}, {3, 1.150, _Y_LIMIT_ - 0.0315},
-        {4, 1.150, _Y_LIMIT_ - 0.0315}, {5, 1.150, _Y_LIMIT_ - 0.0315}, {6, 0.800, _Y_LIMIT_ - 1.850}
+        {1, 1.150, _Y_LIMIT_ - 0.0315}, {2, 1.150, _Y_LIMIT_ - 0.0315}, {3, 1.150, _Y_LIMIT_ - 0.0315},
+        {4, 1.150, _Y_LIMIT_ - 0.0315}, {5, 0.200, _Y_LIMIT_ - 0.600}, {6, 0.800, _Y_LIMIT_ - 1.850}
 };
 const CylinderPosition cylinderToCatchList_2Y[_NUMBER_OF_CYLINDERS_TO_CATCH_]={
-        {1, 2.800, _Y_LIMIT_ - 0.600}, {2, 1.850, _Y_LIMIT_ - 0.0315}, {3, 1.850, _Y_LIMIT_ - 0.0315},
-        {4, 1.850, _Y_LIMIT_ - 0.0315}, {5, 1.850, _Y_LIMIT_ - 0.0315}, {6, 2.200, _Y_LIMIT_ - 1.850}
+        {1, 1.850, _Y_LIMIT_ - 0.0315}, {2, 1.850, _Y_LIMIT_ - 0.0315}, {3, 1.850, _Y_LIMIT_ - 0.0315},
+        {4, 2.800, _Y_LIMIT_ - 0.600}, {5, 1.850, _Y_LIMIT_ - 0.0315}, {6, 2.200, _Y_LIMIT_ - 1.850}
 };
 
 // === Moon Bases ===
@@ -114,9 +114,10 @@ void findMoonBase();
 void findAndCatchCylinder();
 void releaseCylinderInBase();
 
+void handleRocketCylinders();
+void buildBase();
 
 // void build1BaseCylinder(float x_coord, float y_coord);
-// void buildBase();
 //
 // void goToPosition(int xAxis, int yAxis);
 //

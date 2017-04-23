@@ -283,19 +283,21 @@ void Bot::releaseCylinderInBase()
 
 
 //__________________________________________________________________________________
-/*
-   //TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
-   void Bot::build1BaseCylinder(float x_coord, float y_coord)
-   {
-        this->findAndCatchCylinder();
-        //TODO: go near theoretical base position
-        this->releaseCylinderInBase();
-   }
+void Bot::handleRocketCylinders()
+{
+  //  -aller devant la fusée
+//  -tourner
+//  -attraper le cylindres
+//  -tourner
+//  -aller devant zone de départ
+//  -lâcher le cylindre
+//  -se retourner
+}
 
 
-   //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
-   void Bot::buildBase()
-   {
+//TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
+void Bot::buildBase()
+{
         //TODO: regarder comment on peut passer le timer partout pour arrêter le robot si on est à la fin
         unsigned long timer = millis();
 
@@ -307,10 +309,35 @@ void Bot::releaseCylinderInBase()
                 {
                         x_coord = cylinderToCatchList[i].cylinder_x;
                         y_coord = cylinderToCatchList[i].cylinder_y;
-                        this->build1BaseCylinder(x_coord, y_coord);
+                        // this->build1BaseCylinder(x_coord, y_coord);
                 }
         }
         this->getAsservissement().botStop();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+   //TODO: fonction qui va attraper le cylindre, déplacer le robot, lacher le cylindre
+   void Bot::build1BaseCylinder(float x_coord, float y_coord)
+   {
+        this->findAndCatchCylinder();
+        //TODO: go near theoretical base position
+        this->releaseCylinderInBase();
    }
  */
 
