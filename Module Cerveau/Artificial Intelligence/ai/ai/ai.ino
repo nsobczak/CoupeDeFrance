@@ -321,6 +321,7 @@ void startBotIfTiretteTiree() {
         if (!epreuveFaite && elPadre.isTiretteTiree())
         {
                 Wire.begin();
+                //TODO: compléter
                 // elPadre.buildBase();
                 epreuveFaite = true;
         }
@@ -349,7 +350,26 @@ void fn_start_robot(m2_el_fnarg_p fnarg)
                 Serial.print("Start robot avec la strategie ");
                 Serial.println(rb_select_strat + 1);
         }
-//TODO: compléter
+        switch (rb_select_strat) {
+        case 0: //blue safe
+                elPadre.setColorNumber(1);
+                elPadre.setStrategyNumber(1);
+                break;
+        case 1: //yellow safe
+                elPadre.setColorNumber(2);
+                elPadre.setStrategyNumber(1);
+                break;
+        case 2: //blue risky
+                elPadre.setColorNumber(1);
+                elPadre.setStrategyNumber(2);
+                break;
+        default: //yellow risky
+                elPadre.setColorNumber(2);
+                elPadre.setStrategyNumber(2);
+                break;
+        }
+        initializePosition();
+        startBotIfTiretteTiree();
 }
 
 

@@ -23,7 +23,7 @@ Bot::Bot(){
 Bot::Bot(int newColorNumber, int newStrategyNumber)
 {
         //couleur: 1 => bleu; 2 => jaune
-        //strategie: 1 => ? ; 2 => ?
+        //strategie: 1 => safe ; 2 => risky
         if (newColorNumber != 1 && newColorNumber != 2) newColorNumber = 1;
         if (newStrategyNumber != 1 && newStrategyNumber != 2) newStrategyNumber = 1;
         this->colorNumber = newColorNumber;
