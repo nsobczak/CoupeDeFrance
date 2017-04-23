@@ -18,7 +18,7 @@
 
 
 #define _DEBUG_ true
-#define _TEST_SANS_I2C_ false
+#define _TEST_SANS_I2C_ true
 
 //=== I2C ===
 #define _ASSERVISSEMENT_SENDRECEIVEADRESS_ 6
@@ -72,13 +72,13 @@ int kp = 0;
 
 // coef correcteur PI moteur droit
 
-long R0_MOTOR_RIGHT = 1170734.2; //coeff qui marche bien : 1829979.4;
-long R1_MOTOR_RIGHT = 3659851.5; //coeff qui marche bien : 21525987.0;
+long R0_MOTOR_RIGHT = 9.742;//1170734.2; //coeff qui marche bien : 1829979.4;
+long R1_MOTOR_RIGHT = 29.94;//3659851.5; //coeff qui marche bien : 21525987.0;
 
 // coef correcteur PI moteur gauche
 
-long R0_MOTOR_LEFT = 1170734.2;
-long R1_MOTOR_LEFT = 3659851.5;
+long R0_MOTOR_LEFT = 9.926;//1170734.2;
+long R1_MOTOR_LEFT = 30.51;//3659851.5;
 
 int cmdPrecedenteDroite = 0;
 int cmdPrecedenteGauche = 0;
@@ -287,7 +287,7 @@ void asservissementVitesse()
         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
 
         
-        int CorrectionVitesse = kp*(tick_codeuse_R-tick_codeuse_L);
+        int CorrectionVitesse = kp*(vitesseReelleDroite-vitesseReelleGauche);
         
         int cmdMoteurDroite = R0_MOTOR_RIGHT * erreurDroite - (R0_MOTOR_RIGHT - R1_MOTOR_RIGHT/FREQUENCE_ECHANTILLIONNAGE) * erreurPrecedenteDroite + cmdPrecedenteDroite;
         int cmdMoteurGauche = R0_MOTOR_LEFT * erreurGauche + (R0_MOTOR_LEFT - R1_MOTOR_LEFT/FREQUENCE_ECHANTILLIONNAGE) * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
@@ -315,9 +315,10 @@ void asservissementVitesse()
                 // Serial.print("\t consignePWM : \t " );
                 // Serial.println(cmdMoteurDroit);
                 // Serial.print("\t consigneVitesseMoteur : \t");
-                // Serial.println(consigneVitesseMoteur);
+                 Serial.println(consigneVitesseMoteur);
                 // Serial.print("\t calculVitesse : \t " );
-                // printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
+                printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
+                printDouble(calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_), 1000000);
         }
 
         tick_codeuse_R = 0;
