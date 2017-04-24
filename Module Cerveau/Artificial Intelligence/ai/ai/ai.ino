@@ -610,6 +610,11 @@ M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
  * ======================================================================================================
  */
 
+void stopAll()
+{
+        elPadre.getAsservissement().botStop();
+}
+
 /**
  * \fn void draw()
  * \brief Draw procedure
@@ -645,6 +650,7 @@ void setup(void)
         Wire.begin();              // join i2c bus (address optional for master)
 
         /* AUTRES */
+        attachInterrupt(_PIN_BOUTON_ARRET_URGENCE_, stopAll, RISING);    // Interruption sur appui du bouton d'arret d'urgence
         epreuveFaite = false;
 
         Serial.begin(115200);        // starts the serial communication
