@@ -199,8 +199,22 @@ void testClampCatch(m2_el_fnarg_p fnarg)
 {
         if (_DEBUG_) Serial.println("catch");
         elPadre.getClamp().catchCylinder();
-        delay(6500); //pour laisser le temps à l'action de se réaliser
+        delay(5000); //pour laisser le temps à l'action de se réaliser
 }
+
+
+/**
+ * \fn void testClampBringUp
+ * \param m2_el_fnarg_p fnarg
+ * \brief test de la montee de cylindre de la pince
+ */
+void testClampBringUp(m2_el_fnarg_p fnarg)
+{
+        if (_DEBUG_) Serial.println("bring up");
+        elPadre.getClamp().bringUpCylinder();
+        delay(5000); //pour laisser le temps à l'action de se réaliser
+}
+
 
 /**
  * \fn void testClampRelease
@@ -449,14 +463,15 @@ M2_ALIGN(el_top_num_menu_Asservissment, "-1|1W64H64", &el_num_menu_grid_asservis
 
 M2_BUTTON(el_num_go_pince_init, "f4", "init", testClampInitialisation);
 M2_BUTTON(el_num_go_pince_catch, "f4", "catch", testClampCatch);
+M2_BUTTON(el_num_go_pince_bringup, "f4", "bringup", testClampBringUp);
 M2_BUTTON(el_num_go_pince_release, "f4", "release", testClampRelease);
 M2_BUTTON(el_num_go_pince, "f4", "global", testClamp);
 
 M2_LIST(num_list_clamp) =
 {
         &el_num_go_pince_init, &el_num_go_pince_catch,
-        &el_num_go_pince_release, &el_num_go_pince,
-        &el_num_goto_top
+        &el_num_go_pince_bringup, &el_num_go_pince_release,
+        &el_num_go_pince, &el_num_goto_top
 };
 M2_GRIDLIST(el_num_menu_grid_clamp, "c2", num_list_clamp);
 M2_ALIGN(el_top_num_menu_Clamp, "-1|1W64H64", &el_num_menu_grid_clamp);

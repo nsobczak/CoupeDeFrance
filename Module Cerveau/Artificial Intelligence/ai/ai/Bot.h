@@ -115,6 +115,8 @@ void findAndCatchCylinder();
 void releaseCylinderInBase();
 
 void handleRocketCylinders();
+void buildBlueBase();
+void buildYellowBase();
 void buildBase();
 
 // void build1BaseCylinder(float x_coord, float y_coord);

@@ -17,7 +17,8 @@
 
 #define _CLAMP_INITIALISATION_ 1
 #define _CLAMP_CATCH_ 2
-#define _CLAMP_RELEASE_ 3
+#define _CLAMP_BRINGUP_ 3
+#define _CLAMP_RELEASE_ 4
 
 
 /* ======================================================================================================
@@ -35,6 +36,7 @@ Clamp();
 
 void initialisation();
 void catchCylinder();
+void bringUpCylinder();
 void releaseCylinder();
 
 

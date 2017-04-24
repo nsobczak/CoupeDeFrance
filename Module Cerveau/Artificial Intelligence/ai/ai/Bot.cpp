@@ -285,7 +285,7 @@ void Bot::releaseCylinderInBase()
 //__________________________________________________________________________________
 void Bot::handleRocketCylinders()
 {
-  //  -aller devant la fusée
+//  -aller devant la fusée
 //  -tourner
 //  -attraper le cylindres
 //  -tourner
@@ -296,32 +296,37 @@ void Bot::handleRocketCylinders()
 
 
 //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
-void Bot::buildBase()
+void Bot::buildBlueBase()
 {
         //TODO: regarder comment on peut passer le timer partout pour arrêter le robot si on est à la fin
         unsigned long timer = millis();
 
-        float x_coord;
-        float y_coord;
-        for (int i = 0; i < _NUMBER_OF_CYLINDERS_TO_CATCH_; i++)
+        //cylindres de la fusée
+        for (int i = 0; i < 4; i++) //3 ou 4
         {
-                if (millis() - timer < 70000) //TODO: on se donne 20" pour aller attraper et déplacer un robot
-                {
-                        x_coord = cylinderToCatchList[i].cylinder_x;
-                        y_coord = cylinderToCatchList[i].cylinder_y;
-                        // this->build1BaseCylinder(x_coord, y_coord);
-                }
+                // if (millis() - timer < 70000)
         }
+
+        //cylindre
+        // if (millis() - timer < 70000)
+
+        //cylindre
+        // if (millis() - timer < 70000)
+
         this->getAsservissement().botStop();
 }
 
 
+//TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
+void Bot::buildYellowBase()
+{
+}
 
-
-
-
-
-
+void Bot::buildBase()
+{
+        if (this->getColorNumber() == 1) this->buildBlueBase();
+        else this->buildYellowBase();
+}
 
 
 
@@ -338,6 +343,26 @@ void Bot::buildBase()
         this->findAndCatchCylinder();
         //TODO: go near theoretical base position
         this->releaseCylinderInBase();
+   }
+
+   //TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
+   void Bot::buildBase()
+   {
+           //TODO: regarder comment on peut passer le timer partout pour arrêter le robot si on est à la fin
+           unsigned long timer = millis();
+
+           float x_coord;
+           float y_coord;
+           for (int i = 0; i < _NUMBER_OF_CYLINDERS_TO_CATCH_; i++)
+           {
+                   if (millis() - timer < 70000) //TODO: on se donne 20" pour aller attraper et déplacer un robot
+                   {
+                           x_coord = cylinderToCatchList[i].cylinder_x;
+                           y_coord = cylinderToCatchList[i].cylinder_y;
+                           // this->build1BaseCylinder(x_coord, y_coord);
+                   }
+           }
+           this->getAsservissement().botStop();
    }
  */
 

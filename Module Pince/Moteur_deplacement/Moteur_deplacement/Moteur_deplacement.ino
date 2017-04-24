@@ -60,6 +60,7 @@
 //=== Variables globales ===
 int etat_initialisation;
 int etat_capture_cylindre;
+int etat_monter_cylindre;
 int etat_relacher_cylindre;
 volatile byte state = LOW;
 
@@ -228,11 +229,21 @@ void capture_cylindre_pince()
 {
         attraper_cylindre(170,100,1000);
         if (_DEBUG_) Serial.println("Cylindre attrape");
+        if (_DEBUG_) Serial.println("Fin de la capture du cylindre");
+}
+
+
+/**
+ * \fn void capture_cylindre_pince()
+ * \brief Fonction permettant de monter le cylindre et de le tourner
+ */
+void monter_cylindre_pince()
+{
         monter_descente_initialisation(-10800);
         if (_DEBUG_) Serial.println("Pince monte le cylindre");
         attraper_cylindre(80,100,1000);
         if (_DEBUG_) Serial.println("Cylindre a l'horizontal");
-        if (_DEBUG_) Serial.println("Fin de la capture du cylindre");
+        if (_DEBUG_) Serial.println("Fin de la montee du cylindre");
 }
 
 
@@ -285,6 +296,10 @@ void receiveEvent2(int howMany)
                         etat_capture_cylindre = value;
                         break;
                 case 3:
+                        if (_DEBUG_) Serial.println("variable recue : etat_monter_cylindre");
+                        etat_monter_cylindre = value;
+                        break;
+                case 4:
                         if (_DEBUG_) Serial.println("variable recue : etat_relacher_cylindre");
                         etat_relacher_cylindre = value;
                         break;
@@ -337,6 +352,7 @@ void setup()
         // Initialiation de l'état des actions de possibles de la pince
         etat_initialisation = 0;
         etat_capture_cylindre = 0;
+        etat_monter_cylindre = 0;
         etat_relacher_cylindre = 0;
 
         Serial.begin(9600);
@@ -369,6 +385,10 @@ void loop()
                 else if (etat_relacher_cylindre == 1) {
                         relacher_cylindre_pince();
                         etat_relacher_cylindre = 0;
+                }
+                else if (etat_monter_cylindre == 1) {
+                        monter_cylindre_pince();
+                        etat_monter_cylindre = 0;
                 }
                 else if (etat_capture_cylindre == 1) {
                         capture_cylindre_pince();
