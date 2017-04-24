@@ -40,7 +40,7 @@
 #include "utility/mas.h"
 
 // setup u8g object
-U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14  //(53, 52, 13);
+U8GLIB_ST7920_128X64_1X u8g(53, 52, 13);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14  //(53, 52, 13);
 
 // Bot
 #include "Bot.h"
@@ -81,9 +81,9 @@ uint32_t angle_position;
  *   const int encoderMoins = 10;
  *   const int encoderPlus = 11;
  */
-uint8_t uiKeyUpPin = 50;
-uint8_t uiKeyDownPin = 52;
-uint8_t uiKeySelectPin = 2;
+uint8_t uiKeyUpPin = 11; //50;
+uint8_t uiKeyDownPin = 10; //52;
+uint8_t uiKeySelectPin = 8; //2;
 uint8_t uiKeyExitPin = 0;
 
 
