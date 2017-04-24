@@ -613,6 +613,7 @@ M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
 void stopAll()
 {
         elPadre.getAsservissement().botStop();
+        elPadre.handleEmergencyStopButton();
 }
 
 /**
