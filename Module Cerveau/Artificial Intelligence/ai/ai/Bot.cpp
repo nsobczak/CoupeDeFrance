@@ -267,68 +267,95 @@ void Bot::releaseCylinderInBase()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //__________________________________________________________________________________
-void Bot::handleRocketCylinders()
+/**
+ * \fn void initializePosition()
+ * \brief initialiser la position avec les bonnes distances: 1 = bleu, 2 = jaune
+ */
+void Bot::initializePosition()
 {
-//  -aller devant la fusée
-//  -tourner
-//  -attraper le cylindres
-//  -tourner
-//  -aller devant zone de départ
-//  -lâcher le cylindre
-//  -se retourner
+        if (this->getColorNumber() == 1) //blue
+        {
+                this->getAsservissement().setX_position(_BLUE_X_START_POSITION_);
+                this->getAsservissement().setAngle_position(_BLUE_START_ANGLE_);
+        }
+        else // yellow
+        {
+                this->getAsservissement().setX_position(_YELLOW_X_START_POSITION_);
+                this->getAsservissement().setAngle_position(_YELLOW_START_ANGLE_);
+        }
+        this->getAsservissement().setY_position(_Y_START_POSITION_);
 }
 
 
-//TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
-void Bot::buildBlueBase()
+/**
+ * \fn void goInFrontOfRocketCylinders()
+ * \param unsigned long timer
+ * \brief fonction qui amène le robot devant la fusée contenant les cylindres
+ */
+void Bot::goInFrontOfRocketCylinders(unsigned long timer)
+{
+        if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botGoForward(0.3, _SLOW_SPEED_);
+        if (this->getColorNumber() == 1) //blue
+        {
+                if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botTurnAroundLeft(PI/2, _SLOW_SPEED_);
+                if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botGoForward((1.15 - _BLUE_X_START_POSITION_), _SLOW_SPEED_);
+                if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botTurnAroundLeft(PI/2, _SLOW_SPEED_);
+        }
+        else // yellow
+        {
+                if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botTurnAroundRight(PI/2, _SLOW_SPEED_);
+                if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botGoForward((_YELLOW_X_START_POSITION_ - 1.85), _SLOW_SPEED_);
+                if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botTurnAroundRight(PI/2, _SLOW_SPEED_);
+        }
+}
+
+
+/**
+ * \fn void handleRocketCylinders()
+ * \param unsigned long timer
+ * \brief fonction qui s'occupe des cylindres de la fusée
+ */
+void Bot::handleRocketCylinders(unsigned long timer)
+{
+        if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botGoForward((0.25 - _Y_START_POSITION_), _SLOW_SPEED_);
+        // if (millis() - timer < _TIMER_LIMIT_) this->findAndCatchCylinder();
+        if (millis() - timer < _TIMER_LIMIT_) this->getClamp().catchCylinder();
+        if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botGoBackward((0.25 - _Y_START_POSITION_), _SLOW_SPEED_);
+        if (millis() - timer < _TIMER_LIMIT_) this->getClamp().bringUpCylinder();
+
+        if ((this->getColorNumber() == 1) && // blue
+            (millis() - timer < _TIMER_LIMIT_)) this->getAsservissement().botTurnAroundLeft(PI/2, _SLOW_SPEED_);  //yellow
+        else if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botTurnAroundRight(PI/2, _SLOW_SPEED_);
+
+        if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botGoForward(0.25, _SLOW_SPEED_);
+        if (millis() - timer < _TIMER_LIMIT_) this->getClamp().releaseCylinder();
+        if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botGoBackward(0.25, _SLOW_SPEED_);
+
+        if ((this->getColorNumber() == 1) && // blue
+            (millis() - timer < _TIMER_LIMIT_)) this->getAsservissement().botTurnAroundRight(PI/2, _SLOW_SPEED_);
+        else if (millis() - timer < _TIMER_LIMIT_) this->getAsservissement().botTurnAroundLeft(PI/2, _SLOW_SPEED_);  //yellow
+}
+
+
+/**
+ * \fn void buildBase()
+ * \brief fonction qui s'occupe des cylindres (construit la base)
+ */
+void Bot::buildBase()
 {
         //TODO: regarder comment on peut passer le timer partout pour arrêter le robot si on est à la fin
         unsigned long timer = millis();
 
+        this->goInFrontOfRocketCylinders(timer);
         //cylindres de la fusée
-        for (int i = 0; i < 4; i++) //3 ou 4
-        {
-                // if (millis() - timer < 70000)
-        }
+        for (int i = 0; i < 4; i++) handleRocketCylinders(timer);
 
         //cylindre
-        // if (millis() - timer < 70000)
-
-        //cylindre
-        // if (millis() - timer < 70000)
+        // if (millis() - timer < _TIMER_LIMIT_)
 
         this->getAsservissement().botStop();
 }
-
-
-//TODO: fonction qui va rammasser les cylindres dans un certain ordre suivant la stratégie
-void Bot::buildYellowBase()
-{
-}
-
-void Bot::buildBase()
-{
-        if (this->getColorNumber() == 1) this->buildBlueBase();
-        else this->buildYellowBase();
-}
-
-
 
 
 

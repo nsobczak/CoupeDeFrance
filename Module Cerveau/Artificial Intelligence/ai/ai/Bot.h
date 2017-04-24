@@ -33,9 +33,18 @@
 #define _TEMPS_RECHERCHE_BASE_MAXIMUM_ 3000 //ms
 #define _TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_ 8000 //ms
 
+#define _TIMER_LIMIT_ 80000
+
 #define _SLOW_SPEED_ 0.35
 #define _MEDIUM_SPEED_ 0.7
 #define _FAST_SPEED_ 1.0
+
+//TODO: replace by the right values
+const float _BLUE_X_START_POSITION_ = 0.4;
+const float _YELLOW_X_START_POSITION_ = 2.4;
+const float _Y_START_POSITION_ = 0.2;
+const float _BLUE_START_ANGLE_ = 0;
+const float _YELLOW_START_ANGLE_ = PI;
 
 
 // === Cylinders ===
@@ -114,9 +123,9 @@ void findMoonBase();
 void findAndCatchCylinder();
 void releaseCylinderInBase();
 
-void handleRocketCylinders();
-void buildBlueBase();
-void buildYellowBase();
+void initializePosition();
+void goInFrontOfRocketCylinders(unsigned long timer);
+void handleRocketCylinders(unsigned long timer);
 void buildBase();
 
 // void build1BaseCylinder(float x_coord, float y_coord);

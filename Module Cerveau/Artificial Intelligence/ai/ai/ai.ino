@@ -44,12 +44,7 @@ U8GLIB_ST7920_128X64_1X u8g(13, 51, 14);  // SPI Com: SCK = en = 13, MOSI = rw =
 
 // Bot
 #include "Bot.h"
-//TODO: replace by the right values
-const float _BLUE_X_START_POSITION_ = 0.4;
-const float _YELLOW_X_START_POSITION_ = 2.4;
-const float _Y_START_POSITION_ = 0.2;
-const float _BLUE_START_ANGLE_ = 0;
-const float _YELLOW_START_ANGLE_ = PI;
+
 
 Bot elPadre;
 bool epreuveFaite;
@@ -307,36 +302,17 @@ void update_angle_and_position(m2_el_fnarg_p fnarg)
 
 //_______________________________________________________________________________________________________
 /**
- * \fn void initializePosition()
- * \brief initialiser la position avec les bonnes distances: 1 = bleu, 2 = jaune
- */
-void initializePosition()
-{
-        if (elPadre.getColorNumber() == 1) //blue
-        {
-                elPadre.getAsservissement().setX_position(_BLUE_X_START_POSITION_);
-                elPadre.getAsservissement().setAngle_position(_BLUE_START_ANGLE_);
-        }
-        else // yellow
-        {
-                elPadre.getAsservissement().setX_position(_YELLOW_X_START_POSITION_);
-                elPadre.getAsservissement().setAngle_position(_YELLOW_START_ANGLE_);
-        }
-        elPadre.getAsservissement().setY_position(_Y_START_POSITION_);
-}
-
-
-/**
  * \fn void startBotIfTiretteTiree()
  * \brief fonction qui lance la routine d'épreuve du robot si la tirette est tiree
  */
-void startBotIfTiretteTiree() {
+void startBotIfTiretteTiree()
+{
         //Code final
         if (!epreuveFaite && elPadre.isTiretteTiree())
         {
                 Wire.begin();
-                //TODO: compléter
-                // elPadre.buildBase();
+                elPadre.initializePosition();
+                elPadre.buildBase();
                 epreuveFaite = true;
         }
 }
@@ -382,7 +358,6 @@ void fn_start_robot(m2_el_fnarg_p fnarg)
                 elPadre.setStrategyNumber(2);
                 break;
         }
-        initializePosition();
         startBotIfTiretteTiree();
 }
 
@@ -671,7 +646,6 @@ void setup(void)
 
         /* AUTRES */
         epreuveFaite = false;
-        initializePosition();
 
         Serial.begin(115200);        // starts the serial communication
 }
