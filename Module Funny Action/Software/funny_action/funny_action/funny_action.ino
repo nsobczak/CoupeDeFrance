@@ -48,7 +48,7 @@ myMillis MM;
  */
 void servoMoteur()
 {
-        servo.write(60);
+        servo.write(20);
         if (_DEBUG_) Serial.println("Fusee lancee");
 }
 
