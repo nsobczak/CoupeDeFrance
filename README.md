@@ -1,14 +1,18 @@
 # Coupe de France de robotique
 
-Code du robot principal.
+## Robot principal
 
-## Le grand robot
-
-Le grand robot doit être capable de réaliser les modules suivants:
+Notre robot principal doit être capable de réaliser les modules suivants :
 
 | Nom du module | Priorité |
 |---|---|
 |Ramassage de cylindres |Moyenne|
-|Ramassage de boules |Basse|
 |Funny action |Haute|
 
+## Robot secondaire
+
+Nous n'avons pas de robot secondaire. Si nous en avions un, il se chargerai du module suivant :
+
+| Nom du module | Priorité |
+|---|---|
+|Ramassage de boules |Basse|
