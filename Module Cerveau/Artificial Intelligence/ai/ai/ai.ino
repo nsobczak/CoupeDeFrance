@@ -288,14 +288,30 @@ void testFunnyAction(m2_el_fnarg_p fnarg)
 
 // === Emergency stop button ===
 /**
- * \fn void testFunnyAction
+ * \fn void testEmergencyStopButton
  * \param m2_el_fnarg_p fnarg
- * \brief test de lancement de la funny action
+ * \brief test de detection de l'état du bouton d'arrêt d'urgence
  */
 void testEmergencyStopButton(m2_el_fnarg_p fnarg)
 {
         if (_DEBUG_AI_) Serial.println("=== _TEST_EMERGENCY_STOP_BUTTON_ ===");
         elPadre.handleEmergencyStopButton();
+}
+
+
+// === Tirette ===
+/**
+ * \fn void testTirette
+ * \param m2_el_fnarg_p fnarg
+ * \brief test de l'état de la tirette
+ */
+void testTirette(m2_el_fnarg_p fnarg)
+{
+        if (_DEBUG_AI_) {
+                Serial.println("=== _TEST_TIRETTE_ ===");
+                Serial.print("etat tirette \t:\t");
+                Serial.println(elPadre.isTiretteTiree());
+        }
 }
 
 
@@ -501,6 +517,18 @@ M2_GRIDLIST(el_num_menu_grid_EmergencyStopButton, "c1", num_list_EmergencyStopBu
 M2_ALIGN(el_top_num_menu_EmergencyStopButton, "-1|1W64H64", &el_num_menu_grid_EmergencyStopButton);
 
 
+// === Tirette ===
+
+M2_BUTTON(el_num_go_tirette, "f4", " test tirette ", testTirette);
+M2_LIST(num_list_tirette) =
+{
+        &el_num_go_tirette,
+        &el_num_goto_top
+};
+M2_GRIDLIST(el_num_menu_grid_tirette, "c1", num_list_tirette);
+M2_ALIGN(el_top_num_menu_tirette, "-1|1W64H64", &el_num_menu_grid_tirette);
+
+
 //____________________________________________________________________________________________________
 /*=== Ecran de debug : liste ===*/
 
@@ -603,6 +631,7 @@ m2_menu_entry m2_2lmenu_data[] =
         { ". Test Capteurs", &el_top_num_menu_Sensors},
         { ". Test Fun Action", &el_top_num_menu_FunnyAction},
         { ". Test Emergency Button", &el_top_num_menu_EmergencyStopButton},
+        { ". Test Tirette", &el_top_num_menu_tirette},
         { "Debug ", NULL },
         { ". Capteurs IR", &el_top_num_menu_debug_capteurs_ir},
         { ". Capteurs US", &el_top_num_menu_debug_capteurs_us},
@@ -676,6 +705,10 @@ void setup(void)
 
         /* I2C */
         Wire.begin();              // join i2c bus (address optional for master)
+
+        /* FUNNY ACTION */
+        pinMode(_PIN_ARDUINO_NANO_FUNNY_ACTION_, OUTPUT);
+        digitalWrite(_PIN_ARDUINO_NANO_FUNNY_ACTION_, LOW);
 
         /* AUTRES */
         attachInterrupt(_PIN_BOUTON_ARRET_URGENCE_, stopAll, RISING);    // Interruption sur appui du bouton d'arret d'urgence
