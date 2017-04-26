@@ -14,7 +14,7 @@
 #include <Wire.h>
 #include "i2cCommunication.h"
 
-#define _DEBUG_ false
+#define _DEBUG_SENSORSBOARD_ false
 
 #define _SENSORSBOARD_RECEIVEADRESS_ 11
 

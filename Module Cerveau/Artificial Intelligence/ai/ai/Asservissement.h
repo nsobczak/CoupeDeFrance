@@ -14,7 +14,7 @@
 #include <Wire.h>
 #include "i2cCommunication.h"
 
-#define _DEBUG_ true
+#define _DEBUG_ASSERVISSEMENT_ true
 
 #define _ASSERVISSMENT_SENDADRESS_ 6
 

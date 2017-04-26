@@ -23,6 +23,7 @@
 #include "I2Cdev.h"
 #include "MPU6050.h"
 
+#define _DEBUG_BOT_ true
 
 #define _PIN_BOUTON_ARRET_URGENCE_ 16 //état haut quand il est appuyé
 #define _PIN_TIRETTE_ 15

@@ -27,7 +27,7 @@
  * ======================================================================================================
  */
 #include <Arduino.h>
-#define _DEBUG_ true
+#define _DEBUG_AI_ true
 
 // I2C
 #include <Wire.h>
@@ -107,7 +107,7 @@ void testAsservissement_goStraightAhead(m2_el_fnarg_p fnarg)
 {
         do
         {
-                if (_DEBUG_) Serial.println("botGoForward(0.4, 0.5);");
+                if (_DEBUG_AI_) Serial.println("botGoForward(0.4, 0.5);");
                 elPadre.getAsservissement().botGoForward(0.4, 0.5);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleStraightOrderEnd();
@@ -122,7 +122,7 @@ void testAsservissement_goBackward(m2_el_fnarg_p fnarg)
 {
         do
         {
-                if (_DEBUG_) Serial.println("botGoBackward(0.2, 0.25);");
+                if (_DEBUG_AI_) Serial.println("botGoBackward(0.2, 0.25);");
                 elPadre.getAsservissement().botGoBackward(0.2, 0.25);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleStraightOrderEnd();
@@ -137,7 +137,7 @@ void testAsservissement_turnAroundRight(m2_el_fnarg_p fnarg)
 {
         do
         {
-                if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
+                if (_DEBUG_AI_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
                 elPadre.getAsservissement().botTurnAroundRight(PI/2, 0.3);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleRotationOrderEnd();
@@ -152,7 +152,7 @@ void testAsservissement_turnAroundLeft(m2_el_fnarg_p fnarg)
 {
         do
         {
-                if (_DEBUG_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
+                if (_DEBUG_AI_) Serial.println("botTurnAroundRight(PI/2, 0.3);");
                 elPadre.getAsservissement().botTurnAroundLeft(PI/2, 0.3);
         } while(elPadre.getAsservissement().isOrderFinished() != 1);
         elPadre.getAsservissement().handleRotationOrderEnd();
@@ -165,7 +165,7 @@ void testAsservissement_turnAroundLeft(m2_el_fnarg_p fnarg)
  */
 void testAsservissement(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) Serial.println("=== _ASSERVISSEMENT_ ===");
+        if (_DEBUG_AI_) Serial.println("=== _ASSERVISSEMENT_ ===");
         testAsservissement_goStraightAhead(fnarg);
         testAsservissement_turnAroundRight(fnarg);
         testAsservissement_goBackward(fnarg);
@@ -180,7 +180,7 @@ void testAsservissement(m2_el_fnarg_p fnarg)
  */
 void testClampInitialisation(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) Serial.println("initialisation");
+        if (_DEBUG_AI_) Serial.println("initialisation");
         elPadre.getClamp().initialisation();
         delay(9000); //pour laisser le temps à l'action de se réaliser
 }
@@ -192,7 +192,7 @@ void testClampInitialisation(m2_el_fnarg_p fnarg)
  */
 void testClampCatch(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) Serial.println("catch");
+        if (_DEBUG_AI_) Serial.println("catch");
         elPadre.getClamp().catchCylinder();
         delay(5000); //pour laisser le temps à l'action de se réaliser
 }
@@ -205,7 +205,7 @@ void testClampCatch(m2_el_fnarg_p fnarg)
  */
 void testClampBringUp(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) Serial.println("bring up");
+        if (_DEBUG_AI_) Serial.println("bring up");
         elPadre.getClamp().bringUpCylinder();
         delay(5000); //pour laisser le temps à l'action de se réaliser
 }
@@ -218,7 +218,7 @@ void testClampBringUp(m2_el_fnarg_p fnarg)
  */
 void testClampRelease(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) Serial.println("release");
+        if (_DEBUG_AI_) Serial.println("release");
         elPadre.getClamp().releaseCylinder();
         delay(8500); //pour laisser le temps à l'action de se réaliser
 }
@@ -231,7 +231,7 @@ void testClampRelease(m2_el_fnarg_p fnarg)
 void testClamp(m2_el_fnarg_p fnarg)
 {
         //Test pince
-        if (_DEBUG_) Serial.println("\n===_TEST_CLAMP_===");
+        if (_DEBUG_AI_) Serial.println("\n===_TEST_CLAMP_===");
         testClampInitialisation(fnarg);
         testClampCatch(fnarg);
         testClampRelease(fnarg);
@@ -246,7 +246,7 @@ void testClamp(m2_el_fnarg_p fnarg)
  */
 void testSensors(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) Serial.println("\n===_TEST_SENSORS_===");
+        if (_DEBUG_AI_) Serial.println("\n===_TEST_SENSORS_===");
         elPadre.getSensorsBoard().updateAllSensorsValue();
         irBackValue = (uint32_t)elPadre.getSensorsBoard().getInfraredSensorBackValue();
         irFrontBottomLeftValue = (uint32_t)elPadre.getSensorsBoard().getInfraredSensorFrontBottomLeftValue();
@@ -257,7 +257,7 @@ void testSensors(m2_el_fnarg_p fnarg)
         usFrontValue = (uint32_t)elPadre.getSensorsBoard().getUltrasonicFrontValue();
         usLeftValue = (uint32_t)elPadre.getSensorsBoard().getUltrasonicLeftValue();
         usRightValue = (uint32_t)elPadre.getSensorsBoard().getUltrasonicRightValue();
-        if (_DEBUG_)
+        if (_DEBUG_AI_)
         {
                 Serial.print("\t getInfraredSensorBackValue : \t"); Serial.println(irBackValue);
                 Serial.print("\t getInfraredSensorFrontBottomLeftValue : \t"); Serial.println(irFrontBottomLeftValue);
@@ -281,8 +281,21 @@ void testSensors(m2_el_fnarg_p fnarg)
  */
 void testFunnyAction(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) Serial.println("=== _TEST_FUNNY_ACTION_ ===");
+        if (_DEBUG_AI_) Serial.println("=== _TEST_FUNNY_ACTION_ ===");
         elPadre.startFunnyActionTimer();
+}
+
+
+// === Emergency stop button ===
+/**
+ * \fn void testFunnyAction
+ * \param m2_el_fnarg_p fnarg
+ * \brief test de lancement de la funny action
+ */
+void testEmergencyStopButton(m2_el_fnarg_p fnarg)
+{
+        if (_DEBUG_AI_) Serial.println("=== _TEST_EMERGENCY_STOP_BUTTON_ ===");
+        elPadre.handleEmergencyStopButton();
 }
 
 
@@ -336,7 +349,7 @@ uint8_t rb_select_strat = 0;
  */
 void fn_start_robot(m2_el_fnarg_p fnarg)
 {
-        if (_DEBUG_) {
+        if (_DEBUG_AI_) {
                 Serial.print("Start robot avec la strategie ");
                 Serial.println(rb_select_strat + 1);
         }
@@ -476,6 +489,18 @@ M2_GRIDLIST(el_num_menu_grid_funny_action, "c1", num_list_funny_action);
 M2_ALIGN(el_top_num_menu_FunnyAction, "-1|1W64H64", &el_num_menu_grid_funny_action);
 
 
+// === Emergency Stop Button ===
+
+M2_BUTTON(el_num_go_EmergencyStopButton, "f4", " test emergency stop button ", testEmergencyStopButton);
+M2_LIST(num_list_EmergencyStopButton) =
+{
+        &el_num_go_EmergencyStopButton,
+        &el_num_goto_top
+};
+M2_GRIDLIST(el_num_menu_grid_EmergencyStopButton, "c1", num_list_EmergencyStopButton);
+M2_ALIGN(el_top_num_menu_EmergencyStopButton, "-1|1W64H64", &el_num_menu_grid_EmergencyStopButton);
+
+
 //____________________________________________________________________________________________________
 /*=== Ecran de debug : liste ===*/
 
@@ -577,12 +602,14 @@ m2_menu_entry m2_2lmenu_data[] =
         { ". Test Pince", &el_top_num_menu_Clamp},
         { ". Test Capteurs", &el_top_num_menu_Sensors},
         { ". Test Fun Action", &el_top_num_menu_FunnyAction},
+        { ". Test Emergency Button", &el_top_num_menu_EmergencyStopButton},
         { "Debug ", NULL },
         { ". Capteurs IR", &el_top_num_menu_debug_capteurs_ir},
         { ". Capteurs US", &el_top_num_menu_debug_capteurs_us},
         { ". Position", &el_top_num_menu_debug_position},
         { NULL, NULL },
 };
+
 
 // The first visible line and the total number of visible lines.
 // Both values are written by M2_2LMENU and read by M2_VSB
@@ -613,7 +640,7 @@ M2tk m2(&top_el_expandable_menu, m2_es_arduino, m2_eh_4bs, m2_gh_u8g_ffs);
 void stopAll()
 {
         elPadre.getAsservissement().botStop();
-        elPadre.handleEmergencyStopButton();
+        // elPadre.handleEmergencyStopButton();
 }
 
 /**
@@ -654,7 +681,7 @@ void setup(void)
         attachInterrupt(_PIN_BOUTON_ARRET_URGENCE_, stopAll, RISING);    // Interruption sur appui du bouton d'arret d'urgence
         epreuveFaite = false;
 
-        Serial.begin(115200);        // starts the serial communication
+        if (_DEBUG_AI_) Serial.begin(115200);        // starts the serial communication
 }
 
 

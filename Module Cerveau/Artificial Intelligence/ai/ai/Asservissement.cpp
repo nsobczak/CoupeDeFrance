@@ -186,7 +186,7 @@ void Asservissement::receive3bytesAndUpdate()
                  11 => somme_ordre_tick_codeuse_L;
                  12 => somme_ordre_tick_codeuse_R;
          */
-        if (_DEBUG_) {Serial.print("Wire.available(): "); Serial.println(Wire.available()); }
+        if (_DEBUG_ASSERVISSEMENT_) {Serial.print("Wire.available(): "); Serial.println(Wire.available()); }
         if (Wire.available() == 3)
         {
                 //lecture de la variable
@@ -201,25 +201,25 @@ void Asservissement::receive3bytesAndUpdate()
                 switch ( var ) // cf. les références des variables en haut du fichier
                 {
                 case 10:
-                        if (_DEBUG_) {Serial.println("variable recue : ordre_termine");
+                        if (_DEBUG_ASSERVISSEMENT_) {Serial.println("variable recue : ordre_termine");
                                       Serial.print("value\t"); Serial.println(value); }
                         if (value == 1) this->setOrderFinished(true);
                         else this->setOrderFinished(false);
                         break;
                 case 11:
-                        if (_DEBUG_) Serial.println("variable recue : somme_ordre_tick_codeuse_L");
+                        if (_DEBUG_ASSERVISSEMENT_) Serial.println("variable recue : somme_ordre_tick_codeuse_L");
                         this->setTick_codeuse_l(value);
                         break;
                 case 12:
-                        if (_DEBUG_) Serial.println("variable recue : somme_ordre_tick_codeuse_R");
+                        if (_DEBUG_ASSERVISSEMENT_) Serial.println("variable recue : somme_ordre_tick_codeuse_R");
                         this->setTick_codeuse_r(value);
                         break;
                 default:
-                        if (_DEBUG_) Serial.println("variable recue inconnue");
+                        if (_DEBUG_ASSERVISSEMENT_) Serial.println("variable recue inconnue");
                 }
         }
         // else de debug
-        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
+        else if (_DEBUG_ASSERVISSEMENT_) Serial.println("Erreur : Pas 3 octets envoyes");
 }
 
 
@@ -231,7 +231,7 @@ bool Asservissement::isOrderFinished()
                 this->receive3bytesAndUpdate();
                 // delay(5);
         }
-        if (_DEBUG_)  {Serial.print("this->getOrderFinished()\t =\t "); Serial.println(this->getOrderFinished()); }
+        if (_DEBUG_ASSERVISSEMENT_)  {Serial.print("this->getOrderFinished()\t =\t "); Serial.println(this->getOrderFinished()); }
         return this->getOrderFinished();
 }
 
@@ -258,7 +258,7 @@ void Asservissement::computeRotationAngle()
 {
         unsigned int ticks = max(this->getTick_codeuse_l(), this->getTick_codeuse_r());
         this->setAngleEffectue(ticks / _VOIE_ROUES_); //en rad
-        if (_DEBUG_) {Serial.print("angle (rad)= "); Serial.println(this->getAngleEffectue()); }
+        if (_DEBUG_ASSERVISSEMENT_) {Serial.print("angle (rad)= "); Serial.println(this->getAngleEffectue()); }
 }
 
 
@@ -274,11 +274,11 @@ void Asservissement::computePosition()
 
 void Asservissement::handleRotationOrderEnd()
 {
-        if (_DEBUG_) Serial.println("handleRotationOrderEnd");
-        if (_DEBUG_) { Serial.print("this->getOrderFinished()\t=\t"); Serial.println(this->getOrderFinished()); }
+        if (_DEBUG_ASSERVISSEMENT_) Serial.println("handleRotationOrderEnd");
+        if (_DEBUG_ASSERVISSEMENT_) { Serial.print("this->getOrderFinished()\t=\t"); Serial.println(this->getOrderFinished()); }
         if (this->getOrderFinished() == 1) //this->isOrderFinished())
         {
-                if (_DEBUG_) Serial.println("orderFinished + compute");
+                if (_DEBUG_ASSERVISSEMENT_) Serial.println("orderFinished + compute");
                 this->computeRotationAngle();
                 this->computePosition();
         }
@@ -287,11 +287,11 @@ void Asservissement::handleRotationOrderEnd()
 
 void Asservissement::handleStraightOrderEnd()
 {
-        if (_DEBUG_) Serial.println("handleStraightOrderEnd");
-        if (_DEBUG_) { Serial.print("this->getOrderFinished()\t=\t"); Serial.println(this->getOrderFinished()); }
+        if (_DEBUG_ASSERVISSEMENT_) Serial.println("handleStraightOrderEnd");
+        if (_DEBUG_ASSERVISSEMENT_) { Serial.print("this->getOrderFinished()\t=\t"); Serial.println(this->getOrderFinished()); }
         if (this->getOrderFinished() == 1) //this->isOrderFinished())
         {
-                if (_DEBUG_) Serial.println("orderFinished + compute");
+                if (_DEBUG_ASSERVISSEMENT_) Serial.println("orderFinished + compute");
                 this->computeAverageDistance();
                 this->computePosition();
         }

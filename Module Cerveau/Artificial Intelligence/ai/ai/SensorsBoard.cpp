@@ -134,7 +134,7 @@ void SensorsBoard::setUltrasonicBackValue(int ultrasonicBackValue)
  */
 void SensorsBoard::receive3bytes()
 {
-        if (_DEBUG_) {Serial.print("Wire.available(): "); Serial.println(Wire.available()); }
+        if (_DEBUG_SENSORSBOARD_) {Serial.print("Wire.available(): "); Serial.println(Wire.available()); }
         if (Wire.available() == 3)
         {
                 //lecture de la variable
@@ -149,48 +149,48 @@ void SensorsBoard::receive3bytes()
                 switch ( var )  // cf. les références des variables en haut du fichier
                 {
                 case 0:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorBack");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : InfraredSensorBack");
                         this->setInfraredSensorBackValue(value);
                         break;
                 case 1:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontTop");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : InfraredSensorFrontTop");
                         this->setInfraredSensorFrontTopValue(value);
                         break;
                 case 2:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomRight");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : InfraredSensorFrontBottomRight");
                         this->setInfraredSensorFrontBottomRightValue(value);
                         break;
                 case 3:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomCenter");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : InfraredSensorFrontBottomCenter");
                         this->setInfraredSensorFrontBottomCenterValue(value);
                         break;
                 case 4:
-                        if (_DEBUG_) Serial.println("variable recue : InfraredSensorFrontBottomLeft");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : InfraredSensorFrontBottomLeft");
                         this->setInfraredSensorFrontBottomLeftValue(value);
                         break;
                 case 5:
-                        if (_DEBUG_) Serial.println("variable recue : UltrasonicRight");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : UltrasonicRight");
                         this->setUltrasonicRightValue(value);
                         break;
                 case 6:
-                        if (_DEBUG_) Serial.println("variable recue : UltrasonicLeft");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : UltrasonicLeft");
                         this->setUltrasonicLeftValue(value);
                         break;
                 case 7:
-                        if (_DEBUG_) Serial.println("variable recue : UltrasonicFront (back1)");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : UltrasonicFront (back1)");
                         this->setUltrasonicFrontValue(value);
                         break;
                 case 8:
-                        if (_DEBUG_) Serial.println("variable recue : UltrasonicBack (back2)");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue : UltrasonicBack (back2)");
                         this->setUltrasonicBackValue(value);
                         break;
                 default:
-                        if (_DEBUG_) Serial.println("variable recue inconnue");
+                        if (_DEBUG_SENSORSBOARD_) Serial.println("variable recue inconnue");
                 }
 
         }
         // else de debug
-        else if (_DEBUG_) Serial.println("Erreur : Pas 3 octets envoyes");
+        else if (_DEBUG_SENSORSBOARD_) Serial.println("Erreur : Pas 3 octets envoyes");
 }
 
 

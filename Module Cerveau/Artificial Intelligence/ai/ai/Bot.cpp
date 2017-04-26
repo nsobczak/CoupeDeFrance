@@ -123,6 +123,7 @@ void Bot::setAngleZ(int16_t newAngleZ)
 bool Bot::isEmergencyStopButtonOn()
 {
         pinMode(_PIN_BOUTON_ARRET_URGENCE_, INPUT);
+        if (_DEBUG_BOT_) Serial.println(digitalRead(_PIN_BOUTON_ARRET_URGENCE_));
         if (digitalRead(_PIN_BOUTON_ARRET_URGENCE_) == HIGH) return true;
         else return false;
 }
@@ -133,6 +134,7 @@ bool Bot::isEmergencyStopButtonOn()
  */
 void Bot::handleEmergencyStopButton()
 {
+        if (_DEBUG_BOT_) Serial.println("handleEmergencyStopButton");
         while (this->isEmergencyStopButtonOn()) delay(2000);
 }
 
