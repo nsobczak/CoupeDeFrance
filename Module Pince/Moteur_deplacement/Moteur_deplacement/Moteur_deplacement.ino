@@ -211,7 +211,7 @@ void initialisation_pince()
         //rail_initialisation(800);                            //Comme on ne s'en sert pas je l'ai mis en commentaire
         //Serial.println("Initialisation de l'axe x : done");
         //digitalWrite(Z_ENABLE_PIN,HIGH);
-        relacher_cylindre(150,55,1000);
+        relacher_cylindre(120,55,1000);
         if (_DEBUG_)
         {
                 Serial.println("Initialisation de la pince : done");
@@ -258,7 +258,9 @@ void relacher_cylindre_pince()
         relacher_cylindre(100,140,1000);
         if (_DEBUG_) Serial.println("Cylindre relacher");
         delay(1000);
-        relacher_cylindre(150,55,1000);
+        relacher_cylindre(60,140,1000);
+        relacher_cylindre(60,55,1000);
+        relacher_cylindre(120,55,1000);
         if (_DEBUG_) Serial.println("Pince a son état initial");
         if (_DEBUG_) Serial.println("Fin du relachement du cylindre");
 }
@@ -352,9 +354,10 @@ void setup()
         etat_capture_cylindre = 0;
         etat_monter_cylindre = 0;
         etat_relacher_cylindre = 0;
-
+        relacher_cylindre(120,55,1000);
+          
         Wire.begin(_CLAMP_RECEIVEADRESS_);     // Joindre le Bus I2C avec adresse
-
+        
         Serial.begin(9600);
 }
 
@@ -367,6 +370,7 @@ void loop()
 {
         if (_TEST_SANS_I2C_)
         {
+                
                 boolean Var = true;
                 initialisation_pince();
                 capture_cylindre_pince();
