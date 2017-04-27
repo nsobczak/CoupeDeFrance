@@ -124,7 +124,7 @@ bool Bot::isEmergencyStopButtonOn()
 {
         pinMode(_PIN_BOUTON_ARRET_URGENCE_, INPUT);
         if (_DEBUG_BOT_) Serial.println(digitalRead(_PIN_BOUTON_ARRET_URGENCE_));
-        if (digitalRead(_PIN_BOUTON_ARRET_URGENCE_) == HIGH) return true;
+        if (digitalRead(_PIN_BOUTON_ARRET_URGENCE_) == LOW) return true;
         else return false;
 }
 

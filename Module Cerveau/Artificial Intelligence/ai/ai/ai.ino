@@ -40,7 +40,7 @@
 #include "utility/mas.h"
 
 // setup u8g object
-U8GLIB_ST7920_128X64_1X u8g(53, 52, 13);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14  //(53, 52, 13);
+U8GLIB_ST7920_128X64_1X u8g(52, 53, 13);  // SPI Com: SCK = en = 13, MOSI = rw = 51, CS = di = 14  //(53, 52, 13);
 
 // Bot
 #include "Bot.h"
