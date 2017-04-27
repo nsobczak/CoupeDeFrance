@@ -15,7 +15,7 @@
 #include <math.h>
 
 #define _DEBUG_ true
-#define _TEST_SANS_I2C_ false
+#define _TEST_SANS_I2C_ true
 
 //=== I2C ===
 #define _CLAMP_RECEIVEADRESS_ 8
@@ -211,7 +211,7 @@ void initialisation_pince()
         //rail_initialisation(800);                            //Comme on ne s'en sert pas je l'ai mis en commentaire
         //Serial.println("Initialisation de l'axe x : done");
         //digitalWrite(Z_ENABLE_PIN,HIGH);
-        relacher_cylindre(170,170,1000);
+        relacher_cylindre(150,55,1000);
         if (_DEBUG_)
         {
                 Serial.println("Initialisation de la pince : done");
@@ -227,7 +227,7 @@ void initialisation_pince()
  */
 void capture_cylindre_pince()
 {
-        attraper_cylindre(170,100,1000);
+        attraper_cylindre(60,55,1000);
         if (_DEBUG_) Serial.println("Cylindre attrape");
         if (_DEBUG_) Serial.println("Fin de la capture du cylindre");
 }
@@ -241,7 +241,7 @@ void monter_cylindre_pince()
 {
         monter_descente_initialisation(-10800);
         if (_DEBUG_) Serial.println("Pince monte le cylindre");
-        attraper_cylindre(80,100,1000);
+        attraper_cylindre(60,140,1000);
         if (_DEBUG_) Serial.println("Cylindre a l'horizontal");
         if (_DEBUG_) Serial.println("Fin de la montee du cylindre");
 }
@@ -255,10 +255,10 @@ void relacher_cylindre_pince()
 {
         monter_descente_initialisation(10800);
         if (_DEBUG_) Serial.println("Pince descend le cylindre");
-        relacher_cylindre(80,160,1000);
+        relacher_cylindre(100,140,1000);
         if (_DEBUG_) Serial.println("Cylindre relacher");
         delay(1000);
-        relacher_cylindre(170,160,1000);
+        relacher_cylindre(150,55,1000);
         if (_DEBUG_) Serial.println("Pince a son état initial");
         if (_DEBUG_) Serial.println("Fin du relachement du cylindre");
 }
