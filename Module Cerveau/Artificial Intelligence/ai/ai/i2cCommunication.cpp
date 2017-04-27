@@ -204,7 +204,7 @@ void i2csend(uint8_t order, int adresse)
 void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
 {
         // Wire.begin();     // joindre le bus i2c (adresse est optionnelle pour un maître)
-        // Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave
+        Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave
         Wire.write(byte1);        // envoi d'un byte/octet (valeur numérique)
         Wire.write(byte2);
         Wire.write(byte3);
@@ -216,7 +216,7 @@ void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
         // Serial.print(byte3);
         // Serial.print(" a l'adresse ");
         // Serial.println(adresse);
-        // Wire.endTransmission(); // fin transmission
+        Wire.endTransmission(); // fin transmission
 }
 
 
@@ -229,14 +229,14 @@ void i2csend3bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, int adresse)
 void i2csend5bytes(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, int adresse)
 {
         // Wire.begin();     // joindre le bus i2c (adresse est optionnelle pour un maître)
-        // Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave
+        Wire.beginTransmission(adresse); // Commencer transmission vers l'esclave
         Serial.println("Send5bytes");
         Wire.write(byte1);        // envoi d'un byte/octet (valeur numérique)
         Wire.write(byte2);
         Wire.write(byte3);
         Wire.write(byte4);
         Wire.write(byte5);
-        // Wire.endTransmission(); // fin transmission
+        Wire.endTransmission(); // fin transmission
 }
 
 

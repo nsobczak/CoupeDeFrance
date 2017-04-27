@@ -20,8 +20,8 @@
 #include "Clamp.h"
 
 #include "SensorsBoard.h"
-#include "I2Cdev.h"
-#include "MPU6050.h"
+// #include "I2Cdev.h"
+// #include "MPU6050.h"
 
 #define _DEBUG_BOT_ true
 
@@ -81,7 +81,7 @@ private:
 Asservissement asservissement;
 Clamp clamp;
 SensorsBoard sensorsBoard;
-MPU6050 accelgyro;
+// MPU6050 accelgyro;
 CylinderPosition cylinderToCatchList[_NUMBER_OF_CYLINDERS_TO_CATCH_];
 
 int colorNumber;
@@ -104,8 +104,8 @@ int getColorNumber();
 void setColorNumber(int newColorNumber);
 int getStrategyNumber();
 void setStrategyNumber(int newStrategyNumber);
-MPU6050 getAccelgyro();
-void setAccelgyro(MPU6050 newAccelgyro);
+// MPU6050 getAccelgyro();
+// void setAccelgyro(MPU6050 newAccelgyro);
 int16_t getAngleZ();
 void setAngleZ(int16_t newAngleZ);
 const CylinderPosition *getCylinderToCatchList() const;

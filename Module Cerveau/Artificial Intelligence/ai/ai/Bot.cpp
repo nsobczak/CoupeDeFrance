@@ -65,14 +65,14 @@ void Bot::setSensorsBoard(SensorsBoard newSensorsBoard)
 }
 
 
-MPU6050 Bot::getAccelgyro()
-{
-        return this->accelgyro;
-}
-void Bot::setAccelgyro(MPU6050 newAccelgyro)
-{
-        this->accelgyro = newAccelgyro;
-}
+// MPU6050 Bot::getAccelgyro()
+// {
+//         return this->accelgyro;
+// }
+// void Bot::setAccelgyro(MPU6050 newAccelgyro)
+// {
+//         this->accelgyro = newAccelgyro;
+// }
 
 const CylinderPosition *Bot::getCylinderToCatchList() const
 {

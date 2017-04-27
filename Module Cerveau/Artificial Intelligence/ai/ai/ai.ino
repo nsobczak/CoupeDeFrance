@@ -234,6 +234,7 @@ void testClamp(m2_el_fnarg_p fnarg)
         if (_DEBUG_AI_) Serial.println("\n===_TEST_CLAMP_===");
         testClampInitialisation(fnarg);
         testClampCatch(fnarg);
+        testClampBringUp(fnarg);
         testClampRelease(fnarg);
 }
 

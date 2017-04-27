@@ -204,6 +204,7 @@ void SensorsBoard::updateAllSensorsValue()
         {
                 Wire.requestFrom(_SENSORSBOARD_RECEIVEADRESS_, 3);
                 this->receive3bytes();
+                delay(10);
         }
 }
 
