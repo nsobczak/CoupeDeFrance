@@ -20,6 +20,7 @@
 #define _DEBUG_ true
 #define _TEST_SANS_I2C_ true
 
+
 //=== I2C ===
 #define _ASSERVISSEMENT_SENDRECEIVEADRESS_ 6
 
@@ -34,24 +35,30 @@
 
 int variableSent = 10;
 
+
 //=== ENCODEUR ===
 #define _ENDODER_0_PinA_L_ 13   //encodeur gauche A
 #define _ENDODER_0_PinB_L_ 12   //encodeur gauche B
 #define _ENDODER_0_PinA_R_ 11   //encodeur droit A
 #define _ENDODER_0_PinB_R_ 10   //encodeur droit B
 
+
 //=== CONSTANTES ===
 #define diametreRoueCodeuse 0.05228 // 52,28mm
 #define nombreTicksPour1TourDeRoue 1250
 
+const float _MAX_SPEED_RIGHT_ = 1.41;
+const float _MAX_SPEED_LEFT_ = 1.41;
 const int _MAX_PWM_ = 255;
 const float _PI_ = 3.14159;
 const float perimetreRoueCodeuse = diametreRoueCodeuse*_PI_;
 const float _VOIE_ROUES_ = 0.2575; //en metre, ecart entre les roues d'un même essieu
 
+
 //=== VARIABLES ===
 unsigned int tick_codeuse_R = 0;   // Compteur de tick de la codeuse
 unsigned int tick_codeuse_L = 0;   // Compteur de tick de la codeuse
+
 
 //=== ASSERVISSEMENT ===
 SimpleTimer timer;
@@ -61,27 +68,26 @@ unsigned long testStart;
 
 // Vitesse
 float consigneVitesseMoteur;
-float erreurPrecedenteGauche = 0;
-float erreurPrecedenteDroite = 0;
+float erreurPrecedenteGauche;
+float erreurPrecedenteDroite;
+float cmdPrecedenteDroitePourcentage;
+float cmdPrecedenteGauchePourcentage;
 
 //TODO: update kp, r0, r1 values
 
 // correction proportionnelle sur la vitesse pour realiser une ligne droite
- 
-int kp = 0;
+float kp = 0.0;
 
-// coef correcteur PI moteur droit
+// coeff correcteur PI moteur droit
+float R0_MOTOR_RIGHT = 904.49;//-272.70;//-2385.96;//-2298.55;//9.742;//1170734.2; //coeff qui marche bien : 1829979.4;
+float R1_MOTOR_RIGHT = 2779.98;//-1023.57;//-8905.34;//-7046.59;//29.94;//3659851.5; //coeff qui marche bien : 21525987.0;
+float IRIGHT = R0_MOTOR_RIGHT - (R1_MOTOR_RIGHT/FREQUENCE_ECHANTILLIONNAGE);
 
-long R0_MOTOR_RIGHT = 9.742;//1170734.2; //coeff qui marche bien : 1829979.4;
-long R1_MOTOR_RIGHT = 29.94;//3659851.5; //coeff qui marche bien : 21525987.0;
+// coeff correcteur PI moteur gauche
+float R0_MOTOR_LEFT = 922.54;//-277.24;//-2425.72;//-2517.57;//9.926;//1170734.2;
+float R1_MOTOR_LEFT = 2835.70;//-1040.63;//-9053.78;//-7716.98;//30.51;//3659851.5;
+float ILEFT = R0_MOTOR_LEFT - (R1_MOTOR_LEFT/FREQUENCE_ECHANTILLIONNAGE);
 
-// coef correcteur PI moteur gauche
-
-long R0_MOTOR_LEFT = 9.926;//1170734.2;
-long R1_MOTOR_LEFT = 30.51;//3659851.5;
-
-int cmdPrecedenteDroite = 0;
-int cmdPrecedenteGauche = 0;
 
 // Position
 float consigneDistance;
@@ -91,6 +97,7 @@ int somme_ordre_tick_codeuse_L_to_be_sent = somme_ordre_tick_codeuse_L;
 int somme_ordre_tick_codeuse_R_to_be_sent = somme_ordre_tick_codeuse_R;
 byte order = 5;
 int ordre_termine = 1;
+
 
 
 /* ======================================================================================================
@@ -186,19 +193,6 @@ void printDouble(double val, unsigned int precision)
 
 //______________________________________________________________________________
 /**
- * \fn bornCommand
- * \param int command
- * \brief function that keeps a pwm command between 0 and 255
- */
-int bornCommand(int command)
-{
-        if(command < 0) command = 0;
-        else if (command > _MAX_PWM_) command = _MAX_PWM_;
-        return command;
-}
-
-
-/**
  * \fn executeOrder
  * \param int order, int cmdMoteurGauche, int cmdMoteurDroite
  * \brief function that execute a botDirection order from the boolean "order"
@@ -274,37 +268,70 @@ void handleOrder(int cmdMoteurGauche, int cmdMoteurDroite)
 
 
 /**
+ * \fn bornCommand
+ * \param float command
+ * \brief function that keeps a pwm command between 0 and 100
+ */
+float bornCommandLimitateur(float command, float maxSpeed)
+{
+        float depassementMax = 150 * consigneVitesseMoteur/maxSpeed;
+        if(command < 0) command = 0;
+        else if(command > depassementMax) command = depassementMax;
+        return command;
+}
+
+float bornCommand(float command)
+{
+        if(command < 0) command = 0;
+        else if(command > 100) command = 100;
+        return command;
+}
+
+
+/**
+ * \fn convertCommandFromPourcentageToPWM
+ */
+float convertCommandFromPourcentageToPWM(float command)
+{
+        return 255 - command*2.55;
+}
+
+
+/**
  * \fn asservissementVitesse
  * \brief function that does the asservissment work
  */
 void asservissementVitesse()
 {
-        // = Calcul erreur pour la correction proportionnelle=
+        // Calcul erreur pour la correction proportionnelle
         double vitesseReelleGauche = calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_);
         double vitesseReelleDroite = calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_);
 
         float erreurGauche = consigneVitesseMoteur - (float)vitesseReelleGauche;
         float erreurDroite = consigneVitesseMoteur - (float)vitesseReelleDroite;
 
+        //float CorrectionVitesse = kp * ((float)vitesseReelleDroite - (float)vitesseReelleGauche);
+        float cmdMoteurDroitePourcentage = R0_MOTOR_RIGHT * erreurDroite -  IRIGHT * erreurPrecedenteDroite + (float)cmdPrecedenteDroitePourcentage;
+        float cmdMoteurGauchePourcentage = R0_MOTOR_LEFT * erreurGauche - ILEFT * erreurPrecedenteGauche + (float)cmdPrecedenteGauchePourcentage;// + CorrectionVitesse;
+    
+        cmdMoteurDroitePourcentage = bornCommand(cmdMoteurDroitePourcentage);
+        cmdMoteurGauchePourcentage = bornCommand(cmdMoteurGauchePourcentage);
         
-        int CorrectionVitesse = kp*(vitesseReelleDroite-vitesseReelleGauche);
+        cmdPrecedenteDroitePourcentage = cmdMoteurDroitePourcentage;
+        cmdPrecedenteGauchePourcentage = cmdMoteurGauchePourcentage;
         
-        int cmdMoteurDroite = R0_MOTOR_RIGHT * erreurDroite - (R0_MOTOR_RIGHT - R1_MOTOR_RIGHT/FREQUENCE_ECHANTILLIONNAGE) * erreurPrecedenteDroite + cmdPrecedenteDroite;
-        int cmdMoteurGauche = R0_MOTOR_LEFT * erreurGauche + (R0_MOTOR_LEFT - R1_MOTOR_LEFT/FREQUENCE_ECHANTILLIONNAGE) * erreurPrecedenteGauche + cmdPrecedenteGauche + CorrectionVitesse;
-
-        cmdMoteurDroite = bornCommand(cmdMoteurDroite);
-        cmdMoteurGauche = bornCommand(cmdMoteurGauche);
-
         erreurPrecedenteGauche = erreurGauche;
         erreurPrecedenteDroite = erreurDroite;
 
-        cmdPrecedenteDroite = _MAX_PWM_ - cmdMoteurDroite;
-        cmdPrecedenteGauche = _MAX_PWM_ - cmdMoteurGauche;
-        
+        float cmdMoteurDroite = convertCommandFromPourcentageToPWM(cmdMoteurDroitePourcentage);
+        float cmdMoteurGauche = convertCommandFromPourcentageToPWM(cmdMoteurGauchePourcentage);
+
+
 
         // = Ordre =
-        if (_TEST_SANS_I2C_) robotGoBack(_MAX_PWM_ - cmdMoteurGauche, _MAX_PWM_ - cmdMoteurDroite);
+        if (_TEST_SANS_I2C_) robotGoBack(cmdMoteurGauche,cmdMoteurDroite);
         else handleOrder(cmdMoteurGauche, cmdMoteurDroite);
+
 
         // = Debug =
         if (_DEBUG_) {
@@ -315,7 +342,8 @@ void asservissementVitesse()
                 // Serial.print("\t consignePWM : \t " );
                 // Serial.println(cmdMoteurDroit);
                 // Serial.print("\t consigneVitesseMoteur : \t");
-                 Serial.println(consigneVitesseMoteur);
+                //Serial.println(erreurGauche);
+                //Serial.println(erreurDroite);
                 // Serial.print("\t calculVitesse : \t " );
                 printDouble(calculVitesse(tick_codeuse_L, _PERIODE_ASSERVISSEMENT_), 1000000);
                 printDouble(calculVitesse(tick_codeuse_R, _PERIODE_ASSERVISSEMENT_), 1000000);
@@ -437,6 +465,11 @@ void setup()
         attachInterrupt(_ENDODER_0_PinA_R_, compteur_tick_R, RISING);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
         attachInterrupt(_ENDODER_0_PinA_L_, compteur_tick_L, RISING);    // Interruption sur tick de la codeuse (interruption 0 = pin2 arduino mega)
 
+        cmdPrecedenteDroitePourcentage = 0;
+        cmdPrecedenteGauchePourcentage = 0;
+        erreurPrecedenteGauche = 0;
+        erreurPrecedenteDroite = 0;
+
         /*
            === Remarques ===
            Pour changer le pwm: 0 -> 255
@@ -450,9 +483,13 @@ void setup()
         analogWrite(_MOTOR_R_, _MAX_PWM_);
         robotStop();
 
-        if (_TEST_SANS_I2C_) {
+        if (_TEST_SANS_I2C_) 
+        {
                 testStart = millis();
-        }else{
+                consigneVitesseMoteur = 0.2;
+        }
+        else
+        {
                 Wire.begin(_ASSERVISSEMENT_SENDRECEIVEADRESS_);
                 Wire.onRequest(asservissementRequestEvent);
                 Wire.onReceive(asservissementReceiveEvent);
@@ -471,7 +508,6 @@ void loop()
         {
                 if ((millis() - testStart > 5000) && (millis() - testStart < 25000))
                 {
-                        consigneVitesseMoteur = 0.5;
                         // if ((millis() - testStart >= 5000) && (millis() - testStart < 10000)) consigneVitesseMoteur = 0.5;
                         // else if ((millis() - testStart >= 10000) && (millis() - testStart < 12500)) consigneVitesseMoteur = 0.5;
                         // else if ((millis() - testStart >= 12500) && (millis() - testStart < 15000)) consigneVitesseMoteur = 0.5;
