@@ -319,9 +319,7 @@ void receiveEvent2(int howMany)
  */
 void i2creceive2(int adresse)
 {
-        Wire.begin(adresse);     // Joindre le Bus I2C avec adresse
         Wire.onReceive(receiveEvent2); // enregistrer l'événement (lorsqu'une demande arrive)
-        Wire.endTransmission(); // fin transmission
 }
 
 
@@ -355,6 +353,8 @@ void setup()
         etat_monter_cylindre = 0;
         etat_relacher_cylindre = 0;
 
+        Wire.begin(_CLAMP_RECEIVEADRESS_);     // Joindre le Bus I2C avec adresse
+
         Serial.begin(9600);
 }
 
@@ -370,6 +370,7 @@ void loop()
                 boolean Var = true;
                 initialisation_pince();
                 capture_cylindre_pince();
+                monter_cylindre_pince();
                 relacher_cylindre_pince();
                 while(Var == true) motor_Z.step(0);
                 //digitalWrite(Z_ENABLE_PIN,HIGH);
