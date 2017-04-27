@@ -227,7 +227,7 @@ void initialisation_pince()
  */
 void capture_cylindre_pince()
 {
-        attraper_cylindre(60,55,1000);
+        attraper_cylindre(50,55,1000);
         if (_DEBUG_) Serial.println("Cylindre attrape");
         if (_DEBUG_) Serial.println("Fin de la capture du cylindre");
 }
@@ -241,7 +241,7 @@ void monter_cylindre_pince()
 {
         monter_descente_initialisation(-10800);
         if (_DEBUG_) Serial.println("Pince monte le cylindre");
-        attraper_cylindre(60,140,1000);
+        attraper_cylindre(50,140,1000);
         if (_DEBUG_) Serial.println("Cylindre a l'horizontal");
         if (_DEBUG_) Serial.println("Fin de la montee du cylindre");
 }
@@ -258,8 +258,8 @@ void relacher_cylindre_pince()
         relacher_cylindre(100,140,1000);
         if (_DEBUG_) Serial.println("Cylindre relacher");
         delay(1000);
-        relacher_cylindre(60,140,1000);
-        relacher_cylindre(60,55,1000);
+        relacher_cylindre(50,140,1000);
+        relacher_cylindre(50,55,1000);
         relacher_cylindre(120,55,1000);
         if (_DEBUG_) Serial.println("Pince a son état initial");
         if (_DEBUG_) Serial.println("Fin du relachement du cylindre");
