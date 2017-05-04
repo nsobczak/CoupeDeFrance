@@ -1,3 +1,18 @@
 # SolidWorks
 
-Ce dossier contient les pièces du robots réalisées avec le logiciel de CAO SolidWorks.
+Pour ouvrir les assemblages :
+
+
+-> Pour le mécanisme avec la pince :
+El padre\isen2016-2017\SUPPORT DU MILIEU.SLDASM
+-> Pour les mécanismes sur le robot :
+El padre\Base roulante\Base du robot\Base_grand_robot_V3.SLDASM
+-> Pour la funny action :
+El padre\ Pince \ assemblage canon.SLDASM
+
+Nb : Tous les éléments sont à l'echelle y compris le robot. Le robot a été agrandi pour la coupe de
+	france de 2017 grace à des plaques visibles et équerres de fixation.
+		Si vous avez des questions sur l'assemblage posez les à : olivier.jombart@isen.yncrea.fr
+			Désolé pour le nommage de certaines pièces.... 
+
+
