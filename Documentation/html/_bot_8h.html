@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>Coupe de France: Module Cerveau/Artificial Intelligence/ai/ai/Bot.h File Reference</title>
+<title>Coupe de France: /media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Cerveau/Artificial Intelligence/ai/ai/Bot.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.75</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -120,22 +120,21 @@ $(document).ready(function(){initNavTree('_bot_8h.html','');});
 <code>#include &quot;Arduino.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h_source.html">i2cCommunication.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="moon_board_8h_source.html">moonBoard.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_asservissement_8h_source.html">Asservissement.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_clamp_8h_source.html">Clamp.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_sensors_board_8h_source.html">SensorsBoard.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_artificial_01_intelligence_2ai_2ai_2_i2_cdev_8h_source.html">I2Cdev.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_artificial_01_intelligence_2ai_2ai_2_m_p_u6050_8h_source.html">MPU6050.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Bot.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="_bot_8h__incl.png" border="0" usemap="#_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8h" alt=""/></div>
-<map name="_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8h" id="_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8h">
+<div class="center"><img src="_bot_8h__incl.png" border="0" usemap="#_2media_2nicolas_2_a600540_b0053_e13_b_2_users_2nicolas_2_documents_2_ecole_2_i_s_e_n_2_projet_2_coupe_01de_01_france_2_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8h" alt=""/></div>
+<map name="_2media_2nicolas_2_a600540_b0053_e13_b_2_users_2nicolas_2_documents_2_ecole_2_i_s_e_n_2_projet_2_coupe_01de_01_france_2_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8h" id="_2media_2nicolas_2_a600540_b0053_e13_b_2_users_2nicolas_2_documents_2_ecole_2_i_s_e_n_2_projet_2_coupe_01de_01_france_2_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8h">
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="_bot_8h__dep__incl.png" border="0" usemap="#_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8hdep" alt=""/></div>
-<map name="_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8hdep" id="_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8hdep">
+<div class="center"><img src="_bot_8h__dep__incl.png" border="0" usemap="#_2media_2nicolas_2_a600540_b0053_e13_b_2_users_2nicolas_2_documents_2_ecole_2_i_s_e_n_2_projet_2_coupe_01de_01_france_2_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8hdep" alt=""/></div>
+<map name="_2media_2nicolas_2_a600540_b0053_e13_b_2_users_2nicolas_2_documents_2_ecole_2_i_s_e_n_2_projet_2_coupe_01de_01_france_2_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8hdep" id="_2media_2nicolas_2_a600540_b0053_e13_b_2_users_2nicolas_2_documents_2_ecole_2_i_s_e_n_2_projet_2_coupe_01de_01_france_2_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2_bot_8hdep">
 </map>
 </div>
 </div>
@@ -148,105 +147,87 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a0053fe85ff3b1343729ebaabce0123ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a0053fe85ff3b1343729ebaabce0123ce">_DEBUG_BOT_</a>&#160;&#160;&#160;true</td></tr>
+<tr class="separator:a0053fe85ff3b1343729ebaabce0123ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab47c53c53fa2f3ad9e36fc2f22bf0fcb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#ab47c53c53fa2f3ad9e36fc2f22bf0fcb">_PIN_BOUTON_ARRET_URGENCE_</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:ab47c53c53fa2f3ad9e36fc2f22bf0fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc65974cac778b29cb334de7868489fa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#abc65974cac778b29cb334de7868489fa">_PIN_TIRETTE_</a>&#160;&#160;&#160;15</td></tr>
 <tr class="separator:abc65974cac778b29cb334de7868489fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a238f2c2e9605cb8d2c0c5e1857014b2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a238f2c2e9605cb8d2c0c5e1857014b2c">_PIN_ARDUINO_NANO_FUNNY_ACTION_</a>&#160;&#160;&#160;13</td></tr>
+<tr class="memitem:a238f2c2e9605cb8d2c0c5e1857014b2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a238f2c2e9605cb8d2c0c5e1857014b2c">_PIN_ARDUINO_NANO_FUNNY_ACTION_</a>&#160;&#160;&#160;24</td></tr>
 <tr class="separator:a238f2c2e9605cb8d2c0c5e1857014b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab42f904ec84797fd25a80745bf68f6b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#ab42f904ec84797fd25a80745bf68f6b5">_ASSERVISSMENT_SENDADRESS_</a>&#160;&#160;&#160;6</td></tr>
-<tr class="separator:ab42f904ec84797fd25a80745bf68f6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0b928e66df0608acba291bf71c6a30c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#ad0b928e66df0608acba291bf71c6a30c">_ASSERVISSMENT_BOTGOFORWARD_</a>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:ad0b928e66df0608acba291bf71c6a30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4111c1141cdfcbec185a2189d9d162b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a4111c1141cdfcbec185a2189d9d162b0">_ASSERVISSMENT_BOTGOBACKWARD_</a>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:a4111c1141cdfcbec185a2189d9d162b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fc6481e6efca7fbc57b9aa6b75ee017"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a4fc6481e6efca7fbc57b9aa6b75ee017">_ASSERVISSMENT_BOTTURNRIGHT_</a>&#160;&#160;&#160;3</td></tr>
-<tr class="separator:a4fc6481e6efca7fbc57b9aa6b75ee017"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fa2a28dfea019980fcb5433b14e7464"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a5fa2a28dfea019980fcb5433b14e7464">_ASSERVISSMENT_BOTTURNLEFT_</a>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:a5fa2a28dfea019980fcb5433b14e7464"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6431fb3f8d8d5a6b6c75eaca7186249c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a6431fb3f8d8d5a6b6c75eaca7186249c">_ASSERVISSMENT_BOTSTOP_</a>&#160;&#160;&#160;5</td></tr>
-<tr class="separator:a6431fb3f8d8d5a6b6c75eaca7186249c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa62861691ecfe5c0968739191d132fc2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#aa62861691ecfe5c0968739191d132fc2">_NUMBER_OF_CYLINDERS_TO_CATCH_</a>&#160;&#160;&#160;10</td></tr>
+<tr class="memitem:aa62861691ecfe5c0968739191d132fc2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#aa62861691ecfe5c0968739191d132fc2">_NUMBER_OF_CYLINDERS_TO_CATCH_</a>&#160;&#160;&#160;6</td></tr>
 <tr class="separator:aa62861691ecfe5c0968739191d132fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b883127717474044f4ce2cc294d6a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a61b883127717474044f4ce2cc294d6a5">_NUMBER_OF_MOON_BASES_</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a61b883127717474044f4ce2cc294d6a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa23b1ac51f84909e6cd7ac44eced25fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#aa23b1ac51f84909e6cd7ac44eced25fc">_TEMPS_RECHERCHE_BASE_MAXIMUM_</a>&#160;&#160;&#160;3000</td></tr>
+<tr class="separator:aa23b1ac51f84909e6cd7ac44eced25fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7c8eccb6379cf00f8573667e967d095"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#ae7c8eccb6379cf00f8573667e967d095">_TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_</a>&#160;&#160;&#160;8000</td></tr>
 <tr class="separator:ae7c8eccb6379cf00f8573667e967d095"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa225d90c85fab502ac1644a2c12f0319"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#aa225d90c85fab502ac1644a2c12f0319">_TIMER_LIMIT_</a>&#160;&#160;&#160;80000</td></tr>
+<tr class="separator:aa225d90c85fab502ac1644a2c12f0319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9ac63df3359f5b79ea51500afe2aab4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#ac9ac63df3359f5b79ea51500afe2aab4">_SLOW_SPEED_</a>&#160;&#160;&#160;0.35</td></tr>
+<tr class="separator:ac9ac63df3359f5b79ea51500afe2aab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2516bd40b72c9932d0957a8833e23842"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a2516bd40b72c9932d0957a8833e23842">_MEDIUM_SPEED_</a>&#160;&#160;&#160;0.7</td></tr>
+<tr class="separator:a2516bd40b72c9932d0957a8833e23842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72070c00be6b6d8c2160ddd5c2452372"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a72070c00be6b6d8c2160ddd5c2452372">_FAST_SPEED_</a>&#160;&#160;&#160;1.0</td></tr>
+<tr class="separator:a72070c00be6b6d8c2160ddd5c2452372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a20af520ef08d4a9781cf09c9874c60c6"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a20af520ef08d4a9781cf09c9874c60c6">_BLUE_X_START_POSITION_</a> = 0.4</td></tr>
+<tr class="separator:a20af520ef08d4a9781cf09c9874c60c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30c98c8b3271b3ac937954df9a005805"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a30c98c8b3271b3ac937954df9a005805">_YELLOW_X_START_POSITION_</a> = 2.4</td></tr>
+<tr class="separator:a30c98c8b3271b3ac937954df9a005805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1542c0383aaa0d8ed664e552ecac2898"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a1542c0383aaa0d8ed664e552ecac2898">_Y_START_POSITION_</a> = 0.2</td></tr>
+<tr class="separator:a1542c0383aaa0d8ed664e552ecac2898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66a5020310cd159c5b5ffd846985fa9c"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a66a5020310cd159c5b5ffd846985fa9c">_BLUE_START_ANGLE_</a> = 0</td></tr>
+<tr class="separator:a66a5020310cd159c5b5ffd846985fa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0115eb7dbc8ce345a83cafc5560b32"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a2d0115eb7dbc8ce345a83cafc5560b32">_YELLOW_START_ANGLE_</a> = <a class="el" href="mon_main_2mon_main_2odometrie_8cpp.html#a598a3330b3c21701223ee0ca14316eca">PI</a></td></tr>
+<tr class="separator:a2d0115eb7dbc8ce345a83cafc5560b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad11e360939832b27c157649c39d9ff09"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_cylinder_position.html">CylinderPosition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#ad11e360939832b27c157649c39d9ff09">cylinderToCatchList_1B</a> [<a class="el" href="_bot_8h.html#aa62861691ecfe5c0968739191d132fc2">_NUMBER_OF_CYLINDERS_TO_CATCH_</a>]</td></tr>
 <tr class="separator:ad11e360939832b27c157649c39d9ff09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f6a063b28db84818f790947bf852e2e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_cylinder_position.html">CylinderPosition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a0f6a063b28db84818f790947bf852e2e">cylinderToCatchList_2Y</a> [<a class="el" href="_bot_8h.html#aa62861691ecfe5c0968739191d132fc2">_NUMBER_OF_CYLINDERS_TO_CATCH_</a>]</td></tr>
 <tr class="separator:a0f6a063b28db84818f790947bf852e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a103185cbdcc26aa720089edc458ba865"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_moon_base.html">MoonBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#a103185cbdcc26aa720089edc458ba865">moonBases_1B</a> [<a class="el" href="_bot_8h.html#a61b883127717474044f4ce2cc294d6a5">_NUMBER_OF_MOON_BASES_</a>]</td></tr>
+<tr class="separator:a103185cbdcc26aa720089edc458ba865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed31f3c8556d566829ddebd48b3fe691"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_moon_base.html">MoonBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_bot_8h.html#aed31f3c8556d566829ddebd48b3fe691">moonBases_2Y</a> [<a class="el" href="_bot_8h.html#a61b883127717474044f4ce2cc294d6a5">_NUMBER_OF_MOON_BASES_</a>]</td></tr>
+<tr class="separator:aed31f3c8556d566829ddebd48b3fe691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>classe robot </p>
 <dl class="section author"><dt>Author</dt><dd>Nicolas SOBCZAK </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>Mars 2017 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a4111c1141cdfcbec185a2189d9d162b0"></a>
+<a class="anchor" id="a0053fe85ff3b1343729ebaabce0123ce"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define _ASSERVISSMENT_BOTGOBACKWARD_&#160;&#160;&#160;2</td>
+          <td class="memname">#define _DEBUG_BOT_&#160;&#160;&#160;true</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="ad0b928e66df0608acba291bf71c6a30c"></a>
+<a class="anchor" id="a72070c00be6b6d8c2160ddd5c2452372"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define _ASSERVISSMENT_BOTGOFORWARD_&#160;&#160;&#160;1</td>
+          <td class="memname">#define _FAST_SPEED_&#160;&#160;&#160;1.0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a6431fb3f8d8d5a6b6c75eaca7186249c"></a>
+<a class="anchor" id="a2516bd40b72c9932d0957a8833e23842"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define _ASSERVISSMENT_BOTSTOP_&#160;&#160;&#160;5</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5fa2a28dfea019980fcb5433b14e7464"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _ASSERVISSMENT_BOTTURNLEFT_&#160;&#160;&#160;4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a4fc6481e6efca7fbc57b9aa6b75ee017"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _ASSERVISSMENT_BOTTURNRIGHT_&#160;&#160;&#160;3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab42f904ec84797fd25a80745bf68f6b5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _ASSERVISSMENT_SENDADRESS_&#160;&#160;&#160;6</td>
+          <td class="memname">#define _MEDIUM_SPEED_&#160;&#160;&#160;0.7</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -258,7 +239,19 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define _NUMBER_OF_CYLINDERS_TO_CATCH_&#160;&#160;&#160;10</td>
+          <td class="memname">#define _NUMBER_OF_CYLINDERS_TO_CATCH_&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a61b883127717474044f4ce2cc294d6a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _NUMBER_OF_MOON_BASES_&#160;&#160;&#160;2</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -270,7 +263,19 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define _PIN_ARDUINO_NANO_FUNNY_ACTION_&#160;&#160;&#160;13</td>
+          <td class="memname">#define _PIN_ARDUINO_NANO_FUNNY_ACTION_&#160;&#160;&#160;24</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab47c53c53fa2f3ad9e36fc2f22bf0fcb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _PIN_BOUTON_ARRET_URGENCE_&#160;&#160;&#160;16</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -289,6 +294,30 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac9ac63df3359f5b79ea51500afe2aab4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _SLOW_SPEED_&#160;&#160;&#160;0.35</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa23b1ac51f84909e6cd7ac44eced25fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _TEMPS_RECHERCHE_BASE_MAXIMUM_&#160;&#160;&#160;3000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ae7c8eccb6379cf00f8573667e967d095"></a>
 <div class="memitem">
 <div class="memproto">
@@ -301,7 +330,79 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aa225d90c85fab502ac1644a2c12f0319"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _TIMER_LIMIT_&#160;&#160;&#160;80000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a66a5020310cd159c5b5ffd846985fa9c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float _BLUE_START_ANGLE_ = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a20af520ef08d4a9781cf09c9874c60c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float _BLUE_X_START_POSITION_ = 0.4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1542c0383aaa0d8ed664e552ecac2898"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float _Y_START_POSITION_ = 0.2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2d0115eb7dbc8ce345a83cafc5560b32"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float _YELLOW_START_ANGLE_ = <a class="el" href="mon_main_2mon_main_2odometrie_8cpp.html#a598a3330b3c21701223ee0ca14316eca">PI</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a30c98c8b3271b3ac937954df9a005805"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float _YELLOW_X_START_POSITION_ = 2.4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ad11e360939832b27c157649c39d9ff09"></a>
 <div class="memitem">
 <div class="memproto">
@@ -312,9 +413,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">={</div>
-<div class="line">        {1, 1.3, 124.34}, {2, 1, 1}, {3, 1, 1}, {4, 1, 1}, {5, 1, 1},</div>
-<div class="line">        {6, 1, 1}, {7, 1, 1},{8, 1, 1}, {9, 1, 1}, {10, 1, 1}</div>
+<div class="line">        {1, 1.150, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315}, {2, 1.150, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315}, {3, 1.150, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315},</div>
+<div class="line">        {4, 1.150, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315}, {5, 0.200, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.600}, {6, 0.800, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 1.850}</div>
 <div class="line">}</div>
+<div class="ttc" id="moon_board_8h_html_a483a85b4591d09db27aa907b790ae509"><div class="ttname"><a href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a></div><div class="ttdeci">#define _Y_LIMIT_</div><div class="ttdef"><b>Definition:</b> moonBoard.h:12</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -328,9 +430,45 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">={</div>
-<div class="line">        {1, 1.3, 124.34}, {2, 1, 1}, {3, 1, 1}, {4, 1, 1}, {5, 1, 1},</div>
-<div class="line">        {6, 1, 1}, {7, 1, 1},{8, 1, 1}, {9, 1, 1}, {10, 1, 1}</div>
+<div class="line">        {1, 1.850, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315}, {2, 1.850, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315}, {3, 1.850, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315},</div>
+<div class="line">        {4, 2.800, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.600}, {5, 1.850, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.0315}, {6, 2.200, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 1.850}</div>
 <div class="line">}</div>
+<div class="ttc" id="moon_board_8h_html_a483a85b4591d09db27aa907b790ae509"><div class="ttname"><a href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a></div><div class="ttdeci">#define _Y_LIMIT_</div><div class="ttdef"><b>Definition:</b> moonBoard.h:12</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a103185cbdcc26aa720089edc458ba865"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_moon_base.html">MoonBase</a> moonBases_1B[<a class="el" href="_bot_8h.html#a61b883127717474044f4ce2cc294d6a5">_NUMBER_OF_MOON_BASES_</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">={</div>
+<div class="line">        {1, 0, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.700, 0.080, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.700, 0.080, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 1.150, 0, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 1.150},</div>
+<div class="line">        {2, 0, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a>, 1.070, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a>, 1.070, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.360, 0, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.360}</div>
+<div class="line">}</div>
+<div class="ttc" id="moon_board_8h_html_a483a85b4591d09db27aa907b790ae509"><div class="ttname"><a href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a></div><div class="ttdeci">#define _Y_LIMIT_</div><div class="ttdef"><b>Definition:</b> moonBoard.h:12</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aed31f3c8556d566829ddebd48b3fe691"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_moon_base.html">MoonBase</a> moonBases_2Y[<a class="el" href="_bot_8h.html#a61b883127717474044f4ce2cc294d6a5">_NUMBER_OF_MOON_BASES_</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">={</div>
+<div class="line">        {1, 0, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a>, 1.070, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a>, 1.070, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.360, 0, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.360},</div>
+<div class="line">        {2, 2.920, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.700, <a class="code" href="moon_board_8h.html#a2e8b1eb976e85d3faa8468cbafef1387">_X_LIMIT_</a>, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 0.700, <a class="code" href="moon_board_8h.html#a2e8b1eb976e85d3faa8468cbafef1387">_X_LIMIT_</a>, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 1.150, 2.920, <a class="code" href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a> - 1.150},</div>
+<div class="line">}</div>
+<div class="ttc" id="moon_board_8h_html_a2e8b1eb976e85d3faa8468cbafef1387"><div class="ttname"><a href="moon_board_8h.html#a2e8b1eb976e85d3faa8468cbafef1387">_X_LIMIT_</a></div><div class="ttdeci">#define _X_LIMIT_</div><div class="ttdef"><b>Definition:</b> moonBoard.h:11</div></div>
+<div class="ttc" id="moon_board_8h_html_a483a85b4591d09db27aa907b790ae509"><div class="ttname"><a href="moon_board_8h.html#a483a85b4591d09db27aa907b790ae509">_Y_LIMIT_</a></div><div class="ttdeci">#define _Y_LIMIT_</div><div class="ttdef"><b>Definition:</b> moonBoard.h:12</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -340,7 +478,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_65323f7225c5ff5ad4bd06d4f2501b1b.html">Module Cerveau</a></li><li class="navelem"><a class="el" href="dir_89994ad9d93a0db5eea5a2bb0e2e09a4.html">Artificial Intelligence</a></li><li class="navelem"><a class="el" href="dir_4f5946da87f9062811815b61ffc694d3.html">ai</a></li><li class="navelem"><a class="el" href="dir_f5bca84671296e09a25b72c25f5cbac1.html">ai</a></li><li class="navelem"><a class="el" href="_bot_8h.html">Bot.h</a></li>
-    <li class="footer">Generated on Thu Apr 13 2017 09:28:50 for Coupe de France by
+    <li class="footer">Generated on Sat May 6 2017 16:29:57 for Coupe de France by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

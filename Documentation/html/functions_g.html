@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.75</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -162,9 +162,6 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getAccelFIFOEnabled()
 : <a class="el" href="class_m_p_u6050.html#ace244415128ad7a38293ad6808b7face">MPU6050</a>
 </li>
-<li>getAccelgyro()
-: <a class="el" href="class_bot.html#a1c2afef01abf909176f11d1b3330829d">Bot</a>
-</li>
 <li>getAccelXSelfTest()
 : <a class="el" href="class_m_p_u6050.html#a8fc7eab1302281f6e4bc953379f3237b">MPU6050</a>
 </li>
@@ -174,11 +171,20 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getAccelZSelfTest()
 : <a class="el" href="class_m_p_u6050.html#a57710638eeb6176cf14a8c444bda5300">MPU6050</a>
 </li>
+<li>getAngle_position()
+: <a class="el" href="class_asservissement.html#a7903807b9a84041b6f114e91ef87707e">Asservissement</a>
+</li>
+<li>getAngleEffectue()
+: <a class="el" href="class_asservissement.html#afa9222715e8967fc1d7abf405cf6f074">Asservissement</a>
+</li>
 <li>getAngleZ()
 : <a class="el" href="class_bot.html#a7ccbdf8291c616230c758774be0e98b9">Bot</a>
 </li>
 <li>getAngularVelocity()
 : <a class="el" href="class_i_t_g3200.html#a47b8c4ee7b4a9e0e16bdb7e05df1270b">ITG3200</a>
+</li>
+<li>getAsservissement()
+: <a class="el" href="class_bot.html#af59b3dbe7db0ce70e8d8d64262dfff00">Bot</a>
 </li>
 <li>getAuxVDDIOLevel()
 : <a class="el" href="class_m_p_u6050.html#af6e9af8e2222889fd5458e2ae12c55c8">MPU6050</a>
@@ -203,6 +209,9 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 </li>
 <li>getDHPFMode()
 : <a class="el" href="class_m_p_u6050.html#a4c3b84a906fcb5a65870fa557f797f4a">MPU6050</a>
+</li>
+<li>getDistanceParcourue()
+: <a class="el" href="class_asservissement.html#a834e1a447c32f17fd10b5392861853ef">Asservissement</a>
 </li>
 <li>getDLPFMode()
 : <a class="el" href="class_m_p_u6050.html#a9f2737fe22955fd85b2575ba8da874c6">MPU6050</a>
@@ -390,6 +399,9 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getNom()
 : <a class="el" href="class_ecran.html#a4beea973d2e65cbce0077d9e9747dc3c">Ecran</a>
 </li>
+<li>getOrderFinished()
+: <a class="el" href="class_asservissement.html#a2612f6efc344b5a836955d2350cb0521">Asservissement</a>
+</li>
 <li>getOutputFile()
 : <a class="el" href="classread_1_1_data_reader.html#a0f26e9d5328a30d7e4dadbbdaffdb503">read.DataReader</a>
 </li>
@@ -530,6 +542,12 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getTempSensorEnabled()
 : <a class="el" href="class_m_p_u6050.html#a31f588beab6760258212c65725eba336">MPU6050</a>
 </li>
+<li>getTick_codeuse_l()
+: <a class="el" href="class_asservissement.html#a2e6b22d591a32cf1f27898ae0c4fbe47">Asservissement</a>
+</li>
+<li>getTick_codeuse_r()
+: <a class="el" href="class_asservissement.html#a4a3822bed0fcee124539c22ab02c27b6">Asservissement</a>
+</li>
 <li>getUltrasonicBackValue()
 : <a class="el" href="class_sensors_board.html#ae95be8bdd368602bd1ff6eaf1cc9908b">SensorsBoard</a>
 </li>
@@ -554,6 +572,9 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getWakeFrequency()
 : <a class="el" href="class_m_p_u6050.html#a249a905ae4572a462414f2d94236258a">MPU6050</a>
 </li>
+<li>getX_position()
+: <a class="el" href="class_asservissement.html#ab58c7b9fdf8ef901151db1a0cb68a471">Asservissement</a>
+</li>
 <li>getXAccelOffset()
 : <a class="el" href="class_m_p_u6050.html#afdfe715ced419d117c2c47007d631f9e">MPU6050</a>
 </li>
@@ -577,6 +598,9 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 </li>
 <li>getXYZ()
 : <a class="el" href="class_i_t_g3200.html#a06fe980bc030500d768558b50c34c711">ITG3200</a>
+</li>
+<li>getY_position()
+: <a class="el" href="class_asservissement.html#ac7958a4bbd39bbec90c46a3f82c7f4d8">Asservissement</a>
 </li>
 <li>getYAccelOffset()
 : <a class="el" href="class_m_p_u6050.html#a7753d3c3f5d9e341f1ed0712079a0d12">MPU6050</a>
@@ -629,13 +653,16 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getZPosMotionDetected()
 : <a class="el" href="class_m_p_u6050.html#a33c766cd415fc5780417b1ed76717875">MPU6050</a>
 </li>
+<li>goInFrontOfRocketCylinders()
+: <a class="el" href="class_bot.html#aef1ddae54e393b08ee43dd8978221adb">Bot</a>
+</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Apr 13 2017 09:28:50 for Coupe de France by
+    <li class="footer">Generated on Sat May 6 2017 16:29:58 for Coupe de France by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

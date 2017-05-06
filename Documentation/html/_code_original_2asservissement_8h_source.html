@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>Coupe de France: Module Moteur/Software/Asservissement/Archives/CodeOriginal/asservissement.h Source File</title>
+<title>Coupe de France: Software/Asservissement/Archives/CodeOriginal/asservissement.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.75</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -131,11 +131,11 @@ $(document).ready(function(){initNavTree('_code_original_2asservissement_8h_sour
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="_code_original_2asservissement_8h.html#aec7c82e3146dcb6ce0d1570861a1aaed">   20</a></span>&#160;<span class="preprocessor">#define ERROR_L_ACCEPTED 10.0 //if robot reaches this value or minus, orders are satisfied (in mm) </span></div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="_code_original_2asservissement_8h.html#a9c421b2f916d0543806c67699b51ae23">   21</a></span>&#160;<span class="preprocessor">#define ERROR_THETA_ACCEPTED 1.0 //if robot reaches this value or minus, orders are satisfied (to reach angle)</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_asservissement.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_asservissement.html">Asservissement</a>{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span><a class="code" href="class_asservissement.html">Asservissement</a>{</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="class_asservissement.html#a602ab222a93b691ada69cfe11208faf2">Asservissement</a>(<span class="keywordtype">double</span> periode,<a class="code" href="class_moteur.html">Moteur</a> grobot);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="class_asservissement.html#afafc7eae371961c483258333e30dc4f6">Asservissement</a>(<span class="keywordtype">double</span> periode,<a class="code" href="class_moteur.html">Moteur</a> grobot);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="class_asservissement.html#af459078c269e8872c8f9585774b5aee1">boundError</a>(<span class="keywordtype">double</span> e);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="class_asservissement.html#a46c56c095e7a01174809cf2683782113">contDistance</a>(<a class="code" href="struct_position.html">Position</a> <a class="code" href="application_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a>, <a class="code" href="struct_position.html">Position</a> <a class="code" href="application_8cpp.html#ad3e735d1b43ba5dbc021dbe43e632c60">robot</a>);</div>
@@ -180,13 +180,13 @@ $(document).ready(function(){initNavTree('_code_original_2asservissement_8h_sour
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="class_asservissement_html_a0ddbc9243384337c1f3af07ffc8b85b0"><div class="ttname"><a href="class_asservissement.html#a0ddbc9243384337c1f3af07ffc8b85b0">Asservissement::atteindrePosition</a></div><div class="ttdeci">void atteindrePosition(Position destination, Position robot)</div><div class="ttdoc">Procedure pour que le robot atteigne une position en courbe curviligne. </div><div class="ttdef"><b>Definition:</b> asservissement.cpp:426</div></div>
 <div class="ttc" id="application_8cpp_html_ad3e735d1b43ba5dbc021dbe43e632c60"><div class="ttname"><a href="application_8cpp.html#ad3e735d1b43ba5dbc021dbe43e632c60">robot</a></div><div class="ttdeci">Asservissement robot(tempOsc, crysteo)</div></div>
-<div class="ttc" id="class_asservissement_html"><div class="ttname"><a href="class_asservissement.html">Asservissement</a></div><div class="ttdoc">Classe Asservissement. </div><div class="ttdef"><b>Definition:</b> asservissement.h:23</div></div>
+<div class="ttc" id="class_asservissement_html"><div class="ttname"><a href="class_asservissement.html">Asservissement</a></div><div class="ttdoc">Classe Asservissement. </div><div class="ttdef"><b>Definition:</b> Asservissement.h:41</div></div>
 <div class="ttc" id="class_odometrie_html"><div class="ttname"><a href="class_odometrie.html">Odometrie</a></div><div class="ttdoc">Classe Odometrie. </div><div class="ttdef"><b>Definition:</b> odometrie.h:17</div></div>
 <div class="ttc" id="_code_original_2moteur_8h_html"><div class="ttname"><a href="_code_original_2moteur_8h.html">moteur.h</a></div></div>
+<div class="ttc" id="class_asservissement_html_afafc7eae371961c483258333e30dc4f6"><div class="ttname"><a href="class_asservissement.html#afafc7eae371961c483258333e30dc4f6">Asservissement::Asservissement</a></div><div class="ttdeci">Asservissement()</div><div class="ttdef"><b>Definition:</b> Asservissement.cpp:21</div></div>
 <div class="ttc" id="_code_original_2structures_8h_html"><div class="ttname"><a href="_code_original_2structures_8h.html">structures.h</a></div></div>
 <div class="ttc" id="_code_original_2odometrie_8h_html"><div class="ttname"><a href="_code_original_2odometrie_8h.html">odometrie.h</a></div></div>
 <div class="ttc" id="class_asservissement_html_a46c56c095e7a01174809cf2683782113"><div class="ttname"><a href="class_asservissement.html#a46c56c095e7a01174809cf2683782113">Asservissement::contDistance</a></div><div class="ttdeci">double contDistance(Position destination, Position robot)</div><div class="ttdoc">Fonction qui contrôle la distance => calcule la commande de distance ?? </div><div class="ttdef"><b>Definition:</b> asservissement.cpp:61</div></div>
-<div class="ttc" id="class_asservissement_html_a602ab222a93b691ada69cfe11208faf2"><div class="ttname"><a href="class_asservissement.html#a602ab222a93b691ada69cfe11208faf2">Asservissement::Asservissement</a></div><div class="ttdeci">Asservissement(double periode, Moteur grobot)</div><div class="ttdoc">constructeur qui initialise et met des valeurs par defauts </div><div class="ttdef"><b>Definition:</b> asservissement.cpp:16</div></div>
 <div class="ttc" id="struct_position_html"><div class="ttname"><a href="struct_position.html">Position</a></div><div class="ttdef"><b>Definition:</b> structures.h:5</div></div>
 <div class="ttc" id="application_8cpp_html_a30e5d9485b69419174e473a3e46b258a"><div class="ttname"><a href="application_8cpp.html#a30e5d9485b69419174e473a3e46b258a">destination</a></div><div class="ttdeci">Position destination</div><div class="ttdef"><b>Definition:</b> application.cpp:172</div></div>
 <div class="ttc" id="class_asservissement_html_a94e0a6d4d378d41daa14bce3f07ea422"><div class="ttname"><a href="class_asservissement.html#a94e0a6d4d378d41daa14bce3f07ea422">Asservissement::contAngle</a></div><div class="ttdeci">double contAngle(Position destination, Position robot)</div><div class="ttdoc">fonction qui contrôle l&#39;angle => calcule la commande d&#39;angle ?? </div><div class="ttdef"><b>Definition:</b> asservissement.cpp:78</div></div>
@@ -207,8 +207,8 @@ $(document).ready(function(){initNavTree('_code_original_2asservissement_8h_sour
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1eaef2d265c41e371de2bc5a3dd6ea7b.html">Module Moteur</a></li><li class="navelem"><a class="el" href="dir_ffd77d2659707b83b2453bb00bb54e85.html">Software</a></li><li class="navelem"><a class="el" href="dir_6c9639399f875dbf2ecd251f38cb1726.html">Asservissement</a></li><li class="navelem"><a class="el" href="dir_ce2f751b0bed4011827d5471fa0cdc60.html">Archives</a></li><li class="navelem"><a class="el" href="dir_502269267ceac9fdfeed2460c474748f.html">CodeOriginal</a></li><li class="navelem"><a class="el" href="_code_original_2asservissement_8h.html">asservissement.h</a></li>
-    <li class="footer">Generated on Thu Apr 13 2017 09:28:50 for Coupe de France by
+    <li class="navelem"><a class="el" href="dir_ffd77d2659707b83b2453bb00bb54e85.html">Software</a></li><li class="navelem"><a class="el" href="dir_6c9639399f875dbf2ecd251f38cb1726.html">Asservissement</a></li><li class="navelem"><a class="el" href="dir_ce2f751b0bed4011827d5471fa0cdc60.html">Archives</a></li><li class="navelem"><a class="el" href="dir_502269267ceac9fdfeed2460c474748f.html">CodeOriginal</a></li><li class="navelem"><a class="el" href="_code_original_2asservissement_8h.html">asservissement.h</a></li>
+    <li class="footer">Generated on Sat May 6 2017 16:29:57 for Coupe de France by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

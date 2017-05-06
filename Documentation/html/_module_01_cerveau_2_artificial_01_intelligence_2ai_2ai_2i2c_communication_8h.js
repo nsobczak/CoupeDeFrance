@@ -8,6 +8,7 @@ var _module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8
     [ "i2crequest", "_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#a8583786b76c62294b407eb479369a4ef", null ],
     [ "i2csend", "_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#aa57c53d43c435c6efe21932b18c13591", null ],
     [ "i2csend3bytes", "_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#aa072a4dcb87b819a72db58c21754971b", null ],
+    [ "i2csend5bytes", "_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#a1d81d1c993e090a6708ab4ecf9d4270b", null ],
     [ "intTo2Bytes", "_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#a4f8591eec9512b6d369d30dd80545233", null ],
     [ "ledControl", "_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#ae6a3bc2609421898c94e1058b328272b", null ],
     [ "ledOff", "_module_01_cerveau_2_artificial_01_intelligence_2ai_2ai_2i2c_communication_8h.html#a5827c170dcc5542611602c83465aef76", null ],

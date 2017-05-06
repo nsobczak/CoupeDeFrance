@@ -1,4 +1,4 @@
-digraph "Module Cerveau/I2C" {
+digraph "/media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Cerveau/I2C" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];
@@ -8,6 +8,7 @@ digraph "Module Cerveau/I2C" {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_d54d14543ffb2026c54fba82978d70e8.html"];
     dir_d54d14543ffb2026c54fba82978d70e8 [shape=plaintext label="I2C"];
     dir_00e0a89a170851258085a8002cbc360d [shape=box label="i2cCommunication" color="red" fillcolor="white" style="filled" URL="dir_00e0a89a170851258085a8002cbc360d.html"];
+    dir_acd1457a383adf4c1471d85a76625613 [shape=box label="Tests" color="red" fillcolor="white" style="filled" URL="dir_acd1457a383adf4c1471d85a76625613.html"];
   }
   }
 }

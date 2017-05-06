@@ -1,0 +1,12 @@
+digraph "Software/Asservissement/Asservissement/Asservissement_vitesse_2.5/Asservissement_vitesse_2.5/i2cCommunication.cpp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Software/Asservissement\l/Asservissement/Asservissement\l_vitesse_2.5/Asservissement\l_vitesse_2.5/i2cCommunication.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="i2cCommunication.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_module_01_moteur_2_software_2_asservissement_2_asservissement_2_asservissement__vitesse__2_85_23f25f62785bfc279b8fe7fa51fcb3320.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Wire.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Arduino.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+}

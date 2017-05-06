@@ -1,13 +1,10 @@
-digraph "Module Moteur/Software" {
+digraph "Software" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_1eaef2d265c41e371de2bc5a3dd6ea7b {
-    graph [ bgcolor="#ddddee", pencolor="black", label="Module Moteur" fontname="Helvetica", fontsize="10", URL="dir_1eaef2d265c41e371de2bc5a3dd6ea7b.html"]
   subgraph clusterdir_ffd77d2659707b83b2453bb00bb54e85 {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_ffd77d2659707b83b2453bb00bb54e85.html"];
     dir_ffd77d2659707b83b2453bb00bb54e85 [shape=plaintext label="Software"];
     dir_6c9639399f875dbf2ecd251f38cb1726 [shape=box label="Asservissement" color="red" fillcolor="white" style="filled" URL="dir_6c9639399f875dbf2ecd251f38cb1726.html"];
-  }
   }
 }

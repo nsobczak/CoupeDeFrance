@@ -9,6 +9,7 @@ var hierarchy =
     [ "I2Cdev", "class_i2_cdev.html", null ],
     [ "ITG3200", "class_i_t_g3200.html", null ],
     [ "M2tk", "class_m2tk.html", null ],
+    [ "MoonBase", "struct_moon_base.html", null ],
     [ "Moteur", "class_moteur.html", null ],
     [ "MPU6050", "class_m_p_u6050.html", null ],
     [ "Odometrie", "class_odometrie.html", null ],

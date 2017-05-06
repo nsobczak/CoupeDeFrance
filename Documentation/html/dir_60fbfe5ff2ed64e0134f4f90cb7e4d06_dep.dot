@@ -1,4 +1,4 @@
-digraph "Module Moteur/Software/Asservissement/ReadArduinoSerial" {
+digraph "Software/Asservissement/ReadArduinoSerial" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];

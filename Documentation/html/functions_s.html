@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.75</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -162,9 +162,6 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>setAccelFIFOEnabled()
 : <a class="el" href="class_m_p_u6050.html#afccbee85f5cdc95098f6d62d8d417c3f">MPU6050</a>
 </li>
-<li>setAccelgyro()
-: <a class="el" href="class_bot.html#aa1b3cce3605828dc1e8e18ec4c9f0912">Bot</a>
-</li>
 <li>setAccelXSelfTest()
 : <a class="el" href="class_m_p_u6050.html#ac2ab843dc9d241056ed0f891195cdbf9">MPU6050</a>
 </li>
@@ -174,8 +171,17 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>setAccelZSelfTest()
 : <a class="el" href="class_m_p_u6050.html#a8eb8ba039af9a47e0475a3835b87f404">MPU6050</a>
 </li>
+<li>setAngle_position()
+: <a class="el" href="class_asservissement.html#ab6b583ccac522f0ce9eb67cc55a9615d">Asservissement</a>
+</li>
+<li>setAngleEffectue()
+: <a class="el" href="class_asservissement.html#a6b7aea3237f3846b182ae9ec487f0993">Asservissement</a>
+</li>
 <li>setAngleZ()
 : <a class="el" href="class_bot.html#a92dd0d34a97739a7ebd60b01ba5a893f">Bot</a>
+</li>
+<li>setAsservissement()
+: <a class="el" href="class_bot.html#a055d9fca489529ba5e7a76fe61d4778c">Bot</a>
 </li>
 <li>setAuxVDDIOLevel()
 : <a class="el" href="class_m_p_u6050.html#a7c666c20e26869bc80646f1b2c3d69bc">MPU6050</a>
@@ -203,6 +209,9 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 </li>
 <li>setDHPFMode()
 : <a class="el" href="class_m_p_u6050.html#a44cc43aaad1e52c1ba3142d4490af611">MPU6050</a>
+</li>
+<li>setDistanceParcourue()
+: <a class="el" href="class_asservissement.html#a6e1e835179caecce6f2fb0c53e90339c">Asservissement</a>
 </li>
 <li>setDLPFMode()
 : <a class="el" href="class_m_p_u6050.html#a7a782ade8af2f88dfef7171487f59a3b">MPU6050</a>
@@ -342,6 +351,9 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>setNom()
 : <a class="el" href="class_ecran.html#a5ace16190659784adcfcd8c0c34833c5">Ecran</a>
 </li>
+<li>setOrderFinished()
+: <a class="el" href="class_asservissement.html#acbe3a259cf3e01e8d9247b57053eba71">Asservissement</a>
+</li>
 <li>setPin()
 : <a class="el" href="class_m2tk.html#a84f9782ce6ee6d91ca45541f77d59e9d">M2tk</a>
 </li>
@@ -462,6 +474,12 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>setTextWrap()
 : <a class="el" href="class_adafruit___g_f_x.html#aeeacd62bf26f3e7abbdc4b5b50faa6fa">Adafruit_GFX</a>
 </li>
+<li>setTick_codeuse_l()
+: <a class="el" href="class_asservissement.html#a166a7aee4425b75d72e97c6c8580d206">Asservissement</a>
+</li>
+<li>setTick_codeuse_r()
+: <a class="el" href="class_asservissement.html#a07c6b69d280ab641c82db08ae262f7b8">Asservissement</a>
+</li>
 <li>setUltrasonicBackValue()
 : <a class="el" href="class_sensors_board.html#a399c584636f1d4a28bea88ebf4e7c438">SensorsBoard</a>
 </li>
@@ -486,6 +504,9 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>setWakeFrequency()
 : <a class="el" href="class_m_p_u6050.html#a62495e89f4787e6b18f0f795cef2b7cd">MPU6050</a>
 </li>
+<li>setX_position()
+: <a class="el" href="class_asservissement.html#a23d2a134cd2752dd0a9b30fc51e7d4ae">Asservissement</a>
+</li>
 <li>setXAccelOffset()
 : <a class="el" href="class_m_p_u6050.html#a447144e025f55b1dc96d7c209c5defd6">MPU6050</a>
 </li>
@@ -500,6 +521,9 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 </li>
 <li>setXGyroOffsetUser()
 : <a class="el" href="class_m_p_u6050.html#a2306a15d278eab385af6ea0fd54c908a">MPU6050</a>
+</li>
+<li>setY_position()
+: <a class="el" href="class_asservissement.html#ad2b48fce892e0242951f9891fc3b4a08">Asservissement</a>
 </li>
 <li>setYAccelOffset()
 : <a class="el" href="class_m_p_u6050.html#a6214fa36c8881f3b02a3e7033678bfb3">MPU6050</a>
@@ -579,7 +603,7 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Apr 13 2017 09:28:50 for Coupe de France by
+    <li class="footer">Generated on Sat May 6 2017 16:29:58 for Coupe de France by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

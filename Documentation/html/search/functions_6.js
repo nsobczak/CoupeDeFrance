@@ -7,6 +7,8 @@ var searchData=
   ['fillscreen',['fillScreen',['../class_adafruit___g_f_x.html#a2b2730aaf2208990928f9c0f85558527',1,'Adafruit_GFX']]],
   ['filltriangle',['fillTriangle',['../class_adafruit___g_f_x.html#a4cd646a3d9c9d5b3ee50010d0aa387cd',1,'Adafruit_GFX']]],
   ['findandcatchcylinder',['findAndCatchCylinder',['../class_bot.html#ac40a5747dfea94888e38a69835936587',1,'Bot']]],
+  ['findcylinder',['findCylinder',['../class_bot.html#a7e67b4f812eeac516de444d9159290a2',1,'Bot']]],
+  ['findmoonbase',['findMoonBase',['../class_bot.html#ab70ec9355daddbc3f5996587f805325b',1,'Bot']]],
   ['fn_5fcancel',['fn_cancel',['../_bot_menu_initial_8cpp.html#a8a3c6fcc095a1d9db5dbdde7f8d3fc4d',1,'BotMenuInitial.cpp']]],
   ['fn_5fidx_5fto_5fcolor',['fn_idx_to_color',['../_bot_menu_initial_8cpp.html#a8efda50d6409985342bc143c499f0cee',1,'BotMenuInitial.cpp']]],
   ['fn_5fidx_5fto_5fpriority',['fn_idx_to_priority',['../_bot_menu_initial_8cpp.html#a4ec9ca795394ccbd02d19cece9c659f5',1,'BotMenuInitial.cpp']]],

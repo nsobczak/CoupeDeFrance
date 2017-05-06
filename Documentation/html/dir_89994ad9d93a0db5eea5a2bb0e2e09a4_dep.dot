@@ -1,4 +1,4 @@
-digraph "Module Cerveau/Artificial Intelligence" {
+digraph "/media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Cerveau/Artificial Intelligence" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];
@@ -8,6 +8,7 @@ digraph "Module Cerveau/Artificial Intelligence" {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_89994ad9d93a0db5eea5a2bb0e2e09a4.html"];
     dir_89994ad9d93a0db5eea5a2bb0e2e09a4 [shape=plaintext label="Artificial Intelligence"];
     dir_4f5946da87f9062811815b61ffc694d3 [shape=box label="ai" color="red" fillcolor="white" style="filled" URL="dir_4f5946da87f9062811815b61ffc694d3.html"];
+    dir_8ae39278e8fb31f23d02f7b27e7e0353 [shape=box label="Ecran" color="red" fillcolor="white" style="filled" URL="dir_8ae39278e8fb31f23d02f7b27e7e0353.html"];
   }
   }
 }

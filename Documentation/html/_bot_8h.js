@@ -1,16 +1,25 @@
 var _bot_8h =
 [
     [ "Bot", "class_bot.html", "class_bot" ],
-    [ "_ASSERVISSMENT_BOTGOBACKWARD_", "_bot_8h.html#a4111c1141cdfcbec185a2189d9d162b0", null ],
-    [ "_ASSERVISSMENT_BOTGOFORWARD_", "_bot_8h.html#ad0b928e66df0608acba291bf71c6a30c", null ],
-    [ "_ASSERVISSMENT_BOTSTOP_", "_bot_8h.html#a6431fb3f8d8d5a6b6c75eaca7186249c", null ],
-    [ "_ASSERVISSMENT_BOTTURNLEFT_", "_bot_8h.html#a5fa2a28dfea019980fcb5433b14e7464", null ],
-    [ "_ASSERVISSMENT_BOTTURNRIGHT_", "_bot_8h.html#a4fc6481e6efca7fbc57b9aa6b75ee017", null ],
-    [ "_ASSERVISSMENT_SENDADRESS_", "_bot_8h.html#ab42f904ec84797fd25a80745bf68f6b5", null ],
+    [ "_DEBUG_BOT_", "_bot_8h.html#a0053fe85ff3b1343729ebaabce0123ce", null ],
+    [ "_FAST_SPEED_", "_bot_8h.html#a72070c00be6b6d8c2160ddd5c2452372", null ],
+    [ "_MEDIUM_SPEED_", "_bot_8h.html#a2516bd40b72c9932d0957a8833e23842", null ],
     [ "_NUMBER_OF_CYLINDERS_TO_CATCH_", "_bot_8h.html#aa62861691ecfe5c0968739191d132fc2", null ],
+    [ "_NUMBER_OF_MOON_BASES_", "_bot_8h.html#a61b883127717474044f4ce2cc294d6a5", null ],
     [ "_PIN_ARDUINO_NANO_FUNNY_ACTION_", "_bot_8h.html#a238f2c2e9605cb8d2c0c5e1857014b2c", null ],
+    [ "_PIN_BOUTON_ARRET_URGENCE_", "_bot_8h.html#ab47c53c53fa2f3ad9e36fc2f22bf0fcb", null ],
     [ "_PIN_TIRETTE_", "_bot_8h.html#abc65974cac778b29cb334de7868489fa", null ],
+    [ "_SLOW_SPEED_", "_bot_8h.html#ac9ac63df3359f5b79ea51500afe2aab4", null ],
+    [ "_TEMPS_RECHERCHE_BASE_MAXIMUM_", "_bot_8h.html#aa23b1ac51f84909e6cd7ac44eced25fc", null ],
     [ "_TEMPS_RECHERCHE_CYLINDRE_MAXIMUM_", "_bot_8h.html#ae7c8eccb6379cf00f8573667e967d095", null ],
+    [ "_TIMER_LIMIT_", "_bot_8h.html#aa225d90c85fab502ac1644a2c12f0319", null ],
+    [ "_BLUE_START_ANGLE_", "_bot_8h.html#a66a5020310cd159c5b5ffd846985fa9c", null ],
+    [ "_BLUE_X_START_POSITION_", "_bot_8h.html#a20af520ef08d4a9781cf09c9874c60c6", null ],
+    [ "_Y_START_POSITION_", "_bot_8h.html#a1542c0383aaa0d8ed664e552ecac2898", null ],
+    [ "_YELLOW_START_ANGLE_", "_bot_8h.html#a2d0115eb7dbc8ce345a83cafc5560b32", null ],
+    [ "_YELLOW_X_START_POSITION_", "_bot_8h.html#a30c98c8b3271b3ac937954df9a005805", null ],
     [ "cylinderToCatchList_1B", "_bot_8h.html#ad11e360939832b27c157649c39d9ff09", null ],
-    [ "cylinderToCatchList_2Y", "_bot_8h.html#a0f6a063b28db84818f790947bf852e2e", null ]
+    [ "cylinderToCatchList_2Y", "_bot_8h.html#a0f6a063b28db84818f790947bf852e2e", null ],
+    [ "moonBases_1B", "_bot_8h.html#a103185cbdcc26aa720089edc458ba865", null ],
+    [ "moonBases_2Y", "_bot_8h.html#aed31f3c8556d566829ddebd48b3fe691", null ]
 ];

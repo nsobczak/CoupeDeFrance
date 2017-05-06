@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="arduino_emoji.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Coupe de France
-   &#160;<span id="projectnumber">1.7</span>
+   &#160;<span id="projectnumber">1.75</span>
    </div>
    <div id="projectbrief">Coupe de France de robotique</div>
   </td>
@@ -122,10 +122,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aadc924ebbdba3950bbd8dbaecda0431c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_clamp.html#aadc924ebbdba3950bbd8dbaecda0431c">Clamp</a> ()</td></tr>
 <tr class="separator:aadc924ebbdba3950bbd8dbaecda0431c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0520d7c3a5fa9d7f572fdf2a8cacff34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_clamp.html#a0520d7c3a5fa9d7f572fdf2a8cacff34">initialisation</a> ()</td></tr>
+<tr class="memdesc:a0520d7c3a5fa9d7f572fdf2a8cacff34"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C - envoyer info d'initialisation au module pince.  <a href="#a0520d7c3a5fa9d7f572fdf2a8cacff34">More...</a><br /></td></tr>
 <tr class="separator:a0520d7c3a5fa9d7f572fdf2a8cacff34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bb0afd5eefa244314cdab5ef36a0943"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_clamp.html#a2bb0afd5eefa244314cdab5ef36a0943">catchCylinder</a> ()</td></tr>
+<tr class="memdesc:a2bb0afd5eefa244314cdab5ef36a0943"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C - envoyer info d'attraper le cylindre au module pince.  <a href="#a2bb0afd5eefa244314cdab5ef36a0943">More...</a><br /></td></tr>
 <tr class="separator:a2bb0afd5eefa244314cdab5ef36a0943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ed2d9de6cbffd75d2f5adba3844fbb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_clamp.html#a9ed2d9de6cbffd75d2f5adba3844fbb5">bringUpCylinder</a> ()</td></tr>
+<tr class="memdesc:a9ed2d9de6cbffd75d2f5adba3844fbb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C - envoyer info d'de monter le cylindre au module pince.  <a href="#a9ed2d9de6cbffd75d2f5adba3844fbb5">More...</a><br /></td></tr>
+<tr class="separator:a9ed2d9de6cbffd75d2f5adba3844fbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1aefa98f746666a4896fad8ebbb4ace"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_clamp.html#ac1aefa98f746666a4896fad8ebbb4ace">releaseCylinder</a> ()</td></tr>
+<tr class="memdesc:ac1aefa98f746666a4896fad8ebbb4ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C - envoyer info de lacher le cylindre au module pince.  <a href="#ac1aefa98f746666a4896fad8ebbb4ace">More...</a><br /></td></tr>
 <tr class="separator:ac1aefa98f746666a4896fad8ebbb4ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -145,6 +151,23 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9ed2d9de6cbffd75d2f5adba3844fbb5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Clamp::bringUpCylinder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I2C - envoyer info d'de monter le cylindre au module pince. </p>
+
+</div>
+</div>
 <a class="anchor" id="a2bb0afd5eefa244314cdab5ef36a0943"></a>
 <div class="memitem">
 <div class="memproto">
@@ -157,6 +180,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>I2C - envoyer info d'attraper le cylindre au module pince. </p>
 
 </div>
 </div>
@@ -173,6 +198,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>I2C - envoyer info d'initialisation au module pince. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac1aefa98f746666a4896fad8ebbb4ace"></a>
@@ -188,11 +215,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>I2C - envoyer info de lacher le cylindre au module pince. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Module Cerveau/Artificial Intelligence/ai/ai/<a class="el" href="_clamp_8h_source.html">Clamp.h</a></li>
-<li>Module Cerveau/Artificial Intelligence/ai/ai/<a class="el" href="_clamp_8cpp.html">Clamp.cpp</a></li>
+<li>/media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Cerveau/Artificial Intelligence/ai/ai/<a class="el" href="_clamp_8h_source.html">Clamp.h</a></li>
+<li>/media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Cerveau/Artificial Intelligence/ai/ai/<a class="el" href="_clamp_8cpp.html">Clamp.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -200,7 +229,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_clamp.html">Clamp</a></li>
-    <li class="footer">Generated on Thu Apr 13 2017 09:28:50 for Coupe de France by
+    <li class="footer">Generated on Sat May 6 2017 16:29:57 for Coupe de France by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

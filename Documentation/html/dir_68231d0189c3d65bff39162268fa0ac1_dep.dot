@@ -1,0 +1,9 @@
+digraph "/media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Cerveau/Artificial Intelligence/Ecran/Ecran_test" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_8ae39278e8fb31f23d02f7b27e7e0353 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Ecran" fontname="Helvetica", fontsize="10", URL="dir_8ae39278e8fb31f23d02f7b27e7e0353.html"]
+  dir_68231d0189c3d65bff39162268fa0ac1 [shape=box, label="Ecran_test", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_68231d0189c3d65bff39162268fa0ac1.html"];
+  }
+}

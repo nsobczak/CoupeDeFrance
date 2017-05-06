@@ -1,4 +1,4 @@
-digraph "Module Moteur/Software/Asservissement/Archives/CodeOriginal" {
+digraph "Software/Asservissement/Archives/CodeOriginal" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];

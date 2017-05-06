@@ -1,4 +1,4 @@
-digraph "Module Cerveau/Gyroscope/Gyroscope" {
+digraph "/media/nicolas/A600540B0053E13B/Users/nicolas/Documents/Ecole/ISEN/Projet/Coupe de France/Module Cerveau/Gyroscope/Gyroscope" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];

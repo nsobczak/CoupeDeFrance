@@ -12,6 +12,7 @@ var annotated =
     [ "I2Cdev", "class_i2_cdev.html", "class_i2_cdev" ],
     [ "ITG3200", "class_i_t_g3200.html", "class_i_t_g3200" ],
     [ "M2tk", "class_m2tk.html", "class_m2tk" ],
+    [ "MoonBase", "struct_moon_base.html", "struct_moon_base" ],
     [ "Moteur", "class_moteur.html", "class_moteur" ],
     [ "MPU6050", "class_m_p_u6050.html", "class_m_p_u6050" ],
     [ "Odometrie", "class_odometrie.html", "class_odometrie" ],

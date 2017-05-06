@@ -1,4 +1,4 @@
-digraph "Module Moteur/Software/Asservissement/Asservissement/Asservissement_vitesse_2.4" {
+digraph "Software/Asservissement/Asservissement/Asservissement_vitesse_2.4" {
   compound=true
   node [ fontsize="10", fontname="Helvetica"];
   edge [ labelfontsize="10", labelfontname="Helvetica"];

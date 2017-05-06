@@ -9,7 +9,6 @@ var searchData=
   ['uikeyselectpin',['uiKeySelectPin',['../_bot_menu_initial_8cpp.html#a4e467e1cb382409703a062cfdafeb73b',1,'BotMenuInitial.cpp']]],
   ['uikeyuppin',['uiKeyUpPin',['../_bot_menu_initial_8cpp.html#abb2364757d18ac2ee4f9650164df5e20',1,'BotMenuInitial.cpp']]],
   ['updateallsensorsvalue',['updateAllSensorsValue',['../class_sensors_board.html#a88e7805681944a1150cf2a9fbda70dce',1,'SensorsBoard']]],
-  ['updateanglez',['updateAngleZ',['../class_bot.html#a1956e31f27c7dcddea182337706ae255',1,'Bot']]],
   ['updatestripes',['updateStripes',['../dynsections_8js.html#a8f7493ad859d4fbf2523917511ee7177',1,'dynsections.js']]],
   ['usagefault_5fhandler',['UsageFault_Handler',['../stm32__it_8cpp.html#a1d98923de2ed6b7309b66f9ba2971647',1,'stm32_it.cpp']]],
   ['usart1_5firqhandler',['USART1_IRQHandler',['../stm32__it_8cpp.html#a7139cd4baabbbcbab0c1fe6d7d4ae1cc',1,'stm32_it.cpp']]],
